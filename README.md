@@ -2,7 +2,7 @@
 
 [Site web](https://pacifista.fr)
 
-Pacifista est un serveur Minecraft créé en 2015. La version de ce serveur la plus récente date d'août 2018. Le but premier de ce serveur est de proposer des fonctionalités aux joueurs qui sont faits maison pour permettre de mieux suivre les envies de la communauté. Pacifista est un serveur survie principalement à l'origine mais se développe de plus en plus pour proposer toujours plus de diversité.
+Pacifista est un serveur Minecraft créé en 2018. La version de ce serveur la plus récente date d'août 2018. Le but premier de ce serveur est de proposer des fonctionalités aux joueurs qui sont faits maison pour permettre de mieux suivre les envies de la communauté. Pacifista est un serveur survie principalement à l'origine mais se développe de plus en plus pour proposer toujours plus de diversité.
 
 ## Site web
 
