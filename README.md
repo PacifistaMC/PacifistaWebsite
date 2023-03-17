@@ -1,27 +1,20 @@
-# PacifistaWebsite
+# Pacifista
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+[Site web](https://pacifista.fr)
 
-## Development server
+Pacifista est un serveur Minecraft principalement survie créé en août 2018. Le but premier de ce serveur est de proposer des fonctionnalités faites maison aux joueurs pour permettre de mieux suivre les envies de la communauté et d’appliquer leurs retours. Pacifista est un serveur survie principalement à l'origine mais se développe de plus en plus pour proposer toujours plus de diversité comme un serveur créatif par exemple et bien plus encore à l’avenir.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Le serveur survie de Pacifista est assez libre, vous avez le choix de faire ce que vous souhaitez. Il y a un système de “claim” qui permet de protéger vos coffres et constructions pour éviter que les joueurs volent ou détruisent ce que vous avez fait. Tout repose sur un système économique, avec des métiers et des échanges entre joueurs ce qui vous permet d’avancer plus efficacement lorsque vous gérez votre économie. La map n’est jamais reset et possède une taille illimitée avec un système de suppression de zones non visitées depuis un moment, rassurez-vous les bases ne sont pas supprimées si vous les avez protégées.
 
-## Code scaffolding
+Nous sommes très attentifs à la gestion de la communauté, c’est d’ailleurs un des points les plus importants dans ce projet. Nous avons une grille de sanction qui est réservée au staff afin que chaque sanction soit donnée équitablement. Tout comportement toxique sur le serveur est très vite remarqué par l’équipe et vite réprimandé en cas de nécessité, nous voulons proposer un environnement de jeu sain et sans prise de tête.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+N’hésitez plus, rejoignez-nous pour participer à cette belle aventure sur Pacifista !
 
-## Build
+## Site web
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Le site web a pour but d'offrir une meilleure visibilité au serveur Minecraft et d'apporter des fonctionalités uniques aux joueurs. Ils auront à leur disposition les dernières news et une boutique pour obtenir des avantages en jeu afin de soutenir le développement du serveur.
+## Développeurs
 
-## Running unit tests
+- [@FunixG](https://www.github.com/funixg)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- Pacifista est un projet qui appartient à la [FunixProductions](https://funixproductions.com)
