@@ -8,6 +8,8 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AccueilComponent } from './pages/accueil/accueil/accueil.component';
 import { NewsCardComponent } from './pages/news/news-card/news-card.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import { CguComponent } from './pages/legal/cgu/cgu.component';
+import { CgvComponent } from './pages/legal/cgv/cgv.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     NavbarComponent,
     FooterComponent,
     AccueilComponent,
-    NewsCardComponent
+    NewsCardComponent,
+    CguComponent,
+    CgvComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
