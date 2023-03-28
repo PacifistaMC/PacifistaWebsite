@@ -20,8 +20,11 @@
 @import "bootstrap/scss/helpers";
 @import "bootstrap/scss/utilities/api";
 
-p {
+* {
   font-family: 'Roboto', sans-serif !important;
+}
+
+p {
   color: #BBBBBB;
 }
 
