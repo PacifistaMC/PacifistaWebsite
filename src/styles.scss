@@ -1,0 +1,46 @@
+@import "pacifista_variables";
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+// Functions first
+@import "bootstrap/scss/functions";
+
+// Required Bootstrap imports
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/root";
+
+// Optional components
+@import "bootstrap/scss/utilities";
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/containers";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/helpers";
+@import "bootstrap/scss/utilities/api";
+
+* {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+p {
+  color: #BBBBBB;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Outfit', sans-serif !important;
+  color: white;
+}
+
+h4 {
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: $bg_color;
+}

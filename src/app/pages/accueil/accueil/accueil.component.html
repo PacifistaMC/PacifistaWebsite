@@ -1,0 +1,179 @@
+<section class="welcome-section">
+  <div class="container-welcome">
+    <h1 class="website-title">Pacifista</h1>
+    <h2>Le serveur Minecraft au plus proche de sa communauté.</h2>
+    <h3><span class="player-amount">{{ playersAmount }}</span> joueurs en ligne</h3>
+
+    <div class="container actions-buttons">
+      <div class="row justify-content-md-center">
+        <div class="col col-lg-3">
+          <a href="/about">
+            <button class="btn">
+              A propos
+            </button>
+          </a>
+        </div>
+
+        <div class="col col-lg-3">
+          <a href="/join">
+            <button class="btn">
+              Nous rejoindre
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="background-image">
+    <img src="assets/img/accueil/bg.jpg" alt="background image">
+  </div>
+</section>
+
+<section class="about-section">
+  <div class="container">
+    <div class="row text-center align-content-center">
+
+      <div class="col">
+        <img src="assets/img/accueil/dev-pc-img.png" alt="logo pc code">
+        <h3>Développement fait maison</h3>
+        <p>Le code source du serveur et de tout ce qui l’entoure est fait par nos équipes.
+          Ce qui nous permet de suivre les tendances / envies de la communauté</p>
+      </div>
+
+      <div class="col">
+        <img src="assets/img/accueil/staff-img.png" alt="logo staff list">
+        <h3>Un staff réactif</h3>
+        <p>Dans tous vos problèmes sur Pacifista ou toutes demandes spécifiques
+          il y aura toujours une oreille attentive de l’équipe !</p>
+      </div>
+
+      <div class="col">
+        <img src="assets/img/accueil/no-limit-modes-img.png" alt="logo mondes">
+        <h3>Des modes sans limites</h3>
+        <p>Que ce soit dans notre mode de jeu survie, créatif ou bien plus encore,
+          nous souhaitons que vous soyez libre dans dans vôtre créativité.</p>
+      </div>
+
+      <div class="col">
+        <img src="assets/img/accueil/community-img.png" alt="logo communauté">
+        <h3>Communauté bienveillante</h3>
+        <p>Avec nos plus de 4 ans d’expérience dans la gestion de communauté,
+          nous détectons facilement les comportements toxic et problématiques.
+          Nous souhaitons vous offrir la plus agréable expérience de jeu possible</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="news-section">
+  <div class="container">
+    <h1 class="section-title">
+      <span class="underline-magical">News</span>
+    </h1>
+    <h4>Nos 3 news les plus récentes.</h4>
+
+    <div *ngIf="newsList.length > 0" class="card-group">
+      <div *ngFor="let news of newsList" class="p-2">
+        <app-news-card [news]="news"></app-news-card>
+      </div>
+    </div>
+    <div *ngIf="newsList.length === 0" class="no-news align-content-center text-center">
+      <h2>Pas encore de news.</h2>
+    </div>
+  </div>
+</section>
+
+<section class="socials-section section-bg-semi-dark">
+  <div class="container">
+    <h1 class="section-title">
+      <span class="underline-magical">Réseaux</span>
+    </h1>
+    <h4>Suivez nos réseaux pour ne rien rater.</h4>
+
+    <div class="row text-center align-content-center justify-content-md-center">
+
+      <div class="col col-lg-2">
+        <a href="https://twitter.com/pacifista_mc" target="_blank">
+          <div class="social-logo-container">
+            <img src="assets/img/socials/twitter.png" alt="Twitter logo">
+          </div>
+        </a>
+        <p>Partagez vos aventures sur Twitter avec le #PacifistaMC !</p>
+        <a class="social-link" href="https://twitter.com/pacifista_mc" target="_blank">Lien</a>
+      </div>
+
+      <div class="col col-lg-2">
+        <a href="https://twitch.tv/funixgaming" target="_blank">
+          <div class="social-logo-container">
+            <img src="assets/img/socials/twitch.png" alt="Twitch logo">
+          </div>
+        </a>
+        <p>Vivez les events et lives chill sur Twitch sur la chaine du Fondateur !</p>
+        <a class="social-link" href="https://twitch.tv/funixgaming" target="_blank">Lien</a>
+      </div>
+
+      <div class="col col-lg-2">
+        <a href="https://discord.gg/3smswFCBky" target="_blank">
+          <div class="social-logo-container">
+            <img src="assets/img/socials/discord.png" alt="Discord logo">
+          </div>
+        </a>
+        <p>Rencontrez l’ensemble de la communauté et le staff sur Discord !</p>
+        <a class="social-link" href="https://discord.gg/3smswFCBky" target="_blank">Lien</a>
+      </div>
+
+      <div class="col col-lg-2">
+        <a href="https://youtube.com/c/funixgaming" target="_blank">
+          <div class="social-logo-container">
+            <img src="assets/img/socials/youtube.png" alt="YouTube logo">
+          </div>
+        </a>
+        <p>Suivez le contenu créé sur YouTube pour le serveur et bien plus encore !</p>
+        <a class="social-link" href="https://youtube.com/c/funixgaming" target="_blank">Lien</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="staff-section">
+  <div class="container">
+    <h1 class="section-title">
+      <span class="underline-magical">Staff</span>
+    </h1>
+    <h4>Notre équipe qui vous offre le meilleur contenu possible.</h4>
+
+    <div class="row text-center align-content-start justify-content-md-center">
+      <div class="col col-lg-12">
+        <img src="assets/img/minecraft/skins/funixgaming.png" alt="FunixGaming Minecraft skin">
+        <h3>FunixGaming</h3>
+        <p><span class="fondateur">Fondateur</span></p>
+      </div>
+
+      <div class="col col-lg-2">
+        <img src="assets/img/minecraft/skins/knyzeeer.png" alt="Knyzeeer Minecraft skin">
+        <h3>Knyzeeer</h3>
+        <p><span class="admin">Admin</span></p>
+      </div>
+
+      <div class="col col-lg-2">
+        <img src="assets/img/minecraft/skins/jarkodj.png" alt="JarkoDJ Minecraft skin">
+        <h3>JarkoDJ</h3>
+        <p><span class="admin">Admin</span></p>
+      </div>
+
+      <div class="col col-lg-2">
+        <img src="assets/img/minecraft/skins/tomyshelby.png" alt="TomyShelby Minecraft skin">
+        <h3>TomyShelby</h3>
+        <p><span class="admin">Admin</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center">
+    <h4>Pourquoi pas vous ?</h4>
+    <p>Vous souhaitez postuler ? Venez nous en parler sur discord en ouvrant un ticket.</p>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+@import "../../../pacifista_variables";
+
+nav {
+  margin-top: 2%;
+}
+
+nav .container-fluid {
+  background-color: rgba(10, 10, 10, 0.1);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+}
+
+nav a {
+  font-family: 'Outfit', sans-serif;
+  font-weight: normal;
+  color: white;
+}
+
+nav a:hover {
+  font-family: 'Outfit', sans-serif;
+  font-weight: normal;
+  color: $secondary_color;
+}
+
+nav .account-btn {
+  background-color: $main_color;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: none;
+  padding: 7px 25px;
+}
+
+nav .account-btn:hover {
+  background-color: $secondary_color;
+  color: black;
+}
