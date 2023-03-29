@@ -19,7 +19,7 @@ USER container
 ENV USER=container HOME=/home/container
 WORKDIR /home/container
 
-COPY --from=BUILD /container/build/dist /home/www
+COPY --from=BUILD /container/build/dist /home/www/
 COPY --from=BUILD /container/build/package.json /home/www/package.json
 
 COPY ./entrypointPteroq.sh /entrypoint.sh
