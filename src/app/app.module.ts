@@ -15,6 +15,7 @@ import { JoinComponent } from './pages/join/join.component';
 import { NewsListPageComponent } from './pages/news/news-list-page/news-list-page.component';
 import { WikiPageComponent } from './pages/wiki/wiki-page/wiki-page.component';
 import { VotePageComponent } from './pages/vote/vote-page/vote-page.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -29,12 +30,13 @@ import { VotePageComponent } from './pages/vote/vote-page/vote-page.component';
     JoinComponent,
     NewsListPageComponent,
     WikiPageComponent,
-    VotePageComponent
+    VotePageComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FontAwesomeModule,
     AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
