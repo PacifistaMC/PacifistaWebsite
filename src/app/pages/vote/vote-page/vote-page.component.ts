@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-vote-page',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./vote-page.component.scss']
 })
 export class VotePageComponent {
+
+  constructor(private titleService: Title) {
+    const title: string = titleService.getTitle();
+
+    if (!title.startsWith("Voter")) {
+      titleService.setTitle('Voter - ' + title);
+    }
+  }
 
 }

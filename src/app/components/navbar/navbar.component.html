@@ -1,4 +1,4 @@
-<div id="navbar-container-pcfta" class="container fixed-top">
+<div class="container">
   <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
@@ -20,18 +20,17 @@
             <li class="nav-item">
               <a class="nav-link" href="/vote">Vote</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/compte">
-                <button class="btn account-btn">
-                  Compte
-                </button>
-              </a>
-            </li>
+
+            <a class="nav-link" href="/user" rel="nofollow">
+              <button class="btn account-btn">
+                {{ user ? 'Compte' : 'Se Connecter' }}
+              </button>
+            </a>
           </ul>
         </div>
       </div>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler bg-opacity-25 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
