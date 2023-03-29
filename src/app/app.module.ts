@@ -10,6 +10,8 @@ import { NewsCardComponent } from './pages/news/news-card/news-card.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { CguComponent } from './pages/legal/cgu/cgu.component';
 import { CgvComponent } from './pages/legal/cgv/cgv.component';
+import { AboutComponent } from './pages/about/about.component';
+import { JoinComponent } from './pages/join/join.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { CgvComponent } from './pages/legal/cgv/cgv.component';
     AccueilComponent,
     NewsCardComponent,
     CguComponent,
-    CgvComponent
+    CgvComponent,
+    AboutComponent,
+    JoinComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
