@@ -28,10 +28,10 @@ jobs:
           docker build . --tag ghcr.io/pacifistamc/pacifista-website:latest -f pterodactyl.Dockerfile
           docker push ghcr.io/pacifistamc/pacifista-website:latest
 
-      #- name: Send restart signal to nginx container pterodactyl
-      #  run: |
-      #    curl "https://pterodactyl.funixgaming.fr/api/client/servers/e9b30a54/power?signal=restart" \
-      #      -X POST \
-      #      -H 'Accept: application/json' \
-      #      -H 'Content-Type: application/json' \
-      #      -H 'Authorization: Bearer ${{ secrets.PTERODACTYL_API_KEY }}'
+      - name: Send restart signal to nginx container pterodactyl
+        run: |
+          curl "https://pterodactyl.funixgaming.fr/api/client/servers/63cc0b69/power?signal=restart" \
+            -X POST \
+            -H 'Accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H 'Authorization: Bearer ${{ secrets.PTERODACTYL_API_KEY }}'
