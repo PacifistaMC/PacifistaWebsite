@@ -4,8 +4,7 @@ MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
 RUN npm install -g @angular/cli
 
-USER container
-ENV USER=container HOME=/home/container
+ENV HOME=/home/container
 WORKDIR $HOME
 
 COPY . .
