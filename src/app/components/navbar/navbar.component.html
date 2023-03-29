@@ -20,13 +20,12 @@
             <li class="nav-item">
               <a class="nav-link" href="/vote">Vote</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/compte">
-                <button class="btn account-btn">
-                  Compte
-                </button>
-              </a>
-            </li>
+
+            <a class="nav-link" href="/user">
+              <button class="btn account-btn">
+                {{ user ? 'Compte' : 'Se Connecter' }}
+              </button>
+            </a>
           </ul>
         </div>
       </div>

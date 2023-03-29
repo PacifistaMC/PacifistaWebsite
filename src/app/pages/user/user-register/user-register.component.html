@@ -1,0 +1,63 @@
+<div class="container bg-dark rounded-3">
+  <h2 class="p-5">Créer un compte</h2>
+
+  <div class="container w-50 align-items-start">
+    <form>
+      <div class="input-group">
+        <span class="input-group-text" id="username-input">@</span>
+        <input type="text" name="username" [(ngModel)]="username" class="form-control"
+               placeholder="Identifiant" aria-label="Identifiant" aria-describedby="username-input">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" id="email-input">@</span>
+        <input type="email" name="email" [(ngModel)]="email" class="form-control"
+               placeholder="E-Mail" aria-label="E-Mail" aria-describedby="email-input">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" id="password-input">***</span>
+        <input type="password" class="form-control" name="password" [(ngModel)]="password"
+               placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="password-input">
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-text" id="password-confirm-input">***</span>
+        <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="passwordConfirmation"
+               placeholder="Mot de passe confirmation" aria-label="Mot de passe confirmation" aria-describedby="password-confirm-input">
+      </div>
+
+      <div class="form-group">
+
+        <div class="custom-control custom-checkbox small">
+          <input type="checkbox" class="custom-control-input" [(ngModel)]="acceptCgu" id="cgu" name="acceptCgu">
+          <label class="custom-control-label" for="cgu">Accepter les CGU de Pacifista</label>
+        </div>
+        <div>
+          <a href="/cgu" class="small">
+            CGU de Pacifista
+          </a>
+        </div>
+
+        <div class="custom-control custom-checkbox small">
+          <input type="checkbox" class="custom-control-input" [(ngModel)]="acceptCgv" name="acceptCgv" id="cgv">
+          <label class="custom-control-label" for="cgv">Accepter les CGV de Pacifista</label>
+        </div>
+        <div>
+          <a href="/cgv" class="small">
+            CGV de Pacifista
+          </a>
+        </div>
+
+      </div>
+
+      <button (click)="register()" [disabled]="!password || !email || !username || !passwordConfirmation || !acceptCgv || !acceptCgu" class="btn btn-success">
+        Créer un compte
+      </button>
+    </form>
+
+    <a href="/user/login">
+      Se connecter
+    </a>
+  </div>
+</div>
