@@ -12,6 +12,9 @@ import { CguComponent } from './pages/legal/cgu/cgu.component';
 import { CgvComponent } from './pages/legal/cgv/cgv.component';
 import { AboutComponent } from './pages/about/about.component';
 import { JoinComponent } from './pages/join/join.component';
+import { NewsListPageComponent } from './pages/news/news-list-page/news-list-page.component';
+import { WikiPageComponent } from './pages/wiki/wiki-page/wiki-page.component';
+import { VotePageComponent } from './pages/vote/vote-page/vote-page.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { JoinComponent } from './pages/join/join.component';
     CguComponent,
     CgvComponent,
     AboutComponent,
-    JoinComponent
+    JoinComponent,
+    NewsListPageComponent,
+    WikiPageComponent,
+    VotePageComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

@@ -2,11 +2,11 @@ FROM node:18.14.2
 
 MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
-ENV HOME /home/container
-
-WORKDIR $HOME
-
 RUN npm install -g @angular/cli
+
+USER container
+ENV USER=container HOME=/home/container
+WORKDIR $HOME
 
 COPY . .
 
