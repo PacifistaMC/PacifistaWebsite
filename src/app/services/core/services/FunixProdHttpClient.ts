@@ -16,7 +16,7 @@ export default abstract class FunixProdHttpClient {
   }
 
   protected getBearer(): string | null {
-    if (localStorage) {
+    if (typeof localStorage !== 'undefined') {
       return localStorage.getItem('user-token-requests');
     } else {
       return null;

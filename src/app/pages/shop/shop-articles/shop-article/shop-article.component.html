@@ -1,0 +1,18 @@
+<div class="container bg-dark rounded-3">
+  <div class="item-container text-center">
+    <img class="img-fluid" src="{{ article.logoUrl }}" alt="Pacifista Shop item {{ article.name }} {{ article.description }}">
+    <h3>{{ article.name }}</h3>
+    <p>{{ article.description }}</p>
+
+    <div class="row align-items-center justify-content-center">
+      <div class="col col-md-4 article-price">
+        <h4 class="price-container">{{ article.price }}€</h4>
+      </div>
+      <div class="col col-md-4">
+        <button class="btn btn-success">
+          <fa-icon icon="cart-arrow-down"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

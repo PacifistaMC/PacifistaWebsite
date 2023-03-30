@@ -44,3 +44,21 @@ a {
 body {
   background-color: $bg_color;
 }
+
+.pacifista-btn {
+  background-color: $main_color;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: none;
+  padding: 7px 25px;
+}
+
+.pacifista-btn:hover {
+  background-color: $secondary_color;
+  color: black;
+}
+
+.pacifista-btn:active {
+  background-color: $tertiary_color;
+  color: black;
+}
