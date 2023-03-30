@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faClock, faComment, faThumbsUp, faUser} from "@fortawesome/free-solid-svg-icons";
+import {faCartArrowDown, faClock, faComment, faThumbsUp, faUser} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-root',
@@ -15,7 +15,8 @@ export class AppComponent {
       faComment,
       faThumbsUp,
       faUser,
-      faClock
+      faClock,
+      faCartArrowDown
     );
   }
 }

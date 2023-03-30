@@ -1,0 +1,22 @@
+.pacifista-sub-ad-container {
+  background-image: url("../../../../assets/img/accueil/bg_build.webp");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  padding: 2%;
+}
+
+.pacifista-sub-ad-container .container {
+  padding: 2%;
+}
+
+@media screen and (max-width: 770px) {
+  .pacifista-sub-ad-container .container {
+    padding: 10%;
+  }
+}
+
+
+.price-container {
+  color: rgb(246 184 62);
+}

@@ -1,0 +1,13 @@
+<div class="category-div">
+  <h3>Catégories</h3>
+
+  <div *ngFor="let category of categoriesList">
+    <input type="radio"
+           id="check-{{ category.name }}"
+           name="{{ category.name }}"
+           value="{{ category.name }}"
+           class="category-checkbox">
+
+    <label class="category-name" for="check-{{ category.name }}">{{ category.name }}</label>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="raw align-content-center">
+  <div class="container rounded-4 mb-2 pacifista-sub-ad-container shadow">
+    <div class="container bg-dark rounded-5">
+      <h2>Pacifista +</h2>
+      <p>
+        Vous souhaitez soutenir Pacifista avec un abonnement et obtenir des avantages exclusifs ?<br/>
+        Souscrivez dès aujourd'hui mensuellement pour en profiter !
+      </p>
+      <div class="row justify-content-around align-items-center">
+        <h3 class="col col-md-3 price-container">
+          3.99€ / mois
+        </h3>
+        <button class="col col-md-3 btn btn-success">
+          En savoir plus
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col col-md-4 rounded-4 shadow" *ngFor="let article of articlesList">
+        <app-shop-article [article]="article"></app-shop-article>
+    </div>
+  </div>
+</div>
