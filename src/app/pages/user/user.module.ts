@@ -10,21 +10,25 @@ import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
 import {environment} from "../../../environments/environment";
+import { UserForgotPasswordComponent } from './user-forgot-password/user-forgot-password.component';
+import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   declarations: [
     UserComponent,
     UserRegisterComponent,
     UserPageComponent,
-    UserLoginComponent
+    UserLoginComponent,
+    UserForgotPasswordComponent
   ],
-  imports: [
-    CommonModule,
-    UserRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    RecaptchaV3Module
-  ],
+    imports: [
+        CommonModule,
+        UserRoutingModule,
+        HttpClientModule,
+        FormsModule,
+        RecaptchaV3Module,
+        FontAwesomeModule
+    ],
   providers: [
     {
       provide: RECAPTCHA_V3_SITE_KEY,

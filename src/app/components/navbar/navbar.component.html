@@ -21,7 +21,7 @@
               <a class="nav-link" href="/vote">Vote</a>
             </li>
 
-            <a class="nav-link" href="/user" rel="nofollow">
+            <a class="nav-link" href="/user{{ user ? '' : '/login'}}" rel="nofollow">
               <button class="btn pacifista-btn">
                 {{ user ? 'Compte' : 'Connexion' }}
               </button>

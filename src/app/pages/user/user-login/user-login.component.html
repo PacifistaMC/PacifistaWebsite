@@ -1,27 +1,35 @@
-<div class="container bg-dark rounded-3">
-  <h2 class="p-5">Se Connecter</h2>
+<div class="bg-dark rounded-3">
+  <h1 class="p-3">Se connecter</h1>
 
-  <div class="container w-50 align-items-start">
+  <div class="container p-5">
     <form>
-      <div class="input-group">
+      <div class="input-group pb-2">
         <span class="input-group-text" id="username-input">@</span>
         <input type="text" name="username" [(ngModel)]="username" class="form-control"
                placeholder="Identifiant" aria-label="Identifiant" aria-describedby="username-input">
       </div>
 
-      <div class="input-group">
+      <div class="input-group pb-2">
         <span class="input-group-text" id="password-input">***</span>
         <input type="password" class="form-control" name="password" [(ngModel)]="password"
                placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="password-input">
       </div>
-
-      <button (click)="login()" [disabled]="!password || !username" class="btn btn-success">
-        Se connecter
-      </button>
     </form>
 
-    <a href="/user/register">
-      Créer un compte
-    </a>
+    <div class="row justify-content-between align-items-center">
+      <button (click)="login()" [disabled]="!password || !username" class=" col col-md-2 btn btn-success">
+        Se connecter
+      </button>
+
+      <div class="col col-md-6"></div>
+
+      <a class="col col-md-2" href="/user/register">
+        Créer un compte
+      </a>
+
+      <a class="col col-md-2" href="/user/forgotpassword">
+        Mot de passe oublié
+      </a>
+    </div>
   </div>
 </div>
