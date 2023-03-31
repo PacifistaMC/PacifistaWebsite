@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { WikiPageComponent } from './wiki-page.component';
+import { BaseWikiComponent } from './base-wiki.component';
 
-describe('WikiPageComponent', () => {
-  let component: WikiPageComponent;
-  let fixture: ComponentFixture<WikiPageComponent>;
+describe('BaseWikiComponent', () => {
+  let component: BaseWikiComponent;
+  let fixture: ComponentFixture<BaseWikiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WikiPageComponent ]
+      declarations: [ BaseWikiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(WikiPageComponent);
+    fixture = TestBed.createComponent(BaseWikiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,7 +13,6 @@ import { CgvComponent } from './pages/legal/cgv/cgv.component';
 import { AboutComponent } from './pages/about/about.component';
 import { JoinComponent } from './pages/join/join.component';
 import { NewsListPageComponent } from './pages/news/news-list-page/news-list-page.component';
-import { WikiPageComponent } from './pages/wiki/wiki-page/wiki-page.component';
 import { VotePageComponent } from './pages/vote/vote-page/vote-page.component';
 import {HttpClientModule} from "@angular/common/http";
 
@@ -29,7 +28,6 @@ import {HttpClientModule} from "@angular/common/http";
     AboutComponent,
     JoinComponent,
     NewsListPageComponent,
-    WikiPageComponent,
     VotePageComponent,
   ],
   imports: [
