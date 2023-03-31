@@ -4,6 +4,7 @@ import { UserComponent } from './user.component';
 import {UserPageComponent} from "./user-page/user-page.component";
 import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserLoginComponent} from "./user-login/user-login.component";
+import {UserForgotPasswordComponent} from "./user-forgot-password/user-forgot-password.component";
 
 const routes: Routes = [
   { path: '', component: UserComponent, children: [
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: UserLoginComponent
+      },
+      {
+        path: 'forgotpassword',
+        component: UserForgotPasswordComponent
       }
     ]
   }

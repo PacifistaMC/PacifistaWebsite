@@ -13,11 +13,8 @@ export class ShopCategoriesComponent {
   constructor() {
     const gradesCategory = new ShopCategoryDTO();
     gradesCategory.name = "Grades";
-    const boxCategory = new ShopCategoryDTO();
-    boxCategory.name = "Boxes";
 
     this.categoriesList.push(gradesCategory);
-    this.categoriesList.push(boxCategory);
   }
 
 }
