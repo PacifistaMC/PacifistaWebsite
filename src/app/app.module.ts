@@ -15,6 +15,7 @@ import { JoinComponent } from './pages/join/join.component';
 import { NewsListPageComponent } from './pages/news/news-list-page/news-list-page.component';
 import { VotePageComponent } from './pages/vote/vote-page/vote-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     FontAwesomeModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     Title

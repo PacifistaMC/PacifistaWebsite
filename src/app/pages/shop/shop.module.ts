@@ -7,6 +7,7 @@ import { ShopCategoriesComponent } from './shop-categories/shop-categories.compo
 import { ShopArticlesComponent } from './shop-articles/shop-articles.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import { ShopArticleComponent } from './shop-articles/shop-article/shop-article.component';
+import { ShopArticleModalComponent } from './shop-articles/shop-article-modal/shop-article-modal.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { ShopArticleComponent } from './shop-articles/shop-article/shop-article.
     ShopComponent,
     ShopCategoriesComponent,
     ShopArticlesComponent,
-    ShopArticleComponent
+    ShopArticleComponent,
+    ShopArticleModalComponent
   ],
     imports: [
         CommonModule,
