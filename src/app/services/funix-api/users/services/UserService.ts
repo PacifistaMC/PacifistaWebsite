@@ -12,18 +12,26 @@ import {Injectable} from "@angular/core";
   providedIn: 'root'
 })
 export default class UserService extends FunixProdHttpClient {
+  private readonly captchaHeaderCode = 'X-Captcha-Google-Code';
+
   url: string = environment.funixApiUrl + 'user/auth/';
 
   constructor(protected httpClient: HttpClient) {
     super();
   }
 
-  register(request: UserCreationDTO): Observable<UserDTO> {
-    return this.httpClient.post<UserDTO>(this.url + 'register', request, {headers: this.getHeaders()});
+  register(request: UserCreationDTO, captchaCode: string): Observable<UserDTO> {
+    let headers = this.getHeaders();
+    headers = headers.set(this.captchaHeaderCode, captchaCode);
+
+    return this.httpClient.post<UserDTO>(this.url + 'register', request, {headers: headers});
   }
 
-  login(request: UserLoginDTO): Observable<UserTokenDTO> {
-    return this.httpClient.post<UserTokenDTO>(this.url + 'login', request, {headers: this.getHeaders()});
+  login(request: UserLoginDTO, captchaCode: string): Observable<UserTokenDTO> {
+    let headers = this.getHeaders();
+    headers = headers.set(this.captchaHeaderCode, captchaCode);
+
+    return this.httpClient.post<UserTokenDTO>(this.url + 'login', request, {headers: headers});
   }
 
   currentUser(): Observable<UserDTO> {

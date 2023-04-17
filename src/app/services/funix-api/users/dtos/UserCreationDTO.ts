@@ -7,5 +7,4 @@ export default class UserCreationDTO extends ApiDTO {
   passwordConfirmation: string = '';
   acceptCGV: boolean = false;
   acceptCGU: boolean = false;
-  googleCaptcha: string = '';
 }
