@@ -7,7 +7,7 @@ on:
     branches: [ master, develop ]
 
 jobs:
-  build-backend:
+  test-build-front:
     runs-on: ubuntu-latest
     
     steps:
