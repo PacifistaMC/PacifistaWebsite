@@ -30,7 +30,7 @@ jobs:
 
       - name: Send restart signal to nginx container pterodactyl
         run: |
-          curl "https://pterodactyl.funixgaming.fr/api/client/servers/63cc0b69/power?signal=restart" \
+          curl "https://${{ secrets.PTERODACTYL_DOMAIN }}/api/client/servers/63cc0b69/power?signal=restart" \
             -X POST \
             -H 'Accept: application/json' \
             -H 'Content-Type: application/json' \
