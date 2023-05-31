@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import UserService from "../../../services/funix-api/users/services/UserService";
+import UserService from "../../../services/funixproductions-api/users/services/UserService";
 import {Router} from "@angular/router";
-import {UserDTO} from "../../../services/funix-api/users/dtos/UserDTO";
+import {UserDTO} from "../../../services/funixproductions-api/users/dtos/UserDTO";
 
 @Component({
   selector: 'app-user-page',

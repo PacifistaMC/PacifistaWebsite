@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import UserService from "../../../services/funix-api/users/services/UserService";
+import UserService from "../../../services/funixproductions-api/users/services/UserService";
 import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
-import UserLoginDTO from "../../../services/funix-api/users/dtos/UserLoginDTO";
-import UserTokenDTO from "../../../services/funix-api/users/dtos/UserTokenDTO";
+import UserLoginDTO from "../../../services/funixproductions-api/users/dtos/UserLoginDTO";
+import UserTokenDTO from "../../../services/funixproductions-api/users/dtos/UserTokenDTO";
 
 @Component({
   selector: 'app-user-login',

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import UserService from "../../../services/funix-api/users/services/UserService";
+import UserService from "../../../services/funixproductions-api/users/services/UserService";
 import {ReCaptchaV3Service} from "ng-recaptcha";
-import UserCreationDTO from "../../../services/funix-api/users/dtos/UserCreationDTO";
+import UserCreationDTO from "../../../services/funixproductions-api/users/dtos/UserCreationDTO";
 
 @Component({
   selector: 'app-user-register',
