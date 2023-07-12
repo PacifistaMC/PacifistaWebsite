@@ -1,4 +1,4 @@
-FROM node:18.14.2 AS BUILD
+FROM node:18 AS BUILD
 
 MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
@@ -11,17 +11,15 @@ COPY . .
 RUN npm ci
 RUN npm run build:ssr
 
-FROM node:18.14.2 AS RUN
+FROM node:18 AS RUN
 
 MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
-USER container
 ENV USER=container HOME=/home/container
+ENV PORT=80
 WORKDIR /home/container
 
-COPY --from=BUILD /container/build/dist /home/www/dist
-COPY --from=BUILD /container/build/package.json /home/www/package.json
+COPY --from=BUILD /container/build/dist .
+COPY --from=BUILD /container/build/package.json .
 
-COPY ./entrypointPteroq.sh /entrypoint.sh
-
-CMD ["/bin/bash", "/entrypoint.sh"]
+CMD ["npm", "run", "serve:ssr"]

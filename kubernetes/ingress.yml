@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: 'funixproductions'
+  name: pacifista-website-ingress
+  annotations:
+    spec.ingressClassName: traefik
+spec:
+  tls:
+    - secretName: pacifista-website-certificate-tls
+  rules:
+    - host: pacifista.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: pacifista-web
+                port:
+                  number: 80

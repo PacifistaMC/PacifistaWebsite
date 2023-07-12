@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  build-pterodactyl-image-and-restart-prod:
+  build-docker-image-production:
     runs-on: ubuntu-latest
 
     permissions:
@@ -25,13 +25,25 @@ jobs:
 
       - name: Build and push pacifista-website pterodactyl dockerfile
         run: |
-          docker build . --tag ghcr.io/pacifistamc/pacifista-website:latest -f pterodactyl.Dockerfile
+          docker build . --tag ghcr.io/pacifistamc/pacifista-website:latest
           docker push ghcr.io/pacifistamc/pacifista-website:latest
 
-      - name: Send restart signal to nginx container pterodactyl
-        run: |
-          curl "https://${{ secrets.PTERODACTYL_DOMAIN }}/api/client/servers/63cc0b69/power?signal=restart" \
-            -X POST \
-            -H 'Accept: application/json' \
-            -H 'Content-Type: application/json' \
-            -H 'Authorization: Bearer ${{ secrets.PTERODACTYL_API_KEY }}'
+  update-kubernetes-cluster:
+    needs:
+      - build-production-image
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up kubectl
+        uses: azure/k8s-set-context@v3
+        with:
+          kubeconfig: ${{ secrets.KUBECONFIG }}
+        env:
+          KUBECONFIG: ${{ secrets.KUBECONFIG }}
+
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Update Kubernetes Cluster
+        run: cd kubernetes && chmod +x ./deploy.sh && ./deploy.sh
