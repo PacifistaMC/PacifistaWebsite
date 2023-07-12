@@ -30,7 +30,7 @@ jobs:
 
   update-kubernetes-cluster:
     needs:
-      - build-production-image
+      - build-docker-image-production
 
     runs-on: ubuntu-latest
 
