@@ -19,7 +19,8 @@ ENV USER=container HOME=/home/container
 ENV PORT=80
 WORKDIR /home/container
 
-COPY --from=BUILD /container/build/dist .
+RUN mkdir dist
+COPY --from=BUILD /container/build/dist dist
 COPY --from=BUILD /container/build/package.json .
 
-CMD ["npm", "run", "serve:ssr"]
+ENTRYPOINT ["npm", "run", "serve:ssr"]
