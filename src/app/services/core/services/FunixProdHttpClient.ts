@@ -2,6 +2,8 @@ import {HttpHeaders} from "@angular/common/http";
 
 export default abstract class FunixProdHttpClient {
 
+  public static readonly LOCAL_STORAGE_KEY_AUTH = 'user-token-requests';
+
   getHeaders(): HttpHeaders {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
@@ -17,7 +19,7 @@ export default abstract class FunixProdHttpClient {
 
   protected getBearer(): string | null {
     if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem('user-token-requests');
+      return localStorage.getItem(FunixProdHttpClient.LOCAL_STORAGE_KEY_AUTH);
     } else {
       return null;
     }

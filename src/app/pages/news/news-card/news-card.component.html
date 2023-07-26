@@ -10,10 +10,10 @@
 
         <div class="row justify-content-start align-items-center">
           <div class="col-md">
-            <fa-icon icon="user"></fa-icon><span> {{ news.originalWriter?.username }}</span>
+            <fa-icon [icon]="faUser"></fa-icon><span> {{ news.originalWriter?.username }}</span>
           </div>
           <div class="col-md">
-            <fa-icon icon="clock"></fa-icon><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
+            <fa-icon [icon]="faClock"></fa-icon><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
           </div>
         </div>
       </div>
@@ -23,12 +23,12 @@
           <div class="col-auto mr-auto">
             <div class="row">
               <div class="col col-md div-stat">
-                <fa-icon icon="thumbs-up"></fa-icon>
+                <fa-icon [icon]="faThumbsUp"></fa-icon>
                 <span> {{ news.likesAmount }}</span>
               </div>
 
               <div class="col col-md div-stat">
-                <fa-icon icon="comment"></fa-icon>
+                <fa-icon [icon]="faComment"></fa-icon>
                 <span> {{ news.commentsAmount }}</span>
               </div>
             </div>

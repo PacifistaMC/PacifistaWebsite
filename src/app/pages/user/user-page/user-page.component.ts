@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import UserService from "../../../services/funixproductions-api/users/services/UserService";
 import {Router} from "@angular/router";
 import {UserDTO} from "../../../services/funixproductions-api/users/dtos/UserDTO";
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-user-page',
@@ -9,6 +10,8 @@ import {UserDTO} from "../../../services/funixproductions-api/users/dtos/UserDTO
   styleUrls: ['./user-page.component.scss']
 })
 export class UserPageComponent implements OnInit {
+
+  protected readonly faSearch = faSearch;
 
   user?: UserDTO;
 

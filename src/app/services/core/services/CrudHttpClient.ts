@@ -15,7 +15,7 @@ interface RequestParams {
 
 export default abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixProdHttpClient {
 
-  domain: string = environment.funixApiUrl;
+  domain: string = environment.funixProductionsApiDomain;
   path: string = '';
 
   protected constructor(protected http: HttpClient) {

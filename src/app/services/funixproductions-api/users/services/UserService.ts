@@ -14,7 +14,7 @@ import {Injectable} from "@angular/core";
 export default class UserService extends FunixProdHttpClient {
   private readonly captchaHeaderCode = 'X-Captcha-Google-Code';
 
-  url: string = environment.funixApiUrl + 'user/auth/';
+  url: string = environment.funixProductionsApiDomain + 'user/auth/';
 
   constructor(protected httpClient: HttpClient) {
     super();

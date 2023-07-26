@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  funixApiUrl: 'http://localhost:8080/',
-  pacifistaApiUrl: 'http://localhost:8081/',
-  reCaptchaSiteKey: '6LdG6kYgAAAAAGOntHH8P7V_d55rEd39sSos2xmF'
+  funixProductionsApiDomain: 'https://dev.api.funixproductions.com/',
+  pacifistaApiDomain: 'https://dev.api.pacifista.fr/',
+  reCaptchaSiteKey: '6Ldg71gfAAAAAGgG3d3vrIuroxue_Qasp6SGSYeh'
 }

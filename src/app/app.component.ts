@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faCartArrowDown, faClock, faComment, faSearch, faThumbsUp, faUser} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-root',
@@ -9,15 +7,4 @@ import {faCartArrowDown, faClock, faComment, faSearch, faThumbsUp, faUser} from 
 })
 export class AppComponent {
   title = 'pacifista-website';
-
-  constructor(faLibrary: FaIconLibrary) {
-    faLibrary.addIcons(
-      faComment,
-      faThumbsUp,
-      faUser,
-      faClock,
-      faCartArrowDown,
-      faSearch
-    );
-  }
 }
