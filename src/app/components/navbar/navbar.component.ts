@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
-import {UserDTO} from "../../services/funixproductions-api/users/dtos/UserDTO";
 import UserService from "../../services/funixproductions-api/users/services/UserService";
 import {isPlatformServer} from "@angular/common";
+import FunixProdHttpClient from "../../services/core/services/FunixProdHttpClient";
 
 @Component({
   selector: 'app-navbar',
@@ -10,7 +10,7 @@ import {isPlatformServer} from "@angular/common";
 })
 export class NavbarComponent implements OnInit {
 
-  user?: UserDTO;
+  user: boolean = false;
 
   constructor(private userService: UserService,
               @Inject(PLATFORM_ID) private platformId: Object) {
@@ -22,10 +22,6 @@ export class NavbarComponent implements OnInit {
       return;
     }
 
-    this.userService.currentUser().subscribe({
-      next: value => {
-        this.user = value;
-      }}
-    );
+    this.user = localStorage.getItem(FunixProdHttpClient.LOCAL_STORAGE_KEY_AUTH) !== null;
   }
 }

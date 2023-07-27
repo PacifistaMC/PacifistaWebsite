@@ -27,7 +27,8 @@
   </div>
 
   <div class="background-image">
-    <img src="assets/img/accueil/bg_build.webp" alt="Minecraft wallpaper bateau shaders background serveur minecraft survie claim">
+    <img ngSrc="assets/img/accueil/bg_build.webp" alt="Minecraft wallpaper bateau shaders background serveur minecraft survie claim"
+         fill="fill">
   </div>
 </section>
 
@@ -36,28 +37,28 @@
     <div class="row text-center align-content-center">
 
       <div class="col">
-        <img src="assets/img/accueil/dev-team.svg" alt="Equipe de développement de Pacifista illustré par une image">
+        <img ngSrc="assets/img/accueil/dev-team.svg" class="mb-2" alt="Equipe de développement de Pacifista illustré par une image" height="443" width="867">
         <h3>Développement fait maison</h3>
         <p>Le code source du serveur et de tout ce qui l’entoure est fait par nos équipes.
           Ce qui nous permet de suivre les tendances / envies de la communauté</p>
       </div>
 
       <div class="col">
-        <img src="assets/img/accueil/staff-img.svg" alt="Pacifista possède une équipe à l'écoute des joueurs">
+        <img ngSrc="assets/img/accueil/staff-img.svg" class="mb-2" alt="Pacifista possède une équipe à l'écoute des joueurs" height="531" width="525">
         <h3>Un staff réactif</h3>
         <p>Dans tous vos problèmes sur Pacifista ou toutes demandes spécifiques
           il y aura toujours une oreille attentive de l’équipe !</p>
       </div>
 
       <div class="col">
-        <img src="assets/img/accueil/no-limit-modes-img.svg" alt="logo mondes">
+        <img ngSrc="assets/img/accueil/no-limit-modes-img.svg" class="mb-2" alt="logo mondes" height="536" width="525">
         <h3>Des modes sans limites</h3>
         <p>Que ce soit dans notre mode de jeu survie, créatif ou bien plus encore,
           nous souhaitons que vous soyez libre dans dans vôtre créativité.</p>
       </div>
 
       <div class="col">
-        <img src="assets/img/accueil/community-img.svg" alt="logo communauté">
+        <img ngSrc="assets/img/accueil/community-img.svg" class="mb-2" alt="logo communauté" height="478" width="660">
         <h3>Communauté bienveillante</h3>
         <p>Avec nos plus de 4 ans d’expérience dans la gestion de communauté,
           nous détectons facilement les comportements toxic et problématiques.
@@ -81,7 +82,7 @@
       </div>
     </div>
     <div *ngIf="newsList.length === 0" class="no-news align-content-center text-center">
-      <h2>Pas encore de news.</h2>
+      <p>Quel silence ! Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
     </div>
   </div>
 </section>
@@ -98,7 +99,7 @@
       <div class="col col-lg-2">
         <a href="https://twitter.com/pacifista_mc" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
-            <img src="assets/img/socials/twitter.svg" alt="Twitter logo">
+            <img ngSrc="assets/img/socials/twitter.svg" alt="Twitter logo" height="100" width="100">
           </div>
         </a>
         <p>Partagez vos aventures sur Twitter avec le #PacifistaMC !</p>
@@ -108,7 +109,7 @@
       <div class="col col-lg-2">
         <a href="https://twitch.tv/funixgaming" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
-            <img src="assets/img/socials/twitch.svg" alt="Twitch logo">
+            <img ngSrc="assets/img/socials/twitch.svg" alt="Twitch logo" height="100" width="100">
           </div>
         </a>
         <p>Vivez les events et lives chill sur Twitch sur la chaine du Fondateur !</p>
@@ -118,7 +119,7 @@
       <div class="col col-lg-2">
         <a href="https://discord.gg/3smswFCBky" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
-            <img src="assets/img/socials/discord.svg" alt="Discord logo">
+            <img ngSrc="assets/img/socials/discord.svg" alt="Discord logo" height="100" width="100">
           </div>
         </a>
         <p>Rencontrez l’ensemble de la communauté et le staff sur Discord !</p>
@@ -128,7 +129,7 @@
       <div class="col col-lg-2">
         <a href="https://youtube.com/c/funixgaming" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
-            <img src="assets/img/socials/youtube.svg" alt="YouTube logo">
+            <img ngSrc="assets/img/socials/youtube.svg" alt="YouTube logo" height="100" width="100">
           </div>
         </a>
         <p>Suivez le contenu créé sur YouTube pour le serveur et bien plus encore !</p>
@@ -144,29 +145,29 @@
     <h2 class="section-title">
       <span class="underline-magical">Staff</span>
     </h2>
-    <h4>Notre équipe qui vous offre le meilleur contenu possible.</h4>
+    <h4>L'équipe de Pacifista, à vôtre écoute.</h4>
 
     <div class="row text-center align-content-start justify-content-md-center">
       <div class="col col-lg-12">
-        <img src="assets/img/minecraft/skins/funixgaming.png" alt="FunixGaming Minecraft skin">
+        <img ngSrc="assets/img/minecraft/skins/funixgaming.png" height="180" width="180" alt="FunixGaming Minecraft skin">
         <h3>FunixGaming</h3>
         <p><span class="fondateur">Fondateur</span></p>
       </div>
 
-      <div class="col col-lg-2">
-        <img src="assets/img/minecraft/skins/knyzeeer.png" alt="Knyzeeer Minecraft skin">
+      <div class="col col-lg-4">
+        <img ngSrc="assets/img/minecraft/skins/knyzeeer.png" height="180" width="180" alt="Knyzeeer Minecraft skin">
         <h3>Knyzeeer</h3>
         <p><span class="admin">Admin</span></p>
       </div>
 
-      <div class="col col-lg-2">
-        <img src="assets/img/minecraft/skins/jarkodj.png" alt="JarkoDJ Minecraft skin">
+      <div class="col col-lg-4">
+        <img ngSrc="assets/img/minecraft/skins/jarkodj.png" height="180" width="180" alt="JarkoDJ Minecraft skin">
         <h3>JarkoDJ</h3>
         <p><span class="admin">Admin</span></p>
       </div>
 
-      <div class="col col-lg-2">
-        <img src="assets/img/minecraft/skins/tomyshelby.png" alt="TomyShelby Minecraft skin">
+      <div class="col col-lg-4">
+        <img ngSrc="assets/img/minecraft/skins/tomyshelby.png" height="180" width="180" alt="TomyShelby Minecraft skin">
         <h3>TomyShelby</h3>
         <p><span class="admin">Admin</span></p>
       </div>
