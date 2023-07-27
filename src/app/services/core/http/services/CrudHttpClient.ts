@@ -2,7 +2,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import ApiDTO from "../dtos/ApiDTO";
 import FunixProdHttpClient from "./FunixProdHttpClient";
-import {environment} from "../../../../environments/environment";
+import {environment} from "../../../../../environments/environment";
 import {PageOption, Paginated} from "../dtos/PaginatedDTO";
 import {QueryBuilder} from "../utils/QueryBuilder";
 

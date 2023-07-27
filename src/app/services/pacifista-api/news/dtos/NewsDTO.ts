@@ -1,4 +1,4 @@
-import ApiDTO from "../../../core/dtos/ApiDTO";
+import ApiDTO from "../../../core/http/dtos/ApiDTO";
 import {UserDTO} from "../../../funixproductions-api/users/dtos/UserDTO";
 
 export default class NewsDTO extends ApiDTO {

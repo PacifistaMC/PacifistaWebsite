@@ -1,0 +1,12 @@
+<ngb-toast
+  *ngFor="let notification of notificationService.toasts"
+  [class]="getClassFromType(notification.type)"
+  [autohide]="true" [delay]="notification.delay">
+  <ng-template ngbToastHeader>
+    <div class="me-auto">
+      <fa-icon [icon]="getIconFromType(notification.type)"></fa-icon>
+      <strong class="mx-1">{{notification.header}}</strong>
+    </div>
+  </ng-template>
+  {{notification.body}}
+</ngb-toast>

@@ -1,4 +1,4 @@
-import ApiDTO from "../../../core/dtos/ApiDTO";
+import ApiDTO from "../../../core/http/dtos/ApiDTO";
 import {UserDTO} from "./UserDTO";
 
 export default class UserTokenDTO extends ApiDTO {

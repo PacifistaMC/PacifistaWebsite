@@ -2,7 +2,7 @@ import {UserDTO} from "../dtos/UserDTO";
 import {environment} from "../../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import FunixProdHttpClient from "../../../core/services/FunixProdHttpClient";
+import FunixProdHttpClient from "../../../core/http/services/FunixProdHttpClient";
 import UserCreationDTO from "../dtos/UserCreationDTO";
 import UserLoginDTO from "../dtos/UserLoginDTO";
 import UserTokenDTO from "../dtos/UserTokenDTO";

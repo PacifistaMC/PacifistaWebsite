@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import UserService from "../../services/funixproductions-api/users/services/UserService";
 import {isPlatformServer} from "@angular/common";
-import FunixProdHttpClient from "../../services/core/services/FunixProdHttpClient";
+import FunixProdHttpClient from "../../services/core/http/services/FunixProdHttpClient";
 
 @Component({
   selector: 'app-navbar',

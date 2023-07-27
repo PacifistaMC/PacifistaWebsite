@@ -17,10 +17,12 @@ import {VotePageComponent} from './pages/vote/vote-page/vote-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgOptimizedImage} from "@angular/common";
+import {NotificationComponent} from "./components/notification/notification.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotificationComponent,
     NavbarComponent,
     FooterComponent,
     AccueilComponent,
@@ -32,14 +34,14 @@ import {NgOptimizedImage} from "@angular/common";
     NewsListPageComponent,
     VotePageComponent,
   ],
-    imports: [
-        BrowserModule.withServerTransition({appId: 'serverApp'}),
-        FontAwesomeModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NgbModule,
-        NgOptimizedImage
-    ],
+  imports: [
+    BrowserModule.withServerTransition({appId: 'serverApp'}),
+    FontAwesomeModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    NgOptimizedImage
+  ],
   providers: [
     Title
   ],
