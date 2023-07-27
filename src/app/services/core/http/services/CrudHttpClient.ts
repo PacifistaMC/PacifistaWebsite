@@ -27,7 +27,7 @@ export default abstract class CrudHttpClient<DTO extends ApiDTO> extends FunixPr
    * @param options set the data returned amount
    * @param queryBuilder can be null new QueryBuilder().addParam({key: "mdr", type: QueryBuilder.like, value: "mdr"})
    */
-  find(options: PageOption, queryBuilder: QueryBuilder): Observable<Paginated<DTO>> {
+  find(options: PageOption, queryBuilder: QueryBuilder | null): Observable<Paginated<DTO>> {
     const params: RequestParams = {
       page: options.page,
       elemsPerPage: options.elemsPerPage || 10,
