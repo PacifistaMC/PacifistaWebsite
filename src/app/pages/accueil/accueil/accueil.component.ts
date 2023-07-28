@@ -2,6 +2,7 @@ import {AfterViewInit, Component} from '@angular/core';
 import NewsDTO from "../../../services/pacifista-api/news/dtos/NewsDTO";
 import NewsService from "../../../services/pacifista-api/news/services/NewsService";
 import {PageOption} from "../../../services/core/http/dtos/PaginatedDTO";
+import {faExternalLink} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-accueil',
@@ -9,6 +10,8 @@ import {PageOption} from "../../../services/core/http/dtos/PaginatedDTO";
   styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent implements AfterViewInit {
+
+  protected readonly logoExternalLink = faExternalLink;
 
   playersAmount: number = 0;
   newsList: NewsDTO[] = [];

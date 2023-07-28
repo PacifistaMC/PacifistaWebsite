@@ -8,7 +8,7 @@
     <div class="container actions-buttons">
       <div class="row justify-content-md-center">
         <div class="col col-lg-3">
-          <a href="/about">
+          <a href="#about-section">
             <button class="btn">
               A propos
             </button>
@@ -18,7 +18,7 @@
         <div class="col col-lg-3">
           <a href="/join">
             <button class="btn">
-              Nous rejoindre
+              Se connecter
             </button>
           </a>
         </div>
@@ -31,7 +31,7 @@
   </div>
 </section>
 
-<section class="about-section">
+<section id="about-section" class="about-section">
   <div class="container">
     <div class="row text-center align-content-center">
 
@@ -68,6 +68,39 @@
   </div>
 </section>
 
+<section class="about-section-more p-4">
+  <div class="container">
+    <h2 class="section-title">
+      <span>A propos</span>
+    </h2>
+    <h4>Présentation du serveur Minecraft Pacifista.</h4>
+
+    <p>
+      Pacifista est un serveur Minecraft principalement survie créé en août 2018 par FunixGaming. Le but premier de ce serveur est de proposer des
+      fonctionnalités faites maison aux joueurs pour permettre de mieux suivre les envies de la communauté et d’appliquer leurs retours. Nous faisons donc nos plugins nous-mêmes.
+      Pacifista est un serveur survie à l'origine, mais se développe de plus en plus pour proposer de nouveaux modes de jeux comme un serveur créatif. D'autres modes sont à venir.<br/>
+      <br/>
+      Le serveur survie de Pacifista est assez libre, vous avez le choix de faire ce que vous souhaitez. Cependant, vous devez respecter le règlement du serveur mis en place pour que tout le monde puisses
+      jouer dans les meilleurs conditions.  Il y a un système de “claim” qui permet de protéger vos coffres et constructions (bases) pour éviter que les joueurs volent ou détruisent ce que vous avez fait.
+      Tout repose sur un système économique avec des métiers et des échanges entre joueurs, ce qui vous permet d’avancer plus efficacement lorsque vous gérez votre économie.
+      La carte n’est jamais reset et possède une taille illimitée avec un système de suppression de zones non visitées, rassurez-vous les bases ne sont pas supprimées si vous les avez protégées avec un claim.<br/>
+      <br/>
+      Nous sommes très attentifs à la gestion de la communauté, c’est d’ailleurs un des points les plus importants dans ce projet.
+      Nous avons une grille de sanction réservée au staff afin que chaque sanction soit donnée équitablement.
+      Tout comportement toxique sur le serveur est très vite remarqué par l’équipe et vite sanctionée en cas de nécessité.
+      Nous voulons proposer un environnement de jeu sain et sans prise de tête pour les joueurs.<br/>
+      <br/>
+      N’hésitez plus, rejoignez-nous pour participer à cette belle aventure sur Pacifista !
+    </p>
+
+    <p><strong>FunixGaming - Le fondateur de Pacifista</strong></p>
+
+    <div class="text-end">
+      <a class="btn pacifista-btn" href="/join">Se connecter au serveur</a>
+    </div>
+  </div>
+</section>
+
 <section class="news-section p-4">
   <div class="container">
     <h2 class="section-title">
@@ -100,45 +133,49 @@
     <h4>Suivez nos réseaux pour ne rien rater.</h4>
 
     <div class="row text-center align-content-center justify-content-md-center">
-
-      <div class="col col-lg-2">
+      <div class="col col-lg-3">
         <a href="https://twitter.com/pacifista_mc" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
             <img ngSrc="assets/img/socials/twitter.svg" alt="Twitter logo" height="100" width="100">
           </div>
         </a>
-        <p>Partagez vos aventures sur Twitter avec le #PacifistaMC !</p>
-        <a class="social-link" href="https://twitter.com/pacifista_mc" rel="nofollow external" target="_blank">Lien</a>
+        <a class="social-link" href="https://twitter.com/pacifista_mc" rel="nofollow external" target="_blank">Lien <fa-icon [icon]="logoExternalLink"></fa-icon></a>
       </div>
-
-      <div class="col col-lg-2">
+      <div class="col col-lg-3">
         <a href="https://twitch.tv/funixgaming" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
             <img ngSrc="assets/img/socials/twitch.svg" alt="Twitch logo" height="100" width="100">
           </div>
         </a>
-        <p>Vivez les events et lives chill sur Twitch sur la chaine du Fondateur !</p>
-        <a class="social-link" href="https://twitch.tv/funixgaming" rel="nofollow external" target="_blank">Lien</a>
+        <a class="social-link" href="https://twitch.tv/funixgaming" rel="nofollow external" target="_blank">Lien <fa-icon [icon]="logoExternalLink"></fa-icon></a>
       </div>
-
-      <div class="col col-lg-2">
+      <div class="col col-lg-3">
         <a href="https://discord.gg/3smswFCBky" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
             <img ngSrc="assets/img/socials/discord.svg" alt="Discord logo" height="100" width="100">
           </div>
         </a>
-        <p>Rencontrez l’ensemble de la communauté et le staff sur Discord !</p>
-        <a class="social-link" href="https://discord.gg/3smswFCBky" rel="nofollow external" target="_blank">Lien</a>
+        <a class="social-link" href="https://discord.gg/3smswFCBky" rel="nofollow external" target="_blank">Lien <fa-icon [icon]="logoExternalLink"></fa-icon></a>
       </div>
-
-      <div class="col col-lg-2">
+      <div class="col col-lg-3">
         <a href="https://youtube.com/c/funixgaming" rel="nofollow external" target="_blank">
           <div class="social-logo-container">
             <img ngSrc="assets/img/socials/youtube.svg" alt="YouTube logo" height="100" width="100">
           </div>
         </a>
+        <a class="social-link" href="https://youtube.com/c/funixgaming" rel="nofollow external" target="_blank">Lien <fa-icon [icon]="logoExternalLink"></fa-icon></a>
+      </div>
+      <div class="col col-lg-3">
+        <p>Partagez vos aventures sur Twitter avec le #PacifistaMC !</p>
+      </div>
+      <div class="col col-lg-3">
+        <p>Vivez les events et lives chill sur Twitch sur la chaine en direct du Fondateur !</p>
+      </div>
+      <div class="col col-lg-3">
         <p>Suivez le contenu créé sur YouTube pour le serveur et bien plus encore !</p>
-        <a class="social-link" href="https://youtube.com/c/funixgaming" rel="nofollow external" target="_blank">Lien</a>
+      </div>
+      <div class="col col-lg-3">
+        <p>Rencontrez l’ensemble de la communauté et le staff sur Discord !</p>
       </div>
 
     </div>
