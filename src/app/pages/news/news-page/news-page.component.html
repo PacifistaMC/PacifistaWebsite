@@ -1,0 +1,29 @@
+<div class="container">
+  <div *ngIf="loading; else doneLoading">
+
+  </div>
+
+  <ng-template #doneLoading>
+    <div *ngIf="news; else notFound">
+      <section class="header-news">
+        <div class="container-title w-50">
+          <h1>News : {{ news.title }}</h1>
+          <h3>{{ news.subtitle }}</h3>
+        </div>
+
+        <div class="header-image">
+          <img src="{{ news.articleImageUrl }}" class="img-fluid" alt="Image illustrative de la news {{ news.name }}">
+        </div>
+      </section>
+
+      <section class="pt-5">
+        <div [innerHTML]="news.body"></div>
+      </section>
+    </div>
+
+    <ng-template #notFound>
+
+    </ng-template>
+  </ng-template>
+
+</div>
