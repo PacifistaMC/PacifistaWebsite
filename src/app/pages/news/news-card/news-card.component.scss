@@ -4,5 +4,35 @@
 }
 
 .pacifista-news-card {
-  max-width: 1200px;
+  width: 1400px;
+}
+
+@media screen and (max-width: 1500px) {
+  .pacifista-news-card {
+    width: 1200px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .pacifista-news-card {
+    width: 1000px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .pacifista-news-card {
+    width: 800px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .pacifista-news-card {
+    width: 500px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .pacifista-news-card {
+    width: 300px;
+  }
 }

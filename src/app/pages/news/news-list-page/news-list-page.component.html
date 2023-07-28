@@ -1,19 +1,13 @@
 <div class="container p-4">
   <h1>News</h1>
 
-  <div class="row justify-content-between">
-    <div class="col-4">
-      <p>
-        Voici les news du serveur Minecraft Pacifista.<br/>
-        Vous pouvez aussi les retrouver sur notre <a href="https://twitter.com/pacifista-mc"><fa-icon [icon]="twitter"></fa-icon> Twitter</a>.
-      </p>
-    </div>
-    <div class="col-4">
-      <h3>
-        {{ totalNews }} news au total
-      </h3>
-    </div>
-  </div>
+  <p>
+    Voici les news du serveur Minecraft Pacifista.<br/>
+    Vous pouvez aussi les retrouver sur notre <a href="https://twitter.com/pacifista-mc"><fa-icon [icon]="twitter"></fa-icon> Twitter</a>.
+  </p>
+  <h3>
+    {{ totalNews }} news au total
+  </h3>
 
   <div *ngIf="newsList.length > 0; else noNews" class="card-group">
     <div *ngFor="let news of newsList" class="p-2">
