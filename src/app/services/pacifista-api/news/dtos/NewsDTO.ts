@@ -1,9 +1,8 @@
 import ApiDTO from "../../../core/http/dtos/ApiDTO";
-import {UserDTO} from "../../../funixproductions-api/users/dtos/UserDTO";
 
 export default class NewsDTO extends ApiDTO {
-  originalWriter?: UserDTO;
-  updateWriter?: UserDTO;
+  originalWriter?: string;
+  updateWriter?: string;
   name?: string;
   title?: string;
   subtitle?: string;

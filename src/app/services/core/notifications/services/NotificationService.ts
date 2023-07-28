@@ -12,7 +12,7 @@ export default class NotificationService {
   }
 
   error(message: string, header: string = 'Erreur') {
-    this.show(new NotificationToast(header, message, 7000, NotificationType.STANDARD));
+    this.show(new NotificationToast(header, message, 7000, NotificationType.DANGER));
   }
 
   remove(toast: NotificationToast) {

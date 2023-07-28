@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {AccueilComponent} from "./pages/accueil/accueil/accueil.component";
 import {CgvComponent} from "./pages/legal/cgv/cgv.component";
 import {CguComponent} from "./pages/legal/cgu/cgu.component";
@@ -45,6 +45,9 @@ const routes: Routes = [
   },
   {
     path: 'wiki', loadChildren: () => import('./pages/wiki/wiki.module').then(m => m.WikiModule)
+  },
+  {
+    path: 'news', loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule)
   },
   {
     path: '**',

@@ -27,8 +27,7 @@
   </div>
 
   <div class="background-image">
-    <img ngSrc="assets/img/accueil/bg_build.webp" alt="Minecraft wallpaper bateau shaders background serveur minecraft survie claim"
-         fill="fill">
+    <img ngSrc="assets/img/accueil/bg_build.webp" alt="Minecraft wallpaper bateau shaders background serveur minecraft survie claim" fill="fill">
   </div>
 </section>
 
@@ -72,7 +71,7 @@
 <section class="news-section">
   <div class="container">
     <h2 class="section-title">
-      <span class="underline-magical">News</span>
+      <span>News</span>
     </h2>
     <h4>Nos 3 news les plus récentes.</h4>
 
@@ -81,8 +80,9 @@
         <app-news-card [news]="news"></app-news-card>
       </div>
     </div>
+
     <div *ngIf="newsList.length === 0" class="no-news align-content-center text-center">
-      <p>Quel silence ! Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
+      <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
     </div>
   </div>
 </section>
