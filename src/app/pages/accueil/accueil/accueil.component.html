@@ -77,12 +77,8 @@
     <h4>Nos 3 news les plus récentes.</h4>
 
     <div *ngIf="newsList.length > 0" class="card-group">
-      <div class="row justify-content-center">
-        <div *ngFor="let news of newsList" class="p-2">
-          <div class="col">
-            <app-news-card [news]="news"></app-news-card>
-          </div>
-        </div>
+      <div *ngFor="let news of newsList" class="p-2">
+        <app-news-card [news]="news"></app-news-card>
       </div>
     </div>
 
