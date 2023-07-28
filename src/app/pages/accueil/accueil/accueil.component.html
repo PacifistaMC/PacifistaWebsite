@@ -75,14 +75,19 @@
     </h2>
     <h4>Nos 3 news les plus récentes.</h4>
 
-    <div *ngIf="newsList.length > 0" class="card-group">
+    <div *ngIf="newsList.length > 0; else noNews" class="card-group">
       <div *ngFor="let news of newsList" class="p-2">
         <app-news-card [news]="news"></app-news-card>
       </div>
     </div>
-
-    <div *ngIf="newsList.length === 0" class="no-news align-content-center text-center">
+    <ng-template #noNews class="no-news align-content-center text-center">
       <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
+    </ng-template>
+
+    <div class="text-center">
+      <a *ngIf="totalNews > 3" class="btn pacifista-btn" href="/news">
+        Voir les {{ totalNews - 3 }} autres news
+      </a>
     </div>
   </div>
 </section>

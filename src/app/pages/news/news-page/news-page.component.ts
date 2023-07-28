@@ -13,7 +13,6 @@ import {PageOption} from "../../../services/core/http/dtos/PaginatedDTO";
 })
 export class NewsPageComponent {
 
-  protected loading: boolean = true;
   protected news?: NewsDTO;
 
   constructor(private newsService: NewsService,
@@ -30,14 +29,16 @@ export class NewsPageComponent {
         query.value = newsName;
         queryBuilder.addParam(query);
 
-        this.newsService.find(new PageOption(), queryBuilder).subscribe(news => {
-          if (news.content.length > 0) {
-            this.news = news.content[0];
+        this.newsService.find(new PageOption(), queryBuilder).subscribe({
+          next: (news) => {
+            if (news.content.length > 0) {
+              this.news = news.content[0];
+            }
+          },
+          error: (error) => {
+            this.notificationService.onErrorRequest(error, 'Impossible de charger la news');
           }
-          this.loading = false;
         });
-      } else {
-        this.loading = false;
       }
     });
   }

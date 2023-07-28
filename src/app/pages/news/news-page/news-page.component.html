@@ -1,29 +1,29 @@
 <div class="container">
-  <div *ngIf="loading; else doneLoading">
+  <div *ngIf="news; else notFound">
+    <section class="header-news">
+      <div class="text-center p-5">
+        <h1>News : {{ news.title }}</h1>
+        <h3>{{ news.subtitle }}</h3>
+        <br/>
+        <p>Rédigé par {{ news.originalWriter }} le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</p>
+      </div>
 
+      <img src="{{ news.articleImageUrl }}" class="img-fluid" alt="Image illustrative de la news {{ news.name }}">
+    </section>
+
+    <section class="pt-5">
+      <div [innerHTML]="news.body"></div>
+    </section>
   </div>
 
-  <ng-template #doneLoading>
-    <div *ngIf="news; else notFound">
-      <section class="header-news">
-        <div class="container-title w-50">
-          <h1>News : {{ news.title }}</h1>
-          <h3>{{ news.subtitle }}</h3>
-        </div>
-
-        <div class="header-image">
-          <img src="{{ news.articleImageUrl }}" class="img-fluid" alt="Image illustrative de la news {{ news.name }}">
-        </div>
-      </section>
-
-      <section class="pt-5">
-        <div [innerHTML]="news.body"></div>
-      </section>
+  <ng-template #notFound>
+    <div class="text-center p-5">
+      <h1>404</h1>
+      <h3>News non trouvée</h3>
+      <a class="btn pacifista-btn" href="/news">
+        Retourner aux news
+      </a>
     </div>
-
-    <ng-template #notFound>
-
-    </ng-template>
   </ng-template>
 
 </div>

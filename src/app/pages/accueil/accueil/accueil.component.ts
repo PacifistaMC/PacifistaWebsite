@@ -12,6 +12,7 @@ export class AccueilComponent implements AfterViewInit {
 
   playersAmount: number = 0;
   newsList: NewsDTO[] = [];
+  totalNews: number = 0;
 
   constructor(private newsService: NewsService) {
   }
@@ -23,6 +24,7 @@ export class AccueilComponent implements AfterViewInit {
 
     this.newsService.find(pageOption, null).subscribe(newsList => {
       this.newsList = newsList.content;
+      this.totalNews = newsList.totalElementsDatabase;
     });
   }
 
