@@ -5,7 +5,7 @@ import NewsDTO from "../../../services/pacifista-api/news/dtos/NewsDTO";
 import NewsService from "../../../services/pacifista-api/news/services/NewsService";
 import {PageOption} from "../../../services/core/http/dtos/PaginatedDTO";
 import NotificationService from "../../../services/core/notifications/services/NotificationService";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons/faSpinner";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-news-list-page',
