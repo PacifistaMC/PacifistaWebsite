@@ -8,6 +8,7 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/roboto/Roboto-Regular.ttf");
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -15,6 +16,7 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/roboto/Roboto-Bold.ttf");
   font-style: normal;
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -22,6 +24,7 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/roboto/Roboto-Italic.ttf");
   font-style: italic;
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -29,6 +32,7 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/roboto/Roboto-BoldItalic.ttf");
   font-style: italic;
   font-weight: bold;
+  font-display: swap;
 }
 
 @font-face {
@@ -36,6 +40,7 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/outfit/Outfit-Regular.ttf");
   font-style: normal;
   font-weight: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -43,4 +48,5 @@ $tertiary_color: #0074B7;
   src: url("assets/fonts/outfit/Outfit-Bold.ttf");
   font-style: normal;
   font-weight: bold;
+  font-display: swap;
 }
