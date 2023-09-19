@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 import {NewsListPageComponent} from "./news-list-page/news-list-page.component";
 import {NewsCardComponent} from "./news-card/news-card.component";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
@@ -12,11 +12,12 @@ import {NewsRoutingModule} from "./news-routing.module";
     NewsCardComponent,
     NewsPageComponent,
   ],
-  imports: [
-    CommonModule,
-    NewsRoutingModule,
-    FontAwesomeModule,
-  ],
+    imports: [
+        CommonModule,
+        NewsRoutingModule,
+        FontAwesomeModule,
+        NgOptimizedImage,
+    ],
   exports: [
     NewsCardComponent
   ]

@@ -1,7 +1,7 @@
 <div class="card text-bg-dark mb-2 pacifista-news-card">
   <div class="row g-0">
     <div class="col-md-4 div-image">
-      <img src="{{ news.articleImageUrl }}" width="600" height="300" class="img-fluid rounded-start" alt="News image {{ news.name }}">
+      <img ngSrc="{{ news.articleImageUrl }}" [loading]="'lazy'" width="600" height="300" class="img-fluid rounded-start" alt="News image {{ news.name }}">
     </div>
 
     <div class="col-md-8">
