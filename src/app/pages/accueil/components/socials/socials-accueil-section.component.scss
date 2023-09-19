@@ -1,0 +1,24 @@
+@import "../../accueil.component";
+
+.socials-section {
+  background-color: #18415C;
+}
+
+.socials-section .social-logo-container {
+  padding: 3%;
+  margin-bottom: 7%;
+}
+
+.socials-section p {
+  color: white;
+}
+
+.socials-section a {
+  color: #5ffa5f;
+  font-weight: bold;
+}
+
+.socials-section a:hover {
+  color: #1ec41e;
+  font-weight: bold;
+}
