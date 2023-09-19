@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {BrowserModule, Title} from '@angular/platform-browser';
+import {BrowserModule, provideClientHydration, Title} from '@angular/platform-browser';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -60,7 +60,8 @@ import {AboutAccueilSectionComponent} from "./pages/accueil/components/about/abo
     NgForOf
   ],
   providers: [
-    Title
+    Title,
+    provideClientHydration()
   ],
   exports: [
     NotificationComponent,
