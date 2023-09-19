@@ -1,6 +1,6 @@
 {
   "name": "pacifista-website",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
