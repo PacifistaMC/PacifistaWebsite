@@ -6,11 +6,6 @@ import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
-import {CguComponent} from './pages/legal/cgu/cgu.component';
-import {CgvComponent} from './pages/legal/cgv/cgv.component';
-import {AboutComponent} from './pages/about/about.component';
-import {JoinComponent} from './pages/join/join.component';
-import {VotePageComponent} from './pages/vote/vote-page/vote-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
 import {NewsModule} from "./pages/news/news.module";
@@ -35,17 +30,10 @@ import {AboutAccueilSectionComponent} from "./pages/accueil/components/about/abo
 
     AccueilComponent,
     WelcomeAccueilSectionComponent,
-    AboutComponent,
     AboutDetailsAccueilSectionComponent,
     NewsAccueilSectionComponent,
     SocialsAccueilSectionComponent,
     StaffAccueilSectionComponent,
-
-    CguComponent,
-    CgvComponent,
-    AboutComponent,
-    JoinComponent,
-    VotePageComponent,
     AboutAccueilSectionComponent
   ],
   imports: [
@@ -64,8 +52,7 @@ import {AboutAccueilSectionComponent} from "./pages/accueil/components/about/abo
     provideClientHydration()
   ],
   exports: [
-    NotificationComponent,
-    AboutComponent
+    NotificationComponent
   ],
   bootstrap: [AppComponent]
 })

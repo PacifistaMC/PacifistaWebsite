@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 
 @Component({
@@ -13,6 +13,7 @@ export class CgvComponent {
 
     if (!title.startsWith("CGV")) {
       titleService.setTitle('CGV - ' + title);
-    }  }
+    }
+  }
 
 }
