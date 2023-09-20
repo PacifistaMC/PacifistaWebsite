@@ -1,28 +1,43 @@
-import {Component} from '@angular/core';
-import UserService from "../../../services/funixproductions-api/users/services/UserService";
+import {Component, Renderer2} from '@angular/core';
 import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
-import UserLoginDTO from "../../../services/funixproductions-api/users/dtos/UserLoginDTO";
-import UserTokenDTO from "../../../services/funixproductions-api/users/dtos/UserTokenDTO";
-import NotificationService from "../../../services/core/notifications/services/NotificationService";
-import FunixProdHttpClient from "../../../services/core/http/services/FunixProdHttpClient";
-import NotificationToast from "../../../services/core/notifications/entities/NotificationToast";
+import NotificationService from "../../../services/notifications/services/NotificationService";
+import {
+  FunixprodHttpClient,
+  UserAuthService,
+  UserLoginDTO,
+  UserTokenDTO
+} from "@funixproductions/funixproductions-requests";
+import {Title} from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {environment} from "../../../../environments/environment";
 
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
   styleUrls: ['./user-login.component.scss']
 })
-export class UserLoginComponent {
+export class UserLoginComponent extends PacifistaPage {
+
+  protected override title: string = 'Connexion';
+  protected override canonicalPath: string = 'user/login';
+  protected override pageDescription: string = 'Connexion sur le site de Pacifista. Page de connexion.';
 
   username: string = '';
   password: string = '';
   stayLogin: boolean = false;
 
-  constructor(private userAuthService: UserService,
-              private reCaptchaService: ReCaptchaV3Service,
+  private userAuthService: UserAuthService;
+
+  constructor(private reCaptchaService: ReCaptchaV3Service,
               private router: Router,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              titleService: Title,
+              renderer: Renderer2,
+              httpClient: HttpClient) {
+    super(titleService, renderer);
+    this.userAuthService = new UserAuthService(httpClient, environment.production);
   }
 
   login(): void {
@@ -35,10 +50,10 @@ export class UserLoginComponent {
       this.userAuthService.login(loginRequest, token).subscribe({
         next: (loginDto: UserTokenDTO) => {
           if (loginDto.token) {
-            localStorage.setItem(FunixProdHttpClient.LOCAL_STORAGE_KEY_AUTH, loginDto.token);
+            localStorage.setItem(FunixprodHttpClient.accessTokenLocalStorageName, loginDto.token);
             this.router.navigate(['user'])
           } else {
-            this.notificationService.show(new NotificationToast('Erreur', 'Une erreur est survenue lors de la connexion'));
+            this.notificationService.error('Une erreur est survenue lors de la connexion');
           }
         },
         error: err => {

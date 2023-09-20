@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {faClock, faComments, faThumbsUp, faUser} from '@fortawesome/free-solid-svg-icons';
-import NewsDTO from "../../../services/pacifista-api/news/dtos/NewsDTO";
+import {PacifistaNewsDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-news-card',
@@ -14,6 +14,6 @@ export class NewsCardComponent {
   protected readonly faThumbsUp = faThumbsUp;
   protected readonly faComment = faComments;
 
-  @Input() news: NewsDTO = new NewsDTO();
+  @Input() news: PacifistaNewsDTO = new PacifistaNewsDTO();
 
 }

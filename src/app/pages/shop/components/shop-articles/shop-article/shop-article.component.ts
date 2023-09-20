@@ -1,8 +1,8 @@
 import {Component, Input} from '@angular/core';
-import ShopItemDTO from "../../../../services/pacifista-api/shop/categories/dtos/ShopItemDTO";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ShopArticleModalComponent} from "../shop-article-modal/shop-article-modal.component";
 import {faCartArrowDown} from "@fortawesome/free-solid-svg-icons";
+import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-shop-article',
@@ -16,7 +16,7 @@ export class ShopArticleComponent {
   constructor(private modalService: NgbModal) {
   }
 
-  @Input() article: ShopItemDTO = new ShopItemDTO();
+  @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
 
   openModal(): void {
     const modalRef = this.modalService.open(ShopArticleModalComponent, { centered: true});

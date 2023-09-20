@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import ShopItemDTO from "../../../services/pacifista-api/shop/categories/dtos/ShopItemDTO";
+import {Component} from '@angular/core';
+import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-shop-articles',
@@ -8,17 +8,17 @@ import ShopItemDTO from "../../../services/pacifista-api/shop/categories/dtos/Sh
 })
 export class ShopArticlesComponent {
 
-  articlesList: ShopItemDTO[] = [];
+  articlesList: PacifistaShopArticleDTO[] = [];
 
   constructor() {
-    const article = new ShopItemDTO();
+    const article = new PacifistaShopArticleDTO();
     article.price = 14.99;
     article.name = "Grade Elite";
     article.description = "Grade elite";
     article.htmlDescription = "<p>Un super grade (à rédiger)</p>";
     article.logoUrl = "https://pacifista.fr/app/webroot/img/shop/grades/Badge-Elite.png"
 
-    const article2 = new ShopItemDTO();
+    const article2 = new PacifistaShopArticleDTO();
     article2.price = 19.99;
     article2.name = "Grade légendaire";
     article2.description = "Le grade le plus cool du serveur !";

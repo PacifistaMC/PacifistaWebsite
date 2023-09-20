@@ -1,26 +1,38 @@
-import {Component, OnInit} from '@angular/core';
-import UserService from "../../../services/funixproductions-api/users/services/UserService";
+import {Component, Renderer2} from '@angular/core';
 import {Router} from "@angular/router";
-import {UserDTO} from "../../../services/funixproductions-api/users/dtos/UserDTO";
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import {faSearch} from '@fortawesome/free-solid-svg-icons';
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {UserAuthService, UserDTO} from "@funixproductions/funixproductions-requests";
+import {Title} from "@angular/platform-browser";
+import {environment} from "../../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-user-page',
   templateUrl: './user-page.component.html',
   styleUrls: ['./user-page.component.scss']
 })
-export class UserPageComponent implements OnInit {
+export class UserPageComponent extends PacifistaPage {
+
+  protected override title: string = 'Profil';
+  protected override canonicalPath: string = 'user';
+  protected override pageDescription: string = 'Page de profil utilisateur.';
 
   protected readonly faSearch = faSearch;
 
+  private readonly authService: UserAuthService;
   user?: UserDTO;
 
-  constructor(private userService: UserService,
-              private router: Router) {
+  constructor(private router: Router,
+              title: Title,
+              renderer: Renderer2,
+              httpClient: HttpClient) {
+    super(title, renderer);
+    this.authService = new UserAuthService(httpClient, environment.production);
   }
 
-  ngOnInit(): void {
-    this.userService.currentUser().subscribe({
+  protected override onPageInit() {
+    this.authService.currentUser().subscribe({
       next: value => {
         this.user = value;
       },

@@ -1,12 +1,12 @@
 import 'zone.js/node';
 
-import { APP_BASE_HREF } from '@angular/common';
-import { ngExpressEngine } from '@nguniversal/express-engine';
+import {APP_BASE_HREF} from '@angular/common';
+import {ngExpressEngine} from '@nguniversal/express-engine';
 import * as express from 'express';
-import { existsSync } from 'fs';
-import { join } from 'path';
+import {existsSync} from 'fs';
+import {join} from 'path';
 
-import { AppServerModule } from './src/main.server';
+import {AppServerModule} from './src/main.server';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -25,6 +25,11 @@ export function app(): express.Express {
   // Example Express Rest API endpoints
   // server.get('/api/**', (req, res) => { });
   // Serve static files from /browser
+  server.get('/sitemap.xml', (req, res) => {
+    res.header("Content-Type", "application/xml");
+    res.header("Content-Encoding", "gzip");
+    res.sendFile(join(distFolder, 'sitemap.xml'));
+  });
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));

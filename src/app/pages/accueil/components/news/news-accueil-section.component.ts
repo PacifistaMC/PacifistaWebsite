@@ -1,7 +1,12 @@
 import {AfterViewInit, Component} from '@angular/core';
-import NewsDTO from "../../../../services/pacifista-api/news/dtos/NewsDTO";
-import NewsService from "../../../../services/pacifista-api/news/services/NewsService";
-import {PageOption} from "../../../../services/core/http/dtos/PaginatedDTO";
+import {
+  PacifistaNewsDTO,
+  PacifistaNewsService,
+  PageOption,
+  QueryBuilder
+} from "@funixproductions/funixproductions-requests";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../../environments/environment";
 
 @Component({
   selector: 'news-section',
@@ -10,10 +15,13 @@ import {PageOption} from "../../../../services/core/http/dtos/PaginatedDTO";
 })
 export class NewsAccueilSectionComponent implements AfterViewInit {
 
-  newsList: NewsDTO[] = [];
+  private readonly newsService: PacifistaNewsService;
+
+  newsList: PacifistaNewsDTO[] = [];
   totalNews: number = 0;
 
-  constructor(private newsService: NewsService) {
+  constructor(httpClient: HttpClient) {
+    this.newsService = new PacifistaNewsService(httpClient, environment.production);
   }
 
   ngAfterViewInit(): void {
@@ -21,7 +29,7 @@ export class NewsAccueilSectionComponent implements AfterViewInit {
     pageOption.elemsPerPage = 3;
     pageOption.sort = 'createdAt:desc';
 
-    this.newsService.find(pageOption, null).subscribe(newsList => {
+    this.newsService.find(pageOption, new QueryBuilder()).subscribe(newsList => {
       this.newsList = newsList.content;
       this.totalNews = newsList.totalElementsDatabase;
     });

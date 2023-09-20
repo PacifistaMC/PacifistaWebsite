@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ShopArticleModalComponent } from './shop-article-modal.component';
+import {ShopArticleModalComponent} from './shop-article-modal.component';
 
 describe('ShopArticleModalComponent', () => {
   let component: ShopArticleModalComponent;
