@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID, Renderer2} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -12,7 +12,7 @@ import {
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {isPlatformBrowser} from "@angular/common";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-news-page',
@@ -34,8 +34,8 @@ export class NewsPageComponent extends PacifistaPage {
               @Inject(PLATFORM_ID) private platfomId: Object,
               httpClient: HttpClient,
               titleService: Title,
-              renderer: Renderer2) {
-    super(titleService, renderer);
+              @Inject(DOCUMENT) doc: Document) {
+    super(titleService, doc);
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
 
     if (!isPlatformBrowser(this.platfomId)) return;

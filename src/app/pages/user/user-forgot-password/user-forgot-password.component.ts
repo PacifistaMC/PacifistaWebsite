@@ -1,6 +1,7 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-user-forgot-password',
@@ -16,8 +17,8 @@ export class UserForgotPasswordComponent extends PacifistaPage {
   email: string = '';
 
   constructor(title: Title,
-              renderer: Renderer2) {
-    super(title, renderer);
+              @Inject(DOCUMENT) doc: Document) {
+    super(title, doc);
   }
 
   sendRequestReset() {

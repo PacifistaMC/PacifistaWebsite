@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID, Renderer2} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Router} from "@angular/router";
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -6,7 +6,7 @@ import {UserAuthService, UserDTO} from "@funixproductions/funixproductions-reque
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {isPlatformBrowser} from "@angular/common";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-user-page',
@@ -27,9 +27,9 @@ export class UserPageComponent extends PacifistaPage {
   constructor(private router: Router,
               @Inject(PLATFORM_ID) private platfomId: Object,
               title: Title,
-              renderer: Renderer2,
+              @Inject(DOCUMENT) doc: Document,
               httpClient: HttpClient) {
-    super(title, renderer);
+    super(title, doc);
     this.authService = new UserAuthService(httpClient, environment.production);
   }
 

@@ -1,6 +1,7 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-wiki',
@@ -14,8 +15,8 @@ export class WikiComponent extends PacifistaPage {
   protected override readonly pageDescription: string = "Wiki de Pacifista. Retrouvez toutes les informations sur le serveur minecraft et comment jouer ! Claims, Créatif, Métiers, Jobs et bien plus !";
 
   constructor(title: Title,
-              renderer: Renderer2) {
-    super(title, renderer);
+              @Inject(DOCUMENT) doc: Document) {
+    super(title, doc);
   }
 
 }

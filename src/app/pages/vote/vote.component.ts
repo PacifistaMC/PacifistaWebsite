@@ -1,6 +1,7 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-vote-page',
@@ -14,8 +15,8 @@ export class VoteComponent extends PacifistaPage {
   protected override readonly pageDescription: string = "Votez pour Pacifista et recevez des récompenses en jeu. Aidez-nous à faire connaître le serveur !";
 
   constructor(title: Title,
-              renderer: Renderer2) {
-    super(title, renderer);
+              @Inject(DOCUMENT) doc: Document) {
+    super(title, doc);
   }
 
 }

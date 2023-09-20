@@ -1,4 +1,4 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
@@ -12,6 +12,7 @@ import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {environment} from "../../../../environments/environment";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-user-login',
@@ -34,9 +35,9 @@ export class UserLoginComponent extends PacifistaPage {
               private router: Router,
               private notificationService: NotificationService,
               titleService: Title,
-              renderer: Renderer2,
+              @Inject(DOCUMENT) doc: Document,
               httpClient: HttpClient) {
-    super(titleService, renderer);
+    super(titleService, doc);
     this.userAuthService = new UserAuthService(httpClient, environment.production);
   }
 

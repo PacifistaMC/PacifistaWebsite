@@ -1,4 +1,4 @@
-import {Component, OnInit, Renderer2} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 import {Title} from "@angular/platform-browser";
 
 @Component({ template: ''})
@@ -9,8 +9,13 @@ export abstract class PacifistaPage implements OnInit {
   protected pageDescription: string = "Bienvenue sur Pacifista, le serveur Minecraft français survie créatif en 1.19 ! Rejoignez une communauté bienveillante, profitez d'un staff attentif et découvrez nos plugins faits maison.";
   protected pageImage: string = 'https://pacifista.fr/assets/img/pacifista-logo.webp';
 
+  /**
+   * seo
+   * @param titleService the titleServiceManager
+   * @param doc Inject(DOCUMENT) private doc: Document
+   */
   constructor(protected titleService: Title,
-              protected renderer: Renderer2) {
+              private doc: Document) {
   }
 
   ngOnInit(): void {
@@ -29,10 +34,10 @@ export abstract class PacifistaPage implements OnInit {
   }
 
   private updateCanonicalPath(): void {
-    const canonical = this.renderer.createElement('link');
+    const canonical = this.doc.createElement('link');
     canonical.setAttribute('rel', 'canonical');
     canonical.setAttribute('href', 'https://pacifista.fr/' + this.canonicalPath);
-    this.renderer.appendChild(document.head, canonical);
+    this.doc.head.appendChild(canonical);
   }
 
   private updateMetaTags(): void {
@@ -50,11 +55,11 @@ export abstract class PacifistaPage implements OnInit {
   }
 
   private setMetaTag(name: string, content: string): void {
-    const meta = this.renderer.createElement('meta');
+    const meta = this.doc.createElement('meta');
     meta.setAttribute('name', name);
     meta.setAttribute('property', name);
     meta.setAttribute('content', content);
-    this.renderer.appendChild(document.head, meta);
+    this.doc.head.appendChild(meta);
   }
 
 }

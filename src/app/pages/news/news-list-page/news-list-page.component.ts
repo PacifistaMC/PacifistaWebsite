@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, PLATFORM_ID, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {faTwitter} from "@fortawesome/free-brands-svg-icons";
 import NotificationService from "../../../services/notifications/services/NotificationService";
@@ -12,7 +12,7 @@ import {
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {isPlatformBrowser} from "@angular/common";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-news-list-page',
@@ -39,9 +39,9 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
   constructor(private notificationService: NotificationService,
               @Inject(PLATFORM_ID) private platfomId: Object,
               titleService: Title,
-              renderer: Renderer2,
+              @Inject(DOCUMENT) doc: Document,
               httpClient: HttpClient) {
-    super(titleService, renderer);
+    super(titleService, doc);
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
 
     this.pageOption.elemsPerPage = 10;
