@@ -1,4 +1,4 @@
-import {Component, Renderer2} from '@angular/core';
+import {Component, Inject, PLATFORM_ID, Renderer2} from '@angular/core';
 import {Router} from "@angular/router";
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -6,6 +6,7 @@ import {UserAuthService, UserDTO} from "@funixproductions/funixproductions-reque
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-user-page',
@@ -24,6 +25,7 @@ export class UserPageComponent extends PacifistaPage {
   user?: UserDTO;
 
   constructor(private router: Router,
+              @Inject(PLATFORM_ID) private platfomId: Object,
               title: Title,
               renderer: Renderer2,
               httpClient: HttpClient) {
@@ -32,6 +34,8 @@ export class UserPageComponent extends PacifistaPage {
   }
 
   protected override onPageInit() {
+    if (!isPlatformBrowser(this.platfomId)) return;
+
     this.authService.currentUser().subscribe({
       next: value => {
         this.user = value;

@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Renderer2} from '@angular/core';
+import {AfterViewInit, Component, Inject, PLATFORM_ID, Renderer2} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {faTwitter} from "@fortawesome/free-brands-svg-icons";
 import NotificationService from "../../../services/notifications/services/NotificationService";
@@ -12,6 +12,7 @@ import {
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-news-list-page',
@@ -36,6 +37,7 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
   private newsService: PacifistaNewsService;
 
   constructor(private notificationService: NotificationService,
+              @Inject(PLATFORM_ID) private platfomId: Object,
               titleService: Title,
               renderer: Renderer2,
               httpClient: HttpClient) {
@@ -48,6 +50,8 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platfomId)) return;
+
     this.loadNews();
   }
 
