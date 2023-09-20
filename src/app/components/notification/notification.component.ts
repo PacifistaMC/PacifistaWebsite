@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import NotificationService from "../../services/core/notifications/services/NotificationService";
-import {NotificationType} from "../../services/core/notifications/enums/NotificationType";
+import NotificationService from "../../services/notifications/services/NotificationService";
+import {NotificationType} from "../../services/notifications/enums/NotificationType";
 import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
 import {faCheckCircle, faExclamationTriangle, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 

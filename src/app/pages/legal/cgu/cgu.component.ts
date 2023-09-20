@@ -1,19 +1,22 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-cgu',
   templateUrl: './cgu.component.html',
   styleUrls: ['./cgu.component.scss']
 })
-export class CguComponent {
+export class CguComponent extends PacifistaPage {
 
-  constructor(private titleService: Title) {
-    const title: string = titleService.getTitle();
+  protected override readonly title: string = "CGU";
+  protected override readonly canonicalPath: string = "cgu";
+  protected override readonly pageDescription: string = "Conditions générales d'utilisation de Pacifista.";
 
-    if (!title.startsWith("CGU")) {
-      titleService.setTitle('CGU - ' + title);
-    }
+  constructor(title: Title,
+              @Inject(DOCUMENT) doc: Document) {
+    super(title, doc);
   }
 
 }

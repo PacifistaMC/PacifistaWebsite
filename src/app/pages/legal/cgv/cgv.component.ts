@@ -1,19 +1,22 @@
-import {Component} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-cgv',
   templateUrl: './cgv.component.html',
   styleUrls: ['./cgv.component.scss']
 })
-export class CgvComponent {
+export class CgvComponent extends PacifistaPage {
 
-  constructor(private titleService: Title) {
-    const title: string = titleService.getTitle();
+  protected override readonly title: string = 'CGV';
+  protected override readonly canonicalPath: string = 'cgv';
+  protected override readonly pageDescription: string = 'Conditions générales de vente de Pacifista.';
 
-    if (!title.startsWith("CGV")) {
-      titleService.setTitle('CGV - ' + title);
-    }
+  constructor(title: Title,
+              @Inject(DOCUMENT) doc: Document) {
+    super(title, doc);
   }
 
 }

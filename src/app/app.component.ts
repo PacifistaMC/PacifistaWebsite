@@ -1,5 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
-import NotificationService from "./services/core/notifications/services/NotificationService";
+import NotificationService from "./services/notifications/services/NotificationService";
 
 @Component({
   selector: 'app-root',

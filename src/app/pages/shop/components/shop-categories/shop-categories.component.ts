@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import ShopCategoryDTO from "../../../services/pacifista-api/shop/categories/dtos/ShopCategoryDTO";
+import {Component} from '@angular/core';
+import {PacifistaShopCategoryDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-shop-categories',
@@ -8,10 +8,10 @@ import ShopCategoryDTO from "../../../services/pacifista-api/shop/categories/dto
 })
 export class ShopCategoriesComponent {
 
-  categoriesList: ShopCategoryDTO[] = [];
+  categoriesList: PacifistaShopCategoryDTO[] = [];
 
   constructor() {
-    const gradesCategory = new ShopCategoryDTO();
+    const gradesCategory = new PacifistaShopCategoryDTO();
     gradesCategory.name = "Grades";
 
     this.categoriesList.push(gradesCategory);

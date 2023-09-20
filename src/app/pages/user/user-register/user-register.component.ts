@@ -1,15 +1,24 @@
-import { Component } from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Router} from "@angular/router";
-import UserService from "../../../services/funixproductions-api/users/services/UserService";
 import {ReCaptchaV3Service} from "ng-recaptcha";
-import UserCreationDTO from "../../../services/funixproductions-api/users/dtos/UserCreationDTO";
+import {UserAuthService, UserCreationDTO} from "@funixproductions/funixproductions-requests";
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {Title} from "@angular/platform-browser";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import NotificationService from "../../../services/notifications/services/NotificationService";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-user-register',
   templateUrl: './user-register.component.html',
   styleUrls: ['./user-register.component.scss']
 })
-export class UserRegisterComponent {
+export class UserRegisterComponent extends PacifistaPage {
+
+  protected override title: string = 'Inscription';
+  protected override canonicalPath: string = 'user/register';
+  protected override pageDescription: string = 'Inscription sur le site de Pacifista. Page de création de compte.';
 
   username: string = '';
   email: string = '';
@@ -18,9 +27,16 @@ export class UserRegisterComponent {
   acceptCgu: boolean = false;
   acceptCgv: boolean = false;
 
-  constructor(private userAuthService: UserService,
-              private reCaptchaService: ReCaptchaV3Service,
-              private router: Router) {
+  private readonly userAuthService: UserAuthService;
+
+  constructor(private reCaptchaService: ReCaptchaV3Service,
+              private router: Router,
+              private notificationService: NotificationService,
+              titleService: Title,
+              @Inject(DOCUMENT) doc: Document,
+              httpClient: HttpClient) {
+    super(titleService, doc);
+    this.userAuthService = new UserAuthService(httpClient, environment.production);
   }
 
   register(): void {
@@ -38,7 +54,7 @@ export class UserRegisterComponent {
             this.router.navigate(['user', 'login']);
           },
           error: err => {
-            //todo popup error
+            this.notificationService.onErrorRequest(err, 'Erreur lors de la création de compte.');
           }
         }
       )

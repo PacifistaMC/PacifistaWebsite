@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import ShopItemDTO from "../../../../services/pacifista-api/shop/categories/dtos/ShopItemDTO";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {faCartArrowDown} from "@fortawesome/free-solid-svg-icons";
+import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-shop-article-modal',
@@ -12,7 +12,7 @@ export class ShopArticleModalComponent {
 
   protected readonly faCartDown = faCartArrowDown;
 
-  @Input() article: ShopItemDTO = new ShopItemDTO();
+  @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
 
   constructor(public activeModal: NgbActiveModal) {
   }

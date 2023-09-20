@@ -1,24 +1,45 @@
-import {Component} from '@angular/core';
-import NewsService from "../../../services/pacifista-api/news/services/NewsService";
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import NotificationService from "../../../services/core/notifications/services/NotificationService";
-import NewsDTO from "../../../services/pacifista-api/news/dtos/NewsDTO";
-import {QueryBuilder, QueryParam} from "../../../services/core/http/utils/QueryBuilder";
-import {PageOption} from "../../../services/core/http/dtos/PaginatedDTO";
+import NotificationService from "../../../services/notifications/services/NotificationService";
+import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
+import {Title} from "@angular/platform-browser";
+import {
+  PacifistaNewsDTO,
+  PacifistaNewsService,
+  PageOption,
+  QueryBuilder,
+  QueryParam
+} from "@funixproductions/funixproductions-requests";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../../environments/environment";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-news-page',
   templateUrl: './news-page.component.html',
   styleUrls: ['./news-page.component.scss']
 })
-export class NewsPageComponent {
+export class NewsPageComponent extends PacifistaPage {
 
-  protected news?: NewsDTO;
+  protected override title: string = 'News';
+  protected override canonicalPath: string = 'news';
+  protected override pageDescription: string = 'Découvrez la news de Pacifista !';
 
-  constructor(private newsService: NewsService,
-              private notificationService: NotificationService,
+  protected news?: PacifistaNewsDTO;
+  protected readonly newsService: PacifistaNewsService;
+
+  constructor(private notificationService: NotificationService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              @Inject(PLATFORM_ID) private platfomId: Object,
+              httpClient: HttpClient,
+              titleService: Title,
+              @Inject(DOCUMENT) doc: Document) {
+    super(titleService, doc);
+    this.newsService = new PacifistaNewsService(httpClient, environment.production);
+
+    if (!isPlatformBrowser(this.platfomId)) return;
+
     this.activatedRoute.params.subscribe(params => {
       const newsName = params['newsName'];
 
@@ -33,6 +54,13 @@ export class NewsPageComponent {
           next: (news) => {
             if (news.content.length > 0) {
               this.news = news.content[0];
+
+              this.title = 'News - ' + this.news.name;
+              this.canonicalPath = 'news/' + this.news.name;
+              this.pageDescription = this.news.subtitle || this.pageDescription;
+              this.pageImage = this.news.articleImageUrl || this.pageImage;
+            } else {
+              this.notificationService.error("La news n'existe pas.");
             }
           },
           error: (error) => {
