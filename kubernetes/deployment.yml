@@ -30,8 +30,34 @@ spec:
             - containerPort: 80
           resources:
             limits:
-              memory: "800Mi"
+              cpu: "800m"
+              memory: "400Mi"
+            requests:
+                cpu: "100m"
+                memory: "100Mi"
           imagePullPolicy: Always
+
+---
+
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: pacifista-website-hpa
+  namespace: 'funixproductions'
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: pacifista-website-deployment
+  minReplicas: 2
+  maxReplicas: 7
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 60
 
 ---
 
