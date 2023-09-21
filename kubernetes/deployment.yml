@@ -30,8 +30,8 @@ spec:
             - containerPort: 80
           resources:
             limits:
-              cpu: "1500m"
-              memory: "400Mi"
+              cpu: "1000m"
+              memory: "300Mi"
             requests:
                 cpu: "100m"
                 memory: "100Mi"
@@ -50,7 +50,7 @@ spec:
     kind: Deployment
     name: pacifista-website-deployment
   minReplicas: 2
-  maxReplicas: 10
+  maxReplicas: 15
   metrics:
     - type: Resource
       resource:
