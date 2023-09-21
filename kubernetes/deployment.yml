@@ -50,7 +50,7 @@ spec:
     kind: Deployment
     name: pacifista-website-deployment
   minReplicas: 2
-  maxReplicas: 15
+  maxReplicas: 8
   metrics:
     - type: Resource
       resource:
