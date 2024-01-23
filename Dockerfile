@@ -1,4 +1,4 @@
-FROM node:18 AS BUILD
+FROM node:20 AS BUILD
 
 MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
@@ -11,7 +11,7 @@ COPY . .
 RUN npm ci
 RUN npm run build:ssr
 
-FROM node:18 AS RUN
+FROM node:20 AS RUN
 
 MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
 
