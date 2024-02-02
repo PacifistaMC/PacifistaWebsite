@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import NotificationToast from "../entities/NotificationToast";
-import {HttpErrorResponse} from "@angular/common/http";
 import {NotificationType} from "../enums/NotificationType";
+import {ErrorDto} from "@funixproductions/funixproductions-requests";
 
 @Injectable({ providedIn: 'root' })
 export default class NotificationService {
@@ -23,21 +23,19 @@ export default class NotificationService {
     this.toasts.splice(0, this.toasts.length);
   }
 
-  public onErrorRequest(err: HttpErrorResponse, customMessage: string = ''): void {
-    if (err.error && err.error.error) {
-      this.error(customMessage + ' : ' + err.error.error + ' (Erreur code ' + err.status + ')');
+  public onErrorRequest(err: ErrorDto, customMessage: string = ''): void {
+    if (err.status === 401) {
+      this.error('Vous devez être connecté pour accéder à cette ressource. (Erreur 401)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
+    } else if (err.status === 403) {
+      this.error('Vous n\'avez pas les droits pour accéder à cette ressource. (Erreur 403)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
+    } else if (err.status === 404) {
+      this.error('La ressource demandée est introuvable. (Erreur 404)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
+    } else if (err.status === 400) {
+      this.error('Votre requête est invalide. (Erreur 400)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
+    } else if (err.status.toString().startsWith('5')) {
+        this.error('Une erreur interne est survenue veuillez réessayer ou nous prévenir à contact@funixproductions.com. (Erreur ' + err.status + ')' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
     } else {
-      if (err.status === 401) {
-        this.error('Vous devez être connecté pour accéder à cette ressource. (Erreur 401)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
-      } else if (err.status === 403) {
-        this.error('Vous n\'avez pas les droits pour accéder à cette ressource. (Erreur 403)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
-      } else if (err.status === 404) {
-        this.error('La ressource demandée est introuvable. (Erreur 404)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
-      } else if (err.status === 400) {
-        this.error('Votre requête est invalide. (Erreur 400)' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
-      } else {
-        this.error('Une erreur interne est survenue veuillez re essayer. (Erreur ' + err.status + ')' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
-      }
+      this.error('Une erreur est survenue veuillez réessayer. (Erreur ' + err.status + ')' + (customMessage.length > 0 ? 'Message: ' + customMessage : ''));
     }
   }
 }

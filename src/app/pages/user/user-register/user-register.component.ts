@@ -1,13 +1,14 @@
 import {Component, Inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReCaptchaV3Service} from "ng-recaptcha";
-import {UserAuthService, UserCreationDTO} from "@funixproductions/funixproductions-requests";
+import {UserAuthService, UserCountry, UserCreationDTO} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {DOCUMENT} from "@angular/common";
+import {Country} from "@angular-material-extensions/select-country";
 
 @Component({
   selector: 'app-user-register',
@@ -26,6 +27,7 @@ export class UserRegisterComponent extends PacifistaPage {
   passwordConfirmation: string = '';
   acceptCgu: boolean = false;
   acceptCgv: boolean = false;
+  country?: UserCountry;
 
   private readonly userAuthService: UserAuthService;
 
@@ -40,6 +42,11 @@ export class UserRegisterComponent extends PacifistaPage {
   }
 
   register(): void {
+    if (!this.country) {
+        this.notificationService.error('Veuillez sélectionner un pays.');
+        return;
+    }
+
     const userCreationRequest: UserCreationDTO = new UserCreationDTO();
     userCreationRequest.email = this.email;
     userCreationRequest.username = this.username;
@@ -47,6 +54,7 @@ export class UserRegisterComponent extends PacifistaPage {
     userCreationRequest.passwordConfirmation = this.passwordConfirmation;
     userCreationRequest.acceptCGU = this.acceptCgu;
     userCreationRequest.acceptCGV = this.acceptCgv;
+    userCreationRequest.country = this.country;
 
     this.reCaptchaService.execute('register').subscribe((token: string) => {
       this.userAuthService.register(userCreationRequest, token).subscribe({
@@ -59,6 +67,25 @@ export class UserRegisterComponent extends PacifistaPage {
         }
       )
     });
+  }
+
+  onCountryChange(event?: Country) {
+    if (!event || !event.name || !event.alpha2Code || !event.alpha3Code || !event.numericCode) {
+      return;
+    }
+
+    const country = new UserCountry();
+    country.name = event.name;
+    country.countryCode2Chars = event.alpha2Code;
+    country.countryCode3Chars = event.alpha3Code;
+    const numeric = parseInt(event.numericCode);
+    if (!isNaN(numeric)) {
+      country.code = numeric;
+    } else {
+      return;
+    }
+
+    this.country = country;
   }
 
 }

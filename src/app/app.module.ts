@@ -7,7 +7,7 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HttpClientModule} from "@angular/common/http";
-import {NgForOf, NgIf, NgOptimizedImage} from "@angular/common";
+import {NgOptimizedImage} from "@angular/common";
 import {NewsModule} from "./pages/news/news.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {NotificationComponent} from "./components/notification/notification.component";
@@ -20,6 +20,7 @@ import {NewsAccueilSectionComponent} from "./pages/accueil/components/news/news-
 import {SocialsAccueilSectionComponent} from "./pages/accueil/components/socials/socials-accueil-section.component";
 import {StaffAccueilSectionComponent} from "./pages/accueil/components/staff/staff-accueil-section.component";
 import {AboutAccueilSectionComponent} from "./pages/accueil/components/about/about-accueil-section.component";
+import {provideAnimationsAsync} from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -43,13 +44,12 @@ import {AboutAccueilSectionComponent} from "./pages/accueil/components/about/abo
     HttpClientModule,
     NgbModule,
     NewsModule,
-    NgOptimizedImage,
-    NgIf,
-    NgForOf
+    NgOptimizedImage
   ],
   providers: [
     Title,
-    provideClientHydration()
+    provideClientHydration(),
+    provideAnimationsAsync()
   ],
   exports: [
     NotificationComponent
