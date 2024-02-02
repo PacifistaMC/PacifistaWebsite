@@ -20,7 +20,7 @@ export class InputEmailComponent {
   @Input() formSent: boolean = false;
   @Input() emailErrors: string[] = [];
   @Input() isRequired: boolean = true;
-  @Output() emailChange = new EventEmitter<string>(); // Add this line
+  @Output() emailChange = new EventEmitter<string>();
 
   onInput() {
     this.emailChange.emit(this.email);
