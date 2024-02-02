@@ -71,7 +71,7 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
         this.newsList.push(...newsList.content);
       },
       error: (err) => {
-        this.notificationService.onErrorRequest(err, 'Erreur lors du chargement des news');
+        this.notificationService.onErrorRequest(err);
       },
       complete: () => {
         this.loading = false;

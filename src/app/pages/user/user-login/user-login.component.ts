@@ -58,7 +58,7 @@ export class UserLoginComponent extends PacifistaPage {
           }
         },
         error: err => {
-          this.notificationService.onErrorRequest(err, 'Impossible de se connecter');
+          this.notificationService.onErrorRequest(err);
         }
       });
     });

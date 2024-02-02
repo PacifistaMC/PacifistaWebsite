@@ -64,7 +64,7 @@ export class NewsPageComponent extends PacifistaPage {
             }
           },
           error: (error) => {
-            this.notificationService.onErrorRequest(error, 'Impossible de charger la news');
+            this.notificationService.onErrorRequest(error);
           }
         });
       }

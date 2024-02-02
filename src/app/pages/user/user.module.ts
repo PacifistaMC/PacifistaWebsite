@@ -13,6 +13,7 @@ import {environment} from "../../../environments/environment";
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
+import {InputEmailComponent} from "../../components/inputs/input-email/input-email.component";
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import {MatSelectCountryModule} from "@angular-material-extensions/select-countr
         HttpClientModule,
         FormsModule,
         RecaptchaV3Module,
-        FontAwesomeModule
+        FontAwesomeModule,
+        InputEmailComponent
     ],
     providers: [
         {

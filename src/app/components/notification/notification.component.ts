@@ -18,6 +18,8 @@ export class NotificationComponent {
     switch (type) {
       case NotificationType.DANGER:
         return 'bg-danger';
+      case NotificationType.WARNING:
+        return 'bg-warning';
       case NotificationType.STANDARD:
         return 'bg-info';
       case NotificationType.SUCCESS:
@@ -28,6 +30,8 @@ export class NotificationComponent {
   getIconFromType(type: NotificationType): IconDefinition {
     switch (type) {
       case NotificationType.DANGER:
+        return faExclamationTriangle;
+      case NotificationType.WARNING:
         return faExclamationTriangle;
       case NotificationType.STANDARD:
         return faInfoCircle;
