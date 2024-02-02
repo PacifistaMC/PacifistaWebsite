@@ -9,7 +9,7 @@ metadata:
     service: pacifista-web
 
 spec:
-  replicas: 2
+  replicas: 4
   selector:
     matchLabels:
       app: angular
@@ -49,8 +49,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: pacifista-website-deployment
-  minReplicas: 2
-  maxReplicas: 8
+  minReplicas: 4
+  maxReplicas: 10
   metrics:
     - type: Resource
       resource:
