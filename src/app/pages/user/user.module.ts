@@ -18,6 +18,7 @@ import {SendButtonComponent} from "../../components/buttons/send-button/send-but
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
 import {InputSecretComponent} from "../../components/inputs/input-secret/input-secret.component";
 import {InputCheckboxComponent} from "../../components/inputs/input-checkbox/input-checkbox.component";
+import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/user-forgot-password-change.component";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import {InputCheckboxComponent} from "../../components/inputs/input-checkbox/inp
         UserRegisterComponent,
         UserPageComponent,
         UserLoginComponent,
-        UserForgotPasswordComponent
+        UserForgotPasswordComponent,
+        UserForgotPasswordChangeComponent
     ],
     imports: [
         CommonModule,

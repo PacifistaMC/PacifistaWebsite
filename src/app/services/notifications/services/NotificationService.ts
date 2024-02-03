@@ -11,6 +11,10 @@ export default class NotificationService {
     this.toasts.push(toast);
   }
 
+  info(message: string, header: string = 'Information') {
+    this.show(new NotificationToast(header, message, 7000, NotificationType.STANDARD));
+  }
+
   error(message: string, header: string = 'Erreur') {
     this.show(new NotificationToast(header, message, 7000, NotificationType.DANGER));
   }
@@ -37,7 +41,7 @@ export default class NotificationService {
     } else if (err.status === 400) {
       this.error('Votre requête est invalide. (Erreur 400) ' + err.error);
     } else if (err.status.toString().startsWith('5')) {
-        this.error('Une erreur interne est survenue veuillez réessayer ou nous prévenir à contact@funixproductions.com. (Erreur ' + err.status + ') ' + err.error);
+      this.error('Une erreur interne est survenue veuillez réessayer ou nous prévenir à contact@funixproductions.com. (Erreur ' + err.status + ') ' + err.error);
     } else {
       this.error('Une erreur est survenue veuillez réessayer. (Erreur ' + err.status + ') ' + err.error);
     }
