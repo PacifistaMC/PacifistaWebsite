@@ -94,12 +94,15 @@
                 ></app-input-checkbox>
             </div>
 
-            <div class="col-12">
+            <div class="col-md-3">
                 <app-send-button
                         [loading]="loading"
                         [label]="'Créer le compte'"
                         (onClick)="register()"
                 ></app-send-button>
+            </div>
+            <div class="col-md-9 align-self-center">
+                <a [routerLink]="['..', 'login']">Déjà un compte ? Connectez-vous</a>
             </div>
         </div>
     </div>

@@ -6,6 +6,13 @@
   color: white;
 }
 
+.register-div .header h1 {
+  color: white;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 .countryErrors {
   color: #dc3545;
 }
@@ -15,14 +22,26 @@
   padding: 20px;
 }
 
-@media (max-width: 990px) {
+@media (max-width: 1400px) {
   .register-div {
-    width: 70%; /* Set width to 70% for screens 990px and below */
+    width: 60%;
+  }
+}
+
+@media (max-width: 1200px) {
+  .register-div {
+    width: 70%;
+  }
+}
+
+@media (max-width: 992px) {
+  .register-div {
+    width: 95%;
   }
 }
 
 @media (max-width: 770px) {
   .register-div {
-    width: 90%; /* Set width to 70% for screens 990px and below */
+    width: 100%;
   }
 }
