@@ -16,6 +16,11 @@ export class UserForgotPasswordComponent extends PacifistaPage {
 
   email: string = '';
 
+  loading: boolean = false;
+  formSent: boolean = false;
+
+  emailErrors: string[] = [];
+
   constructor(title: Title,
               @Inject(DOCUMENT) doc: Document) {
     super(title, doc);
