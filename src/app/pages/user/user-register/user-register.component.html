@@ -5,11 +5,16 @@
     <div class="register-form">
         <div class="row g-3">
             <div class="col-md-5">
-                <label for="validationUsername" class="form-label">Identifiant</label>
-                <input type="text" class="form-control" placeholder="Identifiant" [(ngModel)]="username" id="validationUsername" value="{{ username }}" required>
-                <div *ngFor="let error of usernameErrors" class="invalid-feedback">
-                    {{ error }}
-                </div>
+                <app-input-text
+                        [label]="'Identifiant'"
+                        [placeholder]="'Entrez votre identifiant'"
+                        [id]="'usernameInput'"
+                        [text]="username"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="usernameErrors"
+                        (textChange)="username = $event"
+                ></app-input-text>
             </div>
 
             <div class="col-md-7">
@@ -17,7 +22,7 @@
                         [formSent]="formSent"
                         [emailErrors]="emailErrors"
                         [isRequired]="true"
-                        (emailChange)="onEmailChange($event)"
+                        (emailChange)="email = $event"
                 ></app-input-email>
             </div>
 
@@ -40,53 +45,61 @@
             </div>
 
             <div class="col-md-6">
-                <label for="validationPassword" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" [(ngModel)]="password" id="validationPassword" required>
-                <div *ngFor="let error of passwordErrors" class="invalid-feedback">
-                    {{ error }}
-                </div>
+                <app-input-secret
+                        [label]="'Mot de passe'"
+                        [placeholder]="'Entrez votre mot de passe'"
+                        [id]="'passwordInput'"
+                        [text]="password"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="passwordErrors"
+                        (textChange)="password = $event"
+                ></app-input-secret>
             </div>
 
             <div class="col-md-6">
-                <label for="validationPasswordConfirm" [(ngModel)]="acceptCgu" class="form-label">Confirmation du mot de passe</label>
-                <input type="password" class="form-control" [(ngModel)]="passwordConfirmation" id="validationPasswordConfirm" required>
-                <div *ngFor="let error of passwordConfirmationErrors" class="invalid-feedback">
-                    {{ error }}
-                </div>
+                <app-input-secret
+                        [label]="'Confirmation du mot de passe'"
+                        [placeholder]="'Entrez votre mot de passe'"
+                        [id]="'passwordInputConfirm'"
+                        [text]="passwordConfirmation"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="passwordConfirmationErrors"
+                        (textChange)="passwordConfirmation = $event"
+                ></app-input-secret>
             </div>
 
             <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" [(ngModel)]="acceptCgv" type="checkbox" value="" id="invalidCheckCgv" required>
-                    <label class="form-check-label" for="invalidCheckCgv">
-                        Accepter les <a href="/cgv">conditions générales de vente</a>.
-                    </label>
-                    <div *ngFor="let error of cgvErrors" class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                </div>
+                <app-input-checkbox
+                        [label]="checkboxCGVText"
+                        [id]="'invalidCheckCgv'"
+                        [checked]="acceptCgv"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [checkboxErrors]="cgvErrors"
+                        (onChange)="acceptCgv = $event"
+                ></app-input-checkbox>
             </div>
 
             <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" [(ngModel)]="acceptCgu" type="checkbox" value="" id="invalidCheckCgu" required>
-                    <label class="form-check-label" for="invalidCheckCgu">
-                        Accepter les <a href="/cgu">conditions générales d'utilisation</a>.
-                    </label>
-                    <div *ngFor="let error of cguErrors" class="invalid-feedback">
-                        {{ error }}
-                    </div>
-                </div>
+                <app-input-checkbox
+                        [label]="checkboxCGUText"
+                        [id]="'invalidCheckCgu'"
+                        [checked]="acceptCgu"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [checkboxErrors]="cguErrors"
+                        (onChange)="acceptCgu = $event"
+                ></app-input-checkbox>
             </div>
 
             <div class="col-12">
-                <button *ngIf="loading else ready" class="btn btn-primary" type="button" disabled>
-                    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-                    <span role="status"> Envoi en cours</span>
-                </button>
-                <ng-template #ready>
-                    <button class="btn btn-primary" (click)="register()">Créer le compte</button>
-                </ng-template>
+                <app-send-button
+                        [loading]="loading"
+                        [label]="'Créer le compte'"
+                        (onClick)="register()"
+                ></app-send-button>
             </div>
         </div>
     </div>

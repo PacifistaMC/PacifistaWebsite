@@ -4,6 +4,7 @@
     <input
             type="text"
             class="form-control"
+            placeholder="Adresse email"
             [ngClass]="{
                 'is-invalid': formSent && emailErrors.length > 0,
                 'is-valid': formSent && emailErrors.length === 0
@@ -12,6 +13,7 @@
             [id]="id"
             [required]="isRequired"
             (input)="onInput()"
+            [value]="email"
             aria-describedby="inputGroupPrepend"
     />
     <div *ngFor="let error of emailErrors" class="invalid-feedback">

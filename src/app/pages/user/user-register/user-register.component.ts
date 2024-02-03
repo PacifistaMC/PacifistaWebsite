@@ -40,6 +40,9 @@ export class UserRegisterComponent extends PacifistaPage {
   cgvErrors: string[] = [];
   countryErrors: string[] = [];
 
+  checkboxCGVText: string = "Accepter les <a href=\"/cgv\" target='_blank'>conditions générales de vente</a>.";
+  checkboxCGUText: string = "Accepter les <a href=\"/cgu\" target='_blank'>conditions générales d'utilisation</a>.";
+
   private readonly userAuthService: UserAuthService;
 
   constructor(private reCaptchaService: ReCaptchaV3Service,
@@ -78,7 +81,6 @@ export class UserRegisterComponent extends PacifistaPage {
     userCreationRequest.acceptCGV = this.acceptCgv;
     userCreationRequest.country = this.country;
 
-    console.log(userCreationRequest)
     this.reCaptchaService.execute('register').subscribe((token: string) => {
       this.userAuthService.register(userCreationRequest, token).subscribe({
             next: () => {
@@ -140,10 +142,6 @@ export class UserRegisterComponent extends PacifistaPage {
     }
 
     this.country = country;
-  }
-
-  onEmailChange(event: string) {
-    this.email = event;
   }
 
 }

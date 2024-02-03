@@ -14,6 +14,10 @@ import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-pa
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
 import {InputEmailComponent} from "../../components/inputs/input-email/input-email.component";
+import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
+import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
+import {InputSecretComponent} from "../../components/inputs/input-secret/input-secret.component";
+import {InputCheckboxComponent} from "../../components/inputs/input-checkbox/input-checkbox.component";
 
 @NgModule({
     declarations: [
@@ -31,7 +35,11 @@ import {InputEmailComponent} from "../../components/inputs/input-email/input-ema
         FormsModule,
         RecaptchaV3Module,
         FontAwesomeModule,
-        InputEmailComponent
+        InputEmailComponent,
+        SendButtonComponent,
+        InputTextComponent,
+        InputSecretComponent,
+        InputCheckboxComponent
     ],
     providers: [
         {
