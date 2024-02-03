@@ -1,4 +1,4 @@
-.register-div {
+.form-content-div {
   width: 50%;
   margin-top: 3%;
   margin-bottom: 3%;
@@ -6,7 +6,7 @@
   color: white;
 }
 
-.register-div .header h1 {
+.form-content-div .header h1 {
   color: white;
   text-align: center;
   margin-top: 50px;
@@ -17,31 +17,31 @@
   color: #dc3545;
 }
 
-.register-div {
+.form-content-div {
   background: linear-gradient(to bottom, #3498db 10px, #28282B 10px);
   padding: 20px;
 }
 
 @media (max-width: 1400px) {
-  .register-div {
+  .form-content-div {
     width: 60%;
   }
 }
 
 @media (max-width: 1200px) {
-  .register-div {
+  .form-content-div {
     width: 70%;
   }
 }
 
 @media (max-width: 992px) {
-  .register-div {
+  .form-content-div {
     width: 95%;
   }
 }
 
 @media (max-width: 770px) {
-  .register-div {
+  .form-content-div {
     width: 100%;
   }
 }

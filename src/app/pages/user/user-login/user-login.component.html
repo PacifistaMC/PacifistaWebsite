@@ -1,35 +1,48 @@
-<div class="bg-dark rounded-3">
-  <h1 class="p-3">Se connecter</h1>
-
-  <div class="container p-5">
-    <form>
-      <div class="input-group pb-2">
-        <span class="input-group-text" id="username-input">&#64;</span>
-        <input type="text" name="username" [(ngModel)]="username" class="form-control"
-               placeholder="Identifiant" aria-label="Identifiant" aria-describedby="username-input">
-      </div>
-
-      <div class="input-group pb-2">
-        <span class="input-group-text" id="password-input">***</span>
-        <input type="password" class="form-control" name="password" [(ngModel)]="password"
-               placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="password-input">
-      </div>
-    </form>
-
-    <div class="row justify-content-between align-items-center">
-      <button (click)="login()" [disabled]="!password || !username" class=" col col-md-2 btn btn-success">
-        Se connecter
-      </button>
-
-      <div class="col col-md-6"></div>
-
-      <a class="col col-md-2" href="/user/register">
-        Créer un compte
-      </a>
-
-      <a class="col col-md-2" href="/user/forgotpassword">
-        Mot de passe oublié
-      </a>
+<div class="container form-content-div">
+    <div class="header">
+        <h1>Connexion</h1>
     </div>
-  </div>
+    <div class="login-form">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <app-input-text
+                        [label]="'Identifiant'"
+                        [placeholder]="'Entrez votre identifiant'"
+                        [id]="'usernameInput'"
+                        [text]="username"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="usernameErrors"
+                        (textChange)="username = $event"
+                ></app-input-text>
+            </div>
+
+            <div class="col-md-7">
+                <app-input-secret
+                        [label]="'Mot de passe'"
+                        [placeholder]="'Entrez votre mot de passe'"
+                        [id]="'passwordInput'"
+                        [text]="password"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="passwordErrors"
+                        (textChange)="password = $event"
+                ></app-input-secret>
+            </div>
+
+            <div class="col-md-3">
+                <app-send-button
+                        [loading]="loading"
+                        [label]="'Connexion'"
+                        (onClick)="login()"
+                ></app-send-button>
+            </div>
+            <div class="col-md-5 align-self-center">
+                <a [routerLink]="['/user', 'register']">Pas de compte ? Créez-en un ici !</a>
+            </div>
+            <div class="col-md-4 align-self-center">
+                <a [routerLink]="['/user', 'forgotpassword']">Mot de passe oublié ?</a>
+            </div>
+        </div>
+    </div>
 </div>
