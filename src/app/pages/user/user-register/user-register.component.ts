@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReCaptchaV3Service} from "ng-recaptcha";
-import {UserAuthService, UserCountry, UserCreationDTO} from "@funixproductions/funixproductions-requests";
+import {ErrorDto, UserAuthService, UserCountry, UserCreationDTO} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
@@ -29,6 +29,20 @@ export class UserRegisterComponent extends PacifistaPage {
   acceptCgv: boolean = false;
   country?: UserCountry;
 
+  formSent: boolean = false;
+  loading: boolean = false;
+
+  usernameErrors: string[] = [];
+  emailErrors: string[] = [];
+  passwordErrors: string[] = [];
+  passwordConfirmationErrors: string[] = [];
+  cguErrors: string[] = [];
+  cgvErrors: string[] = [];
+  countryErrors: string[] = [];
+
+  checkboxCGVText: string = "Accepter les <a href=\"/cgv\" target='_blank'>conditions générales de vente</a>.";
+  checkboxCGUText: string = "Accepter les <a href=\"/cgu\" target='_blank'>conditions générales d'utilisation</a>.";
+
   private readonly userAuthService: UserAuthService;
 
   constructor(private reCaptchaService: ReCaptchaV3Service,
@@ -43,9 +57,20 @@ export class UserRegisterComponent extends PacifistaPage {
 
   register(): void {
     if (!this.country) {
-        this.notificationService.error('Veuillez sélectionner un pays.');
-        return;
+      this.notificationService.warning('Veuillez sélectionner un pays.');
+      return;
     }
+
+    this.formSent = false;
+    this.loading = true;
+
+    this.usernameErrors = [];
+    this.emailErrors = [];
+    this.passwordErrors = [];
+    this.passwordConfirmationErrors = [];
+    this.cguErrors = [];
+    this.cgvErrors = [];
+    this.countryErrors = [];
 
     const userCreationRequest: UserCreationDTO = new UserCreationDTO();
     userCreationRequest.email = this.email;
@@ -58,13 +83,44 @@ export class UserRegisterComponent extends PacifistaPage {
 
     this.reCaptchaService.execute('register').subscribe((token: string) => {
       this.userAuthService.register(userCreationRequest, token).subscribe({
-          next: () => {
-            this.router.navigate(['user', 'login']);
-          },
-          error: err => {
-            this.notificationService.onErrorRequest(err, 'Erreur lors de la création de compte.');
+            next: () => {
+              this.formSent = true;
+              this.loading = false;
+              this.router.navigate(['user', 'login']);
+            },
+            error: (err: ErrorDto) => {
+              this.formSent = true;
+              this.loading = false;
+
+              for (let fieldError of err.fieldErrors) {
+                switch (fieldError.field) {
+                  case 'username':
+                    this.usernameErrors.push(fieldError.message);
+                    break;
+                  case 'email':
+                    this.emailErrors.push(fieldError.message);
+                    break;
+                  case 'password':
+                    this.passwordErrors.push(fieldError.message);
+                    break;
+                  case 'passwordConfirmation':
+                    this.passwordConfirmationErrors.push(fieldError.message);
+                    break;
+                  case 'acceptCGU':
+                    this.cguErrors.push(fieldError.message);
+                    break;
+                  case 'acceptCGV':
+                    this.cgvErrors.push(fieldError.message);
+                    break;
+                  case 'country':
+                    this.countryErrors.push(fieldError.message);
+                    break;
+                }
+              }
+
+              this.notificationService.onErrorRequest(err);
+            }
           }
-        }
       )
     });
   }

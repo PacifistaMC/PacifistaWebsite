@@ -1,0 +1,19 @@
+<div class="form-check">
+    <input
+            class="form-check-input"
+            type="checkbox"
+            [(ngModel)]="checked"
+            [value]="checked"
+            [id]="id"
+            [required]="required"
+            (input)="onInput($event)"
+            [ngClass]="{
+                'is-invalid': formSent && checkboxErrors.length > 0,
+                'is-valid': formSent && checkboxErrors.length === 0
+             }"
+            >
+    <label class="form-check-label" [innerHTML]="label" [for]="id"></label>
+    <div *ngFor="let error of checkboxErrors" class="invalid-feedback">
+        {{ error }}
+    </div>
+</div>

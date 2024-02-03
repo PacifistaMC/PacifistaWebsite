@@ -1,71 +1,109 @@
-<div class="container3">
-    <h2 class="p-5">Créer un compte</h2>
-
-    <div class="container w-50 align-items-start">
-        <form>
-            <div class="input-group">
-                <span class="input-group-text" id="username-input">&#64;</span>
-                <input type="text" name="username" [(ngModel)]="username" class="form-control"
-                       placeholder="Identifiant" aria-label="Identifiant" aria-describedby="username-input">
+<div class="container form-content-div">
+    <div class="header">
+        <h1>Création de compte</h1>
+    </div>
+    <div class="register-form">
+        <div class="row g-3">
+            <div class="col-md-5">
+                <app-input-text
+                        [label]="'Identifiant'"
+                        [placeholder]="'Entrez votre identifiant'"
+                        [id]="'usernameInput'"
+                        [text]="username"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="usernameErrors"
+                        (textChange)="username = $event"
+                ></app-input-text>
             </div>
 
-            <div class="input-group">
-                <span class="input-group-text" id="email-input">&#64;</span>
-                <input type="email" name="email" [(ngModel)]="email" class="form-control"
-                       placeholder="E-Mail" aria-label="E-Mail" aria-describedby="email-input">
+            <div class="col-md-7">
+                <app-input-email
+                        [formSent]="formSent"
+                        [emailErrors]="emailErrors"
+                        [isRequired]="true"
+                        (emailChange)="email = $event"
+                ></app-input-email>
             </div>
 
-            <div class="input-group">
-                <span class="input-group-text" id="password-input">***</span>
-                <input type="password" class="form-control" name="password" [(ngModel)]="password"
-                       placeholder="Mot de passe" aria-label="Mot de passe" aria-describedby="password-input">
-            </div>
-
-            <div class="input-group">
-                <span class="input-group-text" id="password-confirm-input">***</span>
-                <input type="password" class="form-control" name="passwordConfirmation" [(ngModel)]="passwordConfirmation"
-                       placeholder="Mot de passe confirmation" aria-label="Mot de passe confirmation" aria-describedby="password-confirm-input">
-            </div>
-
-            <div class="form-group">
-                <mat-select-country
-                        appearance="outline"
-                        label="Pays de résidence"
-                        [itemsLoadSize]="5"
-                        (onCountrySelected)="onCountryChange($event)"
-                        lang="fr">
-                </mat-select-country>
-            </div>
-
-            <div class="form-group">
-                <div class="custom-control custom-checkbox small">
-                    <input type="checkbox" class="custom-control-input" [(ngModel)]="acceptCgu" id="cgu" name="acceptCgu">
-                    <label class="custom-control-label" for="cgu">Accepter les CGU de Pacifista</label>
+            <div class="col-md-12">
+                <label for="validationCountry" class="form-label">Pays</label>
+                <div class="input-group has-validation">
+                    <mat-select-country
+                            [required]="true"
+                            appearance="fill"
+                            id="validationCountry"
+                            label="Pays"
+                            [itemsLoadSize]="5"
+                            (onCountrySelected)="onCountryChange($event)"
+                            lang="fr">
+                    </mat-select-country>
                 </div>
-                <div>
-                    <a href="/cgu" class="small">
-                        CGU de Pacifista
-                    </a>
-                </div>
-
-                <div class="custom-control custom-checkbox small">
-                    <input type="checkbox" class="custom-control-input" [(ngModel)]="acceptCgv" name="acceptCgv" id="cgv">
-                    <label class="custom-control-label" for="cgv">Accepter les CGV de Pacifista</label>
-                </div>
-                <div>
-                    <a href="/cgv" class="small">
-                        CGV de Pacifista
-                    </a>
+                <div *ngFor="let error of countryErrors" class="countryErrors">
+                    {{ error }}
                 </div>
             </div>
 
-            <button (click)="register()" [disabled]="!password || !email || !username || !passwordConfirmation || !acceptCgv || !acceptCgu" class="btn btn-success">
-                Créer un compte
-            </button>
-        </form>
+            <div class="col-md-6">
+                <app-input-secret
+                        [label]="'Mot de passe'"
+                        [placeholder]="'Entrez votre mot de passe'"
+                        [id]="'passwordInput'"
+                        [text]="password"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="passwordErrors"
+                        (textChange)="password = $event"
+                ></app-input-secret>
+            </div>
 
-        <a href="/user/login">
-            Se connecter
-        </a>
+            <div class="col-md-6">
+                <app-input-secret
+                        [label]="'Confirmation du mot de passe'"
+                        [placeholder]="'Entrez votre mot de passe'"
+                        [id]="'passwordInputConfirm'"
+                        [text]="passwordConfirmation"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="passwordConfirmationErrors"
+                        (textChange)="passwordConfirmation = $event"
+                ></app-input-secret>
+            </div>
+
+            <div class="col-12">
+                <app-input-checkbox
+                        [label]="checkboxCGVText"
+                        [id]="'invalidCheckCgv'"
+                        [checked]="acceptCgv"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [checkboxErrors]="cgvErrors"
+                        (onChange)="acceptCgv = $event"
+                ></app-input-checkbox>
+            </div>
+
+            <div class="col-12">
+                <app-input-checkbox
+                        [label]="checkboxCGUText"
+                        [id]="'invalidCheckCgu'"
+                        [checked]="acceptCgu"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [checkboxErrors]="cguErrors"
+                        (onChange)="acceptCgu = $event"
+                ></app-input-checkbox>
+            </div>
+
+            <div class="col-md-3">
+                <app-send-button
+                        [loading]="loading"
+                        [label]="'Créer le compte'"
+                        (onClick)="register()"
+                ></app-send-button>
+            </div>
+            <div class="col-md-9 align-self-center">
+                <a [routerLink]="['..', 'login']">Déjà un compte ? Connectez-vous</a>
+            </div>
+        </div>
     </div>
 </div>

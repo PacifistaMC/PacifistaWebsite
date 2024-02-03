@@ -29,6 +29,12 @@ export class UserLoginComponent extends PacifistaPage {
   password: string = '';
   stayLogin: boolean = false;
 
+  loading: boolean = false;
+  formSent: boolean = false;
+
+  usernameErrors: string[] = [];
+  passwordErrors: string[] = [];
+
   private userAuthService: UserAuthService;
 
   constructor(private reCaptchaService: ReCaptchaV3Service,
@@ -47,9 +53,17 @@ export class UserLoginComponent extends PacifistaPage {
     loginRequest.password = this.password;
     loginRequest.stayConnected = this.stayLogin;
 
+    this.formSent = false;
+    this.loading = true;
+    this.passwordErrors = [];
+    this.usernameErrors = [];
+
     this.reCaptchaService.execute('login').subscribe((token: string) => {
       this.userAuthService.login(loginRequest, token).subscribe({
         next: (loginDto: UserTokenDTO) => {
+          this.formSent = true;
+          this.loading = false;
+
           if (loginDto.token) {
             localStorage.setItem(FunixprodHttpClient.accessTokenLocalStorageName, loginDto.token);
             this.router.navigate(['user'])
@@ -58,7 +72,21 @@ export class UserLoginComponent extends PacifistaPage {
           }
         },
         error: err => {
-          this.notificationService.onErrorRequest(err, 'Impossible de se connecter');
+          this.formSent = true;
+          this.loading = false;
+
+          for (let fieldError of err.fieldErrors) {
+            switch (fieldError.field) {
+              case 'username':
+                this.usernameErrors.push(fieldError.message);
+                break;
+              case 'password':
+                this.passwordErrors.push(fieldError.message);
+                break;
+            }
+          }
+
+          this.notificationService.onErrorRequest(err);
         }
       });
     });
