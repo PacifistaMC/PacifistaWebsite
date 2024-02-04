@@ -1,43 +1,35 @@
-<div class="card text-bg-dark mb-2 pacifista-news-card">
-  <div class="row g-0">
-    <div class="col-md-4 div-image">
-      <img ngSrc="{{ news.articleImageUrl }}" [loading]="'lazy'" width="600" height="300" class="img-fluid rounded-start" alt="News image {{ news.name }}">
-    </div>
-
-    <div class="col-md-8">
-      <div class="card-body">
-        <h1 class="card-title">{{ news.title }}</h1>
-        <h2 class="card-text">{{ news.subtitle }}</h2>
+<div class="card bg-dark text-white" style="width: 18rem;">
+    <img src="{{ news.articleImageUrl }}" class="card-img-top" alt="Pacifista News image {{ news.name }}">
+    <div class="card-body">
+        <h3 class="card-title">{{ news.title }}</h3>
+        <p class="card-text">{{ news.subtitle }}</p>
 
         <div class="row justify-content-start align-items-center">
-          <div class="col-4">
-            <fa-icon [icon]="faUser"></fa-icon><span> {{ news.originalWriter }}</span>
-          </div>
-          <div class="col-8">
-            <fa-icon [icon]="faClock"></fa-icon><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card-footer">
-        <div class="row justify-content-between align-items-center">
-          <div class="col">
-            <div class="row">
-              <div class="col-6">
-                <fa-icon [icon]="faThumbsUp"></fa-icon><span> {{ news.likesAmount || 0 }}</span>
-              </div>
-
-              <div class="col-5">
-                <fa-icon [icon]="faComment"></fa-icon><span> {{ news.commentsAmount || 0 }}</span>
-              </div>
+            <div class="col-4">
+                <fa-icon [icon]="faUser"></fa-icon><span> {{ news.originalWriter }}</span>
             </div>
-          </div>
-
-          <a class="col-3 btn btn-success" href="/news/{{ news.name }}">
-            Lire la suite
-          </a>
+            <div class="col-8">
+                <fa-icon [icon]="faClock"></fa-icon><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
+
+    <div class="card-footer">
+        <div class="row justify-content-between align-items-center">
+            <div class="col">
+                <div class="row">
+                    <div class="col-6">
+                        <fa-icon [icon]="faThumbsUp"></fa-icon><span> {{ news.likesAmount || 0 }}</span>
+                    </div>
+
+                    <div class="col-5">
+                        <fa-icon [icon]="faComment"></fa-icon><span> {{ news.commentsAmount || 0 }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <a class="col-4 btn btn-success" href="/news/{{ news.name }}">
+                Lire
+            </a>
+        </div>
 </div>
