@@ -9,7 +9,7 @@
     {{ totalNews }} news au total
   </h3>
 
-  <div *ngIf="newsList.length > 0; else noNews" class="card-group">
+  <div *ngIf="newsList.length > 0; else noNews" class="align-items-center card-group">
     <div *ngFor="let news of newsList" class="p-2">
       <app-news-card [news]="news"></app-news-card>
     </div>
