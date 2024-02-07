@@ -10,6 +10,7 @@ import {ShopArticleComponent} from './components/shop-articles/shop-article/shop
 import {ShopArticleModalComponent} from './components/shop-articles/shop-article-modal/shop-article-modal.component';
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
 import {ShopBasketLittleComponent} from './components/shop-basket-little/shop-basket-little.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {ShopBasketLittleComponent} from './components/shop-basket-little/shop-ba
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     ShopRoutingModule,
     FontAwesomeModule
   ]

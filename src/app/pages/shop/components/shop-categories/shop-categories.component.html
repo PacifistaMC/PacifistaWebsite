@@ -2,12 +2,18 @@
   <h3>Catégories</h3>
 
   <div *ngFor="let category of categoriesList">
-    <input type="radio"
-           id="check-{{ category.name }}"
-           name="{{ category.name }}"
-           value="{{ category.name }}"
-           class="category-checkbox">
-
-    <label class="category-name" for="check-{{ category.name }}">{{ category.name }}</label>
+      <div *ngIf="category.id && categorySelected && category.id === categorySelected.id else notSelected">
+          <div class="category-selected">
+              <h4>{{ category.name }}</h4>
+              <p>{{ category.description }}</p>
+          </div>
+      </div>
+      <ng-template #notSelected>
+          <div class="category" (click)="selectCategory(category)">
+              <h4>{{ category.name }}</h4>
+              <p>{{ category.description }}</p>
+          </div>
+      </ng-template>
+      <hr>
   </div>
 </div>
