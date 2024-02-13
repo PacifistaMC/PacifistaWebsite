@@ -9,7 +9,6 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ShopArticleComponent} from './components/shop-articles/shop-article/shop-article.component';
 import {ShopArticleModalComponent} from './components/shop-articles/shop-article-modal/shop-article-modal.component';
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
-import {ShopBasketLittleComponent} from './components/shop-basket-little/shop-basket-little.component';
 import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
@@ -19,8 +18,7 @@ import {HttpClientModule} from "@angular/common/http";
     ShopArticlesComponent,
     ShopArticleComponent,
     ShopArticleModalComponent,
-    ShopCheckoutComponent,
-    ShopBasketLittleComponent
+    ShopCheckoutComponent
   ],
   imports: [
     CommonModule,
