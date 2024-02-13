@@ -1,8 +1,6 @@
 import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
-import {faTwitter} from "@fortawesome/free-brands-svg-icons";
 import NotificationService from "../../../services/notifications/services/NotificationService";
-import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {
   PacifistaNewsDTO,
   PacifistaNewsService,
@@ -24,9 +22,6 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
   protected override title: string = 'News';
   protected override canonicalPath: string = 'news'
   protected override pageDescription: string = 'Toutes les news de Pacifista, events, mises à jour et annonces. Le serveur Minecraft français survie créatif !';
-
-  protected readonly twitter = faTwitter;
-  protected readonly loadingIcon = faSpinner;
 
   protected newsList: PacifistaNewsDTO[] = [];
   protected pageOption: PageOption = new PageOption();

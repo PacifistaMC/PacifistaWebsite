@@ -1,16 +1,16 @@
 <div class="card bg-dark">
-  <div class="card-body">
-    <h3 class="card-title">{{ article.name }}</h3>
-    <div class="card-text" [innerHTML]="article.htmlDescription"></div>
+    <div class="card-body">
+        <h3 class="card-title">{{ article.name }}</h3>
+        <div class="card-text" [innerHTML]="article.htmlDescription"></div>
 
-    <div class="row justify-content-around">
-      <button class="col col-md-5 btn btn-success">
-        <fa-icon [icon]="faCartDown"></fa-icon>
-        Ajouter au panier
-      </button>
-      <button class="col col-md-3 btn btn-danger" (click)="activeModal.close('Close click')">
-        Fermer
-      </button>
+        <div class="row justify-content-around">
+            <button class="col col-md-5 btn btn-success">
+                <i class="bi bi-cart-plus-fill"></i>
+                Ajouter au panier
+            </button>
+            <button class="col col-md-3 btn btn-danger" (click)="activeModal.close('Close click')">
+                Fermer
+            </button>
+        </div>
     </div>
-  </div>
 </div>

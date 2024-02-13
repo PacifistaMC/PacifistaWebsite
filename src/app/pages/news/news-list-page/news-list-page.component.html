@@ -1,32 +1,32 @@
 <div class="container p-4">
-  <h1>News</h1>
+    <h1>News</h1>
 
-  <p>
-    Voici les news du serveur Minecraft Pacifista.<br/>
-    Vous pouvez aussi les retrouver sur notre <a href="https://x.com/pacifista_mc"><fa-icon [icon]="twitter"></fa-icon> Twitter</a>.
-  </p>
-  <h3>
-    {{ totalNews }} news au total
-  </h3>
+    <p>
+        Voici les news du serveur Minecraft Pacifista.<br/>
+        Vous pouvez aussi les retrouver sur notre <a href="https://x.com/pacifista_mc"><i class="bi bi-twitter-x"></i> Twitter</a>.
+    </p>
+    <h3>
+        {{ totalNews }} news au total
+    </h3>
 
-  <div *ngIf="newsList.length > 0; else noNews" class="align-items-center card-group">
-    <div *ngFor="let news of newsList" class="p-2">
-      <app-news-card [news]="news"></app-news-card>
+    <div *ngIf="newsList.length > 0; else noNews" class="align-items-center card-group">
+        <div *ngFor="let news of newsList" class="p-2">
+            <app-news-card [news]="news"></app-news-card>
+        </div>
     </div>
-  </div>
-  <ng-template #noNews class="no-news align-content-center text-center">
-    <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
-  </ng-template>
+    <ng-template #noNews class="no-news align-content-center text-center">
+        <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
+    </ng-template>
 
-  <div *ngIf="newsList.length < totalNews; else noMoreNews" class="text-center">
-    <button class="btn pacifista-btn" (click)="pageUpNews()">
-      <fa-icon *ngIf="loading; else notLoading" [icon]="loadingIcon"></fa-icon>
-      <ng-template #notLoading>Charger plus de news</ng-template>
-    </button>
-  </div>
-  <ng-template #noMoreNews>
-    <div class="text-center">
-      <p>Fin de liste</p>
+    <div *ngIf="newsList.length < totalNews; else noMoreNews" class="text-center">
+        <button class="btn pacifista-btn" (click)="pageUpNews()">
+            <i *ngIf="loading; else notLoading" class="bi bi-arrow-clockwise"></i>
+            <ng-template #notLoading>Charger plus de news</ng-template>
+        </button>
     </div>
-  </ng-template>
+    <ng-template #noMoreNews>
+        <div class="text-center">
+            <p>Fin de liste</p>
+        </div>
+    </ng-template>
 </div>

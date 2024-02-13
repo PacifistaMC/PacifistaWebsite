@@ -1,6 +1,6 @@
 <div class="container bg-dark rounded-3" (click)="openModal()">
   <div class="item-container text-center">
-    <img class="img-fluid" src="{{ article.logoUrl }}" alt="Pacifista Shop item {{ article.name }} {{ article.description }}" fill>
+    <img class="img-fluid" src="{{ getImageLogo() }}" alt="Pacifista Shop item {{ article.name }} {{ article.description }}" fill>
     <h3>{{ article.name }}</h3>
     <p>{{ article.description }}</p>
 
@@ -10,7 +10,7 @@
       </div>
       <div class="col col-md-4">
         <button class="btn btn-success">
-          <fa-icon [icon]="faCartDown"></fa-icon>
+            <i class="bi bi-cart-plus"></i>
         </button>
       </div>
     </div>

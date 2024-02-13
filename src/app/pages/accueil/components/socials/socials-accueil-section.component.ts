@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import {faExternalLink} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'socials-section',
@@ -7,6 +6,4 @@ import {faExternalLink} from "@fortawesome/free-solid-svg-icons";
   styleUrls: ['./socials-accueil-section.component.scss']
 })
 export class SocialsAccueilSectionComponent {
-  protected readonly logoExternalLink = faExternalLink;
-  protected readonly size = 'sm';
 }

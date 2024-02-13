@@ -6,10 +6,10 @@
 
         <div class="row justify-content-start align-items-center">
             <div class="col-4">
-                <fa-icon [icon]="faUser"></fa-icon><span> {{ news.originalWriter }}</span>
+                <i class="bi bi-person-lines-fill"></i><span> {{ news.originalWriter }}</span>
             </div>
             <div class="col-8">
-                <fa-icon [icon]="faClock"></fa-icon><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
+                <i class="bi bi-clock-fill"></i><span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
             </div>
         </div>
     </div>
@@ -19,11 +19,11 @@
             <div class="col">
                 <div class="row">
                     <div class="col-6">
-                        <fa-icon [icon]="faThumbsUp"></fa-icon><span> {{ news.likesAmount || 0 }}</span>
+                        <i class="bi bi-hand-thumbs-up-fill"></i><span> {{ news.likesAmount || 0 }}</span>
                     </div>
 
                     <div class="col-5">
-                        <fa-icon [icon]="faComment"></fa-icon><span> {{ news.commentsAmount || 0 }}</span>
+                        <i class="bi bi-chat-text-fill"></i><span> {{ news.commentsAmount || 0 }}</span>
                     </div>
                 </div>
             </div>

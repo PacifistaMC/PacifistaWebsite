@@ -1,6 +1,5 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
-import {faCartArrowDown} from "@fortawesome/free-solid-svg-icons";
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
@@ -9,8 +8,6 @@ import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-reques
   styleUrls: ['./shop-article-modal.component.scss']
 })
 export class ShopArticleModalComponent {
-
-  protected readonly faCartDown = faCartArrowDown;
 
   @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
 

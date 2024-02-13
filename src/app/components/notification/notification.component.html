@@ -4,7 +4,7 @@
   [autohide]="true" [delay]="notification.delay">
   <ng-template ngbToastHeader>
     <div class="me-auto">
-      <fa-icon [icon]="getIconFromType(notification.type)"></fa-icon>
+      <i [class]="getIconFromType(notification.type)"></i>
       <strong class="mx-1">{{notification.header}}</strong>
     </div>
   </ng-template>
