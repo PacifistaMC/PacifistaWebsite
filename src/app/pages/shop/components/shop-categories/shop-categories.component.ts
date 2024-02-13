@@ -48,4 +48,8 @@ export class ShopCategoriesComponent implements OnInit {
     this.onCategorySelected.emit(category);
   }
 
+  isCategorySelected(category: PacifistaShopCategoryDTO): boolean {
+    return this.categorySelected?.id === category.id;
+  }
+
 }
