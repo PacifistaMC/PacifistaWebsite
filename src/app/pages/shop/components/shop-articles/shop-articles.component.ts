@@ -22,14 +22,12 @@ export class ShopArticlesComponent implements OnChanges {
 
   @Input() categorySelected?: PacifistaShopCategoryDTO;
   articlesList: PacifistaShopArticleDTO[] = [];
-  pacifistaPlusArticle?: PacifistaShopArticleDTO;
 
   loading: boolean = false;
 
   constructor(httpClient: HttpClient,
               private notificationService: NotificationService) {
     this.articlesService = new PacifistaShopArticleService(httpClient, environment.production);
-    this.findPacifistaPlusArticle();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -69,29 +67,6 @@ export class ShopArticlesComponent implements OnChanges {
       error: err => {
         this.notificationService.onErrorRequest(err);
         this.loading = false;
-      }
-    });
-  }
-
-  private findPacifistaPlusArticle(): void {
-    const builder = new QueryBuilder();
-    const param = new QueryParam();
-    param.key = 'name';
-    param.value = 'Pacifista+';
-    builder.addParam(param);
-
-    this.articlesService.find(new PageOption(), builder).subscribe({
-      next: (articles) => {
-        if (articles.content.length > 0) {
-          const article = articles.content[0];
-
-          if (article.name === 'Pacifista+') {
-            this.pacifistaPlusArticle = article;
-          }
-        }
-      },
-      error: err => {
-        this.notificationService.onErrorRequest(err);
       }
     });
   }

@@ -9,6 +9,9 @@ import {ShopArticleComponent} from './components/shop-articles/shop-article/shop
 import {ShopArticleModalComponent} from './components/shop-articles/shop-article-modal/shop-article-modal.component';
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
 import {HttpClientModule} from "@angular/common/http";
+import {
+  ShopArticlePacifistaplusComponent
+} from "./components/shop-articles/shop-article/shop-article-pacifistaplus/shop-article-pacifistaplus.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import {HttpClientModule} from "@angular/common/http";
     ShopArticlesComponent,
     ShopArticleComponent,
     ShopArticleModalComponent,
-    ShopCheckoutComponent
+    ShopCheckoutComponent,
+    ShopArticlePacifistaplusComponent
   ],
   imports: [
     CommonModule,
