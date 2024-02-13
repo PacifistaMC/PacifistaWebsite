@@ -5,7 +5,6 @@ import {ShopRoutingModule} from './shop-routing.module';
 import {ShopComponent} from './shop.component';
 import {ShopCategoriesComponent} from './components/shop-categories/shop-categories.component';
 import {ShopArticlesComponent} from './components/shop-articles/shop-articles.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ShopArticleComponent} from './components/shop-articles/shop-article/shop-article.component';
 import {ShopArticleModalComponent} from './components/shop-articles/shop-article-modal/shop-article-modal.component';
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
@@ -23,8 +22,7 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     CommonModule,
     HttpClientModule,
-    ShopRoutingModule,
-    FontAwesomeModule
+    ShopRoutingModule
   ]
 })
 export class ShopModule { }

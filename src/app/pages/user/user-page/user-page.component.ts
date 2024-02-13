@@ -1,6 +1,5 @@
 import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Router} from "@angular/router";
-import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {UserAuthService, UserDTO} from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
@@ -18,8 +17,6 @@ export class UserPageComponent extends PacifistaPage {
   protected override title: string = 'Profil';
   protected override canonicalPath: string = 'user';
   protected override pageDescription: string = 'Page de profil utilisateur.';
-
-  protected readonly faSearch = faSearch;
 
   private readonly authService: UserAuthService;
   user?: UserDTO;
