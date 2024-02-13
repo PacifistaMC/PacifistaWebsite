@@ -22,7 +22,7 @@ export class ShopArticleComponent {
   }
 
   getImageLogo(): string {
-    return environment.pacifistaApiDomain + "/web/shop/articles/file/" + this.article.id;
+    return environment.pacifistaApiDomain + "web/shop/articles/file/" + this.article.id;
   }
 
 }

@@ -2,20 +2,24 @@
     <div class="container">
         <h1>Boutique</h1>
         <p>La boutique officielle de Pacifista pour acheter des avantages uniques et soutenir le serveur Minecraft et son équipe.</p>
+        <p>Tous les prix affichés sont en toutes taxes comprises. La TVA est calculée en fonction de vôtre pays actuel précisé dans votre compte.
+            Si vous nêtes pas connecté vous visualisez les prix avec la TVA Française (20%).</p>
 
-        <div class="row justify-content-md-between">
-            <div class="col-md col-md-4">
+        <div class="row justify-content-between">
+            <div class="col-md-4 pb-3">
                 <div class="p-3 bg-dark rounded-3">
                     <h2>Catégories</h2>
                     <p>Veuillez séléctionner vôtre catégorie</p>
                     <hr class="border-white">
                     <app-shop-categories
+                            (onCategorySelected)="categorySelected = $event"
                     ></app-shop-categories>
                 </div>
             </div>
 
-            <div class="col-md col-md-8">
+            <div class="col-md-8">
                 <app-shop-articles
+                        [categorySelected]="categorySelected"
                 ></app-shop-articles>
             </div>
         </div>

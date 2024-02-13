@@ -1,18 +1,24 @@
-<div class="container bg-dark rounded-3" (click)="openModal()">
-  <div class="item-container text-center">
-    <img class="img-fluid" src="{{ getImageLogo() }}" alt="Pacifista Shop item {{ article.name }} {{ article.description }}" fill>
-    <h3>{{ article.name }}</h3>
-    <p>{{ article.description }}</p>
+<div class="card bg-dark text-center">
+    <button (click)="openModal()" class="top-right-button btn btn-light">
+        <i class="bi bi-info-circle-fill"></i>
+    </button>
 
-    <div class="row align-items-center justify-content-center">
-      <div class="col col-md-4 article-price">
-        <h4 class="price-container">{{ article.price }}€</h4>
-      </div>
-      <div class="col col-md-4">
-        <button class="btn btn-success">
-            <i class="bi bi-cart-plus"></i>
-        </button>
-      </div>
+    <img class="card-img" src="{{ getImageLogo() }}" alt="Image de l'article {{ article.name }} de Pacifista">
+
+    <div class="p-3">
+        <h2 class="card-title">{{ article.name }}</h2>
+        <p class="card-description">{{ article.description }}</p>
     </div>
-  </div>
+
+    <div class="row">
+        <div class="col col-12">
+            <p class="item-price text-center">
+                {{ article.priceWithTax }} €
+            </p>
+        </div>
+        <button class="col col-12 btn btn-success">
+            <i class="bi bi-cart-plus-fill"></i>
+            Ajouter au panier
+        </button>
+    </div>
 </div>

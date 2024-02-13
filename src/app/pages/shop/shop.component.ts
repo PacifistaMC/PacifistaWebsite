@@ -2,6 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
+import {PacifistaShopCategoryDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-shop',
@@ -13,6 +14,8 @@ export class ShopComponent extends PacifistaPage {
   protected override readonly title: string = "Boutique";
   protected override readonly canonicalPath: string = "shop";
   protected override readonly pageDescription: string = "Boutique de Pacifista. Soutenez le serveur minecraft avec des avantages uniques !";
+
+  categorySelected?: PacifistaShopCategoryDTO;
 
   constructor(title: Title,
               @Inject(DOCUMENT) doc: Document) {
