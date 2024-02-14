@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {
   PacifistaShopArticleDTO,
   PacifistaShopArticleService,
@@ -10,6 +10,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
+import ShopCart from "../../ShopCart";
 
 @Component({
   selector: 'app-shop-articles',
@@ -20,6 +21,7 @@ export class ShopArticlesComponent implements OnChanges {
 
   private readonly articlesService: PacifistaShopArticleService;
 
+  @Output() onCartAdd = new EventEmitter<ShopCart>();
   @Input() categorySelected?: PacifistaShopCategoryDTO;
   articlesList: PacifistaShopArticleDTO[] = [];
 

@@ -1,1 +1,11 @@
-<p>shop-article-basket works!</p>
+<div class="row justify-content-start align-items-center">
+    <div class="col col-4">
+        <button class="btn btn-success">
+            <i class="bi bi-cart-check-fill"></i> Payer
+        </button>
+    </div>
+    <div class="col col-8">
+        <p>Total panier <span class="fw-bold price-container">{{ countTotalPrice() }} €</span></p>
+        <p>Nombres d'articles <span class="fw-bold price-container">{{ basket.size }}</span></p>
+    </div>
+</div>

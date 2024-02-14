@@ -3,19 +3,45 @@
 }
 
 .shop-basket-container {
+  color: white;
   position: fixed;
   bottom: 0;
   right: 0;
-  width: 70%;
+  width: 99%;
   box-shadow: 0px -5px 5px 0px rgba(0, 0, 0, 0.3);
-  z-index: 10;
+  z-index: 1;
 
-  @media (min-width: 768px) { // Tablet devices
-    width: 60%;
+  @media (min-width: 380px) {
+    width: 90%;
   }
 
-  @media (min-width: 1024px) { // PC screens
+  @media (min-width: 460px) {
+    width: 85%;
+  }
+
+  @media (min-width: 600px) {
+    width: 80%;
+  }
+
+  @media (min-width: 750px) {
+    width: 75%;
+  }
+
+  @media (min-width: 850px) {
+    width: 70%;
+  }
+
+  @media (min-width: 925px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1025px) {
     width: 40%;
   }
+
+  @media (min-width: 1125px) {
+    width: 30%;
+  }
+
 }
 

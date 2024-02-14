@@ -1,8 +1,9 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ShopArticleModalComponent} from "../shop-article-modal/shop-article-modal.component";
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../environments/environment";
+import ShopCart from "../../../ShopCart";
 
 @Component({
   selector: 'app-shop-article',
@@ -14,6 +15,7 @@ export class ShopArticleComponent {
   constructor(private modalService: NgbModal) {
   }
 
+  @Output() onCartAdd = new EventEmitter<ShopCart>();
   @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
   amountBuy: number = 1;
 
@@ -34,6 +36,10 @@ export class ShopArticleComponent {
     if (this.amountBuy > 1) {
       this.amountBuy--;
     }
+  }
+
+  addToCart(): void {
+    this.onCartAdd.emit(new ShopCart(this.article, this.amountBuy));
   }
 
 }
