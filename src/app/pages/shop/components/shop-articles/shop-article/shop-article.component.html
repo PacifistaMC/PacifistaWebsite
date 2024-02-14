@@ -16,6 +16,17 @@
                 {{ article.priceWithTax }} €
             </p>
         </div>
+        <div class="col col-12 d-flex justify-content-center" *ngIf="article.category?.multiPurchaseAllowed">
+            <div class="input-group p-2 w-75">
+                <button class="btn pacifista-btn-little" (click)="removeOneItem()">
+                    <i class="bi bi-dash-lg amount-btn"></i>
+                </button>
+                <input type="number" min="1" class="form-control text-center amount-input" [(ngModel)]="amountBuy">
+                <button class="btn pacifista-btn-little" (click)="addOneItem()">
+                    <i class="bi bi-plus-lg amount-btn"></i>
+                </button>
+            </div>
+        </div>
         <button class="col col-12 btn btn-success">
             <i class="bi bi-cart-plus-fill"></i>
             Ajouter au panier

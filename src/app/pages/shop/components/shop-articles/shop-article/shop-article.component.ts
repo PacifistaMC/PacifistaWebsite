@@ -15,6 +15,7 @@ export class ShopArticleComponent {
   }
 
   @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
+  amountBuy: number = 1;
 
   openModal(): void {
     const modalRef = this.modalService.open(ShopArticleModalComponent, { centered: true});
@@ -23,6 +24,16 @@ export class ShopArticleComponent {
 
   getImageLogo(): string {
     return environment.pacifistaApiDomain + "web/shop/articles/file/" + this.article.id;
+  }
+
+  addOneItem(): void {
+    this.amountBuy++;
+  }
+
+  removeOneItem(): void {
+    if (this.amountBuy > 1) {
+      this.amountBuy--;
+    }
   }
 
 }

@@ -10,8 +10,9 @@ import {ShopArticleModalComponent} from './components/shop-articles/shop-article
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
 import {HttpClientModule} from "@angular/common/http";
 import {
-  ShopArticlePacifistaplusComponent
+    ShopArticlePacifistaplusComponent
 } from "./components/shop-articles/shop-article/shop-article-pacifistaplus/shop-article-pacifistaplus.component";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -23,10 +24,11 @@ import {
     ShopCheckoutComponent,
     ShopArticlePacifistaplusComponent
   ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    ShopRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        HttpClientModule,
+        ShopRoutingModule,
+        FormsModule
+    ]
 })
 export class ShopModule { }

@@ -18,8 +18,8 @@
                 </p>
             </div>
             <ng-template #listNotEmpty>
-                <div class="row row-cols-2 align-items-center">
-                    <div class="col col-md-5 rounded-4" *ngFor="let article of articlesList">
+                <div class="row align-items-center">
+                    <div class="col-sm-6 rounded-4" *ngFor="let article of articlesList">
                         <app-shop-article [article]="article"></app-shop-article>
                     </div>
                 </div>

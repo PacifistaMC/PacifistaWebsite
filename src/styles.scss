@@ -67,3 +67,21 @@ body {
   background-color: $tertiary_color;
   color: black;
 }
+
+.pacifista-btn-little {
+  background-color: $main_color;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: none;
+  padding: 4px 15px;
+}
+
+.pacifista-btn-little:hover {
+  background-color: $secondary_color;
+  color: black;
+}
+
+.pacifista-btn-little:active {
+  background-color: $tertiary_color;
+  color: black;
+}
