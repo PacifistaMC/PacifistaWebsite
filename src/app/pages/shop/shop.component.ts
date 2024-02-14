@@ -16,6 +16,7 @@ export class ShopComponent extends PacifistaPage {
   protected override readonly pageDescription: string = "Boutique de Pacifista. Soutenez le serveur minecraft avec des avantages uniques !";
 
   categorySelected?: PacifistaShopCategoryDTO;
+  dropdownOpen: boolean = false;
 
   constructor(title: Title,
               @Inject(DOCUMENT) doc: Document) {

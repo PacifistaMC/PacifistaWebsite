@@ -9,11 +9,19 @@
             <div class="col-md-4 pb-3">
                 <div class="p-3 bg-dark rounded-3">
                     <h2>Catégories</h2>
-                    <p>Veuillez séléctionner vôtre catégorie</p>
+                    <p>Veuillez séléctionner votre catégorie</p>
                     <hr class="border-white">
-                    <app-shop-categories
-                            (onCategorySelected)="categorySelected = $event"
-                    ></app-shop-categories>
+
+                    <div class="row justify-content-center">
+                        <button (click)="dropdownOpen = !dropdownOpen" class="d-flex justify-content-center align-items-center w-50 p-2 d-lg-none btn pacifista-btn-little" type="button" data-bs-toggle="collapse" data-bs-target="#categoryList">
+                            <i class="bi bi-chevron-double-{{ dropdownOpen ? 'up' : 'down' }}"></i>
+                        </button>
+                    </div>
+                    <div id="categoryList" class="collapse d-lg-block pt-3">
+                        <app-shop-categories
+                                (onCategorySelected)="categorySelected = $event"
+                        ></app-shop-categories>
+                    </div>
                 </div>
             </div>
 
@@ -24,4 +32,8 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="shop-basket-container">
+
 </div>

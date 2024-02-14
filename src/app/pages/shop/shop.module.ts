@@ -13,17 +13,19 @@ import {
     ShopArticlePacifistaplusComponent
 } from "./components/shop-articles/shop-article/shop-article-pacifistaplus/shop-article-pacifistaplus.component";
 import {FormsModule} from "@angular/forms";
+import {ShopArticleBasketComponent} from "./components/shop-articles/shop-article-basket/shop-article-basket.component";
 
 @NgModule({
-  declarations: [
-    ShopComponent,
-    ShopCategoriesComponent,
-    ShopArticlesComponent,
-    ShopArticleComponent,
-    ShopArticleModalComponent,
-    ShopCheckoutComponent,
-    ShopArticlePacifistaplusComponent
-  ],
+    declarations: [
+        ShopComponent,
+        ShopCategoriesComponent,
+        ShopArticlesComponent,
+        ShopArticleComponent,
+        ShopArticleModalComponent,
+        ShopCheckoutComponent,
+        ShopArticlePacifistaplusComponent,
+        ShopArticleBasketComponent
+    ],
     imports: [
         CommonModule,
         HttpClientModule,
