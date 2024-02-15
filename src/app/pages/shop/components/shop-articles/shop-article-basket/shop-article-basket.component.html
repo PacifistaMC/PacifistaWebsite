@@ -13,9 +13,9 @@
 
 <div class="row justify-content-between">
     <div class="col-6">
-        <button class="btn btn-success">
+        <a [routerLink]="'checkout'" class="btn btn-success">
             <i class="bi bi-cart-check-fill"></i> Payer
-        </button>
+        </a>
     </div>
     <div class="col-6">
         <p>Total panier : <span class="fw-bold price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }} €</span></p>

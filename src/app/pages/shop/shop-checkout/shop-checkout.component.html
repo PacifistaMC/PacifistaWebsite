@@ -1,60 +1,31 @@
-<div class="shop-container">
-  <div class="container">
-    <h1>Boutique - Payer</h1>
-    <p>Vos articles en cours et page de paiement.</p>
-  </div>
+<div class="container">
+    <h1>Boutique - Paiement</h1>
+    <p>Voici la liste de vos articles, vous pouvez payer sur cette page.</p>
 
-  <div class="container mb-5">
+    <h2>Total à payer</h2>
+    <h3 class="price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }} €</h3>
+
     <div class="row">
-      <div class="col-md-7 mb-2">
-        <div class="bg-dark rounded-4 p-3">
-          <h2>Votre panier</h2>
-
-          <div class="row align-items-center">
-            <div class="col col-md-3">
-              <img class="img-fluid" src="https://pacifista.fr/app/webroot/img/shop/grades/Badge-Elite.png" alt="Logo shop">
+        <div class="col-md-7 mb-2">
+            <div class="bg-dark rounded-4 p-3">
+                <app-shop-basket-list></app-shop-basket-list>
             </div>
-            <div class="col col-md-4">
-              <h3>Grade élite</h3>
-            </div>
-            <div class="col col-md-2">
-            </div>
-            <div class="col col-md-3">
-              <p>14.99€</p>
-            </div>
-          </div>
-
-          <div class="row align-items-center">
-            <div class="col col-md-3">
-              <img class="img-fluid" src="https://pacifista.fr/app/webroot/img/shop/grades/Badge-Legendaire.png" alt="Logo shop">
-            </div>
-            <div class="col col-md-4">
-              <h3>Grade légendaire</h3>
-            </div>
-            <div class="col col-md-2">
-            </div>
-            <div class="col col-md-3">
-              <p>19.99€</p>
-            </div>
-          </div>
         </div>
-      </div>
 
-      <div class="col-md">
-        <div class="bg-dark rounded-4 p-3">
-          <h2>Moyens de paiement</h2>
+        <div class="col-md">
+            <div class="bg-dark rounded-4 p-3">
+                <h2>Moyens de paiement</h2>
 
-          <div class="row align-items-center justify-content-between w-50">
-            <button class="btn btn-success mb-2">
-              Paypal
-            </button>
+                <div class="row align-items-center justify-content-between w-50">
+                    <button class="btn btn-success mb-2">
+                        Paypal
+                    </button>
 
-            <button class="btn btn-success">
-              PaysafeCard
-            </button>
-          </div>
+                    <button class="btn btn-success">
+                        PaysafeCard
+                    </button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </div>
