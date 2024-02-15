@@ -22,7 +22,6 @@
                     <div class="col-sm-6 rounded-4" *ngFor="let article of articlesList">
                         <app-shop-article
                                 [article]="article"
-                                (onCartAdd)="onCartAdd.emit($event)"
                         ></app-shop-article>
                     </div>
                 </div>

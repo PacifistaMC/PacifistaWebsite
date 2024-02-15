@@ -1,5 +1,5 @@
-import {Component, Input} from '@angular/core';
-import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
+import {Component} from '@angular/core';
+import ShopService from "../../../shop-service";
 
 @Component({
   selector: 'app-shop-article-basket',
@@ -8,14 +8,7 @@ import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-reques
 })
 export class ShopArticleBasketComponent {
 
-  @Input() basket: Map<PacifistaShopArticleDTO, number> = new Map<PacifistaShopArticleDTO, number>();
-
-  countTotalPrice(): number {
-    let totalPrice = 0;
-
-    this.basket.forEach((amount, article) => {
-      totalPrice += (article.priceWithTax ?? 0) * amount;
-    });
-    return totalPrice;
+  constructor(protected shopService: ShopService) {
   }
+
 }

@@ -27,7 +27,6 @@
 
             <div class="col-md-8">
                 <app-shop-articles
-                        (onCartAdd)="addArticleToBasket($event)"
                         [categorySelected]="categorySelected"
                 ></app-shop-articles>
             </div>
@@ -37,6 +36,6 @@
 
 <div class="shop-basket-container p-2 bg-dark rounded-start-5">
     <div class="container">
-        <app-shop-article-basket [basket]="basket"></app-shop-article-basket>
+        <app-shop-article-basket></app-shop-article-basket>
     </div>
 </div>

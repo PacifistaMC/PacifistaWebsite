@@ -37,7 +37,7 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
     AboutAccueilSectionComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'pacifista-website'}),
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,

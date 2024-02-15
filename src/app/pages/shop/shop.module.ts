@@ -14,6 +14,7 @@ import {
 } from "./components/shop-articles/shop-article/shop-article-pacifistaplus/shop-article-pacifistaplus.component";
 import {FormsModule} from "@angular/forms";
 import {ShopArticleBasketComponent} from "./components/shop-articles/shop-article-basket/shop-article-basket.component";
+import ShopService from "./shop-service";
 
 @NgModule({
     declarations: [
@@ -31,6 +32,9 @@ import {ShopArticleBasketComponent} from "./components/shop-articles/shop-articl
         HttpClientModule,
         ShopRoutingModule,
         FormsModule
+    ],
+    providers: [
+        ShopService
     ]
 })
 export class ShopModule { }
