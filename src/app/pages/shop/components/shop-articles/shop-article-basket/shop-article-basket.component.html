@@ -11,14 +11,14 @@
 
 <hr>
 
-<div class="row">
-    <div class="col col-6">
+<div class="row justify-content-between">
+    <div class="col-6">
         <button class="btn btn-success">
             <i class="bi bi-cart-check-fill"></i> Payer
         </button>
     </div>
-    <div class="col col-6">
-        <p>Total panier : <span class="fw-bold price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }}</span></p>
-        <p>Nombres d'articles : <span class="fw-bold price-container">{{ shopService.totalArticlesInBasket() }}</span></p>
+    <div class="col-6">
+        <p>Total panier : <span class="fw-bold price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }} €</span></p>
+        <p>Nombre d'articles : <span class="fw-bold price-container">{{ shopService.totalArticlesInBasket() }}</span></p>
     </div>
 </div>

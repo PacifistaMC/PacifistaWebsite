@@ -13,7 +13,7 @@
     <div class="row">
         <div class="col col-12">
             <p class="item-price text-center">
-                {{ shopService.formatPrice(article.priceWithTax) }}
+                {{ shopService.formatPrice(article.priceWithTax) }} €
             </p>
         </div>
         <div class="col col-12 d-flex justify-content-center" *ngIf="article.category?.multiPurchaseAllowed">

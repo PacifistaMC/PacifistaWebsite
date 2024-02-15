@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID, ViewChild} from '@angular/core';
 import {
   PacifistaShopCategoryDTO,
   PacifistaShopCategoryService,
@@ -22,6 +22,9 @@ export class ShopCategoriesComponent implements OnInit {
 
   categoriesList: PacifistaShopCategoryDTO[] = [];
   categorySelected?: PacifistaShopCategoryDTO;
+  dropdownOpen: boolean = false;
+
+  @ViewChild('categoryListSection', { static: false }) protected categoryListSection: any
 
   constructor(httpClient: HttpClient,
               private notificationService: NotificationService,
@@ -56,6 +59,14 @@ export class ShopCategoriesComponent implements OnInit {
 
   isCategorySelected(category: PacifistaShopCategoryDTO): boolean {
     return this.categorySelected?.id === category.id;
+  }
+
+  clickDropdown() {
+    if (!this.dropdownOpen) {
+      this.categoryListSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    this.dropdownOpen = !this.dropdownOpen;
   }
 
 }

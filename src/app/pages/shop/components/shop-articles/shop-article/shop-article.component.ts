@@ -36,6 +36,7 @@ export class ShopArticleComponent {
 
   addToCart(): void {
     this.shopService.addArticleToBasket(new ShopCart(this.article, this.amountBuy));
+    this.amountBuy = 1;
   }
 
 }

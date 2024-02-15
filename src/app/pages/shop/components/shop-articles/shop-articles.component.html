@@ -5,32 +5,34 @@
         </div>
     </div>
 
-    <div *ngIf="loading; else notLoading" class="text-center pt-5">
-        <div class="spinner-border text-light" role="status">
-            <span class="visually-hidden">Chargement...</span>
-        </div>
-    </div>
-    <ng-template #notLoading>
-        <div *ngIf="categorySelected; else noCategorySelected">
-            <div *ngIf="articlesList.length === 0; else listNotEmpty">
-                <p class="text-center pt-5">
-                    Aucun article dans cette catégorie.
-                </p>
+    <section #shoparticlessection>
+        <div *ngIf="loading; else notLoading" class="text-center pt-5">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Chargement...</span>
             </div>
-            <ng-template #listNotEmpty>
-                <div class="row align-items-center">
-                    <div class="col-sm-6 rounded-4" *ngFor="let article of articlesList">
-                        <app-shop-article
-                                [article]="article"
-                        ></app-shop-article>
-                    </div>
-                </div>
-            </ng-template>
         </div>
-        <ng-template #noCategorySelected>
-            <p class="text-center pt-5">
-                Aucune catégorie sélectionnée. Veuillez sélectionner une catégorie pour afficher les articles.
-            </p>
+        <ng-template #notLoading>
+            <div *ngIf="categorySelected; else noCategorySelected">
+                <div *ngIf="articlesList.length === 0; else listNotEmpty">
+                    <p class="text-center pt-5">
+                        Aucun article dans cette catégorie.
+                    </p>
+                </div>
+                <ng-template #listNotEmpty>
+                    <div class="row align-items-center">
+                        <div class="col-sm-6 rounded-4" *ngFor="let article of articlesList">
+                            <app-shop-article
+                                    [article]="article"
+                            ></app-shop-article>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+            <ng-template #noCategorySelected>
+                <p class="text-center pt-5">
+                    Aucune catégorie sélectionnée. Veuillez sélectionner une catégorie pour afficher les articles.
+                </p>
+            </ng-template>
         </ng-template>
-    </ng-template>
+    </section>
 </div>

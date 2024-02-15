@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {
   PacifistaShopArticleDTO,
   PacifistaShopArticleService,
@@ -26,6 +26,8 @@ export class ShopArticlesComponent implements OnChanges {
   articlesList: PacifistaShopArticleDTO[] = [];
 
   loading: boolean = false;
+
+  @ViewChild('shoparticlessection', { static: false }) protected shopArticlesSection: any
 
   constructor(httpClient: HttpClient,
               private notificationService: NotificationService) {
@@ -71,6 +73,10 @@ export class ShopArticlesComponent implements OnChanges {
         this.loading = false;
       }
     });
+  }
+
+  public navigateToArticles() {
+    this.shopArticlesSection.nativeElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
 }

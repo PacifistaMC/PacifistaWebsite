@@ -8,7 +8,7 @@ import {environment} from "../../../environments/environment";
 @Injectable()
 export default class ShopService {
 
-    private readonly basket: Map<PacifistaShopArticleDTO, number> = new Map<PacifistaShopArticleDTO, number>();
+    private readonly basket: Map<string, ShopCart> = new Map<string, ShopCart>();
 
     constructor(protected notificationService: NotificationService,
                 @Inject(PLATFORM_ID) private platformId: Object) {
@@ -19,16 +19,18 @@ export default class ShopService {
 
     addArticleToBasket(shopCart: ShopCart): void {
         const article = shopCart.article;
+        if (!article.id) return
+
         const amount = shopCart.amount;
-        const basketEntry = this.basket.get(article);
+        const basketEntry = this.basket.get(article.id);
 
         if (!basketEntry) {
-            this.basket.set(article, amount);
+            this.basket.set(article.id, shopCart);
         } else {
             if (article.category?.multiPurchaseAllowed) {
-                this.basket.set(article, basketEntry + amount);
+                this.basket.set(article.id, new ShopCart(article, basketEntry.amount + amount));
             } else {
-                this.basket.set(article, amount);
+                this.basket.set(article.id, shopCart);
             }
         }
         this.saveBasket();
@@ -36,24 +38,29 @@ export default class ShopService {
     }
 
     removeArticleFromBasket(article: PacifistaShopArticleDTO, amount: number): void {
-        const basketEntry = this.basket.get(article);
-
+        if (!article.id) return
+        const basketEntry = this.basket.get(article.id);
         if (!basketEntry) return;
 
-        if (basketEntry - amount <= 0) {
-            this.basket.delete(article);
+        if (basketEntry.amount - amount <= 0) {
+            this.basket.delete(article.id);
         } else {
-            this.basket.set(article, basketEntry - amount);
+            this.basket.set(article.id, new ShopCart(article, basketEntry.amount - amount));
         }
         this.saveBasket();
-        this.notificationService.info(`Article ${article.name} retiré du panier. Quantité: ${amount}`, "Boutique");
+    }
+
+    clearArticleRowFromBasket(article: PacifistaShopArticleDTO): void {
+        if (!article.id) return
+        this.basket.delete(article.id);
+        this.saveBasket();
     }
 
     countTotalPrice(): number {
         let totalPrice = 0;
 
-        this.basket.forEach((amount, article) => {
-            totalPrice += (article.priceWithTax ?? 0) * amount;
+        this.basket.forEach((cart, articleId) => {
+            totalPrice += (cart.article.priceWithTax ?? 0) * cart.amount;
         });
         return totalPrice;
     }
@@ -61,7 +68,7 @@ export default class ShopService {
     totalArticlesInBasket(): number {
         let total = 0;
 
-        this.basket.forEach((amount) => total += amount);
+        this.basket.forEach((cart) => total += cart.amount);
         return total;
     }
 
@@ -73,15 +80,18 @@ export default class ShopService {
     private loadArticles(): void {
         const basket = localStorage.getItem("basket");
         if (basket) {
-            const basketMap: Map<PacifistaShopArticleDTO, number> = new Map(JSON.parse(basket));
+            const basketMap: Map<string, ShopCart> = new Map(JSON.parse(basket));
 
             this.basket.clear();
-            basketMap.forEach((value, key) => this.basket.set(key, value));
+            basketMap.forEach((cart, articleId) => this.basket.set(articleId, cart));
         }
     }
 
-    getBasket(): Map<PacifistaShopArticleDTO, number> {
-        return this.basket;
+    getBasket(): ShopCart[] {
+        const basket: ShopCart[] = [];
+
+        this.basket.forEach((cartItem, articleId) => basket.push(cartItem));
+        return basket;
     }
 
     getImageLogo(article: PacifistaShopArticleDTO): string {
@@ -89,9 +99,9 @@ export default class ShopService {
     }
 
     formatPrice(price?: number): string {
-        if (!price) return "0,00 €";
+        if (!price) return "0,00";
 
-        return price.toFixed(2).replace(".", ",") + " €";
+        return price.toFixed(2).replace(".", ",");
     }
 
 }
