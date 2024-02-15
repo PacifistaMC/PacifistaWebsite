@@ -1,15 +1,20 @@
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 import ShopCart from "./ShopCart";
-import {Injectable} from "@angular/core";
+import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import NotificationService from "../../services/notifications/services/NotificationService";
+import {isPlatformBrowser} from "@angular/common";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export default class ShopService {
 
     private readonly basket: Map<PacifistaShopArticleDTO, number> = new Map<PacifistaShopArticleDTO, number>();
 
-    constructor(protected notificationService: NotificationService) {
-        this.loadArticles();
+    constructor(protected notificationService: NotificationService,
+                @Inject(PLATFORM_ID) private platformId: Object) {
+        if (isPlatformBrowser(this.platformId)) {
+            this.loadArticles();
+        }
     }
 
     addArticleToBasket(shopCart: ShopCart): void {
@@ -73,6 +78,20 @@ export default class ShopService {
             this.basket.clear();
             basketMap.forEach((value, key) => this.basket.set(key, value));
         }
+    }
+
+    getBasket(): Map<PacifistaShopArticleDTO, number> {
+        return this.basket;
+    }
+
+    getImageLogo(article: PacifistaShopArticleDTO): string {
+        return environment.pacifistaApiDomain + "web/shop/articles/file/" + article.id;
+    }
+
+    formatPrice(price?: number): string {
+        if (!price) return "0,00 €";
+
+        return price.toFixed(2).replace(".", ",") + " €";
     }
 
 }

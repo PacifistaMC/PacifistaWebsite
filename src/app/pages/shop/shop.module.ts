@@ -15,6 +15,9 @@ import {
 import {FormsModule} from "@angular/forms";
 import {ShopArticleBasketComponent} from "./components/shop-articles/shop-article-basket/shop-article-basket.component";
 import ShopService from "./shop-service";
+import {
+    ShopBasketListComponent
+} from "./components/shop-articles/shop-article-basket/shop-basket-list/shop-basket-list.component";
 
 @NgModule({
     declarations: [
@@ -25,7 +28,8 @@ import ShopService from "./shop-service";
         ShopArticleModalComponent,
         ShopCheckoutComponent,
         ShopArticlePacifistaplusComponent,
-        ShopArticleBasketComponent
+        ShopArticleBasketComponent,
+        ShopBasketListComponent
     ],
     imports: [
         CommonModule,

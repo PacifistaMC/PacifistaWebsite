@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID} from '@angular/core';
 import {
   PacifistaShopCategoryDTO,
   PacifistaShopCategoryService,
@@ -8,6 +8,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
+import {isPlatformServer} from "@angular/common";
 
 @Component({
   selector: 'app-shop-categories',
@@ -23,11 +24,16 @@ export class ShopCategoriesComponent implements OnInit {
   categorySelected?: PacifistaShopCategoryDTO;
 
   constructor(httpClient: HttpClient,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              @Inject(PLATFORM_ID) private platformId: Object) {
     this.categoriesService = new PacifistaShopCategoryService(httpClient, environment.production);
   }
 
   ngOnInit(): void {
+    if (isPlatformServer(this.platformId)) {
+      return
+    }
+
     const pageOption: PageOption = new PageOption();
     pageOption.elemsPerPage = 100;
     pageOption.page = 0;

@@ -2,7 +2,6 @@ import {Component, Input} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {ShopArticleModalComponent} from "../shop-article-modal/shop-article-modal.component";
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
-import {environment} from "../../../../../../environments/environment";
 import ShopCart from "../../../ShopCart";
 import ShopService from '../../../shop-service';
 
@@ -14,7 +13,7 @@ import ShopService from '../../../shop-service';
 export class ShopArticleComponent {
 
   constructor(private modalService: NgbModal,
-              private shopService: ShopService) {
+              protected shopService: ShopService) {
   }
 
   @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
@@ -23,10 +22,6 @@ export class ShopArticleComponent {
   openModal(): void {
     const modalRef = this.modalService.open(ShopArticleModalComponent, { centered: true});
     modalRef.componentInstance.article = this.article;
-  }
-
-  getImageLogo(): string {
-    return environment.pacifistaApiDomain + "web/shop/articles/file/" + this.article.id;
   }
 
   addOneItem(): void {

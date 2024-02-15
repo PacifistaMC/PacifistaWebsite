@@ -1,11 +1,24 @@
+<div class="collapse" id="collapseBasket">
+    <app-shop-basket-list></app-shop-basket-list>
+</div>
 <div class="row justify-content-start align-items-center">
-    <div class="col col-4">
+    <div class="col">
+        <button class="btn pacifista-btn-little text-white" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBasket" aria-expanded="false" aria-controls="collapseBasket">
+            <i class="bi bi-cart-plus-fill"></i> Voir le panier
+        </button>
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col col-6">
         <button class="btn btn-success">
             <i class="bi bi-cart-check-fill"></i> Payer
         </button>
     </div>
-    <div class="col col-8">
-        <p>Total panier : <span class="fw-bold price-container">{{ shopService.countTotalPrice() }} €</span></p>
+    <div class="col col-6">
+        <p>Total panier : <span class="fw-bold price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }}</span></p>
         <p>Nombres d'articles : <span class="fw-bold price-container">{{ shopService.totalArticlesInBasket() }}</span></p>
     </div>
 </div>

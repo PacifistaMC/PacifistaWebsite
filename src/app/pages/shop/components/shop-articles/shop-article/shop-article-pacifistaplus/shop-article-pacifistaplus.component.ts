@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../../services/notifications/services/NotificationService";
 import {
@@ -9,6 +9,7 @@ import {
   QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../../environments/environment";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-shop-article-pacifistaplus',
@@ -21,9 +22,13 @@ export class ShopArticlePacifistaplusComponent {
   pacifistaPlusArticle?: PacifistaShopArticleDTO;
 
   constructor(httpClient: HttpClient,
-              private notificationService: NotificationService) {
+              private notificationService: NotificationService,
+              @Inject(PLATFORM_ID) private platformId: Object) {
     this.articlesService = new PacifistaShopArticleService(httpClient, environment.production);
-    this.findPacifistaPlusArticle();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.findPacifistaPlusArticle();
+    }
   }
 
   private findPacifistaPlusArticle(): void {
