@@ -1,0 +1,13 @@
+<div *ngIf="loading; else doneLoading">
+    <h1>Chargement...</h1>
+</div>
+
+<ng-template #doneLoading>
+    <div *ngIf="errorMessage.length === 0; else errorDiv">
+        Cool !
+    </div>
+    <ng-template #errorDiv>
+        <h1>Erreur </h1>
+        {{errorMessage}}
+    </ng-template>
+</ng-template>

@@ -5,7 +5,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HttpClientModule} from "@angular/common/http";
 import {NgOptimizedImage} from "@angular/common";
 import {NewsModule} from "./pages/news/news.module";
@@ -38,8 +37,7 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
     AboutAccueilSectionComponent
   ],
   imports: [
-    BrowserModule.withServerTransition({appId: 'pacifista-website'}),
-    FontAwesomeModule,
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,

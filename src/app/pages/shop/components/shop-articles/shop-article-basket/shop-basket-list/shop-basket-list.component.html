@@ -1,0 +1,55 @@
+<div class="basket-tab text-white">
+    <div class="basket-header">
+        <h2 class="text-center">Panier</h2>
+        <div class="row align-items-center">
+            <div class="col-3">
+                <p>Article(s)</p>
+            </div>
+            <div class="col-2">
+                <p>Prix (€)</p>
+            </div>
+            <div class="col-2">
+                <p>Qté</p>
+            </div>
+            <div class="col-2">
+                <p>Total (€)</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="basket-content">
+        <div class="row align-items-center" *ngFor="let shopBasket of shopService.getBasket()">
+            <div class="col-3 text-center">
+                <img [src]="shopService.getImageLogo(shopBasket.article)" alt="{{ shopBasket.article.name }}" class="img-fluid">
+                <p>
+                    {{ shopBasket.article.name }}
+                </p>
+            </div>
+            <!-- Shop article price -->
+            <div class="col-2">
+                {{ shopService.formatPrice(shopBasket.article.priceWithTax) }}
+            </div>
+
+            <!-- Shop article quantity -->
+            <div class="col-2">
+                x{{ shopBasket.amount }}
+            </div>
+
+            <!-- Shop article total price -->
+            <div class="col-3">
+                {{ shopService.formatPrice((shopBasket.article.priceWithTax ?? 0) * (shopBasket.amount)) }}
+            </div>
+
+            <!-- Shop article remove button -->
+            <div class="col-1 ml-2">
+                <button class="btn btn-secondary mb-1" (click)="shopService.removeArticleFromBasket(shopBasket.article, 1)">
+                    <i class="bi bi-dash"></i>
+                </button>
+                <button class="btn btn-danger" (click)="shopService.clearArticleRowFromBasket(shopBasket.article)">
+                    <i class="bi bi-trash3-fill"></i>
+                </button>
+            </div>
+            <hr class="mt-2">
+        </div>
+    </div>
+</div>

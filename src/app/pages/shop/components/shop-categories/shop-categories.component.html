@@ -1,13 +1,28 @@
-<div class="category-div">
-  <h3>Catégories</h3>
+<div class="p-3 bg-dark rounded-3">
+    <h2>Catégories</h2>
+    <p>Veuillez sélectionner la catégorie d'articles que vous recherchez :</p>
+    <hr class="border-white">
 
-  <div *ngFor="let category of categoriesList">
-    <input type="radio"
-           id="check-{{ category.name }}"
-           name="{{ category.name }}"
-           value="{{ category.name }}"
-           class="category-checkbox">
-
-    <label class="category-name" for="check-{{ category.name }}">{{ category.name }}</label>
-  </div>
+    <div class="row justify-content-center">
+        <button (click)="clickDropdown()" class="d-flex justify-content-center align-items-center w-50 d-lg-none btn pacifista-btn-little" type="button" data-bs-toggle="collapse" data-bs-target="#categoryList">
+            <i class="bi bi-chevron-double-{{ dropdownOpen ? 'up' : 'down' }}"></i>
+        </button>
+    </div>
+    <div id="categoryList" class="collapse d-lg-block pt-3">
+        <section #categoryListSection>
+            <div *ngFor="let category of categoriesList">
+                <div (click)="selectCategory(category)" class="category-div">
+                    <div class="row">
+                        <div class="col col-2 align-self-center">
+                            <i class="bi bi-tag{{ isCategorySelected(category) ? '-fill' : '' }}"></i>
+                        </div>
+                        <div class="col col-10">
+                            <h4>{{ category.name }}</h4>
+                            <p>{{ category.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </div>

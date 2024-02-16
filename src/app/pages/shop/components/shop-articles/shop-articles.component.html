@@ -1,25 +1,38 @@
 <div class="raw align-content-center">
-  <div class="container rounded-4 mb-2 pacifista-sub-ad-container shadow">
-    <div class="container bg-dark rounded-5">
-      <h2>Pacifista +</h2>
-      <p>
-        Vous souhaitez soutenir Pacifista avec un abonnement et obtenir des avantages exclusifs ?<br/>
-        Souscrivez dès aujourd'hui mensuellement pour en profiter !
-      </p>
-      <div class="row justify-content-around align-items-center">
-        <h3 class="col col-md-3 price-container">
-          3.99€ / mois
-        </h3>
-        <button class="col col-md-3 btn btn-success">
-          En savoir plus
-        </button>
-      </div>
+    <div class="container rounded-4 mb-2 pacifista-sub-ad-container shadow">
+        <div class="container bg-dark rounded-5">
+            <app-shop-article-pacifistaplus></app-shop-article-pacifistaplus>
+        </div>
     </div>
-  </div>
 
-  <div class="row align-items-center">
-    <div class="col col-md-4 rounded-4" *ngFor="let article of articlesList">
-        <app-shop-article [article]="article"></app-shop-article>
-    </div>
-  </div>
+    <section #shoparticlessection>
+        <div *ngIf="loading; else notLoading" class="text-center pt-5">
+            <div class="spinner-border text-light" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+        <ng-template #notLoading>
+            <div *ngIf="categorySelected; else noCategorySelected">
+                <div *ngIf="articlesList.length === 0; else listNotEmpty">
+                    <p class="text-center pt-5">
+                        Aucun article dans cette catégorie.
+                    </p>
+                </div>
+                <ng-template #listNotEmpty>
+                    <div class="row align-items-center">
+                        <div class="col-sm-6 rounded-4" *ngFor="let article of articlesList">
+                            <app-shop-article
+                                    [article]="article"
+                            ></app-shop-article>
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+            <ng-template #noCategorySelected>
+                <p class="text-center pt-5">
+                    Aucune catégorie sélectionnée. Veuillez sélectionner une catégorie pour afficher les articles.
+                </p>
+            </ng-template>
+        </ng-template>
+    </section>
 </div>

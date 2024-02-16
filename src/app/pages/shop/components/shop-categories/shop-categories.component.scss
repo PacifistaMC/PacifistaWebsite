@@ -1,14 +1,10 @@
-.category-div {
-  padding: 7%;
-  margin-bottom: 3%;
+#categoryList i {
+  color: #1cafff;
+  font-size: 200%;
 }
 
-.category-checkbox {
-
-}
-
-.category-name {
-  padding-left: 5px;
-  color: gray;
-  font-size: 20px;
+.category-div:hover {
+  border-radius: 10px;
+  background-color: rgba(128, 128, 128, 0.1);
+  cursor: pointer;
 }

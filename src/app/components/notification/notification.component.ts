@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import NotificationService from "../../services/notifications/services/NotificationService";
 import {NotificationType} from "../../services/notifications/enums/NotificationType";
-import {IconDefinition} from "@fortawesome/free-regular-svg-icons";
-import {faCheckCircle, faExclamationTriangle, faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-notification',
@@ -27,16 +25,15 @@ export class NotificationComponent {
     }
   }
 
-  getIconFromType(type: NotificationType): IconDefinition {
+  getIconFromType(type: NotificationType): string {
     switch (type) {
       case NotificationType.DANGER:
-        return faExclamationTriangle;
       case NotificationType.WARNING:
-        return faExclamationTriangle;
+        return "bi bi-exclamation-triangle-fill";
       case NotificationType.STANDARD:
-        return faInfoCircle;
+        return "bi bi-info-circle-fill";
       case NotificationType.SUCCESS:
-        return faCheckCircle;
+        return "bi bi-check-circle-fill";
     }
   }
 

@@ -1,0 +1,76 @@
+<h2><i class="bi bi-credit-card-2-back"></i> Carte bleue</h2>
+
+<div class="p-2 text-white">
+    <div class="form-group">
+        <app-input-text
+                [label]="'Titulaire de la carte'"
+                [placeholder]="'Entrez le nom du titulaire de la carte'"
+                [id]="'cardOwnerName'"
+                [text]="cardHolderName"
+                [required]="true"
+                [formSent]="formSent"
+                [inputErrors]="cardHolderNameError"
+                (textChange)="cardHolderName = $event"
+        ></app-input-text>
+
+        <app-input-text
+                [label]="'Numéro de carte'"
+                [placeholder]="'xxxx xxxx xxxx xxxx'"
+                [id]="'cardNumber'"
+                [text]="cardNumber"
+                [required]="true"
+                [formSent]="formSent"
+                [inputErrors]="cardNumberError"
+                (textChange)="cardNumber = $event"
+        ></app-input-text>
+
+        <div class="row">
+            <div class="col-4">
+                <app-input-number
+                        [label]="'Mois d\'expiration'"
+                        [placeholder]="'MM'"
+                        [id]="'expirationMonth'"
+                        [number]="expirationMonth"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="expirationMonthError"
+                        (numberChange)="expirationMonth = $event"
+                ></app-input-number>
+            </div>
+            <div class="col-5">
+                <app-input-number
+                        [label]="'Année d\'expiration'"
+                        [placeholder]="'YYYY'"
+                        [id]="'expirationYear'"
+                        [number]="expirationYear"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="expirationYearError"
+                        (numberChange)="expirationYear = $event"
+                ></app-input-number>
+            </div>
+
+            <div class="col-3">
+                <app-input-text
+                        [label]="'Code secret'"
+                        [placeholder]="'123'"
+                        [id]="'cardCryptogram'"
+                        [text]="securityCode"
+                        [required]="true"
+                        [formSent]="formSent"
+                        [inputErrors]="securityCodeError"
+                        (textChange)="securityCode = $event"
+                ></app-input-text>
+            </div>
+        </div>
+
+        <div class="pt-3">
+            <app-send-button
+                    [loading]="loading"
+                    [classBtn]="'btn-success'"
+                    [label]="'Payer par carte'"
+                    (onClick)="createOrder()"
+            ></app-send-button>
+        </div>
+    </div>
+</div>

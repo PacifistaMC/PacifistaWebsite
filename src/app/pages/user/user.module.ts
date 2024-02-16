@@ -11,7 +11,6 @@ import {FormsModule} from "@angular/forms";
 import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
 import {environment} from "../../../environments/environment";
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
-import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
 import {InputEmailComponent} from "../../components/inputs/input-email/input-email.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
@@ -36,7 +35,6 @@ import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/u
         HttpClientModule,
         FormsModule,
         RecaptchaV3Module,
-        FontAwesomeModule,
         InputEmailComponent,
         SendButtonComponent,
         InputTextComponent,

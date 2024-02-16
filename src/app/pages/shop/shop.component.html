@@ -1,31 +1,28 @@
 <div class="shop-container">
-  <div class="container">
-    <h1>Boutique</h1>
-    <p>La boutique officielle de Pacifista.</p>
+    <div class="container">
+        <h1>Boutique</h1>
+        <p>La boutique officielle de Pacifista pour acheter des avantages uniques et soutenir le serveur Minecraft et son équipe.</p>
+        <p>Tous les prix affichés sont en toutes taxes comprises. La TVA est calculée en fonction de vôtre pays actuel précisé dans votre compte.
+            Si vous nêtes pas connecté vous visualisez les prix avec la TVA Française (20%).</p>
 
-    <div class="row justify-content-center">
-      <div class="col col-md-3">
+        <div class="row justify-content-between">
+            <div class="col-md-4 pb-3">
+                <app-shop-categories
+                        (onCategorySelected)="changeCategory($event)"
+                ></app-shop-categories>
+            </div>
 
-        <div class="container bg-dark rounded-4 shadow md-3">
-          <div class="container-fluid">
-            <app-shop-categories></app-shop-categories>
-          </div>
+            <div class="col-md-8">
+                <app-shop-articles
+                        [categorySelected]="categorySelected"
+                ></app-shop-articles>
+            </div>
         </div>
-
-        <div class="container bg-dark rounded-4 shadow">
-          <div class="container-fluid">
-            <app-shop-basket-little></app-shop-basket-little>
-          </div>
-        </div>
-      </div>
-
-      <div class="col col-md-9">
-        <div class="container">
-          <div class="container-fluid">
-            <app-shop-articles></app-shop-articles>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<div class="shop-basket-container p-2 bg-dark rounded-start-5">
+    <div class="container">
+        <app-shop-article-basket></app-shop-article-basket>
+    </div>
 </div>

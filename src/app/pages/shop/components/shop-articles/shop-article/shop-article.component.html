@@ -1,18 +1,35 @@
-<div class="container bg-dark rounded-3" (click)="openModal()">
-  <div class="item-container text-center">
-    <img class="img-fluid" src="{{ article.logoUrl }}" alt="Pacifista Shop item {{ article.name }} {{ article.description }}" fill>
-    <h3>{{ article.name }}</h3>
-    <p>{{ article.description }}</p>
+<div class="card bg-dark text-center">
+    <button (click)="openModal()" class="top-right-button btn btn-light">
+        <i class="bi bi-info-circle-fill"></i>
+    </button>
 
-    <div class="row align-items-center justify-content-center">
-      <div class="col col-md-4 article-price">
-        <h4 class="price-container">{{ article.price }}€</h4>
-      </div>
-      <div class="col col-md-4">
-        <button class="btn btn-success">
-          <fa-icon [icon]="faCartDown"></fa-icon>
-        </button>
-      </div>
+    <img class="card-img" src="{{ shopService.getImageLogo(article) }}" alt="Image de l'article {{ article.name }} de Pacifista">
+
+    <div class="p-3">
+        <h2 class="card-title">{{ article.name }}</h2>
+        <p class="card-description">{{ article.description }}</p>
     </div>
-  </div>
+
+    <div class="row">
+        <div class="col col-12">
+            <p class="item-price text-center">
+                {{ shopService.formatPrice(article.priceWithTax) }} €
+            </p>
+        </div>
+        <div class="col col-12 d-flex justify-content-center" *ngIf="article.category?.multiPurchaseAllowed">
+            <div class="input-group p-2 w-75">
+                <button class="btn pacifista-btn-little" (click)="removeOneItem()">
+                    <i class="bi bi-dash-lg amount-btn"></i>
+                </button>
+                <input type="number" min="1" class="form-control text-center amount-input" [(ngModel)]="amountBuy">
+                <button class="btn pacifista-btn-little" (click)="addOneItem()">
+                    <i class="bi bi-plus-lg amount-btn"></i>
+                </button>
+            </div>
+        </div>
+        <button (click)="addToCart()" class="col col-12 btn btn-success">
+            <i class="bi bi-cart-plus-fill"></i>
+            Ajouter au panier
+        </button>
+    </div>
 </div>
