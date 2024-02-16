@@ -18,6 +18,12 @@ import ShopService from "./shop-service";
 import {
     ShopBasketListComponent
 } from "./components/shop-articles/shop-article-basket/shop-basket-list/shop-basket-list.component";
+import {ShopPaymentPaypalComponent} from "./shop-checkout/shop-payment-paypal/shop-payment-paypal.component";
+import {
+    ShopPaymentCreditCardComponent
+} from "./shop-checkout/shop-payment-credit-card/shop-payment-credit-card.component";
+import {ShopRedirectAfterPaymentComponent} from "./shop-redirect-after-payment/shop-redirect-after-payment.component";
+import {ShopErrorAfterPaymentComponent} from "./shop-error-after-payment/shop-error-after-payment.component";
 
 @NgModule({
     declarations: [
@@ -29,7 +35,11 @@ import {
         ShopCheckoutComponent,
         ShopArticlePacifistaplusComponent,
         ShopArticleBasketComponent,
-        ShopBasketListComponent
+        ShopBasketListComponent,
+        ShopPaymentPaypalComponent,
+        ShopPaymentCreditCardComponent,
+        ShopRedirectAfterPaymentComponent,
+        ShopErrorAfterPaymentComponent
     ],
     imports: [
         CommonModule,

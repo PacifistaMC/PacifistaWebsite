@@ -12,18 +12,16 @@
             </div>
         </div>
 
-        <div class="col-md">
+        <div class="col-md pb-5">
             <div class="bg-dark rounded-4 p-3">
-                <h2>Moyens de paiement</h2>
+                <h2 class="pb-3">Moyens de paiement</h2>
 
-                <div class="row align-items-center justify-content-between w-50">
-                    <button class="btn btn-success mb-2">
-                        Paypal
-                    </button>
-
-                    <button class="btn btn-success">
-                        PaysafeCard
-                    </button>
+                <div class="partners-payment">
+                    <app-shop-payment-paypal></app-shop-payment-paypal>
+                </div>
+                <hr class="text-white">
+                <div class="credit-card-payment">
+                    <app-shop-payment-credit-card></app-shop-payment-credit-card>
                 </div>
             </div>
         </div>

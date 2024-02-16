@@ -1,20 +1,29 @@
-import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
+import {
+    PacifistaPaymentService,
+    PacifistaShopArtcileRequestDTO,
+    PacifistaShopArticleDTO
+} from "@funixproductions/funixproductions-requests";
 import ShopCart from "./ShopCart";
 import {Inject, Injectable, PLATFORM_ID} from "@angular/core";
 import NotificationService from "../../services/notifications/services/NotificationService";
 import {isPlatformBrowser} from "@angular/common";
 import {environment} from "../../../environments/environment";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable()
 export default class ShopService {
 
     private readonly basket: Map<string, ShopCart> = new Map<string, ShopCart>();
+    private readonly paymentService: PacifistaPaymentService;
 
     constructor(protected notificationService: NotificationService,
-                @Inject(PLATFORM_ID) private platformId: Object) {
+                @Inject(PLATFORM_ID) private platformId: Object,
+                http: HttpClient) {
         if (isPlatformBrowser(this.platformId)) {
             this.loadArticles();
         }
+        
+        this.paymentService = new PacifistaPaymentService(http, environment.production);
     }
 
     addArticleToBasket(shopCart: ShopCart): void {
@@ -54,6 +63,24 @@ export default class ShopService {
         if (!article.id) return
         this.basket.delete(article.id);
         this.saveBasket();
+    }
+
+    clearBasket(): void {
+        this.basket.clear();
+        this.saveBasket();
+    }
+
+    createArticlesRequestList(): PacifistaShopArtcileRequestDTO[] {
+        const articles: PacifistaShopArtcileRequestDTO[] = [];
+
+        this.basket.forEach((cart, articleId) => {
+            const articleRequest = new PacifistaShopArtcileRequestDTO();
+
+            articleRequest.articleId = articleId;
+            articleRequest.quantity = cart.amount;
+            articles.push(articleRequest);
+        });
+        return articles;
     }
 
     countTotalPrice(): number {
