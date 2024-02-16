@@ -23,7 +23,11 @@ import {
     ShopPaymentCreditCardComponent
 } from "./shop-checkout/shop-payment-credit-card/shop-payment-credit-card.component";
 import {ShopRedirectAfterPaymentComponent} from "./shop-redirect-after-payment/shop-redirect-after-payment.component";
-import {ShopErrorAfterPaymentComponent} from "./shop-error-after-payment/shop-error-after-payment.component";
+import {ShopCancelAfterPaymentComponent} from "./shop-cancel-after-payment/shop-cancel-after-payment.component";
+import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
+import {
+    ShopPaymentPaysafecardComponent
+} from "./shop-checkout/shop-payment-paysafecard/shop-payment-paysafecard.component";
 
 @NgModule({
     declarations: [
@@ -39,13 +43,15 @@ import {ShopErrorAfterPaymentComponent} from "./shop-error-after-payment/shop-er
         ShopPaymentPaypalComponent,
         ShopPaymentCreditCardComponent,
         ShopRedirectAfterPaymentComponent,
-        ShopErrorAfterPaymentComponent
+        ShopCancelAfterPaymentComponent,
+        ShopPaymentPaysafecardComponent
     ],
     imports: [
         CommonModule,
         HttpClientModule,
         ShopRoutingModule,
-        FormsModule
+        FormsModule,
+        SendButtonComponent
     ],
     providers: [
         ShopService

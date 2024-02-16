@@ -3,5 +3,5 @@
     <span role="status"> {{ labelLoading }}</span>
 </button>
 <ng-template #ready>
-    <button type="button" class="btn btn-primary" (click)="click()">{{ label }}</button>
+    <button type="button" class="btn {{ classBtn }}" (click)="click()">{{ label }}</button>
 </ng-template>
