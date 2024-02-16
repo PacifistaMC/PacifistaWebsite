@@ -28,6 +28,8 @@ import {SendButtonComponent} from "../../components/buttons/send-button/send-but
 import {
     ShopPaymentPaysafecardComponent
 } from "./shop-checkout/shop-payment-paysafecard/shop-payment-paysafecard.component";
+import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
+import {InputNumberComponent} from "../../components/inputs/input-number/input-number.component";
 
 @NgModule({
     declarations: [
@@ -51,7 +53,9 @@ import {
         HttpClientModule,
         ShopRoutingModule,
         FormsModule,
-        SendButtonComponent
+        SendButtonComponent,
+        InputTextComponent,
+        InputNumberComponent
     ],
     providers: [
         ShopService

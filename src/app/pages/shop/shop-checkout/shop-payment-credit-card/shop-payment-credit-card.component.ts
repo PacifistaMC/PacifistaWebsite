@@ -62,12 +62,18 @@ export class ShopPaymentCreditCardComponent {
         this.loading = false;
         this.formSent = true;
 
+        if (!response.paymentExternalOrderId) {
+          this.notificationService.error('Une erreur est survenue lors de la création de la commande', 'Carte blue');
+          return;
+        }
+
         const redirectUrl: string | undefined = response.urlClientRedirection;
 
         if (redirectUrl) {
+          localStorage.setItem('paymentExternalOrderId', response.paymentExternalOrderId);
           window.location.href = redirectUrl;
         } else {
-          //TODO redirect to success page (no 3DS verif)
+          this.router.navigate(['/shop/checkout/check'], {queryParams: {token: response.paymentExternalOrderId}});
         }
       },
       error: (error) => {
@@ -76,19 +82,19 @@ export class ShopPaymentCreditCardComponent {
 
         for (let fieldError of error.fieldErrors) {
           switch (fieldError.field) {
-            case 'cardHolderName':
+            case 'creditCard.cardHolderName':
               this.cardHolderNameError.push(fieldError.message);
               break;
-            case 'cardNumber':
+            case 'creditCard.cardNumber':
               this.cardNumberError.push(fieldError.message);
               break;
-            case 'expirationMonth':
+            case 'creditCard.expirationMonth':
               this.expirationMonthError.push(fieldError.message);
               break;
-            case 'expirationYear':
+            case 'creditCard.expirationYear':
               this.expirationYearError.push(fieldError.message);
               break;
-            case 'securityCode':
+            case 'creditCard.securityCode':
               this.securityCodeError.push(fieldError.message);
               break;
           }
@@ -103,11 +109,19 @@ export class ShopPaymentCreditCardComponent {
     const card = new PacifistaShopCreditCardDTO();
 
     card.cardHolderName = this.cardHolderName;
-    card.cardNumber = this.cardNumber;
+    card.cardNumber = this.parseCardNumber();
     card.securityCode = this.securityCode;
     card.expirationMonth = this.expirationMonth;
     card.expirationYear = this.expirationYear;
     return card;
+  }
+
+  /**
+   * Parse the card number to keep only the digits
+   * @private
+   */
+  private parseCardNumber(): string {
+    return this.cardNumber.replace(/\D/g, '');
   }
 
 }

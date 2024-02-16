@@ -1,4 +1,4 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import ShopService from "../shop-service";
 import {
@@ -9,6 +9,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import NotificationService from "../../../services/notifications/services/NotificationService";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'app-shop-redirect-after-payment',
@@ -23,17 +24,24 @@ export class ShopRedirectAfterPaymentComponent implements AfterViewInit {
   constructor(private route: ActivatedRoute,
               private shopService: ShopService,
               private notificationService: NotificationService,
-              private httpClient: HttpClient) {
+              private httpClient: HttpClient,
+              @Inject(PLATFORM_ID) private platformId: Object) {
   }
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
+
     this.route.queryParams.subscribe(params => {
-      const orderId = params['token'];
+      let orderId = params['token'];
 
       if (!orderId) {
-        this.loading = false;
-        this.errorMessage = "Votre achat n'a pas été validé. Veuillez recommencer. Vous n'avez pas été débité.";
-        return;
+        orderId = localStorage.getItem('paymentExternalOrderId');
+
+        if (!orderId) {
+          this.loading = false;
+          this.errorMessage = "Votre achat n'a pas été validé. Veuillez recommencer. Vous n'avez pas été débité.";
+          return;
+        }
       }
 
       const paymentService = new PacifistaPaymentService(this.httpClient, environment.production);
@@ -75,6 +83,7 @@ export class ShopRedirectAfterPaymentComponent implements AfterViewInit {
     paymentService.captureOrder(orderId).subscribe({
       next: (response) => {
         this.onSuccess(response);
+        localStorage.removeItem('paymentExternalOrderId');
       },
       error: (error: ErrorDto) => {
         this.onError(error);
