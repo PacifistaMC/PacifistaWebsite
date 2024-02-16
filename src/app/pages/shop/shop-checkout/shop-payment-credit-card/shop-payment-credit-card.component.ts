@@ -45,6 +45,11 @@ export class ShopPaymentCreditCardComponent {
   }
 
   createOrder(): void {
+    if (this.shopService.totalArticlesInBasket() === 0) {
+      this.notificationService.info("Votre panier est vide. Veuillez ajouter des articles avant de procéder au paiement.", "Paiement");
+      return;
+    }
+
     const request = new PacifistaPaymentRequestDTO();
     request.creditCard = this.createCardDTO();
     request.articles = this.shopService.createArticlesRequestList();
