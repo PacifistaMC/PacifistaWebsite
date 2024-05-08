@@ -9,16 +9,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav align-items-center">
             <li class="nav-item">
-              <a class="nav-link" href="/shop">Boutique</a>
+              <a class="nav-link {{ currentUrl.startsWith('/shop') ? 'current' : '' }}" href="/shop">Boutique</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/news">News</a>
+              <a class="nav-link {{ currentUrl.startsWith('/news') ? 'current' : '' }}" href="/news">News</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/wiki">Wiki</a>
+              <a class="nav-link {{ currentUrl.startsWith('/wiki') ? 'current' : '' }}" href="/wiki">Wiki</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/vote">Vote</a>
+              <a class="nav-link {{ currentUrl.startsWith('/vote') ? 'current' : '' }}" href="/vote">Vote</a>
             </li>
 
             <a class="nav-link" href="/user" rel="nofollow">
