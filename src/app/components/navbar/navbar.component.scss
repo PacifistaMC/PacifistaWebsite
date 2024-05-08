@@ -21,3 +21,7 @@ nav a:hover {
   font-weight: normal;
   color: $secondary_color;
 }
+
+nav .current {
+  color: $main_color;
+}
