@@ -18,6 +18,13 @@ import {InputTextComponent} from "../../components/inputs/input-text/input-text.
 import {InputSecretComponent} from "../../components/inputs/input-secret/input-secret.component";
 import {InputCheckboxComponent} from "../../components/inputs/input-checkbox/input-checkbox.component";
 import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/user-forgot-password-change.component";
+import {UserAccountInfosComponent} from "./user-page/components/user-account-infos/user-account-infos.component";
+import {
+    UserAccountIntegrationsComponent
+} from "./user-page/components/user-account-integrations/user-account-integrations.component";
+import {
+    UserAccountInvoicesComponent
+} from "./user-page/components/user-account-invoices/user-account-invoices.component";
 
 @NgModule({
     declarations: [
@@ -26,7 +33,10 @@ import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/u
         UserPageComponent,
         UserLoginComponent,
         UserForgotPasswordComponent,
-        UserForgotPasswordChangeComponent
+        UserForgotPasswordChangeComponent,
+        UserAccountInfosComponent,
+        UserAccountIntegrationsComponent,
+        UserAccountInvoicesComponent
     ],
     imports: [
         CommonModule,
