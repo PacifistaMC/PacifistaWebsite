@@ -14,7 +14,7 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './input-email.component.scss'
 })
 export class InputEmailComponent {
-  @Input() label: string = 'Adresse email';
+  @Input() label: string = 'Adresse mail';
   @Input() id: string = 'validationEmailAddress';
   @Input() email: string = '';
   @Input() formSent: boolean = false;
