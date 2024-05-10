@@ -1,11 +1,12 @@
 import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Router} from "@angular/router";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
-import {UserAuthService, UserDTO} from "@funixproductions/funixproductions-requests";
+import {FunixprodHttpClient, UserAuthService, UserDTO} from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import NotificationService from "../../../services/notifications/services/NotificationService";
 
 @Component({
   selector: 'app-user-page',
@@ -20,8 +21,10 @@ export class UserPageComponent extends PacifistaPage {
 
   private readonly authService: UserAuthService;
   user?: UserDTO;
+  loadingLogOut: boolean = false
 
   constructor(private router: Router,
+              private notificationService: NotificationService,
               @Inject(PLATFORM_ID) private platfomId: Object,
               title: Title,
               @Inject(DOCUMENT) doc: Document,
@@ -39,6 +42,22 @@ export class UserPageComponent extends PacifistaPage {
       },
       error: () => {
         this.router.navigate(['user', 'login']);
+      }
+    })
+  }
+
+  logOut() {
+    this.loadingLogOut = true
+
+    this.authService.logout().subscribe({
+      next: () => {
+        this.loadingLogOut = false
+        localStorage.removeItem(FunixprodHttpClient.accessTokenLocalStorageName)
+        this.router.navigate(['user', 'login']);
+      },
+      error: err => {
+        this.loadingLogOut = false
+        this.notificationService.onErrorRequest(err)
       }
     })
   }

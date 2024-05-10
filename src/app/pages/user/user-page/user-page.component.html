@@ -27,7 +27,19 @@
                 </div>
             </div>
         </div>
+
+        <div class="row pb-4">
+            <div class="col-10"></div>
+            <div class="col-2">
+                <app-send-button
+                        [label]="'Déconnexion'"
+                        [loading]="loadingLogOut"
+                        [classBtn]="'btn-danger'"
+                ></app-send-button>
+            </div>
+        </div>
     </div>
+
     <ng-template #userLoading>
         <div class="spinner-border text-light" role="status">
             <span class="visually-hidden">Chargement...</span>
