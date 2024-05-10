@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {UserDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-user-account-infos',
@@ -6,5 +7,7 @@ import {Component} from '@angular/core';
   styleUrl: './user-account-infos.component.scss'
 })
 export class UserAccountInfosComponent {
+
+  @Input() user: UserDTO = new UserDTO()
 
 }

@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {UserDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
   selector: 'app-user-account-integrations',
@@ -6,5 +7,7 @@ import {Component} from '@angular/core';
   styleUrl: './user-account-integrations.component.scss'
 })
 export class UserAccountIntegrationsComponent {
+
+  @Input() user: UserDTO = new UserDTO()
 
 }

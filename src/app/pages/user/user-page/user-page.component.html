@@ -2,28 +2,35 @@
     <h1>Compte</h1>
     <p>Vous pouvez ici consulter et modifier vos informations personnelles.</p>
 
-    <div class="row justify-content-between pb-4">
-        <div class="col-md-6">
-            <div class="bg-dark rounded-4 p-3">
-                <h2 class="pb-3"><i class="bi bi-person"></i> Informations personnelles</h2>
-                <app-user-account-infos></app-user-account-infos>
+    <div *ngIf="user; else userLoading">
+        <div class="row justify-content-between pb-3">
+            <div class="col-md-6 pb-3">
+                <div class="bg-dark rounded-4 p-3">
+                    <h2 class="pb-3"><i class="bi bi-person"></i> Informations personnelles</h2>
+                    <app-user-account-infos [user]="user"></app-user-account-infos>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="bg-dark rounded-4 p-3">
+                    <h2 class="pb-3"><i class="bi bi-intersect"></i> Intégrations externes</h2>
+                    <app-user-account-integrations [user]="user"></app-user-account-integrations>
+                </div>
             </div>
         </div>
 
-        <div class="col-md-6">
-            <div class="bg-dark rounded-4 p-3">
-                <h2 class="pb-3"><i class="bi bi-intersect"></i> Intégrations externes</h2>
-                <app-user-account-integrations></app-user-account-integrations>
+        <div class="row justify-content-around pb-4">
+            <div class="col-md-12">
+                <div class="bg-dark rounded-4 p-3">
+                    <h2 class="pb-3"><i class="bi bi-receipt"></i> Factures</h2>
+                    <app-user-account-invoices [user]="user"></app-user-account-invoices>
+                </div>
             </div>
         </div>
     </div>
-
-    <div class="row justify-content-around pb-4">
-        <div class="col-md-12">
-            <div class="bg-dark rounded-4 p-3">
-                <h2 class="pb-3"><i class="bi bi-receipt"></i> Factures</h2>
-                <app-user-account-invoices></app-user-account-invoices>
-            </div>
+    <ng-template #userLoading>
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Chargement...</span>
         </div>
-    </div>
+    </ng-template>
 </div>
