@@ -3,6 +3,7 @@ import {
   FunixprodBillingDto,
   FunixprodBillingService,
   PageOption,
+  PaymentType,
   QueryBuilder,
   UserDTO
 } from "@funixproductions/funixproductions-requests";
@@ -20,7 +21,11 @@ export class UserAccountInvoicesComponent implements AfterViewInit {
   private readonly billingService: FunixprodBillingService
   @Input() user: UserDTO = new UserDTO()
 
+  paypalType: PaymentType = PaymentType.PAYPAL
+  creditCardType: PaymentType = PaymentType.CREDIT_CARD
+
   page: number = 0
+  maxPages: number = 0
   invoices: FunixprodBillingDto[] = []
   loading: boolean = true
 
@@ -33,8 +38,10 @@ export class UserAccountInvoicesComponent implements AfterViewInit {
   }
 
   pageUp() {
-    ++this.page
-    this.refreshList()
+    if (this.page < this.maxPages - 1) {
+      ++this.page
+      this.refreshList()
+    }
   }
 
   pageDown() {
@@ -59,6 +66,7 @@ export class UserAccountInvoicesComponent implements AfterViewInit {
     this.billingService.find(pageOption, new QueryBuilder()).subscribe({
       next: page => {
         this.invoices = page.content
+        this.maxPages = page.totalPages
         this.loading = false
       },
       error: err => {
