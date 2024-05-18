@@ -31,6 +31,10 @@ import {
 import {
     UserAccountInfosPasswordChangeComponent
 } from "./user-page/components/user-account-infos/components/user-account-infos-password-change/user-account-infos-password-change.component";
+import {
+    UserAccountIntegrationsMinecraftAccountComponent
+} from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account.component";
+import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 
 @NgModule({
     declarations: [
@@ -44,7 +48,8 @@ import {
         UserAccountIntegrationsComponent,
         UserAccountInvoicesComponent,
         UserAccountInfosPersonalDataComponent,
-        UserAccountInfosPasswordChangeComponent
+        UserAccountInfosPasswordChangeComponent,
+        UserAccountIntegrationsMinecraftAccountComponent
     ],
     imports: [
         CommonModule,
@@ -57,7 +62,8 @@ import {
         SendButtonComponent,
         InputTextComponent,
         InputSecretComponent,
-        InputCheckboxComponent
+        InputCheckboxComponent,
+        MinecraftHeadComponent
     ],
     providers: [
         {
