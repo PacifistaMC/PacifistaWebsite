@@ -1,0 +1,53 @@
+<div class="login-form">
+    <div class="row g-3">
+        <div class="col-md-12">
+            <app-input-text
+                    [label]="'Identifiant'"
+                    [placeholder]="'Entrez votre identifiant'"
+                    [id]="'usernameInput'"
+                    [text]="username"
+                    [required]="true"
+                    [formSent]="formSent"
+                    [inputErrors]="usernameErrors"
+                    (textChange)="username = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="col-md-12">
+            <app-input-email
+                    [formSent]="formSent"
+                    [email]="email"
+                    [emailErrors]="emailErrors"
+                    [isRequired]="true"
+                    (emailChange)="email = $event"
+            ></app-input-email>
+        </div>
+
+        <div class="col-md-12">
+            <label for="validationCountry" class="form-label">Pays</label>
+            <div class="input-group has-validation">
+                <mat-select-country
+                        [required]="true"
+                        [value]="currentCountry"
+                        appearance="fill"
+                        id="validationCountry"
+                        label="Pays"
+                        [itemsLoadSize]="5"
+                        (onCountrySelected)="onCountryChange($event)"
+                        lang="fr">
+                </mat-select-country>
+            </div>
+            <div *ngFor="let error of countryErrors" class="countryErrors">
+                {{ error }}
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <app-send-button
+                    [loading]="loading"
+                    [label]="'Mettre à jour'"
+                    (onClick)="updateAccount()"
+            ></app-send-button>
+        </div>
+    </div>
+</div>

@@ -25,6 +25,12 @@ import {
 import {
     UserAccountInvoicesComponent
 } from "./user-page/components/user-account-invoices/user-account-invoices.component";
+import {
+    UserAccountInfosPersonalDataComponent
+} from "./user-page/components/user-account-infos/components/user-account-infos-personal-data/user-account-infos-personal-data.component";
+import {
+    UserAccountInfosPasswordChangeComponent
+} from "./user-page/components/user-account-infos/components/user-account-infos-password-change/user-account-infos-password-change.component";
 
 @NgModule({
     declarations: [
@@ -36,7 +42,9 @@ import {
         UserForgotPasswordChangeComponent,
         UserAccountInfosComponent,
         UserAccountIntegrationsComponent,
-        UserAccountInvoicesComponent
+        UserAccountInvoicesComponent,
+        UserAccountInfosPersonalDataComponent,
+        UserAccountInfosPasswordChangeComponent
     ],
     imports: [
         CommonModule,
