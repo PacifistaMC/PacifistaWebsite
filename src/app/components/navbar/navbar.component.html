@@ -1,36 +1,38 @@
 <div class="container">
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img ngSrc="assets/img/pacifista-logo-navbar.webp" [loading]="'lazy'" width="64" height="64" alt="pacifista navbar minecraft logo" class="d-inline-block">
-      </a>
-
-      <div class="d-flex">
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav align-items-center">
-            <li class="nav-item">
-              <a class="nav-link {{ currentUrl.startsWith('/shop') ? 'current' : '' }}" href="/shop">Boutique</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ currentUrl.startsWith('/news') ? 'current' : '' }}" href="/news">News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ currentUrl.startsWith('/wiki') ? 'current' : '' }}" href="/wiki">Wiki</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link {{ currentUrl.startsWith('/vote') ? 'current' : '' }}" href="/vote">Vote</a>
-            </li>
-
-            <a class="nav-link" href="/user" rel="nofollow">
-              <button class="btn pacifista-btn">Compte</button>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+                <img ngSrc="assets/img/pacifista-logo-navbar.webp" [loading]="'lazy'" width="64" height="64" alt="pacifista navbar minecraft logo" class="d-inline-block">
             </a>
-          </ul>
-        </div>
-      </div>
 
-      <button class="navbar-toggler bg-opacity-25 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-  </nav>
+            <div class="d-flex">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav align-items-center">
+                        <li class="nav-item shop">
+                            <a class="nav-link shop {{ currentUrl.startsWith('/shop') ? 'current' : '' }}" href="/shop">
+                                <i class="bi bi-cart-check"></i> Boutique
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ currentUrl.startsWith('/news') ? 'current' : '' }}" href="/news">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ currentUrl.startsWith('/wiki') ? 'current' : '' }}" href="/wiki">Wiki</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ currentUrl.startsWith('/vote') ? 'current' : '' }}" href="/vote">Vote</a>
+                        </li>
+
+                        <a class="nav-link" href="/user" rel="nofollow">
+                            <button class="btn pacifista-btn">Compte</button>
+                        </a>
+                    </ul>
+                </div>
+            </div>
+
+            <button class="navbar-toggler bg-opacity-25 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
 </div>
