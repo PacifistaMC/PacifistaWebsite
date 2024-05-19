@@ -16,15 +16,21 @@
 </div>
 <ng-template #doneLoading>
     <div *ngIf="link; else notLinked">
-        <div class="row">
-            <div class="col-2 align-content-center">
+        <div class="row align-items-center">
+            <div class="col-2">
                 <minecraft-head
                         [username]="link.minecraftUsername ?? ''"
                         [size]="64">
                 </minecraft-head>
             </div>
-            <div class="col align-content-center">
-                <h3>{{ link.minecraftUsername }}</h3>
+            <div class="col">
+                <h3>
+                    <i *ngIf="link.linked; else notLinked" class="bi bi-check-circle text-success"></i>
+                    <ng-template #notLinked>
+                        <i class="bi bi-x-circle-fill text-danger"></i>
+                    </ng-template>
+                    {{ link.minecraftUsername }}
+                </h3>
                 <button class="btn btn-danger" (click)="unlink()">
                     Délier le compte
                 </button>
