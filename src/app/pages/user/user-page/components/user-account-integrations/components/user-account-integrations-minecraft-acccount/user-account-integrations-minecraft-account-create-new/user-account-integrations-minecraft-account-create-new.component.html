@@ -7,11 +7,11 @@
         <div *ngIf="link && link.linkKey; else notLinked">
             <h4>Validation du lien</h4>
             <p>Pour valider le lien, entrez cette commande sur Pacifista</p>
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col">
-                    <code>
-                        /web link {{ link.linkKey }}
-                    </code>
+                    <minecraft-command
+                            [command]="'/web link ' + link.linkKey"
+                    ></minecraft-command>
                 </div>
                 <div class="col-3">
                     <button class="btn btn-danger" (click)="close()">

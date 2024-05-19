@@ -8,19 +8,10 @@ import {
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../../../../services/notifications/services/NotificationService";
-import {InputTextComponent} from "../../../../../../../../components/inputs/input-text/input-text.component";
-import {SendButtonComponent} from "../../../../../../../../components/buttons/send-button/send-button.component";
-import {NgIf} from "@angular/common";
 import {environment} from "../../../../../../../../../environments/environment";
 
 @Component({
   selector: 'app-user-account-integrations-minecraft-account-create-new',
-  standalone: true,
-  imports: [
-    InputTextComponent,
-    SendButtonComponent,
-    NgIf
-  ],
   templateUrl: './user-account-integrations-minecraft-account-create-new.component.html',
   styleUrl: './user-account-integrations-minecraft-account-create-new.component.scss'
 })

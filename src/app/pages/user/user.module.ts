@@ -35,6 +35,10 @@ import {
     UserAccountIntegrationsMinecraftAccountComponent
 } from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account.component";
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
+import {MinecraftCommandComponent} from "../../components/minecraft-command/minecraft-command.component";
+import {
+    UserAccountIntegrationsMinecraftAccountCreateNewComponent
+} from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 
 @NgModule({
     declarations: [
@@ -49,7 +53,8 @@ import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-
         UserAccountInvoicesComponent,
         UserAccountInfosPersonalDataComponent,
         UserAccountInfosPasswordChangeComponent,
-        UserAccountIntegrationsMinecraftAccountComponent
+        UserAccountIntegrationsMinecraftAccountComponent,
+        UserAccountIntegrationsMinecraftAccountCreateNewComponent
     ],
     imports: [
         CommonModule,
@@ -63,7 +68,8 @@ import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-
         InputTextComponent,
         InputSecretComponent,
         InputCheckboxComponent,
-        MinecraftHeadComponent
+        MinecraftHeadComponent,
+        MinecraftCommandComponent
     ],
     providers: [
         {

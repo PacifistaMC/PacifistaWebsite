@@ -28,6 +28,9 @@
                 <button class="btn btn-danger" (click)="unlink()">
                     Délier le compte
                 </button>
+                <button *ngIf="link.linked === false" class="ms-2 btn btn-warning" (click)="openCreationModal()">
+                    Voir la commande de liaision
+                </button>
             </div>
         </div>
     </div>
