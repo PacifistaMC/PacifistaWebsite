@@ -1,0 +1,55 @@
+<div class="row justify-content-between">
+    <div class="col-10">
+        <h2>Compte Minecraft</h2>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-outline-success" (click)="refresh()">
+            <i class="bi bi-arrow-clockwise"></i>
+        </button>
+    </div>
+</div>
+
+<div *ngIf="loading; else doneLoading">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Chargement...</span>
+    </div>
+</div>
+<ng-template #doneLoading>
+    <div *ngIf="link; else notLinked">
+        <div class="row align-items-center">
+            <div class="col-2">
+                <minecraft-head
+                        [username]="link.minecraftUsername ?? ''"
+                        [size]="64">
+                </minecraft-head>
+            </div>
+            <div class="col">
+                <h3>
+                    <i *ngIf="link.linked; else notLinked" class="bi bi-check-circle text-success"></i>
+                    <ng-template #notLinked>
+                        <i class="bi bi-x-circle-fill text-danger"></i>
+                    </ng-template>
+                    {{ link.minecraftUsername }}
+                </h3>
+                <button class="btn btn-danger" (click)="unlink()">
+                    Délier le compte
+                </button>
+                <button *ngIf="link.linked === false" class="ms-2 btn btn-warning" (click)="openCreationModal()">
+                    Voir la commande de liaision
+                </button>
+            </div>
+        </div>
+    </div>
+    <ng-template #notLinked>
+        <div *ngIf="error; else noErrorOnLink">
+            <p style="color: red">Une erreur est survenue veuillez réessayer ou contacter un admin.</p>
+        </div>
+        <ng-template #noErrorOnLink>
+            <p>Vous n'avez pas encore lié votre compte Minecraft.</p>
+            <button class="btn btn-success" (click)="openCreationModal()">
+                <i class="bi bi-link"></i>
+                Lier le compte Minecraft
+            </button>
+        </ng-template>
+    </ng-template>
+</ng-template>

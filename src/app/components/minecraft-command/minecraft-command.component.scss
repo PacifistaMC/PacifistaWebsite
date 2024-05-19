@@ -1,0 +1,16 @@
+.command-container {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.command {
+  margin: 0;
+  padding: 10px;
+  background-color: #444;
+  border-radius: 5px;
+  font-family: monospace;
+}
+

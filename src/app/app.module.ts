@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
 import {NgOptimizedImage} from "@angular/common";
 import {NewsModule} from "./pages/news/news.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -47,7 +47,8 @@ import {provideAnimationsAsync} from '@angular/platform-browser/animations/async
   providers: [
     Title,
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   exports: [
     NotificationComponent

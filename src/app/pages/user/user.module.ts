@@ -18,6 +18,27 @@ import {InputTextComponent} from "../../components/inputs/input-text/input-text.
 import {InputSecretComponent} from "../../components/inputs/input-secret/input-secret.component";
 import {InputCheckboxComponent} from "../../components/inputs/input-checkbox/input-checkbox.component";
 import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/user-forgot-password-change.component";
+import {UserAccountInfosComponent} from "./user-page/components/user-account-infos/user-account-infos.component";
+import {
+    UserAccountIntegrationsComponent
+} from "./user-page/components/user-account-integrations/user-account-integrations.component";
+import {
+    UserAccountInvoicesComponent
+} from "./user-page/components/user-account-invoices/user-account-invoices.component";
+import {
+    UserAccountInfosPersonalDataComponent
+} from "./user-page/components/user-account-infos/components/user-account-infos-personal-data/user-account-infos-personal-data.component";
+import {
+    UserAccountInfosPasswordChangeComponent
+} from "./user-page/components/user-account-infos/components/user-account-infos-password-change/user-account-infos-password-change.component";
+import {
+    UserAccountIntegrationsMinecraftAccountComponent
+} from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account.component";
+import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
+import {MinecraftCommandComponent} from "../../components/minecraft-command/minecraft-command.component";
+import {
+    UserAccountIntegrationsMinecraftAccountCreateNewComponent
+} from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 
 @NgModule({
     declarations: [
@@ -26,7 +47,14 @@ import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/u
         UserPageComponent,
         UserLoginComponent,
         UserForgotPasswordComponent,
-        UserForgotPasswordChangeComponent
+        UserForgotPasswordChangeComponent,
+        UserAccountInfosComponent,
+        UserAccountIntegrationsComponent,
+        UserAccountInvoicesComponent,
+        UserAccountInfosPersonalDataComponent,
+        UserAccountInfosPasswordChangeComponent,
+        UserAccountIntegrationsMinecraftAccountComponent,
+        UserAccountIntegrationsMinecraftAccountCreateNewComponent
     ],
     imports: [
         CommonModule,
@@ -39,7 +67,9 @@ import {UserForgotPasswordChangeComponent} from "./user-forgot-password-change/u
         SendButtonComponent,
         InputTextComponent,
         InputSecretComponent,
-        InputCheckboxComponent
+        InputCheckboxComponent,
+        MinecraftHeadComponent,
+        MinecraftCommandComponent
     ],
     providers: [
         {

@@ -1,0 +1,50 @@
+<div class="card">
+    <div class="card-header">
+        Connexion au compte Minecraft
+    </div>
+
+    <div class="card-body">
+        <div *ngIf="link && link.linkKey; else notLinked">
+            <h4>Validation du lien</h4>
+            <p>Pour valider le lien, entrez cette commande sur Pacifista</p>
+            <div class="row align-items-center">
+                <div class="col">
+                    <minecraft-command
+                            [command]="'/web link ' + link.linkKey"
+                    ></minecraft-command>
+                </div>
+                <div class="col-3">
+                    <button class="btn btn-danger" (click)="close()">
+                        Fermer
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #notLinked class="register-form">
+            <div class="row pb-2">
+                <div class="col-md-7">
+                    <app-input-text
+                            [label]="'Pseudo Minecraft'"
+                            [placeholder]="'Entrez votre pseudo Minecraft'"
+                            [id]="'minecraftUsername'"
+                            [text]="minecraftUsername"
+                            [required]="true"
+                            (textChange)="minecraftUsername = $event"
+                    ></app-input-text>
+                </div>
+            </div>
+
+            <app-send-button
+                    [loading]="loading"
+                    [classBtn]="'btn-success'"
+                    [label]="'Lier le compte'"
+                    (onClick)="createLink()"
+            ></app-send-button>
+        </ng-template>
+    </div>
+
+    <div *ngIf="errorStr" class="p-2 m-2 alert alert-danger" role="alert">
+        {{ errorStr }}
+    </div>
+</div>

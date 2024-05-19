@@ -1,0 +1,67 @@
+<div *ngIf="loading; else doneLoading">
+    <div class="spinner-border text-light" role="status">
+        <span class="visually-hidden">Chargement...</span>
+    </div>
+</div>
+
+<ng-template #doneLoading>
+    <div *ngIf="invoices.length === 0; else invoiceList">
+        <p>Aucune facture disponible</p>
+    </div>
+    <ng-template #invoiceList>
+        <div class="row header-invoices">
+            <div class="col-6">
+                <p>Mode de payment</p>
+            </div>
+            <div class="col-2">
+                <p>Prix TTC (€)</p>
+            </div>
+            <div class="col-2">
+                <p>Date<p>
+            </div>
+            <div class="col-2">
+                <p>Facture</p>
+            </div>
+        </div>
+        <div *ngFor="let invoice of invoices" class="row">
+            <div class="col-6" style="color: white">
+                <i *ngIf="invoice.paymentType == paypalType" class="bi bi-paypal"> Paypal</i>
+                <i *ngIf="invoice.paymentType == creditCardType" class="bi bi-credit-card"> Carte bleue</i>
+            </div>
+            <div class="col-2">
+                <p>{{ invoice.amountTotal.ttc }} €</p>
+            </div>
+            <div class="col-2">
+                <p>{{ invoice.createdAt | date: 'dd/MM/yyyy' }}</p>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" (click)="download(invoice)">
+                    <i class="bi bi-download"></i>
+                </button>
+            </div>
+            <div class="col-12">
+                <hr style="color: white">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-9"></div>
+            <div class="col-3">
+                <div class="row text-center align-items-center">
+                    <div class="col">
+                        <button class="btn btn-primary" (click)="pageDown()">
+                            <i class="bi bi-arrow-down"></i>
+                        </button>
+                    </div>
+                    <div class="col text-white">
+                        Page {{ page + 1 }} / {{ maxPages }}
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" (click)="pageUp()">
+                            <i class="bi bi-arrow-up"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</ng-template>
