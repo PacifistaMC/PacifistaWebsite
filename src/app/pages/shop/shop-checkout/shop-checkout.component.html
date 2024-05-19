@@ -2,6 +2,24 @@
     <h1>Boutique - Paiement</h1>
     <p>Voici la liste de vos articles, vous pouvez payer sur cette page.</p>
 
+    <div *ngIf="loadedUser">
+        <div *ngIf="!currentUser" class="alert alert-danger" role="alert">
+            Vous devez être connecté pour faire des achats.
+            <a href="/user">Cliquez ici pour vous conencter.</a>
+        </div>
+
+        <div *ngIf="loadedMinecraft">
+            <div *ngIf="currentUser && !minecraftAccount" class="alert alert-danger" role="alert">
+                Vous n'avez pas de compte Minecraft lié. Vous devez lier un compte Minecraft pour faire des achats. <br/>
+                <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
+            </div>
+            <div *ngIf="currentUser && minecraftAccount && !minecraftAccount.linked" class="alert alert-danger" role="alert">
+                Vous n'avez pas confirmé la liaison de votre compte Minecraft. Vous ne pourrez pas faire d'achats tant que vous n'avez pas activé votre compte.<br/>
+                <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
+            </div>
+        </div>
+    </div>
+
     <h2>Total à payer</h2>
     <h3 class="price-container">{{ shopService.formatPrice(shopService.countTotalPrice()) }} €</h3>
 
