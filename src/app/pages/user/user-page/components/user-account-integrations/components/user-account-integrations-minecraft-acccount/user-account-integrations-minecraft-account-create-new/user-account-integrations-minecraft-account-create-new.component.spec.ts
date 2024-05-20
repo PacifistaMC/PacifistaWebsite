@@ -1,7 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {
-    UserAccountIntegrationsMinecraftAccountCreateNewComponent
+  UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from './user-account-integrations-minecraft-account-create-new.component';
 
 describe('UserAccountIntegrationsMinecraftAccountCreateNewComponent', () => {
