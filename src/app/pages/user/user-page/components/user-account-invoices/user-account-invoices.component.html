@@ -29,7 +29,7 @@
                 <i *ngIf="invoice.paymentType == creditCardType" class="bi bi-credit-card"> Carte bleue</i>
             </div>
             <div class="col-2">
-                <p>{{ invoice.amountTotal.ttc }} €</p>
+                <p>{{ invoice.amountTotal.ttc.toFixed(3) }} €</p>
             </div>
             <div class="col-2">
                 <p>{{ invoice.createdAt | date: 'dd/MM/yyyy' }}</p>
