@@ -44,17 +44,19 @@ export class ShopCheckoutComponent extends PacifistaPage implements AfterViewIni
     this.userService.currentUser().subscribe({
       next: (user) => {
         this.currentUser = user;
+        this.loadedUser = true;
 
         this.minecraftLinkService.getCurrentUserLink().subscribe({
           next: (link) => {
             this.minecraftAccount = link;
+            this.loadedMinecraft = true;
           },
-          complete: () => {
+          error: () => {
             this.loadedMinecraft = true;
           }
         })
       },
-      complete: () => {
+      error: () => {
         this.loadedUser = true;
       }
     })

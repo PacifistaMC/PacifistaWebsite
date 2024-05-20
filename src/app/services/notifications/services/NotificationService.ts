@@ -37,7 +37,7 @@ export default class NotificationService {
     } else if (err.status === 403) {
       this.error('Vous n\'avez pas les droits pour accéder à cette ressource. (Erreur 403)');
     } else if (err.status === 404) {
-      this.error('La ressource demandée est introuvable. (Erreur 404)');
+      this.error('La ressource demandée est introuvable. (Erreur 404) ' + err.error);
     } else if (err.status === 400) {
       this.error('Votre requête est invalide. (Erreur 400) ' + err.error);
     } else if (err.status.toString().startsWith('5')) {

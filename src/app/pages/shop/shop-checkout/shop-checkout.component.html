@@ -3,21 +3,27 @@
     <p>Voici la liste de vos articles, vous pouvez payer sur cette page.</p>
 
     <div *ngIf="loadedUser">
-        <div *ngIf="!currentUser" class="alert alert-danger" role="alert">
+        <div *ngIf="!currentUser; else userPresent" class="alert alert-danger" role="alert">
             Vous devez être connecté pour faire des achats.
             <a href="/user">Cliquez ici pour vous conencter.</a>
         </div>
 
-        <div *ngIf="loadedMinecraft">
-            <div *ngIf="currentUser && !minecraftAccount" class="alert alert-danger" role="alert">
-                Vous n'avez pas de compte Minecraft lié. Vous devez lier un compte Minecraft pour faire des achats. <br/>
-                <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
+        <ng-template #userPresent>
+            <div *ngIf="loadedMinecraft">
+                <div *ngIf="minecraftAccount; else minecraftNotFound">
+                    <div *ngIf="!minecraftAccount.linked" class="alert alert-danger" role="alert">
+                        Vous n'avez pas confirmé la liaison de votre compte Minecraft. Vous ne pourrez pas faire d'achats tant que vous n'avez pas activé votre compte.<br/>
+                        <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
+                    </div>
+                </div>
+                <ng-template #minecraftNotFound>
+                    <div class="alert alert-danger" role="alert">
+                        Vous n'avez pas de compte Minecraft lié. Vous devez lier un compte Minecraft pour faire des achats. <br/>
+                        <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
+                    </div>
+                </ng-template>
             </div>
-            <div *ngIf="currentUser && minecraftAccount && !minecraftAccount.linked" class="alert alert-danger" role="alert">
-                Vous n'avez pas confirmé la liaison de votre compte Minecraft. Vous ne pourrez pas faire d'achats tant que vous n'avez pas activé votre compte.<br/>
-                <a href="/user">Cliquez ici</a> pour aller sur la page utilisateur et lier votre compte.
-            </div>
-        </div>
+        </ng-template>
     </div>
 
     <h2>Total à payer</h2>
