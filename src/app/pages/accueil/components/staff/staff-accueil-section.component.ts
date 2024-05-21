@@ -7,4 +7,24 @@ import {Component} from '@angular/core';
 })
 export class StaffAccueilSectionComponent {
 
+  readonly moderators: string[] = [
+
+  ];
+
+  readonly helpers: string[] = [
+      'NuageOisif',
+      'Pascal0Bistrot',
+      'DioMay',
+      'Havca_',
+      'No_Littleby',
+  ];
+
+  readonly developers: string[] = [
+      'GameCreep35'
+  ];
+
+  readonly animators: string[] = [
+      'Whisky_'
+  ];
+
 }

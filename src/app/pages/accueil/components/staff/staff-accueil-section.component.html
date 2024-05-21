@@ -1,39 +1,63 @@
 <section class="staff-section p-4">
-  <div class="container">
-    <h2 class="section-title">
-      <span class="underline-magical">Staff</span>
-    </h2>
-    <h3>L'équipe de Pacifista, à vôtre écoute.</h3>
+    <div class="container">
+        <h2 class="section-title">
+            <span class="underline-magical">Staff</span>
+        </h2>
+        <h3>L'équipe de Pacifista, à votre écoute.</h3>
+
+        <div class="text-center">
+            <img ngSrc="assets/img/minecraft/skins/funixgaming.png" [loading]="'lazy'" height="180" width="180" alt="FunixGaming Minecraft skin">
+            <h4>FunixGaming</h4>
+            <p><span class="fondateur">Fondateur</span></p>
+        </div>
+
+        <div class="row text-center align-content-start justify-content-md-center">
+            <div class="col col-lg-4">
+                <img ngSrc="assets/img/minecraft/skins/knyzeeer.png" [loading]="'lazy'" height="180" width="180" alt="Knyzeeer Minecraft skin">
+                <h4>Knyzeeer</h4>
+                <p><span class="admin">Admin</span></p>
+            </div>
+
+            <div class="col col-lg-4">
+                <img ngSrc="assets/img/minecraft/skins/jarkodj.png" [loading]="'lazy'" height="180" width="180" alt="JarkoDJ Minecraft skin">
+                <h4>JarkoDJ</h4>
+                <p><span class="admin">Admin</span></p>
+            </div>
+
+            <div class="col col-lg-4">
+                <img ngSrc="assets/img/minecraft/skins/tomyshelby.png" [loading]="'lazy'" height="180" width="180" alt="TomyShelby Minecraft skin">
+                <h4>TomyShelby</h4>
+                <p><span class="admin">Admin</span></p>
+            </div>
+        </div>
+    </div>
 
     <div class="row text-center align-content-start justify-content-md-center">
-      <div class="col col-lg-12">
-        <img ngSrc="assets/img/minecraft/skins/funixgaming.png" [loading]="'lazy'" height="180" width="180" alt="FunixGaming Minecraft skin">
-        <h4>FunixGaming</h4>
-        <p><span class="fondateur">Fondateur</span></p>
-      </div>
+        <div *ngFor="let modo of moderators" class="col col-lg-4">
 
-      <div class="col col-lg-4">
-        <img ngSrc="assets/img/minecraft/skins/knyzeeer.png" [loading]="'lazy'" height="180" width="180" alt="Knyzeeer Minecraft skin">
-        <h4>Knyzeeer</h4>
-        <p><span class="admin">Admin</span></p>
-      </div>
+        </div>
+        <div class="">
+            <img ngSrc="assets/img/minecraft/skins/knyzeeer.png" [loading]="'lazy'" height="180" width="180" alt="Knyzeeer Minecraft skin">
+            <h4>Knyzeeer</h4>
+            <p><span class="admin">Admin</span></p>
+        </div>
 
-      <div class="col col-lg-4">
-        <img ngSrc="assets/img/minecraft/skins/jarkodj.png" [loading]="'lazy'" height="180" width="180" alt="JarkoDJ Minecraft skin">
-        <h4>JarkoDJ</h4>
-        <p><span class="admin">Admin</span></p>
-      </div>
+        <div class="col col-lg-4">
+            <img ngSrc="assets/img/minecraft/skins/jarkodj.png" [loading]="'lazy'" height="180" width="180" alt="JarkoDJ Minecraft skin">
+            <h4>JarkoDJ</h4>
+            <p><span class="admin">Admin</span></p>
+        </div>
 
-      <div class="col col-lg-4">
-        <img ngSrc="assets/img/minecraft/skins/tomyshelby.png" [loading]="'lazy'" height="180" width="180" alt="TomyShelby Minecraft skin">
-        <h4>TomyShelby</h4>
-        <p><span class="admin">Admin</span></p>
-      </div>
+        <div class="col col-lg-4">
+            <img ngSrc="assets/img/minecraft/skins/tomyshelby.png" [loading]="'lazy'" height="180" width="180" alt="TomyShelby Minecraft skin">
+            <h4>TomyShelby</h4>
+            <p><span class="admin">Admin</span></p>
+        </div>
     </div>
-  </div>
+    </div>
 
-  <div class="text-center">
-    <h5>Pourquoi pas vous ?</h5>
-    <p>Vous souhaitez postuler ? Envoyez nous votre candidature par mail à <a href="mailto:contact@pacifista.fr">contact&#64;pacifista.fr</a> !</p>
-  </div>
+    <div class="text-center">
+        <h5>Pourquoi pas vous ?</h5>
+        <p>Vous souhaitez postuler ? Envoyez nous votre candidature par mail à <a href="mailto:contact@pacifista.fr">contact&#64;pacifista.fr</a> !</p>
+    </div>
 </section>

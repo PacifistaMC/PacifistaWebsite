@@ -4,7 +4,7 @@
   border-radius: 15%;
 }
 
-.staff-section .col span {
+span {
   border-radius: 10px;
   color: white;
   padding: 6px;
@@ -15,5 +15,21 @@
 }
 
 .admin {
-  background-color: #1a1a1a;
+  background-color: #9b3922;
+}
+
+.moderator {
+  background-color: #f29727;
+}
+
+.helper {
+  background-color: #088395;
+}
+
+.animator {
+  background-color: #c9bbcf;
+}
+
+.developer {
+  background-color: #2c3e50;
 }
