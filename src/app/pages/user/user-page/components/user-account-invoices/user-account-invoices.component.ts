@@ -19,7 +19,7 @@ import NotificationService from "../../../../../services/notifications/services/
 export class UserAccountInvoicesComponent implements AfterViewInit {
 
   private readonly billingService: FunixprodBillingService
-  @Input() user: UserDTO = new UserDTO()
+  @Input() user?: UserDTO
 
   paypalType: PaymentType = PaymentType.PAYPAL
   creditCardType: PaymentType = PaymentType.CREDIT_CARD
