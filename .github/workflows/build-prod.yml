@@ -3,6 +3,7 @@ name: Build production
 on:
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   build-docker-image-production:

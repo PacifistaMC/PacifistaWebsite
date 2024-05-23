@@ -12,7 +12,7 @@ import {environment} from "../../../../../../../../environments/environment";
 export class UserAccountInfosPasswordChangeComponent {
 
   private readonly userService: UserAuthService
-  @Input() user: UserDTO = new UserDTO()
+  @Input() user?: UserDTO
 
   currentPassword: string = ''
   currentPasswordErrors: string[] = []
@@ -39,7 +39,6 @@ export class UserAccountInfosPasswordChangeComponent {
     this.newPasswordConfirmationErrors = []
 
     const request = new UserUpdateAccountDto();
-    request.id = this.user.id
     request.oldPassword = this.currentPassword
     request.newPassword = this.newPassword
     request.newPasswordConfirmation = this.newPasswordConfirmation

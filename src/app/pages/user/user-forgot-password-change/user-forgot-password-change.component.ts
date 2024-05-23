@@ -35,7 +35,6 @@ export class UserForgotPasswordChangeComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
       this.token = params['token'];
     });
   }

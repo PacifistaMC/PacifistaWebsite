@@ -18,7 +18,7 @@ import {environment} from "../../../../../../../../environments/environment";
 })
 export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
 
-  @Input() user: UserDTO = new UserDTO()
+  @Input() user?: UserDTO
   private readonly userService: UserAuthService
 
   username: string = ''
@@ -27,7 +27,7 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
   email: string = ''
   emailErrors: string[] = []
 
-  country: UserCountry = new UserCountry()
+  country?: UserCountry
   currentCountry?: Country
   countryErrors: string[] = []
 
@@ -40,9 +40,9 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    this.username = this.user.username
-    this.email = this.user.email
-    this.country = this.user.country
+    this.username = this.user?.username ?? ''
+    this.email = this.user?.email ?? ''
+    this.country = this.user?.country ?? new UserCountry()
 
     this.currentCountry = new class implements Country {
       alpha2Code: string;
@@ -70,7 +70,6 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
 
     const request = new UserUpdateAccountDto();
 
-    request.id = this.user.id
     request.username = this.username
     request.email = this.email
     request.country = this.country

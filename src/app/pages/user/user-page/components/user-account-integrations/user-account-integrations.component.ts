@@ -8,6 +8,6 @@ import {UserDTO} from "@funixproductions/funixproductions-requests";
 })
 export class UserAccountIntegrationsComponent {
 
-  @Input() user: UserDTO = new UserDTO()
+  @Input() user?: UserDTO
 
 }

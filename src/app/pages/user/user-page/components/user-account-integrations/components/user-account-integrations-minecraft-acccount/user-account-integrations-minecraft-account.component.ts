@@ -22,7 +22,7 @@ export class UserAccountIntegrationsMinecraftAccountComponent implements AfterVi
 
   private readonly linkService: PacifistaWebUserLinkService
 
-  @Input() user: UserDTO = new UserDTO()
+  @Input() user?: UserDTO
   link?: PacifistaWebUserLinkDTO
 
   error: boolean = false
