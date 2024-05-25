@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-shop-cancel-after-payment',
@@ -6,5 +7,12 @@ import {Component} from '@angular/core';
   styleUrl: './shop-cancel-after-payment.component.scss'
 })
 export class ShopCancelAfterPaymentComponent {
+
+  constructor(private router: Router) {
+  }
+
+  goToShop() {
+    this.router.navigate(['/shop', 'basket']);
+  }
 
 }

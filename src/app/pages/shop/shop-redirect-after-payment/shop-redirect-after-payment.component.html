@@ -1,13 +1,35 @@
-<div *ngIf="loading; else doneLoading">
-    <h1>Chargement...</h1>
-</div>
-
-<ng-template #doneLoading>
-    <div *ngIf="errorMessage.length === 0; else errorDiv">
-        Cool !
+<div class="container">
+    <div class="loading-div" *ngIf="loading; else doneLoading">
+        <div class="spinner-border text-light" role="status">
+            <span class="visually-hidden">Chargement...</span>
+        </div>
     </div>
-    <ng-template #errorDiv>
-        <h1>Erreur </h1>
-        {{errorMessage}}
+
+    <ng-template #doneLoading>
+        <div class="success-center">
+            <div class="m-5 thanks-buy-div" *ngIf="errorMessage.length === 0; else errorDiv">
+                <div class="bg-opacity-75 bg-black rounded-4 p-3">
+                    <h1>Votre achat a bien été effectué 🩵</h1>
+                    <p>
+                        Merci de soutenir le serveur !<br/>
+                        Vous pouvez retrouver votre facture dans votre <a href="/user" rel="nofollow">profil</a> ou par email.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <ng-template #errorDiv>
+            <div class="error-buy-div">
+                <h1>Ooops une erreur est survenue.️ ⚠️</h1>
+                <p>
+                    Une erreur est survenue lors de votre achat, merci de contacter le support pour plus d'informations.<br/>
+                    Envoyez un mail à {{ 'contact@funixproductions.com' }} en précisant votre pseudo et le problème rencontré.<br/>
+                    Vous pouvez envoyer une capture d'écran sur discord ou par mail à un membre du staff.<br/><br/>
+
+                    Merci pour votre compréhension.<br/>
+                    Détail de l'erreur : {{ errorMessage }}
+                </p>
+            </div>
+        </ng-template>
     </ng-template>
-</ng-template>
+
+</div>
