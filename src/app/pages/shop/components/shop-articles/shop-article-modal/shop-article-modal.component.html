@@ -1,7 +1,7 @@
 <div class="card bg-dark">
     <div class="card-body">
         <h2 class="card-title">Infos sur : {{ article.name }}</h2>
-        <h3 class="card-subtitle mb-2 price-container">{{ article.price }} €</h3>
+        <h3 class="card-subtitle mb-2 price-container">{{ article.priceWithTax }} €</h3>
         <h4 class="card-subtitle mb-2">{{ article.description }}</h4>
         <hr>
         <div class="card-text" [innerHTML]="article.htmlDescription"></div>
