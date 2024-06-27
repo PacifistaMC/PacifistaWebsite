@@ -1,0 +1,54 @@
+<div class="container-search-pacifista-player">
+    <app-input-text
+            [label]="label"
+            [placeholder]="placeholder"
+            [id]="id"
+            [text]="text"
+            [required]="required"
+            [formSent]="formSent"
+            [inputErrors]="inputErrors"
+            (textChange)="onInputTextChange($event)"
+    ></app-input-text>
+
+    <div class="card position-absolute results-container" *ngIf="loading; else doneLoading">
+        <div class="card-body">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #doneLoading>
+        <div *ngIf="doneSearching" #resultsContainer class="position-absolute results-container">
+            <div class="card" *ngIf="propositionList.length > 0; else noResults">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="list-group list-group-flush">
+                                <button
+                                        *ngFor="let player of propositionList"
+                                        type="button"
+                                        class="list-group-item list-group-item-action"
+                                        (click)="selectUser(player)">
+                                    <minecraft-head *ngIf="player.minecraftUsername"
+                                                    [username]="player.minecraftUsername"
+                                                    [size]="32"
+                                    ></minecraft-head>
+                                    {{ player.minecraftUsername }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noResults>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-center">Aucun résultat</p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </ng-template>
+</div>
