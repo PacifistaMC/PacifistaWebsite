@@ -1,0 +1,17 @@
+<div *ngIf="topVoters.length > 0; else noVoters">
+    <div *ngFor="let userVote of topVoters; let i = index">
+        <div class="row ">
+            <app-vote-classement-row
+                    [position]="i + 1"
+                    [username]="userVote.username"
+                    [votes]="userVote.votesCount"
+            ></app-vote-classement-row>
+        </div>
+    </div>
+</div>
+
+<ng-template #noVoters>
+    <p>
+        Pas encore de votes, soyez le premier à voter !
+    </p>
+</ng-template>

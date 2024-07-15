@@ -1,5 +1,39 @@
-<div class="container bg-dark rounded-3">
-  <h1 class="text-center">Voter pour Pacifista</h1>
+<div class="container pb-4">
+    <h1>Voter pour Pacifista</h1>
+    <p class="w-50">
+        Voter permet au projet d'être mieux référencé sur des listes de serveurs
+        Minecraft et donc permet aux joueurs qui ne connaissent pas Pacifista de rejoindre le serveur !
+        Merci de voter et de nous soutenir ❤️ !
+    </p>
 
-  <p>En cours de production</p>
+    <div class="row justify-content-around">
+        <div class="col-md-8 pb-3">
+            <div class="bg-dark p-3 rounded-3">
+                <h2>Séléction du site de vote</h2>
+
+                <app-vote-user></app-vote-user>
+            </div>
+        </div>
+
+        <div class="col-md-4 pb-4">
+            <div class="card" style="width: 18rem;">
+                <img ngSrc="assets/img/vote/box-vote-reward-logo.webp" width="227" height="224" class="card-img-top p-3" alt="Image d'illustration de la récompense de vote pour Pacifista Minecraft.">
+                <div class="card-header">
+                    Récompense par vote
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Une BOX Vote est offerte à chaque vote, elle contient des items et une possibilité de gagner des box payantes.<br/>
+                        Rendez-vous sur le wiki concernant les box pour plus d'informations.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Top 50 des meilleurs voteurs</h2>
+        <app-vote-top-classement></app-vote-top-classement>
+    </div>
+
 </div>
