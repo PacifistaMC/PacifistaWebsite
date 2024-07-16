@@ -7,6 +7,10 @@ import {VoteTopClassementComponent} from "./components/vote-top-classement/vote-
 import {
     VoteClassementRowComponent
 } from "./components/vote-top-classement/vote-classement-row/vote-classement-row.component";
+import {
+    PacifistaSearchPlayerInputComponent
+} from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
+import {VoteUserWebsiteComponent} from "./components/vote-user/vote-user-website/vote-user-website.component";
 
 
 @NgModule({
@@ -14,12 +18,14 @@ import {
         VoteComponent,
         VoteUserComponent,
         VoteTopClassementComponent,
-        VoteClassementRowComponent
+        VoteClassementRowComponent,
+        VoteUserWebsiteComponent
     ],
     imports: [
         CommonModule,
         VoteRoutingModule,
-        NgOptimizedImage
+        NgOptimizedImage,
+        PacifistaSearchPlayerInputComponent
     ]
 })
 export class VoteModule { }

@@ -1,0 +1,23 @@
+<div *ngIf="!loading; else loadingState" class="p-1">
+    <button *ngIf="!availableAt; else voteCooldown" class="btn btn-success" (click)="makeVote()">
+        <i class="bi bi-box-arrow-up-right"></i>
+        {{ voteWebsite.displayName }}
+    </button>
+    <ng-template #voteCooldown>
+        <button class="btn btn-secondary" disabled>
+            <i class="bi bi-box-arrow-up-right"></i>
+            {{ voteWebsite.displayName }}
+        </button>
+    </ng-template>
+</div>
+
+<ng-template #loadingState>
+    <button class="btn btn-success" disabled>
+        <div class="d-flex justify-content-center align-items-center p-1">
+            <div class="spinner-border text-white" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <span class="ps-1">{{ voteWebsite.displayName }}</span>
+        </div>
+    </button>
+</ng-template>

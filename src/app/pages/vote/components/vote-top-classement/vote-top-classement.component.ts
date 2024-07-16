@@ -25,9 +25,6 @@ export class VoteTopClassementComponent implements AfterViewInit {
     this.voteApiService.getTopVoters(date.getMonth() + 1, date.getFullYear()).subscribe({
       next: (response) => {
         this.topVoters = response;
-      },
-      error: (error) => {
-        this.notificationService.onErrorRequest(error)
       }
     })
   }
