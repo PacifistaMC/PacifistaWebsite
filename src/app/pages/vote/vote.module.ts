@@ -11,6 +11,7 @@ import {
     PacifistaSearchPlayerInputComponent
 } from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 import {VoteUserWebsiteComponent} from "./components/vote-user/vote-user-website/vote-user-website.component";
+import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import {VoteUserWebsiteComponent} from "./components/vote-user/vote-user-website
         CommonModule,
         VoteRoutingModule,
         NgOptimizedImage,
-        PacifistaSearchPlayerInputComponent
+        PacifistaSearchPlayerInputComponent,
+        MinecraftHeadComponent
     ]
 })
 export class VoteModule { }

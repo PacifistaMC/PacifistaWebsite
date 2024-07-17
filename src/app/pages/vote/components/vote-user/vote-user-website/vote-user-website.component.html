@@ -1,7 +1,12 @@
 <div *ngIf="!loading; else loadingState" class="p-1">
-    <button *ngIf="!availableAt; else voteCooldown" class="btn btn-success" (click)="makeVote()">
+    <button type="button" *ngIf="!availableAt; else voteCooldown" class="btn btn-success position-relative" (click)="makeVote()">
         <i class="bi bi-box-arrow-up-right"></i>
         {{ voteWebsite.displayName }}
+
+        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            <i class="bi bi-clock-fill"></i>
+            {{ convertMinutesInHours() }}
+        </span>
     </button>
     <ng-template #voteCooldown>
         <button class="btn btn-secondary" disabled>

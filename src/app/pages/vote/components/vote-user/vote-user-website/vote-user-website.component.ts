@@ -32,10 +32,32 @@ export class VoteUserWebsiteComponent implements OnInit {
         this.availableAt = voteDTO.nextVoteDate;
 
         if (this.availableAt) {
-          this.startCountdown(new Date(this.availableAt));
+          this.availableAt = new Date(this.availableAt);
+
+          if (this.availableAt > new Date()) {
+            this.startCountdown(this.availableAt);
+          } else {
+            this.availableAt = undefined;
+          }
         }
       }
     })
+  }
+
+  convertMinutesInHours(): string {
+    const minutes = this.voteWebsite.coolDownInMinutes;
+    const hours = Math.floor(minutes / 60);
+    const minutesLeft = minutes % 60;
+
+    if (hours < 1) {
+        return `${minutes}min`;
+    } else {
+      if (minutesLeft < 1) {
+        return `${hours}h`;
+      } else {
+        return `${hours}h${minutesLeft}`;
+      }
+    }
   }
 
   makeVote() {
@@ -63,9 +85,15 @@ export class VoteUserWebsiteComponent implements OnInit {
     this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
       next: (voteDTO) => {
         if (voteDTO.voteValidationDate && voteDTO.nextVoteDate) {
-          this.availableAt = voteDTO.nextVoteDate;
           this.loading = false;
-          this.startCountdown(this.availableAt);
+
+          this.availableAt = new Date(voteDTO.nextVoteDate);
+
+          if (this.availableAt > new Date()) {
+            this.startCountdown(this.availableAt);
+          } else {
+            this.availableAt = undefined;
+          }
         }
       }
     })
@@ -84,6 +112,7 @@ export class VoteUserWebsiteComponent implements OnInit {
       if (diff <= 0) {
         clearInterval(intervalId);
         this.countdown = '00:00:00';
+        this.availableAt = undefined;
       } else {
         const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
