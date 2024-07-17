@@ -18,6 +18,7 @@ export class VoteUserWebsiteComponent implements OnInit {
   private readonly voteService: VoteService;
 
   availableAt?: Date;
+  countdown: string = '00:00:00';
   loading: boolean = false;
 
   constructor(httpClient: HttpClient,
@@ -29,6 +30,10 @@ export class VoteUserWebsiteComponent implements OnInit {
     this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
       next: (voteDTO) => {
         this.availableAt = voteDTO.nextVoteDate;
+
+        if (this.availableAt) {
+          this.startCountdown(new Date(this.availableAt));
+        }
       }
     })
   }
@@ -60,6 +65,7 @@ export class VoteUserWebsiteComponent implements OnInit {
         if (voteDTO.voteValidationDate && voteDTO.nextVoteDate) {
           this.availableAt = voteDTO.nextVoteDate;
           this.loading = false;
+          this.startCountdown(this.availableAt);
         }
       }
     })
@@ -67,6 +73,29 @@ export class VoteUserWebsiteComponent implements OnInit {
 
   private openVoteWebsite() {
     window.open(this.voteWebsite.urlVote, '_blank');
+  }
+
+  private startCountdown(targetDate: Date): void {
+    const intervalId = setInterval(() => {
+
+      const now = new Date();
+      const diff = targetDate.getTime() - now.getTime();
+
+      if (diff <= 0) {
+        clearInterval(intervalId);
+        this.countdown = '00:00:00';
+      } else {
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        this.countdown = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+      }
+    }, 1000);
+  }
+
+  private pad(num: number): string {
+    return num < 10 ? '0' + num : num.toString();
   }
 
 }
