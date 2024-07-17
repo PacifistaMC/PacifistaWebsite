@@ -1,5 +1,53 @@
-<div class="container bg-dark rounded-3">
-  <h1 class="text-center">Voter pour Pacifista</h1>
+<div class="container pb-4">
+    <h1>Voter pour Pacifista</h1>
+    <p class="w-50">
+        Voter permet au projet d'être mieux référencé sur des listes de serveurs
+        Minecraft et donc permet aux joueurs qui ne connaissent pas Pacifista de rejoindre le serveur !
+        Merci de voter et de nous soutenir ❤️ !
+    </p>
 
-  <p>En cours de production</p>
+    <div class="row justify-content-around">
+        <div class="col-md-8 pb-3">
+            <div class="bg-dark p-3 rounded-3">
+                <h2>Sélection du site de vote</h2>
+
+                <app-vote-user></app-vote-user>
+            </div>
+        </div>
+
+        <div class="col-md-4 pb-4">
+            <div class="card" style="width: 18rem;">
+                <img ngSrc="assets/img/vote/box-vote-reward-logo.webp" priority="0" width="227" height="224" class="card-img-top p-3" alt="Image d'illustration de la récompense de vote pour Pacifista Minecraft.">
+                <div class="card-header">
+                    <span class="badge bg-success">🎁</span> Récompense par vote
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        Une BOX Vote est offerte à chaque vote, elle contient des items et une possibilité de gagner des box payantes.<br/>
+                        Rendez-vous sur le wiki concernant les box pour plus d'informations.<br/><br/>
+                        <span class="badge bg-info">Pacifista +</span> Une box supplémentaire est offerte pour les membres Pacifista+.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="pb-2">
+        <h2>Top 50 des meilleurs voteurs</h2>
+        <app-vote-top-classement></app-vote-top-classement>
+    </div>
+
+    <hr>
+
+    <div>
+        <h2>Comment fonctionne le vote ?</h2>
+        <p>
+            Pour voter, il suffit de choisir son pseudo, choisir ensuite parmi les sites de vote disponibles et voter sur le site choisi.<br/>
+            Une fois le vote effectué, vous recevrez une récompense en jeu, une box vote, qui contient des items et une possibilité de gagner des box payantes.<br/>
+            Le système se base sur votre adresse IP pour voter, si vous avez plusieurs adresses IP, vous pouvez voter plusieurs fois. Exemple une connexion 4G et une Wifi.
+            Si vous êtes à plusieurs sur la même connexion vous ne pourrez voter que pour un seul compte Minecraft.<br/>
+            Les votes sont réinitialisés tous les mois, le classement est remis à zéro et les récompenses sont réinitialisées.
+        </p>
+    </div>
+
 </div>

@@ -1,0 +1,30 @@
+<div class="pt-2">
+    <pacifista-search-player-input
+            (onPlayerSelected)="setUsername($event.minecraftUsername)"
+            (onPlayerClear)="setUsername(undefined)"
+    ></pacifista-search-player-input>
+</div>
+
+<div *ngIf="username" class="pt-4">
+    <div *ngIf="websites.length > 0; else noVoteWebSites">
+        <p>
+            Vous pouvez voter pour <strong>{{ username }}</strong> sur les sites suivants :
+        </p>
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div *ngFor="let website of websites" class="col-md-auto">
+                    <app-vote-user-website
+                            [voteWebsite]="website"
+                            [voteUser]="username"
+                    ></app-vote-user-website>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noVoteWebSites>
+        <div class="alert alert-info">
+            Aucun site de vote n'est disponible pour le moment.
+        </div>
+    </ng-template>
+</div>
+

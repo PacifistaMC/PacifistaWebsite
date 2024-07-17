@@ -10,6 +10,21 @@
             (textChange)="onInputTextChange($event)"
     ></app-input-text>
 
+    <div *ngIf="playerSelected && playerSelected.minecraftUsername" class="pt-2">
+        <button
+                class="btn btn-danger pl-2"
+                (click)="clear()"
+        ><i class="bi bi-x-circle-fill"></i></button>
+
+        <minecraft-head
+                [username]="playerSelected.minecraftUsername"
+                [size]="32"
+                class="ps-2 pe-2"
+        ></minecraft-head>
+
+        <strong>{{ playerSelected.minecraftUsername }}</strong>
+    </div>
+
     <div class="card position-absolute results-container" *ngIf="loading; else doneLoading">
         <div class="card-body">
             <div class="spinner-border text-primary" role="status">

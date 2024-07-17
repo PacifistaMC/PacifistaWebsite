@@ -1,20 +1,19 @@
-import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {
-  PacifistaNewsDTO,
-  PacifistaNewsService,
-  PageOption,
-  QueryBuilder
+    PacifistaNewsDTO,
+    PacifistaNewsService,
+    PageOption,
+    QueryBuilder
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
-import {isPlatformBrowser} from "@angular/common";
 
 @Component({
   selector: 'news-section',
   templateUrl: './news-accueil-section.component.html',
   styleUrls: ['./news-accueil-section.component.scss']
 })
-export class NewsAccueilSectionComponent implements AfterViewInit {
+export class NewsAccueilSectionComponent implements OnInit {
 
   private readonly newsService: PacifistaNewsService;
 
@@ -26,9 +25,7 @@ export class NewsAccueilSectionComponent implements AfterViewInit {
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
   }
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platfomId)) return;
-
+  ngOnInit(): void {
     const pageOption = new PageOption();
     pageOption.elemsPerPage = 3;
     pageOption.sort = 'createdAt:desc';

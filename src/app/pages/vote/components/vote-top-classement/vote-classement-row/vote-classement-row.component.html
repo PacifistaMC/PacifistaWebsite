@@ -1,0 +1,37 @@
+<div class="row align-items-center bg-dark rounded-3 p-2 mb-3">
+    <div class="col-md-6">
+        <div class="row align-items-center justify-content-start">
+            <div class="col-md-2">
+                <h3># {{ position }}</h3>
+            </div>
+            <div class="col-md-3 align-self-center">
+                <minecraft-head
+                        [username]=username
+                        [size]="64">
+                </minecraft-head>
+            </div>
+            <div class="col-md-4">
+                <h3>{{ username }}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div *ngIf="position == 1">
+            <span class="badge text-bg-primary">10 jours de Pacifista+</span>
+        </div>
+        <div *ngIf="position == 2">
+            <span class="badge text-bg-primary">5 jours de Pacifista+</span>
+        </div>
+        <div *ngIf="position == 3">
+            <span class="badge text-bg-primary">3 jours de Pacifista+</span>
+        </div>
+        <div *ngIf="position >= 1 && position <= 10">
+            <span class="badge text-bg-warning">{{ getMoneyGain() }} PC</span>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <h3>{{ votes }}</h3>
+    </div>
+</div>

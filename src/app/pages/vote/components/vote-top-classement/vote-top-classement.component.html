@@ -1,0 +1,37 @@
+<div *ngIf="topVoters.length > 0; else noVoters">
+    <hr>
+    <div class="row align-items-center p-2 mb-2">
+        <div class="col-6">
+            <div class="row align-items-center justify-content-start">
+                <div class="col-2">
+                    <h3>Rang</h3>
+                </div>
+                <div class="col-6">
+                    <h3>Pseudo</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-3">
+            <h3>Récompenses</h3>
+        </div>
+
+        <div class="col-3">
+            <h3>Votes</h3>
+        </div>
+    </div>
+
+    <div *ngFor="let userVote of topVoters; let i = index">
+        <app-vote-classement-row
+                [position]="i + 1"
+                [username]="userVote.username"
+                [votes]="userVote.votesCount"
+        ></app-vote-classement-row>
+    </div>
+</div>
+
+<ng-template #noVoters>
+    <p>
+        Pas encore de votes, soyez le premier à voter !
+    </p>
+</ng-template>
