@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
@@ -10,14 +10,14 @@ import {
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-news-list-page',
   templateUrl: './news-list-page.component.html',
   styleUrls: ['./news-list-page.component.scss']
 })
-export class NewsListPageComponent extends PacifistaPage implements AfterViewInit {
+export class NewsListPageComponent extends PacifistaPage {
 
   protected override title: string = 'News';
   protected override canonicalPath: string = 'news'
@@ -44,9 +44,8 @@ export class NewsListPageComponent extends PacifistaPage implements AfterViewIni
     this.pageOption.sort = 'createdAt:desc';
   }
 
-  ngAfterViewInit(): void {
-    if (!isPlatformBrowser(this.platfomId)) return;
 
+  protected override onPageInit() {
     this.loadNews();
   }
 
