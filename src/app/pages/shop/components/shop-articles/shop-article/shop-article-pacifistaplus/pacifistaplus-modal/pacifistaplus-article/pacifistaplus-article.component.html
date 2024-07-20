@@ -1,0 +1,27 @@
+<div class="text-center pt-2 pb-2">
+    <h3>{{ months }} mois</h3>
+
+    <div *ngIf="priceWihoutDiscount; else noDiscount" class="row justify-content-between">
+        <div class="col-6">
+            <p class="price-no-discount" *ngIf="priceWihoutDiscount">
+                {{ priceWihoutDiscount }} €
+            </p>
+        </div>
+        <div class="col-6">
+            <p class="price-container">
+                {{ shopService.formatPrice(article?.priceWithTax) }} €
+            </p>
+        </div>
+    </div>
+
+    <ng-template #noDiscount>
+        <p class="price-container">
+            {{ shopService.formatPrice(article?.priceWithTax) }} €
+        </p>
+    </ng-template>
+
+    <button (click)="addArticleToBasket()" class="btn btn-success">
+        <i class="bi bi-cart-plus-fill"></i>
+        Ajouter au panier
+    </button>
+</div>

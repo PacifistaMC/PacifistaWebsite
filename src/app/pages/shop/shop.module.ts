@@ -30,6 +30,13 @@ import {
 } from "./shop-checkout/shop-payment-paysafecard/shop-payment-paysafecard.component";
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
 import {InputNumberComponent} from "../../components/inputs/input-number/input-number.component";
+import {SpinnerComponent} from "../../components/spinner/spinner.component";
+import {
+    PacifistaplusModalComponent
+} from "./components/shop-articles/shop-article/shop-article-pacifistaplus/pacifistaplus-modal/pacifistaplus-modal.component";
+import {
+    PacifistaplusArticleComponent
+} from "./components/shop-articles/shop-article/shop-article-pacifistaplus/pacifistaplus-modal/pacifistaplus-article/pacifistaplus-article.component";
 
 @NgModule({
     declarations: [
@@ -46,7 +53,9 @@ import {InputNumberComponent} from "../../components/inputs/input-number/input-n
         ShopPaymentCreditCardComponent,
         ShopRedirectAfterPaymentComponent,
         ShopCancelAfterPaymentComponent,
-        ShopPaymentPaysafecardComponent
+        ShopPaymentPaysafecardComponent,
+        PacifistaplusModalComponent,
+        PacifistaplusArticleComponent
     ],
     imports: [
         CommonModule,
@@ -55,7 +64,8 @@ import {InputNumberComponent} from "../../components/inputs/input-number/input-n
         FormsModule,
         SendButtonComponent,
         InputTextComponent,
-        InputNumberComponent
+        InputNumberComponent,
+        SpinnerComponent
     ],
     providers: [
         ShopService

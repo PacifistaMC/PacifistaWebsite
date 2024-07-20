@@ -13,6 +13,8 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export default class ShopService {
 
+    public static readonly PACIFISTA_PLUS_PREFIX_NAME: string = "pacifista-plus";
+
     private readonly basket: Map<string, ShopCart> = new Map<string, ShopCart>();
     private readonly paymentService: PacifistaPaymentService;
 
