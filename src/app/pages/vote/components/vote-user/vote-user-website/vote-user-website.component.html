@@ -17,12 +17,20 @@
 </div>
 
 <ng-template #loadingState>
-    <button class="btn btn-success" disabled>
-        <div class="d-flex justify-content-center align-items-center p-1">
-            <div class="spinner-border text-white" role="status">
-                <span class="visually-hidden">Loading...</span>
-            </div>
-            <span class="ps-1">{{ voteWebsite.displayName }}</span>
+    <div class="text-center">
+        <div>
+            <button class="btn btn-success" disabled>
+                <div class="d-flex justify-content-center align-items-center">
+                    <div class="spinner-border text-white" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span class="ps-1">{{ voteWebsite.displayName }}</span>
+                </div>
+            </button>
         </div>
-    </button>
+
+        <div class="mt-1">
+            <a class="btn btn-outline-warning" href="{{ voteWebsite.urlVote }}" target="_blank">Cliquez pour ouvrir</a>
+        </div>
+    </div>
 </ng-template>
