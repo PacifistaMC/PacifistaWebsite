@@ -102,7 +102,7 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
 
       let queryParam = new QueryParam();
       queryParam.key = 'minecraftUsername';
-      queryParam.type = QueryBuilder.like;
+      queryParam.type = QueryBuilder.startWithIgnoreCase;
       queryParam.value = this.text;
 
       let queryBuilder = new QueryBuilder();
