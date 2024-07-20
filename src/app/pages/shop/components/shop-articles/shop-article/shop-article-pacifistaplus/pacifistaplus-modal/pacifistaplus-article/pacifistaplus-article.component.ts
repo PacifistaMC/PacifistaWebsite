@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 import ShopService from 'src/app/pages/shop/shop-service';
 import ShopCart from "../../../../../../ShopCart";
@@ -13,6 +13,7 @@ export class PacifistaplusArticleComponent implements AfterViewInit {
   @Input() oneMonthArticle?: PacifistaShopArticleDTO;
   @Input() article?: PacifistaShopArticleDTO;
   @Input() months: number = 1;
+  @Output() addedCart = new EventEmitter<boolean>();
 
   priceWihoutDiscount: string | undefined;
 
@@ -26,6 +27,7 @@ export class PacifistaplusArticleComponent implements AfterViewInit {
   addArticleToBasket(): void {
     if (this.article) {
       this.shopService.addArticleToBasket(new ShopCart(this.article, 1));
+      this.addedCart.emit(true);
     }
   }
 
