@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
+import ShopService from "../../../shop-service";
 
 @Component({
   selector: 'app-shop-article-modal',
@@ -11,7 +12,8 @@ export class ShopArticleModalComponent {
 
   @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
 
-  constructor(public activeModal: NgbActiveModal) {
+  constructor(public activeModal: NgbActiveModal,
+              protected shopService: ShopService) {
   }
 
 }

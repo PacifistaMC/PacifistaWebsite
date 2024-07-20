@@ -1,0 +1,51 @@
+<div class="container-fluid">
+    <h1>Pacifista+</h1>
+    <h2>Le soutien mensuel au serveur ❤️</h2>
+    <p>
+        Le Pacifista+ est un système de soutien mensuel pour le projet.
+        En échange de votre soutien, vous obtiendrez des avantages exclusifs sur le serveur.<br/>
+        Veuillez noter que plus vous prenez un abonnement long, plus vous économisez d'argent.<br/>
+        Si vous avez déjà un abonnement, le nouvel abonnement commencera à la fin de l'ancien.
+    </p>
+
+    <hr class="mt-2 mb-2">
+
+    <div class="pacifistaplus-article-body" [innerHTML]="getBody()"></div>
+
+    <hr class="mt-2 mb-2">
+    <h2>Acheter</h2>
+
+    <div class="row justify-content-evenly">
+        <div class="col-md">
+            <app-pacifistaplus-article
+                    [oneMonthArticle]="pacifistaPlus"
+                    [article]="pacifistaPlus"
+                    [months]="1"
+            ></app-pacifistaplus-article>
+        </div>
+
+        <div class="col-md">
+            <app-pacifistaplus-article
+                    [oneMonthArticle]="pacifistaPlus"
+                    [article]="pacifistaPlus3Months"
+                    [months]="3"
+            ></app-pacifistaplus-article>
+        </div>
+
+        <div class="col-md">
+            <app-pacifistaplus-article
+                    [oneMonthArticle]="pacifistaPlus"
+                    [article]="pacifistaPlus6Months"
+                    [months]="6"
+            ></app-pacifistaplus-article>
+        </div>
+
+        <div class="col-md">
+            <app-pacifistaplus-article
+                    [oneMonthArticle]="pacifistaPlus"
+                    [article]="pacifistaPlus12Months"
+                    [months]="12"
+            ></app-pacifistaplus-article>
+        </div>
+    </div>
+</div>

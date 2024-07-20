@@ -5,11 +5,17 @@
     Souscrivez dès aujourd'hui mensuellement pour en profiter !<br />
     Sans engagement.
 </p>
-<div class="row justify-content-around align-items-center">
-    <h3 class="col col-md-3 price-container">
-        {{ pacifistaPlusArticle?.priceWithTax }} € / mois
+
+<div *ngIf="!loading; else loadingState" class="row justify-content-around align-items-center">
+    <h3 class="col col-4 price-container">
+        {{ shopService.formatPrice(pacifistaPlus?.priceWithTax) }} € / mois
     </h3>
-    <button disabled class="col col-md-3 btn btn-light">
-        Bientôt disponible
+    <button class="col col-4 btn btn-success" (click)="openModal()">
+        <i class="bi bi-bookmark"></i>
+        Souscrire
     </button>
 </div>
+
+<ng-template #loadingState>
+    <app-spinner></app-spinner>
+</ng-template>

@@ -1,14 +1,15 @@
 import {Component, EventEmitter, Inject, OnInit, Output, PLATFORM_ID, ViewChild} from '@angular/core';
 import {
-  PacifistaShopCategoryDTO,
-  PacifistaShopCategoryService,
-  PageOption,
-  QueryBuilder
+    PacifistaShopCategoryDTO,
+    PacifistaShopCategoryService,
+    PageOption,
+    QueryBuilder
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {isPlatformServer} from "@angular/common";
+import ShopService from "../../shop-service";
 
 @Component({
   selector: 'app-shop-categories',
@@ -44,7 +45,13 @@ export class ShopCategoriesComponent implements OnInit {
 
     this.categoriesService.find(pageOption, new QueryBuilder()).subscribe({
       next: (categories) => {
-        this.categoriesList = categories.content;
+        this.categoriesList = [];
+
+        categories.content.forEach(category => {
+          if (category.name !== ShopService.PACIFISTA_PLUS_PREFIX_NAME) {
+            this.categoriesList.push(category);
+          }
+        });
       },
       error: err => {
         this.notificationService.onErrorRequest(err);
