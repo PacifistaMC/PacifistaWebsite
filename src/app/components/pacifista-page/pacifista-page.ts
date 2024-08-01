@@ -30,7 +30,7 @@ export abstract class PacifistaPage implements OnInit {
 
   private updateTitle(): void {
     const prefix = this.title.length > 0 ? this.title + ' - ' : '';
-    this.titleService.setTitle(prefix + 'Pacifista Minecraft - Serveur Minecraft Survie Creatif Français en 1.19');
+    this.titleService.setTitle(prefix + 'Pacifista Minecraft - Serveur Minecraft Survie Creatif français en 1.19');
   }
 
   private updateCanonicalPath(): void {
