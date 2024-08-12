@@ -6,7 +6,7 @@ export abstract class PacifistaPage implements OnInit {
 
   protected title: string = '';
   protected canonicalPath: string = '';
-  protected pageDescription: string = "Bienvenue sur Pacifista, le serveur Minecraft français survie créatif en 1.19 ! Rejoignez une communauté bienveillante, profitez d'un staff attentif et découvrez nos plugins faits maison.";
+  protected pageDescription: string = "Pacifista, le serveur Minecraft français survie en 1.21 ! Rejoignez une communauté bienveillante avec un staff à l'écoute !";
   protected pageImage: string = 'https://pacifista.fr/assets/img/pacifista-logo.webp';
 
   /**
@@ -30,7 +30,7 @@ export abstract class PacifistaPage implements OnInit {
 
   private updateTitle(): void {
     const prefix = this.title.length > 0 ? this.title + ' - ' : '';
-    this.titleService.setTitle(prefix + 'Pacifista Minecraft - Serveur Minecraft Survie Creatif français en 1.19');
+    this.titleService.setTitle(prefix + 'Pacifista Minecraft - Serveur Survie français en 1.21');
   }
 
   private updateCanonicalPath(): void {
