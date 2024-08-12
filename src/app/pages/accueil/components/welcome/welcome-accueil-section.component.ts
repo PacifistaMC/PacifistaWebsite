@@ -10,15 +10,13 @@ import {environment} from "../../../../../environments/environment";
 })
 export class WelcomeAccueilSectionComponent implements AfterViewInit {
 
-  private readonly statusService: PacifistaServerInfoService
   playersAmount: number = 0;
 
-  constructor(httpClient: HttpClient) {
-    this.statusService = new PacifistaServerInfoService(httpClient, environment.production)
+  constructor(private httpClient: HttpClient) {
   }
 
   ngAfterViewInit(): void {
-    this.statusService.getStatus().subscribe({
+    new PacifistaServerInfoService(this.httpClient, environment.production).getStatus().subscribe({
       next: value => {
         this.playersAmount = value.onlinePlayers
       }
