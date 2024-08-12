@@ -9,6 +9,10 @@ const routes: Routes = [
             {
                 path: '',
                 component: DashboardComponent
+            },
+            {
+                path: 'players',
+                loadChildren: () => import('./pages/players/players.module').then(m => m.PlayersModule)
             }
         ]
     }

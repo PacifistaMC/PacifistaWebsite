@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {Router} from "@angular/router";
 import {isPlatformBrowser} from "@angular/common";
 import {UserJwtCheckerService, UserRole} from "@funixproductions/funixproductions-requests";
@@ -8,12 +8,15 @@ import {UserJwtCheckerService, UserRole} from "@funixproductions/funixproduction
     templateUrl: './admin-dashboard.component.html',
     styleUrl: './admin-dashboard.component.scss'
 })
-export class AdminDashboardComponent {
+export class AdminDashboardComponent implements OnInit {
 
-    constructor(router: Router,
-                @Inject(PLATFORM_ID) platformId: Object) {
-        if (!isPlatformBrowser(platformId)) {
-            router.navigate(["/"])
+    constructor(private router: Router,
+                @Inject(PLATFORM_ID) private platformId: Object) {
+    }
+
+    ngOnInit(): void {
+        if (!isPlatformBrowser(this.platformId)) {
+            this.router.navigate(["/"])
             return;
         }
 
@@ -21,12 +24,14 @@ export class AdminDashboardComponent {
         const user = jwtService.getUser()
 
         if (user == null) {
-            router.navigate(["/"])
+            this.router.navigate(["/"])
         } else if (!(user.role == UserRole.PACIFISTA_ADMIN ||
             user.role == UserRole.PACIFISTA_MODERATOR ||
             user.role == UserRole.ADMIN)) {
-            router.navigate(["/"])
+            this.router.navigate(["/"])
         }
     }
+
+
 
 }
