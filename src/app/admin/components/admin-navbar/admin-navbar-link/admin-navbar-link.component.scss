@@ -1,0 +1,14 @@
+@import "../../../../../pacifista_variables";
+
+.nav-admin-link {
+  font-family: 'Outfit', sans-serif;
+  font-weight: normal;
+  color: white;
+  padding: 0;
+}
+
+.nav-admin-link:hover {
+  font-family: 'Outfit', sans-serif;
+  font-weight: normal;
+  color: $secondary_color;
+}
