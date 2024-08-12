@@ -12,7 +12,7 @@ N’hésitez plus, rejoignez-nous pour participer à cette belle aventure sur Pa
 
 ## Site web
 
-Le site web a pour but d'offrir une meilleure visibilité au serveur Minecraft et d'apporter des fonctionalités uniques aux joueurs. Ils auront à leur disposition les dernières news et une boutique pour obtenir des avantages en jeu afin de soutenir le développement du serveur.
+Le site web a pour but d'offrir une meilleure visibilité au serveur Minecraft et d'apporter des fonctionnalités uniques aux joueurs. Ils auront à leur disposition les dernières news et une boutique pour obtenir des avantages en jeu afin de soutenir le développement du serveur.
 ## Développeurs
 
 - [@FunixG](https://www.github.com/funixg)
