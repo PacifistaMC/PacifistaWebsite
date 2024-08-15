@@ -5,6 +5,8 @@ import {HttpClientModule} from "@angular/common/http";
 import {PlayersRoutingModule} from "./players-routing.module";
 import {PlayersSanctionsComponent} from "./players-sanctions/players-sanctions.component";
 import {PlayersMoneyComponent} from "./players-money/players-money.component";
+import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecraft-head.component";
+import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
 
 @NgModule({
     declarations: [
@@ -15,7 +17,9 @@ import {PlayersMoneyComponent} from "./players-money/players-money.component";
     imports: [
         CommonModule,
         HttpClientModule,
-        PlayersRoutingModule
+        PlayersRoutingModule,
+        MinecraftHeadComponent,
+        NgbPagination
     ]
 })
 export class PlayersModule { }
