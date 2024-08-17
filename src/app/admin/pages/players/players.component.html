@@ -1,9 +1,9 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Joueur</th>
-            <th scope="col">Dernière connection</th>
-            <th scope="col">Première connection</th>
+            <th scope="col" sortable="minecraftUsername" (sort)="onSort($event)">Joueur</th>
+            <th scope="col" sortable="lastConnection" (sort)="onSort($event)">Dernière connection</th>
+            <th scope="col" sortable="firstConnection" (sort)="onSort($event)">Première connection</th>
             <th scope="col">Actions</th>
         </tr>
     </thead>
@@ -11,13 +11,13 @@
     <tbody>
         @for (player of list; track player.minecraftUsername) {
             <tr>
-                <th scope="row">
+                <td>
                     <minecraft-head
                             [username]="player.minecraftUsername ?? ''"
                             [size]="20"
                     ></minecraft-head>
                     <span> {{ player.minecraftUsername }}</span>
-                </th>
+                </td>
                 <td>
                     {{ player.lastConnection | date: 'dd/MM/yyyy HH:mm' }}
                 </td>
