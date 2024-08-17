@@ -27,7 +27,7 @@
     "@angular/platform-server": "^17.3.7",
     "@angular/router": "^17.3.7",
     "@angular/ssr": "^17.3.6",
-    "@funixproductions/funixproductions-requests": "^0.2.7",
+    "@funixproductions/funixproductions-requests": "^0.2.8",
     "@ng-bootstrap/ng-bootstrap": "^16.0.0",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.0",

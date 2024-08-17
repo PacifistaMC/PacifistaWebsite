@@ -1,1 +1,60 @@
-<p>players-sanctions works!</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" searchable="sanctionnedUsername" (search)="search($event)">Joueur</th>
+            <th scope="col">Raison</th>
+            <th scope="col" searchable="sanctionType" (search)="search($event)">Type</th>
+            <th scope="col" searchable="sanctionUsername" (search)="search($event)">Sanction par</th>
+            <th scope="col" sortable="expirationDate" (sort)="onSort($event)">Expire le</th>
+            <th scope="col" sortable="createdAt" (sort)="onSort($event)">Date de création</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (sanction of list; track sanction.playerSanctionUuid) {
+            <tr>
+                <td>
+                    <minecraft-head
+                            [username]="getUsernameFromId(sanction.playerSanctionUuid) ?? ''"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ getUsernameFromId(sanction.playerSanctionUuid) }}</span>
+                </td>
+                <td>
+                    {{ sanction.reason }}
+                </td>
+                <td>
+                    {{ sanction.sanctionType }}
+                </td>
+                <td>
+                    <minecraft-head
+                            [username]="getUsernameFromId(sanction.playerActionUuid ?? '') ?? ''"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ getUsernameFromId(sanction.playerActionUuid ?? '') }}</span>
+                </td>
+                <td>
+                    {{ sanction.expirationDate | date: 'dd/MM/yyyy HH:mm' }}
+                </td>
+                <td>
+                    {{ sanction.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+            [collectionSize]="allElemsDatabase"
+            [(page)]="page"
+            [pageSize]="maxElemsPerPage"
+            (pageChange)="updateList()"
+            [maxSize]="7"
+    >
+    </ngb-pagination>
+</div>

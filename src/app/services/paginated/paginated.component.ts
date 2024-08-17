@@ -2,6 +2,8 @@ import {
     ApiDTO,
     CrudHttpClient,
     ErrorDto,
+    PacifistaPlayerDataDTO,
+    PacifistaPlayerDataService,
     PageOption,
     QueryBuilder,
     QueryParam
@@ -18,6 +20,8 @@ import {
     Renderer2,
     ViewChildren
 } from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {environment} from "../../../environments/environment";
 
 export type SortDirection = 'asc' | 'desc' | '';
 
@@ -117,15 +121,18 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
     protected readonly maxElemsPerPage: number = 30
     private readonly client: CLIENT
     private readonly notificationService: NotificationService
+    private readonly pacifistaPlayerDataService: PacifistaPlayerDataService
 
     @ViewChildren(NgbdSortableHeader) headers?: QueryList<NgbdSortableHeader>;
 
     protected constructor(client: CLIENT,
+                          httpClient: HttpClient,
                           notificationService: NotificationService) {
         this.client = client
         this.notificationService = notificationService
         this.list = []
         this.queryBuilder = new QueryBuilder()
+        this.pacifistaPlayerDataService = new PacifistaPlayerDataService(httpClient, environment.production)
     }
 
     protected onSort({ column, direction }: SortEvent): void {
@@ -152,7 +159,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.updateList()
     }
 
-    protected updateList(): void {
+    protected updateList(callback: () => void = () => {}): void {
         const pageOption = new PageOption();
         pageOption.elemsPerPage = this.maxElemsPerPage
         pageOption.page = this.page - 1
@@ -167,10 +174,37 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
             pageOption.page = 0
         }
 
+        this.list = []
         this.client.find(pageOption, this.queryBuilder).subscribe({
             next: pageDTO => {
                 this.list = pageDTO.content
                 this.allElemsDatabase = pageDTO.totalElementsDatabase
+                callback()
+            },
+            error: (err: ErrorDto) => {
+                this.notificationService.onErrorRequest(err)
+                callback()
+            }
+        })
+    }
+
+    protected fetchPlayerDataFromList(idsList: string[],
+                                      callback: (data: PacifistaPlayerDataDTO[]) => void): void {
+        const queryBuilder = new QueryBuilder()
+
+        idsList.forEach(id => {
+            const queryParam = new QueryParam()
+
+            queryParam.key = "minecraftUuid"
+            queryParam.value = id
+            queryParam.type = QueryBuilder.equal
+
+            queryBuilder.addParam(queryParam)
+        })
+
+        this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
+            next: pageDTO => {
+                callback(pageDTO.content)
             },
             error: (err: ErrorDto) => {
                 this.notificationService.onErrorRequest(err)

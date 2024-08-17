@@ -13,7 +13,7 @@ import NotificationService from "../../../services/notifications/services/Notifi
 export class PlayersComponent extends PaginatedComponent<PacifistaPlayerDataDTO, PacifistaPlayerDataService> {
 
     constructor(httpClient: HttpClient, notificationService: NotificationService) {
-        super(new PacifistaPlayerDataService(httpClient, environment.production), notificationService);
+        super(new PacifistaPlayerDataService(httpClient, environment.production), httpClient, notificationService);
     }
 
 }
