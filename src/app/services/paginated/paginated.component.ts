@@ -1,4 +1,11 @@
-import {ApiDTO, CrudHttpClient, ErrorDto, PageOption, QueryBuilder} from "@funixproductions/funixproductions-requests";
+import {
+    ApiDTO,
+    CrudHttpClient,
+    ErrorDto,
+    PageOption,
+    QueryBuilder,
+    QueryParam
+} from "@funixproductions/funixproductions-requests";
 import NotificationService from "../notifications/services/NotificationService";
 import {
     Directive,
@@ -20,6 +27,41 @@ export interface SortEvent {
 }
 
 const rotate: { [key: string]: SortDirection } = { asc: 'desc', desc: '', '': 'asc' };
+
+@Directive({
+    selector: 'th[searchable]',
+    standalone: true,
+    host: {
+        '(input)': 'searchEvent()'
+    }
+})
+export class NgbdSearchableHeader implements OnInit {
+    @Input() searchable: string = '';
+    @Output() search = new EventEmitter<QueryParam>();
+
+    private inputText?: HTMLInputElement;
+
+    constructor(private renderer: Renderer2, private el: ElementRef) {}
+
+    ngOnInit(): void {
+        this.inputText = this.renderer.createElement('input');
+        this.renderer.addClass(this.inputText, 'input-text');
+        this.renderer.addClass(this.inputText, 'ms-2');
+        this.renderer.setAttribute(this.inputText, 'type', 'text');
+        this.renderer.setAttribute(this.inputText, 'placeholder', 'Recherche...');
+        this.renderer.appendChild(this.el.nativeElement, this.inputText);
+    }
+
+    searchEvent(): void {
+        const param = new QueryParam()
+
+        param.key = this.searchable
+        param.value = this.inputText?.value ?? ''
+        param.type = QueryBuilder.startWithIgnoreCase
+
+        this.search.emit(param);
+    }
+}
 
 @Directive({
     selector: 'th[sortable]',
@@ -54,9 +96,9 @@ export class NgbdSortableHeader implements OnInit {
 
     updateIcon() {
         if (this.direction === 'asc') {
-            this.renderer.setProperty(this.spanIcon, 'innerHTML', '&#9650;'); // Up arrow
+            this.renderer.setProperty(this.spanIcon, 'innerHTML', '&#9650;');
         } else if (this.direction === 'desc') {
-            this.renderer.setProperty(this.spanIcon, 'innerHTML', '&#9660;'); // Down arrow
+            this.renderer.setProperty(this.spanIcon, 'innerHTML', '&#9660;');
         } else {
             this.renderer.setProperty(this.spanIcon, 'innerHTML', '');
         }
@@ -70,6 +112,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
     protected allElemsDatabase: number = 0
     protected list: DTO[] = []
     private sort?: SortEvent
+    private queryBuilder: QueryBuilder
 
     protected readonly maxElemsPerPage: number = 30
     private readonly client: CLIENT
@@ -82,6 +125,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.client = client
         this.notificationService = notificationService
         this.list = []
+        this.queryBuilder = new QueryBuilder()
     }
 
     protected onSort({ column, direction }: SortEvent): void {
@@ -103,6 +147,11 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.updateList()
     }
 
+    protected search(queryParam: QueryParam): void {
+        this.queryBuilder.addParam(queryParam)
+        this.updateList()
+    }
+
     protected updateList(): void {
         const pageOption = new PageOption();
         pageOption.elemsPerPage = this.maxElemsPerPage
@@ -118,7 +167,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
             pageOption.page = 0
         }
 
-        this.client.find(pageOption, new QueryBuilder()).subscribe({
+        this.client.find(pageOption, this.queryBuilder).subscribe({
             next: pageDTO => {
                 this.list = pageDTO.content
                 this.allElemsDatabase = pageDTO.totalElementsDatabase

@@ -7,7 +7,7 @@ import {PlayersSanctionsComponent} from "./players-sanctions/players-sanctions.c
 import {PlayersMoneyComponent} from "./players-money/players-money.component";
 import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecraft-head.component";
 import {NgbPagination} from "@ng-bootstrap/ng-bootstrap";
-import {NgbdSortableHeader} from "../../../services/paginated/paginated.component";
+import {NgbdSearchableHeader, NgbdSortableHeader} from "../../../services/paginated/paginated.component";
 
 @NgModule({
     declarations: [
@@ -21,7 +21,8 @@ import {NgbdSortableHeader} from "../../../services/paginated/paginated.componen
         PlayersRoutingModule,
         MinecraftHeadComponent,
         NgbPagination,
-        NgbdSortableHeader
+        NgbdSortableHeader,
+        NgbdSearchableHeader
     ]
 })
 export class PlayersModule { }

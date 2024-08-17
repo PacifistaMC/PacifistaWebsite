@@ -1,7 +1,7 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col" sortable="minecraftUsername" (sort)="onSort($event)">Joueur</th>
+            <th scope="col" searchable="minecraftUsername" sortable="minecraftUsername" (sort)="onSort($event)" (search)="search($event)">Joueur</th>
             <th scope="col" sortable="lastConnection" (sort)="onSort($event)">Dernière connection</th>
             <th scope="col" sortable="firstConnection" (sort)="onSort($event)">Première connection</th>
             <th scope="col">Actions</th>
