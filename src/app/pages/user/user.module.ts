@@ -6,7 +6,7 @@ import {UserComponent} from './user.component';
 import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {UserLoginComponent} from "./user-login/user-login.component";
-import {HttpClientModule} from "@angular/common/http";
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
 import {environment} from "../../../environments/environment";
@@ -40,8 +40,7 @@ import {
     UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         UserComponent,
         UserRegisterComponent,
         UserPageComponent,
@@ -55,12 +54,9 @@ import {
         UserAccountInfosPasswordChangeComponent,
         UserAccountIntegrationsMinecraftAccountComponent,
         UserAccountIntegrationsMinecraftAccountCreateNewComponent
-    ],
-    imports: [
-        CommonModule,
+    ], imports: [CommonModule,
         UserRoutingModule,
         MatSelectCountryModule.forRoot('fr'),
-        HttpClientModule,
         FormsModule,
         RecaptchaV3Module,
         InputEmailComponent,
@@ -69,13 +65,11 @@ import {
         InputSecretComponent,
         InputCheckboxComponent,
         MinecraftHeadComponent,
-        MinecraftCommandComponent
-    ],
-    providers: [
+        MinecraftCommandComponent], providers: [
         {
             provide: RECAPTCHA_V3_SITE_KEY,
             useValue: environment.reCaptchaSiteKey,
         },
-    ],
-})
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class UserModule { }

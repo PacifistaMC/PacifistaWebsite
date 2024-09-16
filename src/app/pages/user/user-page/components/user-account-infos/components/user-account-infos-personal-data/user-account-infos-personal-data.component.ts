@@ -1,10 +1,10 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {
-  ErrorDto,
-  UserAuthService,
-  UserCountry,
-  UserDTO,
-  UserUpdateAccountDto
+    ErrorDto,
+    UserAuthService,
+    UserCountry,
+    UserDTO,
+    UserUpdateAccountDto
 } from "@funixproductions/funixproductions-requests";
 import {Country} from "@angular-material-extensions/select-country";
 import {HttpClient} from "@angular/common/http";

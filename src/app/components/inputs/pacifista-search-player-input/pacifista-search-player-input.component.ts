@@ -1,13 +1,13 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
 import {
-  ErrorDto,
-  PacifistaPlayerDataDTO,
-  PacifistaPlayerDataService,
-  PageOption,
-  QueryBuilder,
-  QueryParam
+    ErrorDto,
+    PacifistaPlayerDataDTO,
+    PacifistaPlayerDataService,
+    PageOption,
+    QueryBuilder,
+    QueryParam
 } from "@funixproductions/funixproductions-requests";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {InputTextComponent} from "../input-text/input-text.component";
 import {NgForOf, NgIf} from "@angular/common";
@@ -17,7 +17,11 @@ import {MinecraftHeadComponent} from "../../minecraft-head/minecraft-head.compon
   selector: 'pacifista-search-player-input',
   standalone: true,
   imports: [
-    HttpClientModule,
+    
+// TODO: `HttpClientModule` should not be imported into a component directly.
+// Please refactor the code to add `provideHttpClient()` call to the provider list in the
+// application bootstrap logic and remove the `HttpClientModule` import from this component.
+HttpClientModule,
     InputTextComponent,
     NgIf,
     NgForOf,

@@ -3,10 +3,10 @@ import {ReCaptchaV3Service} from "ng-recaptcha";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
-  FunixprodHttpClient,
-  UserAuthService,
-  UserLoginDTO,
-  UserTokenDTO
+    FunixprodHttpClient,
+    UserAuthService,
+    UserLoginDTO,
+    UserTokenDTO
 } from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";

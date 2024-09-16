@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {FooterComponent} from './components/footer/footer.component';
-import {HttpClientModule, provideHttpClient, withFetch} from "@angular/common/http";
+import {provideHttpClient, withFetch, withInterceptorsFromDi} from "@angular/common/http";
 import {NgOptimizedImage} from "@angular/common";
 import {NewsModule} from "./pages/news/news.module";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
@@ -25,13 +25,11 @@ import {
     StaffAccueuilSectionRowPlayerComponent
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         AppComponent,
         NotificationComponent,
         NavbarComponent,
         FooterComponent,
-
         AccueilComponent,
         WelcomeAccueilSectionComponent,
         AboutDetailsAccueilSectionComponent,
@@ -41,24 +39,19 @@ import {
         StaffAccueuilSectionRowPlayerComponent,
         AboutAccueilSectionComponent
     ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        NgbModule,
-        NewsModule,
-        NgOptimizedImage,
-        MinecraftHeadComponent
-    ],
-    providers: [
-        Title,
-        provideClientHydration(),
-        provideAnimationsAsync(),
-        provideHttpClient(withFetch())
-    ],
     exports: [
         NotificationComponent
     ],
-    bootstrap: [AppComponent]
-})
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        NgbModule,
+        NewsModule,
+        NgOptimizedImage,
+        MinecraftHeadComponent], providers: [
+        Title,
+        provideClientHydration(),
+        provideAnimationsAsync(),
+        provideHttpClient(withFetch()),
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class AppModule { }
