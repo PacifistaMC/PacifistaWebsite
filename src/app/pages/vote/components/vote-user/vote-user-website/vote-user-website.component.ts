@@ -13,7 +13,6 @@ import {interval, takeWhile} from "rxjs";
 export class VoteUserWebsiteComponent implements OnInit {
 
   @Input('voteWebsite') voteWebsite: VoteWebsiteDTO = new VoteWebsiteDTO("","","", 10);
-  @Input('voteUser') voteUser: string = "";
 
   private readonly voteService: VoteService;
 
