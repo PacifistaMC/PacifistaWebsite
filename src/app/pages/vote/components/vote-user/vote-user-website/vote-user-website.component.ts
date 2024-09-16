@@ -63,7 +63,7 @@ export class VoteUserWebsiteComponent implements OnInit {
   makeVote() {
     this.loading = true;
 
-    this.voteService.makeVote(this.voteWebsite.enumName, this.voteUser).subscribe({
+    this.voteService.makeVote(this.voteWebsite.enumName).subscribe({
       next: (voteDTO) => {
         this.availableAt = voteDTO.nextVoteDate;
 

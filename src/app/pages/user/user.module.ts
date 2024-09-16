@@ -8,10 +8,9 @@ import {UserPageComponent} from "./user-page/user-page.component";
 import {UserLoginComponent} from "./user-login/user-login.component";
 import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha-2";
 import {environment} from "../../../environments/environment";
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
-import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
 import {InputEmailComponent} from "../../components/inputs/input-email/input-email.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
@@ -56,7 +55,6 @@ import {
         UserAccountIntegrationsMinecraftAccountCreateNewComponent
     ], imports: [CommonModule,
         UserRoutingModule,
-        MatSelectCountryModule.forRoot('fr'),
         FormsModule,
         RecaptchaV3Module,
         InputEmailComponent,

@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
 import {
-    ErrorDto,
-    PacifistaPlayerDataDTO,
-    PacifistaPlayerDataService,
-    PageOption,
-    QueryBuilder,
-    QueryParam
+  ErrorDto,
+  PacifistaPlayerDataDTO,
+  PacifistaPlayerDataService,
+  PageOption,
+  QueryBuilder,
+  QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -17,11 +17,6 @@ import {MinecraftHeadComponent} from "../../minecraft-head/minecraft-head.compon
   selector: 'pacifista-search-player-input',
   standalone: true,
   imports: [
-    
-// TODO: `HttpClientModule` should not be imported into a component directly.
-// Please refactor the code to add `provideHttpClient()` call to the provider list in the
-// application bootstrap logic and remove the `HttpClientModule` import from this component.
-HttpClientModule,
     InputTextComponent,
     NgIf,
     NgForOf,
@@ -64,9 +59,9 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
     this.pageOption = pageOption;
 
     this.renderer.listen('window', 'click', (event: Event) => {
-        if (this.resultsContainer && !this.resultsContainer.nativeElement.contains(event.target)) {
-            this.doneSearching = false;
-        }
+      if (this.resultsContainer && !this.resultsContainer.nativeElement.contains(event.target)) {
+        this.doneSearching = false;
+      }
     });
   }
 

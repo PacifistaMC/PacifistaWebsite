@@ -1,12 +1,12 @@
 import {Component, Inject} from '@angular/core';
-import {ReCaptchaV3Service} from "ng-recaptcha";
+import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
-    FunixprodHttpClient,
-    UserAuthService,
-    UserLoginDTO,
-    UserTokenDTO
+  FunixprodHttpClient,
+  UserAuthService,
+  UserLoginDTO,
+  UserTokenDTO
 } from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
