@@ -86,6 +86,11 @@ export class UserLoginComponent extends PacifistaPage {
             }
           }
 
+          if (this.usernameErrors.length === 0 && this.passwordErrors.length === 0) {
+            this.usernameErrors.push('Identifiants incorrects.');
+            this.passwordErrors.push('Identifiants incorrects.');
+          }
+
           this.notificationService.onErrorRequest(err);
         }
       });
