@@ -4,10 +4,10 @@ import {Title} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
 import ShopService from "../shop-service";
 import {
-  PacifistaWebUserLinkDTO,
-  PacifistaWebUserLinkService,
-  UserAuthService,
-  UserDTO
+    PacifistaWebUserLinkDTO,
+    PacifistaWebUserLinkService,
+    UserAuthService,
+    UserDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";

@@ -2,10 +2,10 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
-  PacifistaNewsDTO,
-  PacifistaNewsService,
-  PageOption,
-  QueryBuilder
+    PacifistaNewsDTO,
+    PacifistaNewsService,
+    PageOption,
+    QueryBuilder
 } from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";

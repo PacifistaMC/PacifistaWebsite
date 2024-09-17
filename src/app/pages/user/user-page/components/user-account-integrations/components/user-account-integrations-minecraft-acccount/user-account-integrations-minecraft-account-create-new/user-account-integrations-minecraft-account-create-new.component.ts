@@ -1,9 +1,9 @@
 import {Component, Input} from '@angular/core';
 import {
-  ErrorDto,
-  PacifistaWebUserLinkDTO,
-  PacifistaWebUserLinkService,
-  UserDTO
+    ErrorDto,
+    PacifistaWebUserLinkDTO,
+    PacifistaWebUserLinkService,
+    UserDTO
 } from "@funixproductions/funixproductions-requests";
 import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient} from "@angular/common/http";

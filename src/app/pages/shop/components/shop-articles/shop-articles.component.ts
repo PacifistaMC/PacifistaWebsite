@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {
-  PacifistaShopArticleDTO,
-  PacifistaShopArticleService,
-  PacifistaShopCategoryDTO,
-  PageOption,
-  QueryBuilder,
-  QueryParam
+    PacifistaShopArticleDTO,
+    PacifistaShopArticleService,
+    PacifistaShopCategoryDTO,
+    PageOption,
+    QueryBuilder,
+    QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";

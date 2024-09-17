@@ -2,11 +2,11 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../../services/notifications/services/NotificationService";
 import {
-  PacifistaShopArticleDTO,
-  PacifistaShopArticleService,
-  PageOption,
-  QueryBuilder,
-  QueryParam
+    PacifistaShopArticleDTO,
+    PacifistaShopArticleService,
+    PageOption,
+    QueryBuilder,
+    QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../../environments/environment";
 import {isPlatformBrowser} from "@angular/common";

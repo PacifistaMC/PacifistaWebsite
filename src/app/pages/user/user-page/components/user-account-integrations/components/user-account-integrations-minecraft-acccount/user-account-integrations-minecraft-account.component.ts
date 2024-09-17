@@ -1,16 +1,16 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {
-  ErrorDto,
-  PacifistaWebUserLinkDTO,
-  PacifistaWebUserLinkService,
-  UserDTO
+    ErrorDto,
+    PacifistaWebUserLinkDTO,
+    PacifistaWebUserLinkService,
+    UserDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../../../environments/environment";
 import NotificationService from "../../../../../../../services/notifications/services/NotificationService";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {
-  UserAccountIntegrationsMinecraftAccountCreateNewComponent
+    UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from "./user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 
 @Component({

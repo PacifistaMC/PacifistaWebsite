@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {UserAuthService, UserPasswordResetDTO} from "@funixproductions/funixproductions-requests";
-import {ReCaptchaV3Service} from "ng-recaptcha";
+import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../environments/environment";

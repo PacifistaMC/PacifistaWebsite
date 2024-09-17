@@ -8,7 +8,7 @@ import {ShopArticlesComponent} from './components/shop-articles/shop-articles.co
 import {ShopArticleComponent} from './components/shop-articles/shop-article/shop-article.component';
 import {ShopArticleModalComponent} from './components/shop-articles/shop-article-modal/shop-article-modal.component';
 import {ShopCheckoutComponent} from './shop-checkout/shop-checkout.component';
-import {HttpClientModule} from "@angular/common/http";
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {
     ShopArticlePacifistaplusComponent
 } from "./components/shop-articles/shop-article/shop-article-pacifistaplus/shop-article-pacifistaplus.component";
@@ -38,8 +38,7 @@ import {
     PacifistaplusArticleComponent
 } from "./components/shop-articles/shop-article/shop-article-pacifistaplus/pacifistaplus-modal/pacifistaplus-article/pacifistaplus-article.component";
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         ShopComponent,
         ShopCategoriesComponent,
         ShopArticlesComponent,
@@ -56,19 +55,14 @@ import {
         ShopPaymentPaysafecardComponent,
         PacifistaplusModalComponent,
         PacifistaplusArticleComponent
-    ],
-    imports: [
-        CommonModule,
-        HttpClientModule,
+    ], imports: [CommonModule,
         ShopRoutingModule,
         FormsModule,
         SendButtonComponent,
         InputTextComponent,
         InputNumberComponent,
-        SpinnerComponent
-    ],
-    providers: [
-        ShopService
-    ]
-})
+        SpinnerComponent], providers: [
+        ShopService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class ShopModule { }

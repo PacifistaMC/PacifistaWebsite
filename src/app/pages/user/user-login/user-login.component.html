@@ -30,6 +30,15 @@
                 ></app-input-secret>
             </div>
 
+            <div class="col-md-12">
+                <app-input-checkbox
+                        [label]="'Rester connecté'"
+                        [id]="'rememberMeCheckbox'"
+                        [checked]="stayLogin"
+                        (onChange)="stayLogin = $event"
+                ></app-input-checkbox>
+            </div>
+
             <div class="col-md-3">
                 <app-send-button
                         [loading]="loading"
