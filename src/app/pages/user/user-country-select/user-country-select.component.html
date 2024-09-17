@@ -1,0 +1,50 @@
+<div class="container-search-user-country">
+    <app-input-text
+            [label]="'Pays'"
+            [placeholder]="'Sélectionnez votre pays'"
+            [id]="'country-input'"
+            [text]="selectedCountry?.name ?? ''"
+            [required]="required"
+            [formSent]="formSent"
+            [inputErrors]="inputErrors"
+            (textChange)="searchCountries($event)"
+    ></app-input-text>
+
+    <div *ngIf="selectedCountry" class="pt-2">
+        <button
+                class="btn btn-danger pl-2 me-2"
+                (click)="clearSelection()"
+        ><i class="bi bi-x-circle-fill"></i></button>
+        <span><img ngSrc="/assets/img/user/countries/flags.svg#{{ selectedCountry.countryCode3Chars }}" alt="Drapeau : {{ selectedCountry.name }}" width="24" height="16" class="me-2"></span>
+        <strong>{{ selectedCountry.name }}</strong>
+    </div>
+
+    <div *ngIf="doneSearching" #resultsContainer class="position-absolute results-container">
+        <div class="card" *ngIf="resultSearch.length > 0; else noResults">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="list-group list-group-flush">
+                            <button
+                                    *ngFor="let country of resultSearch"
+                                    type="button"
+                                    class="list-group-item list-group-item-action"
+                                    (click)="onSelectCountry(country)">
+                                <img ngSrc="/assets/img/user/countries/flags.svg#{{ country.countryCode3Chars }}" alt="Drapeau : {{ country.name }}" width="24" height="16">
+                                 {{ country.name }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <ng-template #noResults>
+            <div class="card">
+                <div class="card-body">
+                    <p class="text-center">Aucun résultat</p>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

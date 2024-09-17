@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {UserRoutingModule} from './user-routing.module';
 import {UserComponent} from './user.component';
@@ -38,6 +38,7 @@ import {MinecraftCommandComponent} from "../../components/minecraft-command/mine
 import {
     UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
+import {UserCountrySelectComponent} from "./user-country-select/user-country-select.component";
 
 @NgModule({ declarations: [
         UserComponent,
@@ -47,6 +48,7 @@ import {
         UserForgotPasswordComponent,
         UserForgotPasswordChangeComponent,
         UserAccountInfosComponent,
+        UserCountrySelectComponent,
         UserAccountIntegrationsComponent,
         UserAccountInvoicesComponent,
         UserAccountInfosPersonalDataComponent,
@@ -63,7 +65,7 @@ import {
         InputSecretComponent,
         InputCheckboxComponent,
         MinecraftHeadComponent,
-        MinecraftCommandComponent], providers: [
+        MinecraftCommandComponent, NgOptimizedImage], providers: [
         {
             provide: RECAPTCHA_V3_SITE_KEY,
             useValue: environment.reCaptchaSiteKey,

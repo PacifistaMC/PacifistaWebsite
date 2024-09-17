@@ -3,6 +3,7 @@ import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
+  ErrorDto,
   FunixprodHttpClient,
   UserAuthService,
   UserLoginDTO,
@@ -71,7 +72,7 @@ export class UserLoginComponent extends PacifistaPage {
             this.notificationService.error('Une erreur est survenue lors de la connexion');
           }
         },
-        error: err => {
+        error: (err: ErrorDto) => {
           this.formSent = true;
           this.loading = false;
 
@@ -87,8 +88,8 @@ export class UserLoginComponent extends PacifistaPage {
           }
 
           if (this.usernameErrors.length === 0 && this.passwordErrors.length === 0) {
-            this.usernameErrors.push('Identifiants incorrects.');
-            this.passwordErrors.push('Identifiants incorrects.');
+            this.usernameErrors.push(err.error);
+            this.passwordErrors.push(err.error);
           }
 
           this.notificationService.onErrorRequest(err);
