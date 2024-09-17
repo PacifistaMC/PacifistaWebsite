@@ -39,6 +39,9 @@ import {
     UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 import {UserCountrySelectComponent} from "./user-country-select/user-country-select.component";
+import {
+    PacifistaSearchPlayerInputComponent
+} from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 
 @NgModule({ declarations: [
         UserComponent,
@@ -65,7 +68,7 @@ import {UserCountrySelectComponent} from "./user-country-select/user-country-sel
         InputSecretComponent,
         InputCheckboxComponent,
         MinecraftHeadComponent,
-        MinecraftCommandComponent, NgOptimizedImage], providers: [
+        MinecraftCommandComponent, NgOptimizedImage, PacifistaSearchPlayerInputComponent], providers: [
         {
             provide: RECAPTCHA_V3_SITE_KEY,
             useValue: environment.reCaptchaSiteKey,
