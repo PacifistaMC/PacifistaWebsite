@@ -6,7 +6,6 @@ import {
   UserDTO,
   UserUpdateAccountDto
 } from "@funixproductions/funixproductions-requests";
-import {Country} from "@angular-material-extensions/select-country";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../../../../environments/environment";
@@ -28,7 +27,6 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
   emailErrors: string[] = []
 
   country?: UserCountry
-  currentCountry?: Country
   countryErrors: string[] = []
 
   formSent: boolean = false
@@ -43,22 +41,6 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
     this.username = this.user?.username ?? ''
     this.email = this.user?.email ?? ''
     this.country = this.user?.country ?? new UserCountry()
-
-    this.currentCountry = new class implements Country {
-      alpha2Code: string;
-      alpha3Code: string;
-      callingCode: string;
-      name: string;
-      numericCode: string;
-
-      constructor(country: UserCountry) {
-        this.alpha2Code = country.countryCode2Chars
-        this.alpha3Code = country.countryCode3Chars
-        this.name = country.name
-        this.numericCode = country.code.toString()
-        this.callingCode = ''
-      }
-    }(this.country)
   }
 
   updateAccount() {
@@ -106,24 +88,8 @@ export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
     })
   }
 
-  onCountryChange(event?: Country) {
-    if (!event || !event.name || !event.alpha2Code || !event.alpha3Code || !event.numericCode) {
-      return;
-    }
-    this.currentCountry = event
-
-    const country = new UserCountry();
-    country.name = event.name;
-    country.countryCode2Chars = event.alpha2Code;
-    country.countryCode3Chars = event.alpha3Code;
-    const numeric = parseInt(event.numericCode);
-    if (!isNaN(numeric)) {
-      country.code = numeric;
-    } else {
-      return;
-    }
-
-    this.country = country;
+  onCountryChange(event?: UserCountry) {
+    this.country = event;
   }
 
 }

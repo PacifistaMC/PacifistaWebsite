@@ -2,9 +2,9 @@ import {AfterViewInit, Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import ShopService from "../shop-service";
 import {
-  ErrorDto,
-  PacifistaPaymentResponseDTO,
-  PacifistaPaymentService
+    ErrorDto,
+    PacifistaPaymentResponseDTO,
+    PacifistaPaymentService
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";

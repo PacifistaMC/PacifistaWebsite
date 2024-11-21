@@ -1,8 +1,8 @@
 import {Component} from '@angular/core';
 import {
-  PacifistaPaymentRequestDTO,
-  PacifistaPaymentService,
-  PacifistaShopCreditCardDTO
+    PacifistaPaymentRequestDTO,
+    PacifistaPaymentService,
+    PacifistaShopCreditCardDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";

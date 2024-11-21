@@ -6,7 +6,7 @@ import {UserAuthService, UserPasswordResetRequestDTO} from "@funixproductions/fu
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import NotificationService from "../../../services/notifications/services/NotificationService";
-import {ReCaptchaV3Service} from "ng-recaptcha";
+import {ReCaptchaV3Service} from "ng-recaptcha-2";
 
 @Component({
   selector: 'app-user-forgot-password',

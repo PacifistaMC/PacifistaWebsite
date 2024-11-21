@@ -12,6 +12,7 @@ import {
 } from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 import {VoteUserWebsiteComponent} from "./components/vote-user/vote-user-website/vote-user-website.component";
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
+import {SpinnerComponent} from "../../components/spinner/spinner.component";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-
         VoteRoutingModule,
         NgOptimizedImage,
         PacifistaSearchPlayerInputComponent,
-        MinecraftHeadComponent
+        MinecraftHeadComponent,
+        SpinnerComponent
     ]
 })
 export class VoteModule { }

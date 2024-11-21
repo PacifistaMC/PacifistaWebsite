@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -12,7 +12,7 @@ import {
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {DOCUMENT} from "@angular/common";
 
 @Component({
   selector: 'app-news-page',
@@ -26,20 +26,17 @@ export class NewsPageComponent extends PacifistaPage {
   protected override pageDescription: string = 'Découvrez la news de Pacifista !';
 
   protected news?: PacifistaNewsDTO;
-  protected readonly newsService: PacifistaNewsService;
 
   constructor(private notificationService: NotificationService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
-              @Inject(PLATFORM_ID) private platfomId: Object,
-              httpClient: HttpClient,
+              private httpClient: HttpClient,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document) {
     super(titleService, doc);
-    this.newsService = new PacifistaNewsService(httpClient, environment.production);
+  }
 
-    if (!isPlatformBrowser(this.platfomId)) return;
-
+  protected override onPageInit() {
     this.activatedRoute.params.subscribe(params => {
       const newsName = params['newsName'];
 
@@ -50,7 +47,7 @@ export class NewsPageComponent extends PacifistaPage {
         query.value = newsName;
         queryBuilder.addParam(query);
 
-        this.newsService.find(new PageOption(), queryBuilder).subscribe({
+        new PacifistaNewsService(this.httpClient, environment.production).find(new PageOption(), queryBuilder).subscribe({
           next: (news) => {
             if (news.content.length > 0) {
               this.news = news.content[0];
@@ -60,7 +57,8 @@ export class NewsPageComponent extends PacifistaPage {
               this.pageDescription = this.news.subtitle || this.pageDescription;
               this.pageImage = this.news.articleImageUrl || this.pageImage;
             } else {
-              this.notificationService.error("La news n'existe pas.");
+              this.notificationService.error(`La news ${newsName} n'existe pas.`);
+              this.router.navigate(['/news']);
             }
           },
           error: (error) => {
@@ -70,5 +68,4 @@ export class NewsPageComponent extends PacifistaPage {
       }
     });
   }
-
 }

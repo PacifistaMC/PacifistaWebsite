@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {Router} from "@angular/router";
-import {ReCaptchaV3Service} from "ng-recaptcha";
+import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {ErrorDto, UserAuthService, UserCountry, UserCreationDTO} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
@@ -8,7 +8,6 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {DOCUMENT} from "@angular/common";
-import {Country} from "@angular-material-extensions/select-country";
 
 @Component({
   selector: 'app-user-register',
@@ -125,23 +124,8 @@ export class UserRegisterComponent extends PacifistaPage {
     });
   }
 
-  onCountryChange(event?: Country) {
-    if (!event || !event.name || !event.alpha2Code || !event.alpha3Code || !event.numericCode) {
-      return;
-    }
-
-    const country = new UserCountry();
-    country.name = event.name;
-    country.countryCode2Chars = event.alpha2Code;
-    country.countryCode3Chars = event.alpha3Code;
-    const numeric = parseInt(event.numericCode);
-    if (!isNaN(numeric)) {
-      country.code = numeric;
-    } else {
-      return;
-    }
-
-    this.country = country;
+  onCountryChange(event?: UserCountry) {
+    this.country = event;
   }
 
 }

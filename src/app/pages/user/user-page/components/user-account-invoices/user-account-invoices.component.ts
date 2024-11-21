@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {
-  FunixprodBillingDto,
-  FunixprodBillingService,
-  PageOption,
-  PaymentType,
-  QueryBuilder,
-  UserDTO
+    FunixprodBillingDto,
+    FunixprodBillingService,
+    PageOption,
+    PaymentType,
+    QueryBuilder,
+    UserDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";

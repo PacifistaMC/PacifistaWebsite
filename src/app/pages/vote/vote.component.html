@@ -9,7 +9,16 @@
     <div class="row justify-content-around">
         <div class="col-md-8 pb-3">
             <div class="bg-dark p-3 rounded-3">
-                <h2>Sélection du site de vote</h2>
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-md-6">
+                        <h2>Sélection du site de vote</h2>
+                    </div>
+                    <div class="col-md-3">
+                        <a [routerLink]="['/vote']" fragment="vote-faq" class="btn btn-outline-info">
+                            Un problème ?
+                        </a>
+                    </div>
+                </div>
 
                 <app-vote-user></app-vote-user>
             </div>
@@ -39,15 +48,46 @@
 
     <hr>
 
-    <div>
+    <section id="vote-faq">
         <h2>Comment fonctionne le vote ?</h2>
-        <p>
-            Pour voter, il suffit de choisir son pseudo, choisir ensuite parmi les sites de vote disponibles et voter sur le site choisi.<br/>
-            Une fois le vote effectué, vous recevrez une récompense en jeu, une box vote, qui contient des items et une possibilité de gagner des box payantes.<br/>
-            Le système se base sur votre adresse IP pour voter, si vous avez plusieurs adresses IP, vous pouvez voter plusieurs fois. Exemple une connexion 4G et une Wifi.
-            Si vous êtes à plusieurs sur la même connexion vous ne pourrez voter que pour un seul compte Minecraft.<br/>
-            Les votes sont réinitialisés tous les mois, le classement est remis à zéro et les récompenses sont réinitialisées.
-        </p>
-    </div>
+        <ul class="list-group">
+            <li class="list-group-item">Pour voter, il suffit de vous connecter sur le site, choisir ensuite parmi les sites de vote disponibles et voter sur le site choisi.</li>
+            <li class="list-group-item">Une fois le vote effectué, vous recevrez une récompense en jeu, une box vote, qui contient des items et une possibilité de gagner des box payantes.</li>
+            <li class="list-group-item">Le système se base sur votre adresse IP pour voter.</li>
+            <li class="list-group-item">Si vous êtes à plusieurs sur la même connexion vous ne pourrez voter que pour un seul compte Minecraft.</li>
+            <li class="list-group-item">Le classement des votes sont réinitialisés tous les mois, le classement est remis à zéro et les récompenses sont réinitialisées.</li>
+        </ul>
+
+        <h2 class="pt-2">Mon vote ne marche pas, que faire ?</h2>
+        <p>Les sites de votes ne prennent pas en charge les nouvelles addresses ip (les ipv6). Vous devez donc désactiver les ipv6 sur votre ordinateur.</p>
+        <p>Si vous votez avec un téléphone, il se peut que les votes ne fonctionnent pas bien en 4G à cause des ipv6.</p>
+
+        <h3>Désactiver les ipv6 sur Windows</h3>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Cliquez sur le bouton Démarrer et tapez "Panneau de configuration".</li>
+            <li class="list-group-item">Sélectionnez Panneau de configuration dans les résultats.</li>
+            <li class="list-group-item">Allez dans Réseau et Internet.</li>
+            <li class="list-group-item">Ensuite, sélectionnez Centre Réseau et partage.</li>
+            <li class="list-group-item">Dans le menu de gauche, cliquez sur Modifier les paramètres de la carte.</li>
+            <li class="list-group-item">Faites un clic droit sur l'adaptateur réseau que vous utilisez (par exemple, Ethernet ou Wi-Fi).</li>
+            <li class="list-group-item">Sélectionnez Propriétés dans le menu contextuel.</li>
+            <li class="list-group-item">Dans la liste des éléments, décochez la case à côté de Protocole Internet version 6 (TCP/IPv6).</li>
+            <li class="list-group-item">Cliquez sur OK pour enregistrer les modifications.</li>
+            <li class="list-group-item">Redémarrer votre PC pour que les changements prennent effet.</li>
+        </ol>
+
+        <h3 class="pt-2">Désactiver les ipv6 sur MacOS</h3>
+        <ol class="list-group list-group-numbered">
+            <li class="list-group-item">Cliquez sur le logo Apple en haut à gauche de votre écran.</li>
+            <li class="list-group-item">Sélectionnez Préférences Système.</li>
+            <li class="list-group-item">Cliquez sur Réseau.</li>
+            <li class="list-group-item">Dans la barre latérale, sélectionnez l'interface réseau que vous utilisez (par exemple, Wi-Fi ou Ethernet).</li>
+            <li class="list-group-item">Dans la barre latérale, sélectionnez l'interface réseau que vous utilisez (par exemple, Wi-Fi ou Ethernet) et cliquez sur détails.</li>
+            <li class="list-group-item">Allez dans l'onglet TCP/IP.</li>
+            <li class="list-group-item">À côté de "Configurer IPv6", sélectionnez Manuellement ou Désactivé dans le menu déroulant.</li>
+            <li class="list-group-item">Cliquez sur OK, puis sur Appliquer dans la fenêtre précédente pour enregistrer les paramètres.</li>
+            <li class="list-group-item">Redémarrer votre Mac si nécessaire pour que les modifications prennent effet.</li>
+        </ol>
+    </section>
 
 </div>

@@ -1,17 +1,16 @@
 import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
+import {CommonModule, NgOptimizedImage} from '@angular/common';
 
 import {UserRoutingModule} from './user-routing.module';
 import {UserComponent} from './user.component';
 import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {UserLoginComponent} from "./user-login/user-login.component";
-import {HttpClientModule} from "@angular/common/http";
+import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
-import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha";
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha-2";
 import {environment} from "../../../environments/environment";
 import {UserForgotPasswordComponent} from './user-forgot-password/user-forgot-password.component';
-import {MatSelectCountryModule} from "@angular-material-extensions/select-country";
 import {InputEmailComponent} from "../../components/inputs/input-email/input-email.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
@@ -39,9 +38,12 @@ import {MinecraftCommandComponent} from "../../components/minecraft-command/mine
 import {
     UserAccountIntegrationsMinecraftAccountCreateNewComponent
 } from "./user-page/components/user-account-integrations/components/user-account-integrations-minecraft-acccount/user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
+import {UserCountrySelectComponent} from "./user-country-select/user-country-select.component";
+import {
+    PacifistaSearchPlayerInputComponent
+} from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 
-@NgModule({
-    declarations: [
+@NgModule({ declarations: [
         UserComponent,
         UserRegisterComponent,
         UserPageComponent,
@@ -49,18 +51,15 @@ import {
         UserForgotPasswordComponent,
         UserForgotPasswordChangeComponent,
         UserAccountInfosComponent,
+        UserCountrySelectComponent,
         UserAccountIntegrationsComponent,
         UserAccountInvoicesComponent,
         UserAccountInfosPersonalDataComponent,
         UserAccountInfosPasswordChangeComponent,
         UserAccountIntegrationsMinecraftAccountComponent,
         UserAccountIntegrationsMinecraftAccountCreateNewComponent
-    ],
-    imports: [
-        CommonModule,
+    ], imports: [CommonModule,
         UserRoutingModule,
-        MatSelectCountryModule.forRoot('fr'),
-        HttpClientModule,
         FormsModule,
         RecaptchaV3Module,
         InputEmailComponent,
@@ -69,13 +68,11 @@ import {
         InputSecretComponent,
         InputCheckboxComponent,
         MinecraftHeadComponent,
-        MinecraftCommandComponent
-    ],
-    providers: [
+        MinecraftCommandComponent, NgOptimizedImage, PacifistaSearchPlayerInputComponent], providers: [
         {
             provide: RECAPTCHA_V3_SITE_KEY,
             useValue: environment.reCaptchaSiteKey,
         },
-    ],
-})
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class UserModule { }
