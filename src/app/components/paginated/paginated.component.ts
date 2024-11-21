@@ -8,7 +8,7 @@ import {
     QueryBuilder,
     QueryParam
 } from "@funixproductions/funixproductions-requests";
-import NotificationService from "../notifications/services/NotificationService";
+import NotificationService from "../../services/notifications/services/NotificationService";
 import {
     Directive,
     ElementRef,
@@ -22,6 +22,7 @@ import {
 } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
+import {$$deepEqual} from "@jsonjoy.com/util/lib/json-equal/$$deepEqual";
 
 export type SortDirection = 'asc' | 'desc' | '';
 
@@ -65,6 +66,8 @@ export class NgbdSearchableHeader implements OnInit {
 
         this.search.emit(param);
     }
+
+    protected readonly $$deepEqual = $$deepEqual;
 }
 
 @Directive({
@@ -72,8 +75,7 @@ export class NgbdSearchableHeader implements OnInit {
     standalone: true,
     host: {
         '[class.asc]': 'direction === "asc"',
-        '[class.desc]': 'direction === "desc"',
-        '(click)': 'rotate()',
+        '[class.desc]': 'direction === "desc"'
     },
 })
 export class NgbdSortableHeader implements OnInit {
@@ -83,7 +85,13 @@ export class NgbdSortableHeader implements OnInit {
 
     private spanIcon?: HTMLElement;
 
-    constructor(private renderer: Renderer2, private el: ElementRef) {}
+    constructor(private renderer: Renderer2, private el: ElementRef) {
+        this.renderer.listen(this.el.nativeElement, 'click', (event: Event) => {
+            if ((event.target as HTMLElement).tagName !== 'INPUT') {
+                this.rotate();
+            }
+        });
+    }
 
     ngOnInit(): void {
         this.spanIcon = this.renderer.createElement('span');
@@ -174,7 +182,6 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
             pageOption.page = 0
         }
 
-        this.list = []
         this.client.find(pageOption, this.queryBuilder).subscribe({
             next: pageDTO => {
                 this.list = pageDTO.content
@@ -192,15 +199,11 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
                                       callback: (data: PacifistaPlayerDataDTO[]) => void): void {
         const queryBuilder = new QueryBuilder()
 
-        idsList.forEach(id => {
-            const queryParam = new QueryParam()
-
-            queryParam.key = "minecraftUuid"
-            queryParam.value = id
-            queryParam.type = QueryBuilder.equal
-
-            queryBuilder.addParam(queryParam)
-        })
+        const queryParam = new QueryParam()
+        queryParam.key = "minecraftUuid"
+        queryParam.value = idsList
+        queryParam.type = QueryBuilder.equal
+        queryBuilder.addParam(queryParam)
 
         this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
             next: pageDTO => {

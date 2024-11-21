@@ -1,0 +1,17 @@
+<label [for]="id" class="form-label">{{ label }}</label>
+<input
+        type="file"
+        class="form-control"
+        [(ngModel)]="file"
+        [id]="id"
+        [value]="file"
+        [required]="required"
+        (change)="onFileChange($event)"
+        [ngClass]="{
+                'is-invalid': formSent && inputErrors.length > 0,
+                'is-valid': formSent && inputErrors.length === 0
+             }"
+>
+<div *ngFor="let error of inputErrors" class="invalid-feedback">
+    {{ error }}
+</div>

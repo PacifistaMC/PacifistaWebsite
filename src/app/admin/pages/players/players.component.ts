@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {PaginatedComponent} from "../../../services/paginated/paginated.component";
+import {PaginatedComponent} from "../../../components/paginated/paginated.component";
 import {PacifistaPlayerDataDTO, PacifistaPlayerDataService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";

@@ -13,11 +13,14 @@ const routes: Routes = [
             {
                 path: 'players',
                 loadChildren: () => import('./pages/players/players.module').then(m => m.PlayersModule)
+            },
+            {
+                path: 'news',
+                loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule)
             }
         ]
     }
 ];
-
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

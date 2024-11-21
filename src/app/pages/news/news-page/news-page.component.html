@@ -4,13 +4,22 @@
             <h1>News : {{ news.title }}</h1>
             <h3>{{ news.subtitle }}</h3>
             <br/>
-            <p>Rédigé par {{ news.originalWriter }} le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</p>
+            <p>
+                Rédigé par {{ news.originalWriter }} le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}
+            </p>
         </div>
 
-        <img src="{{ news.articleImageUrl }}" loading="lazy" class="img-fluid" alt="Illustrative de la news {{ news.name }}">
+        <img
+                ngSrc="{{ this.newsImageFullQualityUrl }}"
+                [loading]="'lazy'"
+                class="img-fluid"
+                alt="Illustration de la news {{ news.name }}"
+                width="1920"
+                height="1080"
+        >
     </section>
 
     <section class="pt-5">
-        <div [innerHTML]="news.body"></div>
+        <div [innerHTML]="news.bodyHtml"></div>
     </section>
 </div>

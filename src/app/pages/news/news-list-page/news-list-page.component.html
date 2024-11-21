@@ -1,9 +1,9 @@
-<div class="container p-4">
+<div class="container p-4" #newsContainer (scroll)="onScroll($event)">
     <h1>News</h1>
-
+    <h2>Bienvenue sur la page des news de Pacifista !</h2>
     <p>
-        Voici les news du serveur Minecraft Pacifista.<br/>
-        Vous pouvez aussi les retrouver sur notre <a href="https://x.com/pacifista_mc"><i class="bi bi-twitter-x"></i> Twitter</a>.
+        Vous trouverez ici toutes les actualités du serveur, des événements, des annonces, mises à jour et des informations importantes.<br/>
+        Ne manquez aucune actualité de Pacifista en consultant régulièrement cette page.
     </p>
     <h3>
         {{ totalNews }} news au total
@@ -18,15 +18,7 @@
         <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
     </ng-template>
 
-    <div *ngIf="newsList.length < totalNews; else noMoreNews" class="text-center">
-        <button class="btn pacifista-btn" (click)="pageUpNews()">
-            <i *ngIf="loading; else notLoading" class="bi bi-arrow-clockwise"></i>
-            <ng-template #notLoading>Charger plus de news</ng-template>
-        </button>
+    <div *ngIf="newsList.length >= totalNews" class="text-center">
+        <p>Fin de liste</p>
     </div>
-    <ng-template #noMoreNews>
-        <div class="text-center">
-            <p>Fin de liste</p>
-        </div>
-    </ng-template>
 </div>

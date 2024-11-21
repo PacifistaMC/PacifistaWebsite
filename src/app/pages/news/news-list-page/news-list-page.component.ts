@@ -1,12 +1,7 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
-import {
-    PacifistaNewsDTO,
-    PacifistaNewsService,
-    PageOption,
-    QueryBuilder
-} from "@funixproductions/funixproductions-requests";
+import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -21,55 +16,60 @@ export class NewsListPageComponent extends PacifistaPage {
 
   protected override title: string = 'News';
   protected override canonicalPath: string = 'news'
-  protected override pageDescription: string = 'Toutes les news de Pacifista, events, mises à jour et annonces. Le serveur Minecraft français survie créatif !';
+  protected override pageDescription: string = 'Pacifista : Découvrez toutes les news du serveur Minecraft !';
 
   protected newsList: PacifistaNewsDTO[] = [];
-  protected pageOption: PageOption = new PageOption();
-  protected queryBuilder: QueryBuilder = new QueryBuilder();
-  protected totalNews: number = 0;
-  protected loading: boolean = true;
 
-  private newsService: PacifistaNewsService;
+  protected totalNews: number = 0;
+  protected page: number = 0;
+  protected maxPages: number = 1;
+  protected loading: boolean = false;
+
+  private readonly newsService: PacifistaNewsService;
+
+  @ViewChild('newsContainer') scrollDiv!: ElementRef;
 
   constructor(private notificationService: NotificationService,
-              @Inject(PLATFORM_ID) private platfomId: Object,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document,
               httpClient: HttpClient) {
     super(titleService, doc);
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
-
-    this.pageOption.elemsPerPage = 10;
-    this.pageOption.page = 0;
-    this.pageOption.sort = 'createdAt:desc';
   }
-
 
   protected override onPageInit() {
     this.loadNews();
   }
 
-  pageUpNews(): void {
-    if (!this.loading) {
-      this.loadNews(this.pageOption.page + 1);
+  onScroll(event: Event) {
+    const target = event.target as HTMLElement;
+
+    if (target.scrollTop + target.clientHeight >= target.scrollHeight) {
+      this.pageUpNews();
     }
   }
 
-  private loadNews(page: number = 0): void {
-    this.loading = true;
-    this.pageOption.page = page;
+  private pageUpNews(): void {
+    if (!this.loading && this.page < this.maxPages) {
+      this.page++;
+      this.loadNews();
+    }
+  }
 
-    this.newsService.find(this.pageOption, this.queryBuilder).subscribe({
+  private loadNews(): void {
+    this.loading = true;
+
+    this.newsService.getAllNews(this.page, false).subscribe({
       next: (newsList) => {
-        this.totalNews = newsList.totalElementsDatabase;
         this.newsList.push(...newsList.content);
+        this.totalNews = newsList.totalElementsDatabase;
+        this.maxPages = newsList.totalPages;
+        this.loading = false;
       },
       error: (err) => {
         this.notificationService.onErrorRequest(err);
-      },
-      complete: () => {
         this.loading = false;
-      }
+      },
     });
   }
 

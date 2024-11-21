@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
-import {PaginatedComponent} from "../../../../services/paginated/paginated.component";
+import {PaginatedComponent} from "../../../../components/paginated/paginated.component";
 import {
-  PacifistaPlayerDataDTO,
-  PacifistaSanctionDTO,
-  PacifistaSanctionService
+    PacifistaPlayerDataDTO,
+    PacifistaSanctionDTO,
+    PacifistaSanctionService
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";

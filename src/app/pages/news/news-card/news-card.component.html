@@ -1,5 +1,5 @@
 <div class="card bg-dark text-white" style="width: 18rem;">
-    <img src="{{ news.articleImageUrl }}" class="card-img-top" alt="Pacifista News image {{ news.name }}">
+    <img src="{{ getArticleImageUrl() }}" class="card-img-top" alt="Pacifista News image {{ news.name }}">
     <div class="card-body">
         <h3 class="card-title">{{ news.title }}</h3>
         <p class="card-text">{{ news.subtitle }}</p>
@@ -19,11 +19,15 @@
             <div class="col">
                 <div class="row">
                     <div class="col-6">
-                        <i class="bi bi-hand-thumbs-up-fill"></i><span> {{ news.likesAmount || 0 }}</span>
+                        <i class="bi bi-eye-fill"></i><span> {{ news.views }}</span>
+                    </div>
+
+                    <div class="col-6">
+                        <i class="bi bi-hand-thumbs-up-fill"></i><span> {{ news.likes }}</span>
                     </div>
 
                     <div class="col-5">
-                        <i class="bi bi-chat-text-fill"></i><span> {{ news.commentsAmount || 0 }}</span>
+                        <i class="bi bi-chat-text-fill"></i><span> {{ news.comments }}</span>
                     </div>
                 </div>
             </div>
@@ -32,4 +36,5 @@
                 Lire
             </a>
         </div>
+    </div>
 </div>

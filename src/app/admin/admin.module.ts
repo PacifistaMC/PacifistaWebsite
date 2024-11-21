@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {HttpClientModule} from "@angular/common/http";
 import {AdminRoutingModule} from "./admin-routing.module";
 import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.component";
 import {AdminNavbarComponent} from "./components/admin-navbar/admin-navbar.component";
@@ -16,7 +15,6 @@ import {AdminNavbarLinkComponent} from "./components/admin-navbar/admin-navbar-l
     ],
     imports: [
         CommonModule,
-        HttpClientModule,
         AdminRoutingModule
     ]
 })

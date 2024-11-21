@@ -1,0 +1,65 @@
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">Auteur</th>
+        <th scope="col">Modifié par</th>
+        <th scope="col">Nom Unique</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Sous-titre</th>
+        <th scope="col">Brouillon</th>
+        <th scope="col">Vues</th>
+        <th scope="col">Likes</th>
+        <th scope="col">Commentaires</th>
+        <th scope="col">Crée le</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @for (news of list; track news.originalWriter) {
+            <tr>
+                <td>
+                    <minecraft-head
+                            [username]="news.originalWriter"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ news.originalWriter }}</span>
+                </td>
+                <!--<td *ngIf="news.updateWriter; else noUpdateWriter">
+                    <minecraft-head
+                            [username]="news.originalWriter"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ news.originalWriter }}</span>
+                </td>-->
+                <ng-container #noUpdateWriter>
+                    <td>-</td>
+                </ng-container>
+                <td>{{ news.name }}</td>
+                <td>{{ news.title }}</td>
+                <td>{{ news.subtitle }}</td>
+                <td>{{ news.draft ? 'Oui' : 'Non' }}</td>
+                <td>{{ news.views }}</td>
+                <td>{{ news.likes }}</td>
+                <td>{{ news.comments }}</td>
+                <td>{{ news.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                <td>
+                    <a href="/admin/news/{{ news.name }}" class="btn btn-primary btn-sm">
+                        <span class="bi bi-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+            [collectionSize]="allElemsDatabase"
+            [(page)]="page"
+            [pageSize]="maxElemsPerPage"
+            (pageChange)="updateList()"
+            [maxSize]="7"
+    >
+    </ngb-pagination>
+</div>
