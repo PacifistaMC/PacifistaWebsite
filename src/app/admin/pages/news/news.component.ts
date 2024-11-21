@@ -6,10 +6,9 @@ import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 
 @Component({
-    selector: 'app-news',
-    templateUrl: './news.component.html',
-    styleUrl: './news.component.scss',
-    standalone: false
+  selector: 'app-news',
+  templateUrl: './news.component.html',
+  styleUrl: './news.component.scss'
 })
 export class NewsComponent extends PaginatedComponent<PacifistaNewsDTO, DummyNewsCrudClient> {
 

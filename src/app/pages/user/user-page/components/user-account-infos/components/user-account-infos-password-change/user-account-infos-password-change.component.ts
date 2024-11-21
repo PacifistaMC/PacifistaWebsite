@@ -5,10 +5,9 @@ import NotificationService from "../../../../../../../services/notifications/ser
 import {environment} from "../../../../../../../../environments/environment";
 
 @Component({
-    selector: 'app-user-account-infos-password-change',
-    templateUrl: './user-account-infos-password-change.component.html',
-    styleUrl: './user-account-infos-password-change.component.scss',
-    standalone: false
+  selector: 'app-user-account-infos-password-change',
+  templateUrl: './user-account-infos-password-change.component.html',
+  styleUrl: './user-account-infos-password-change.component.scss'
 })
 export class UserAccountInfosPasswordChangeComponent {
 

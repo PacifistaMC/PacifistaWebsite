@@ -7,10 +7,9 @@ import ShopService from "./shop-service";
 import {ShopArticlesComponent} from "./components/shop-articles/shop-articles.component";
 
 @Component({
-    selector: 'app-shop',
-    templateUrl: './shop.component.html',
-    styleUrls: ['./shop.component.scss'],
-    standalone: false
+  selector: 'app-shop',
+  templateUrl: './shop.component.html',
+  styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent extends PacifistaPage {
 

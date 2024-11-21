@@ -5,10 +5,9 @@ import {DOCUMENT} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-    selector: 'app-vote-page',
-    templateUrl: './vote.component.html',
-    styleUrls: ['./vote.component.scss'],
-    standalone: false
+  selector: 'app-vote-page',
+  templateUrl: './vote.component.html',
+  styleUrls: ['./vote.component.scss']
 })
 export class VoteComponent extends PacifistaPage {
 

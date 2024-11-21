@@ -11,10 +11,9 @@ import NotificationService from "../../../../services/notifications/services/Not
 import {Router} from "@angular/router";
 
 @Component({
-    selector: 'app-shop-payment-credit-card',
-    templateUrl: './shop-payment-credit-card.component.html',
-    styleUrl: './shop-payment-credit-card.component.scss',
-    standalone: false
+  selector: 'app-shop-payment-credit-card',
+  templateUrl: './shop-payment-credit-card.component.html',
+  styleUrl: './shop-payment-credit-card.component.scss'
 })
 export class ShopPaymentCreditCardComponent {
 

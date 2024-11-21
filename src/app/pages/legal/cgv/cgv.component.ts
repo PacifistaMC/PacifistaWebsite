@@ -4,10 +4,9 @@ import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-    selector: 'app-cgv',
-    templateUrl: './cgv.component.html',
-    styleUrls: ['./cgv.component.scss'],
-    standalone: false
+  selector: 'app-cgv',
+  templateUrl: './cgv.component.html',
+  styleUrls: ['./cgv.component.scss']
 })
 export class CgvComponent extends PacifistaPage {
 

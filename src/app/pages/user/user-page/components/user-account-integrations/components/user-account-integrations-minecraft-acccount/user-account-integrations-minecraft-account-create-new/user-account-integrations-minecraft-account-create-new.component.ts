@@ -11,10 +11,9 @@ import NotificationService from "../../../../../../../../services/notifications/
 import {environment} from "../../../../../../../../../environments/environment";
 
 @Component({
-    selector: 'app-user-account-integrations-minecraft-account-create-new',
-    templateUrl: './user-account-integrations-minecraft-account-create-new.component.html',
-    styleUrl: './user-account-integrations-minecraft-account-create-new.component.scss',
-    standalone: false
+  selector: 'app-user-account-integrations-minecraft-account-create-new',
+  templateUrl: './user-account-integrations-minecraft-account-create-new.component.html',
+  styleUrl: './user-account-integrations-minecraft-account-create-new.component.scss'
 })
 export class UserAccountIntegrationsMinecraftAccountCreateNewComponent {
 

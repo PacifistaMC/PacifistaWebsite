@@ -1,19 +1,18 @@
 import {Component} from '@angular/core';
 import {PaginatedComponent} from "../../../../components/paginated/paginated.component";
 import {
-  PacifistaPlayerDataDTO,
-  PacifistaSanctionDTO,
-  PacifistaSanctionService
+    PacifistaPlayerDataDTO,
+    PacifistaSanctionDTO,
+    PacifistaSanctionService
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-    selector: 'app-players-sanctions',
-    templateUrl: './players-sanctions.component.html',
-    styleUrl: './players-sanctions.component.scss',
-    standalone: false
+  selector: 'app-players-sanctions',
+  templateUrl: './players-sanctions.component.html',
+  styleUrl: './players-sanctions.component.scss'
 })
 export class PlayersSanctionsComponent extends PaginatedComponent<PacifistaSanctionDTO, PacifistaSanctionService> {
 

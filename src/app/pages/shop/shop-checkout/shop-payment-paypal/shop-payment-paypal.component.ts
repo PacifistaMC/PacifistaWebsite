@@ -6,10 +6,9 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-    selector: 'app-shop-payment-paypal',
-    templateUrl: './shop-payment-paypal.component.html',
-    styleUrl: './shop-payment-paypal.component.scss',
-    standalone: false
+  selector: 'app-shop-payment-paypal',
+  templateUrl: './shop-payment-paypal.component.html',
+  styleUrl: './shop-payment-paypal.component.scss'
 })
 export class ShopPaymentPaypalComponent {
 

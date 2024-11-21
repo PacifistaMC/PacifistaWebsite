@@ -4,10 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-    selector: 'app-vote-top-classement',
-    templateUrl: './vote-top-classement.component.html',
-    styleUrl: './vote-top-classement.component.scss',
-    standalone: false
+  selector: 'app-vote-top-classement',
+  templateUrl: './vote-top-classement.component.html',
+  styleUrl: './vote-top-classement.component.scss'
 })
 export class VoteTopClassementComponent implements AfterViewInit {
 

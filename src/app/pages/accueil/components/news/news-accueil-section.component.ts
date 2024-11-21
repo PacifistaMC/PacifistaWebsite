@@ -4,10 +4,9 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-    selector: 'news-section',
-    templateUrl: './news-accueil-section.component.html',
-    styleUrls: ['./news-accueil-section.component.scss'],
-    standalone: false
+  selector: 'news-section',
+  templateUrl: './news-accueil-section.component.html',
+  styleUrls: ['./news-accueil-section.component.scss']
 })
 export class NewsAccueilSectionComponent implements OnInit {
 

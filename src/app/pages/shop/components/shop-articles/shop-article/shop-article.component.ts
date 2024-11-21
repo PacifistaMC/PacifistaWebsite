@@ -6,10 +6,9 @@ import ShopCart from "../../../ShopCart";
 import ShopService from '../../../shop-service';
 
 @Component({
-    selector: 'app-shop-article',
-    templateUrl: './shop-article.component.html',
-    styleUrls: ['./shop-article.component.scss'],
-    standalone: false
+  selector: 'app-shop-article',
+  templateUrl: './shop-article.component.html',
+  styleUrls: ['./shop-article.component.scss']
 })
 export class ShopArticleComponent {
 

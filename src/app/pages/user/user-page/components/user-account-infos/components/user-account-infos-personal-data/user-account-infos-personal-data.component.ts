@@ -1,20 +1,19 @@
 import {AfterViewInit, Component, Input} from '@angular/core';
 import {
-    ErrorDto,
-    UserAuthService,
-    UserCountry,
-    UserDTO,
-    UserUpdateAccountDto
+  ErrorDto,
+  UserAuthService,
+  UserCountry,
+  UserDTO,
+  UserUpdateAccountDto
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../../../../environments/environment";
 
 @Component({
-    selector: 'app-user-account-infos-personal-data',
-    templateUrl: './user-account-infos-personal-data.component.html',
-    styleUrl: './user-account-infos-personal-data.component.scss',
-    standalone: false
+  selector: 'app-user-account-infos-personal-data',
+  templateUrl: './user-account-infos-personal-data.component.html',
+  styleUrl: './user-account-infos-personal-data.component.scss'
 })
 export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
 

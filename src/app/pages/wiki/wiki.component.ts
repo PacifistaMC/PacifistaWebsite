@@ -4,10 +4,9 @@ import {Title} from "@angular/platform-browser";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-    selector: 'app-wiki',
-    templateUrl: './wiki.component.html',
-    styleUrls: ['./wiki.component.scss'],
-    standalone: false
+  selector: 'app-wiki',
+  templateUrl: './wiki.component.html',
+  styleUrls: ['./wiki.component.scss']
 })
 export class WikiComponent extends PacifistaPage {
 

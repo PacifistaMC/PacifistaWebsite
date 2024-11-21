@@ -9,10 +9,9 @@ import NotificationService from "../../../services/notifications/services/Notifi
 import {ReCaptchaV3Service} from "ng-recaptcha-2";
 
 @Component({
-    selector: 'app-user-forgot-password',
-    templateUrl: './user-forgot-password.component.html',
-    styleUrls: ['./user-forgot-password.component.scss'],
-    standalone: false
+  selector: 'app-user-forgot-password',
+  templateUrl: './user-forgot-password.component.html',
+  styleUrls: ['./user-forgot-password.component.scss']
 })
 export class UserForgotPasswordComponent extends PacifistaPage {
 

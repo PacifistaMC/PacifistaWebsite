@@ -4,10 +4,9 @@ import {PacifistaServerInfoService} from "@funixproductions/funixproductions-req
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-    selector: 'welcome-section',
-    templateUrl: './welcome-accueil-section.component.html',
-    styleUrls: ['./welcome-accueil-section.component.scss'],
-    standalone: false
+  selector: 'welcome-section',
+  templateUrl: './welcome-accueil-section.component.html',
+  styleUrls: ['./welcome-accueil-section.component.scss']
 })
 export class WelcomeAccueilSectionComponent implements AfterViewInit {
 

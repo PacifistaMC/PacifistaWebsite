@@ -4,10 +4,9 @@ import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
-    selector: 'app-pacifistaplus-modal',
-    templateUrl: './pacifistaplus-modal.component.html',
-    styleUrl: './pacifistaplus-modal.component.scss',
-    standalone: false
+  selector: 'app-pacifistaplus-modal',
+  templateUrl: './pacifistaplus-modal.component.html',
+  styleUrl: './pacifistaplus-modal.component.scss'
 })
 export class PacifistaplusModalComponent {
 

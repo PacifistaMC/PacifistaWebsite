@@ -4,10 +4,9 @@ import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-    selector: 'app-accueil',
-    templateUrl: './accueil.component.html',
-    styleUrls: ['./accueil.component.scss'],
-    standalone: false
+  selector: 'app-accueil',
+  templateUrl: './accueil.component.html',
+  styleUrls: ['./accueil.component.scss']
 })
 export class AccueilComponent extends PacifistaPage {
 

@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
-    selector: 'app-base-wiki',
-    templateUrl: './base-wiki.component.html',
-    styleUrls: ['./base-wiki.component.scss'],
-    standalone: false
+  selector: 'app-base-wiki',
+  templateUrl: './base-wiki.component.html',
+  styleUrls: ['./base-wiki.component.scss']
 })
 export class BaseWikiComponent {
 

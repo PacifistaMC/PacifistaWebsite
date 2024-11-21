@@ -3,15 +3,16 @@ import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-    selector: 'app-input-number',
-    imports: [
-        NgForOf,
-        ReactiveFormsModule,
-        FormsModule,
-        NgClass
-    ],
-    templateUrl: './input-number.component.html',
-    styleUrl: './input-number.component.scss'
+  selector: 'app-input-number',
+  standalone: true,
+  imports: [
+    NgForOf,
+    ReactiveFormsModule,
+    FormsModule,
+    NgClass
+  ],
+  templateUrl: './input-number.component.html',
+  styleUrl: './input-number.component.scss'
 })
 export class InputNumberComponent {
   @Input() label: string = 'Number';

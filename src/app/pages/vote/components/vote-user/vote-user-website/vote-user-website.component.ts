@@ -6,10 +6,9 @@ import NotificationService from "../../../../../services/notifications/services/
 import {interval, takeWhile} from "rxjs";
 
 @Component({
-    selector: 'app-vote-user-website',
-    templateUrl: './vote-user-website.component.html',
-    styleUrl: './vote-user-website.component.scss',
-    standalone: false
+  selector: 'app-vote-user-website',
+  templateUrl: './vote-user-website.component.html',
+  styleUrl: './vote-user-website.component.scss'
 })
 export class VoteUserWebsiteComponent implements OnInit {
 

@@ -3,11 +3,11 @@ import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {
-    ErrorDto,
-    FunixprodHttpClient,
-    UserAuthService,
-    UserLoginDTO,
-    UserTokenDTO
+  ErrorDto,
+  FunixprodHttpClient,
+  UserAuthService,
+  UserLoginDTO,
+  UserTokenDTO
 } from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
@@ -16,10 +16,9 @@ import {environment} from "../../../../environments/environment";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-    selector: 'app-user-login',
-    templateUrl: './user-login.component.html',
-    styleUrls: ['./user-login.component.scss'],
-    standalone: false
+  selector: 'app-user-login',
+  templateUrl: './user-login.component.html',
+  styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent extends PacifistaPage {
 

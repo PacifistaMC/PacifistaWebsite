@@ -3,14 +3,15 @@ import {FormsModule} from "@angular/forms";
 import {NgClass, NgForOf} from "@angular/common";
 
 @Component({
-    selector: 'app-input-checkbox',
-    imports: [
-        FormsModule,
-        NgForOf,
-        NgClass
-    ],
-    templateUrl: './input-checkbox.component.html',
-    styleUrl: './input-checkbox.component.scss'
+  selector: 'app-input-checkbox',
+  standalone: true,
+  imports: [
+    FormsModule,
+    NgForOf,
+    NgClass
+  ],
+  templateUrl: './input-checkbox.component.html',
+  styleUrl: './input-checkbox.component.scss'
 })
 export class InputCheckboxComponent {
   @Input() label: string = 'Text';

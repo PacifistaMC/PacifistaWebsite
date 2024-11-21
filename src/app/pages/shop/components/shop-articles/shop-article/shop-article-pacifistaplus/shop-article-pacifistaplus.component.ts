@@ -15,10 +15,9 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {PacifistaplusModalComponent} from "./pacifistaplus-modal/pacifistaplus-modal.component";
 
 @Component({
-    selector: 'app-shop-article-pacifistaplus',
-    templateUrl: './shop-article-pacifistaplus.component.html',
-    styleUrl: './shop-article-pacifistaplus.component.scss',
-    standalone: false
+  selector: 'app-shop-article-pacifistaplus',
+  templateUrl: './shop-article-pacifistaplus.component.html',
+  styleUrl: './shop-article-pacifistaplus.component.scss'
 })
 export class ShopArticlePacifistaplusComponent {
 

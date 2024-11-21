@@ -1,10 +1,9 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-    selector: 'app-wiki-card',
-    templateUrl: './wiki-card.component.html',
-    styleUrls: ['./wiki-card.component.scss'],
-    standalone: false
+  selector: 'app-wiki-card',
+  templateUrl: './wiki-card.component.html',
+  styleUrls: ['./wiki-card.component.scss']
 })
 export class WikiCardComponent {
 

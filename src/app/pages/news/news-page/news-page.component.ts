@@ -10,10 +10,9 @@ import {DOCUMENT} from "@angular/common";
 import NewsService from "../NewsService";
 
 @Component({
-    selector: 'app-news-page',
-    templateUrl: './news-page.component.html',
-    styleUrls: ['./news-page.component.scss'],
-    standalone: false
+  selector: 'app-news-page',
+  templateUrl: './news-page.component.html',
+  styleUrls: ['./news-page.component.scss']
 })
 export class NewsPageComponent extends PacifistaPage {
 

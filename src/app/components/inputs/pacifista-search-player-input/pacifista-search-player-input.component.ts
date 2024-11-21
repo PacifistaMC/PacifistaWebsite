@@ -1,11 +1,11 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
 import {
-    ErrorDto,
-    PacifistaPlayerDataDTO,
-    PacifistaPlayerDataService,
-    PageOption,
-    QueryBuilder,
-    QueryParam
+  ErrorDto,
+  PacifistaPlayerDataDTO,
+  PacifistaPlayerDataService,
+  PageOption,
+  QueryBuilder,
+  QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -14,15 +14,16 @@ import {NgForOf, NgIf} from "@angular/common";
 import {MinecraftHeadComponent} from "../../minecraft-head/minecraft-head.component";
 
 @Component({
-    selector: 'pacifista-search-player-input',
-    imports: [
-        InputTextComponent,
-        NgIf,
-        NgForOf,
-        MinecraftHeadComponent
-    ],
-    templateUrl: './pacifista-search-player-input.component.html',
-    styleUrl: './pacifista-search-player-input.component.scss'
+  selector: 'pacifista-search-player-input',
+  standalone: true,
+  imports: [
+    InputTextComponent,
+    NgIf,
+    NgForOf,
+    MinecraftHeadComponent
+  ],
+  templateUrl: './pacifista-search-player-input.component.html',
+  styleUrl: './pacifista-search-player-input.component.scss'
 })
 export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
 

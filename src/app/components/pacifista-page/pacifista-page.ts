@@ -1,10 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {Title} from "@angular/platform-browser";
 
-@Component({
-    template: '',
-    standalone: false
-})
+@Component({ template: ''})
 export abstract class PacifistaPage implements OnInit {
 
   protected title: string = '';

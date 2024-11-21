@@ -10,10 +10,9 @@ import NotificationService from "../../../services/notifications/services/Notifi
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-    selector: 'app-user-register',
-    templateUrl: './user-register.component.html',
-    styleUrls: ['./user-register.component.scss'],
-    standalone: false
+  selector: 'app-user-register',
+  templateUrl: './user-register.component.html',
+  styleUrls: ['./user-register.component.scss']
 })
 export class UserRegisterComponent extends PacifistaPage {
 

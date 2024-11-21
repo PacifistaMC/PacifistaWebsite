@@ -3,15 +3,16 @@ import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-    selector: 'input-file',
-    imports: [
-        NgForOf,
-        ReactiveFormsModule,
-        FormsModule,
-        NgClass
-    ],
-    templateUrl: './input-file.component.html',
-    styleUrl: './input-file.component.scss'
+  selector: 'input-file',
+  standalone: true,
+  imports: [
+    NgForOf,
+    ReactiveFormsModule,
+    FormsModule,
+    NgClass
+  ],
+  templateUrl: './input-file.component.html',
+  styleUrl: './input-file.component.scss'
 })
 export class InputFileComponent {
 
