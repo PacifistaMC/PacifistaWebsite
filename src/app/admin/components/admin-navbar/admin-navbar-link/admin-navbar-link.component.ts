@@ -1,9 +1,10 @@
 import {Component, Input} from '@angular/core';
 
 @Component({
-  selector: 'admin-navbar-link',
-  templateUrl: './admin-navbar-link.component.html',
-  styleUrl: './admin-navbar-link.component.scss'
+    selector: 'admin-navbar-link',
+    templateUrl: './admin-navbar-link.component.html',
+    styleUrl: './admin-navbar-link.component.scss',
+    standalone: false
 })
 export class AdminNavbarLinkComponent {
 

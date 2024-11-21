@@ -14,9 +14,10 @@ import {
 } from "./user-account-integrations-minecraft-account-create-new/user-account-integrations-minecraft-account-create-new.component";
 
 @Component({
-  selector: 'app-user-account-integrations-minecraft-acccount',
-  templateUrl: './user-account-integrations-minecraft-account.component.html',
-  styleUrl: './user-account-integrations-minecraft-account.component.scss'
+    selector: 'app-user-account-integrations-minecraft-acccount',
+    templateUrl: './user-account-integrations-minecraft-account.component.html',
+    styleUrl: './user-account-integrations-minecraft-account.component.scss',
+    standalone: false
 })
 export class UserAccountIntegrationsMinecraftAccountComponent implements AfterViewInit {
 

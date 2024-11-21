@@ -8,7 +8,8 @@ import NotificationService from "../../../services/notifications/services/Notifi
 @Component({
     selector: 'app-players',
     templateUrl: './players.component.html',
-    styleUrl: './players.component.scss'
+    styleUrl: './players.component.scss',
+    standalone: false
 })
 export class PlayersComponent extends PaginatedComponent<PacifistaPlayerDataDTO, PacifistaPlayerDataService> {
 

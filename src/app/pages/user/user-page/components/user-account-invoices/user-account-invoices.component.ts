@@ -12,9 +12,10 @@ import {environment} from "../../../../../../environments/environment";
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 
 @Component({
-  selector: 'app-user-account-invoices',
-  templateUrl: './user-account-invoices.component.html',
-  styleUrl: './user-account-invoices.component.scss'
+    selector: 'app-user-account-invoices',
+    templateUrl: './user-account-invoices.component.html',
+    styleUrl: './user-account-invoices.component.scss',
+    standalone: false
 })
 export class UserAccountInvoicesComponent implements AfterViewInit {
 

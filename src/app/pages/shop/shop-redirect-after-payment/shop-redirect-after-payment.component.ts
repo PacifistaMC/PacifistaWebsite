@@ -12,9 +12,10 @@ import NotificationService from "../../../services/notifications/services/Notifi
 import {isPlatformBrowser} from "@angular/common";
 
 @Component({
-  selector: 'app-shop-redirect-after-payment',
-  templateUrl: './shop-redirect-after-payment.component.html',
-  styleUrl: './shop-redirect-after-payment.component.scss'
+    selector: 'app-shop-redirect-after-payment',
+    templateUrl: './shop-redirect-after-payment.component.html',
+    styleUrl: './shop-redirect-after-payment.component.scss',
+    standalone: false
 })
 export class ShopRedirectAfterPaymentComponent implements AfterViewInit {
 

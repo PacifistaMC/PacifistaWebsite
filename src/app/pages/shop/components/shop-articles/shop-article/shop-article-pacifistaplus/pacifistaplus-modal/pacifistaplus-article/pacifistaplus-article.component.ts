@@ -4,9 +4,10 @@ import ShopService from 'src/app/pages/shop/shop-service';
 import ShopCart from "../../../../../../ShopCart";
 
 @Component({
-  selector: 'app-pacifistaplus-article',
-  templateUrl: './pacifistaplus-article.component.html',
-  styleUrl: './pacifistaplus-article.component.scss'
+    selector: 'app-pacifistaplus-article',
+    templateUrl: './pacifistaplus-article.component.html',
+    styleUrl: './pacifistaplus-article.component.scss',
+    standalone: false
 })
 export class PacifistaplusArticleComponent implements AfterViewInit {
 

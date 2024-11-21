@@ -2,9 +2,10 @@ import {Component, OnDestroy} from '@angular/core';
 import NotificationService from "./services/notifications/services/NotificationService";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnDestroy {
   title = 'pacifista-website';

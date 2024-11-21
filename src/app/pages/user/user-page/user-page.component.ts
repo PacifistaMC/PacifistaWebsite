@@ -9,9 +9,10 @@ import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 
 @Component({
-  selector: 'app-user-page',
-  templateUrl: './user-page.component.html',
-  styleUrls: ['./user-page.component.scss']
+    selector: 'app-user-page',
+    templateUrl: './user-page.component.html',
+    styleUrls: ['./user-page.component.scss'],
+    standalone: false
 })
 export class UserPageComponent extends PacifistaPage {
 
