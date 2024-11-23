@@ -63,7 +63,7 @@ export class NewsHandlerPageComponent implements OnInit {
       }
 
       if (newsName !== 'create') {
-        this.newsService.getNewsByName(newsName, false).subscribe({
+        this.newsService.getNewsByName(newsName, true).subscribe({
           next: (news) => {
             this.name = news.name;
             this.title = news.title;
