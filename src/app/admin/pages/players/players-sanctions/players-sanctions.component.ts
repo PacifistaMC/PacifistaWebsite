@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {PaginatedComponent} from "../../../../components/paginated/paginated.component";
 import {
-    PacifistaPlayerDataDTO,
-    PacifistaSanctionDTO,
-    PacifistaSanctionService
+  PacifistaPlayerDataDTO,
+  PacifistaSanctionDTO,
+  PacifistaSanctionService,
+  QueryBuilder,
+  QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
@@ -41,6 +43,49 @@ export class PlayersSanctionsComponent extends PaginatedComponent<PacifistaSanct
   getUsernameFromId(id: string): string | undefined {
     const data = this.playerData.find((data) => data.minecraftUuid === id);
     return data ? data.minecraftUsername : undefined;
+  }
+
+  searchByUserName(username: QueryParam, staffSearch: boolean = false) {
+    const usernameGet: string | string[] = username.value ?? '';
+
+    if (typeof usernameGet === 'string') {
+      if (usernameGet.length === 0) {
+        const query = new QueryParam();
+        query.type = QueryBuilder.equal;
+        if (staffSearch) {
+          query.key = 'playerActionUuid';
+        } else {
+          query.key = 'playerSanctionUuid';
+        }
+        query.value = '';
+
+        super.search(query);
+        return;
+      }
+
+      super.findPlayerDataFromUsername(usernameGet, true, (data) => {
+        let idsList: string[] = [];
+        data.forEach((player) => {
+          idsList.push(player.minecraftUuid);
+        });
+
+        const query = new QueryParam();
+        query.type = QueryBuilder.equal;
+        if (staffSearch) {
+          query.key = 'playerActionUuid';
+        } else {
+          query.key = 'playerSanctionUuid';
+        }
+
+        if (idsList.length === 0) {
+            query.value = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+            super.search(query);
+        } else {
+          query.value = idsList;
+          super.search(query);
+        }
+      });
+    }
   }
 
 }

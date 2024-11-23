@@ -215,4 +215,23 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         })
     }
 
+    protected findPlayerDataFromUsername(username: string, startWith: boolean = true, callback: (data: PacifistaPlayerDataDTO[]) => void) {
+        const queryBuilder = new QueryBuilder()
+
+        const queryParam = new QueryParam()
+        queryParam.key = "minecraftUsername"
+        queryParam.value = username
+        queryParam.type = startWith ? QueryBuilder.startWithIgnoreCase : QueryBuilder.equal
+        queryBuilder.addParam(queryParam)
+
+        this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
+            next: pageDTO => {
+                callback(pageDTO.content)
+            },
+            error: (err: ErrorDto) => {
+                this.notificationService.onErrorRequest(err)
+            }
+        })
+    }
+
 }

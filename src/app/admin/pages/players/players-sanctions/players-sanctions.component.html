@@ -1,10 +1,10 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th scope="col" searchable="sanctionnedUsername" (search)="search($event)">Joueur</th>
+            <th scope="col" searchable="sanctionnedUsername" (search)="searchByUserName($event)">Joueur</th>
             <th scope="col">Raison</th>
             <th scope="col" searchable="sanctionType" (search)="search($event)">Type</th>
-            <th scope="col" searchable="sanctionUsername" (search)="search($event)">Sanction par</th>
+            <th scope="col" searchable="sanctionUsername" (search)="searchByUserName($event, true)">Sanction par</th>
             <th scope="col" sortable="expirationDate" (sort)="onSort($event)">Expire le</th>
             <th scope="col" sortable="createdAt" (sort)="onSort($event)">Date de création</th>
             <th scope="col">Actions</th>
