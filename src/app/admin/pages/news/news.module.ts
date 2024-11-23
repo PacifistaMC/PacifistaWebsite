@@ -11,11 +11,13 @@ import {InputCheckboxComponent} from "../../../components/inputs/input-checkbox/
 import {InputFileComponent} from "../../../components/inputs/input-file/input-file.component";
 import {FormsModule} from "@angular/forms";
 import {SendButtonComponent} from "../../../components/buttons/send-button/send-button.component";
+import {NewsBansListComponent} from "./news-bans-list/news-bans-list.component";
 
 @NgModule({
   declarations: [
     NewsComponent,
-    NewsHandlerPageComponent
+    NewsHandlerPageComponent,
+    NewsBansListComponent
   ],
   imports: [
     CommonModule,
