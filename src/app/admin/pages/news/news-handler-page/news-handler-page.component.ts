@@ -151,9 +151,11 @@ export class NewsHandlerPageComponent implements OnInit {
   private createNews() {
     if (!this.articleImage) {
       this.notificationService.error('Vous devez ajouter une image à votre article.');
+      this.loading = false;
       return;
     } else if (this.articleImage.type.split('/')[0] !== 'image') {
       this.notificationService.error('Le fichier que vous avez ajouté n\'est pas une image.');
+      this.loading = false;
       return;
     }
 
