@@ -1,0 +1,22 @@
+<h3>Commentaires ({{ totalComments }})</h3>
+
+<div class="pt-2">
+    <app-news-reply-input
+            (onCommentPosted)="onCommentPosted($event)"
+    ></app-news-reply-input>
+</div>
+
+<div *ngIf="!initialLoadingComments">
+    <div class="pt-2" *ngIf="totalComments > 0; else noComments">
+        <div *ngFor="let comment of comments" class="row">
+            <app-news-comment-row
+                    [comment]="comment"
+                    (onCommentDeleted)="onCommentDeleted(comment)"
+            ></app-news-comment-row>
+        </div>
+    </div>
+
+    <ng-template #noComments>
+        <p class="pt-2">Aucun commentaire pour le moment. Postez-en un pour lancer la discussion !</p>
+    </ng-template>
+</div>

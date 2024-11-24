@@ -1,11 +1,22 @@
 <div *ngIf="news" class="container">
     <section class="header-news">
-        <div class="text-center p-5">
+        <div class="text-center pt-3 pb-3">
             <h1>News : {{ news.title }}</h1>
-            <h3>{{ news.subtitle }}</h3>
-            <br/>
+            <h2>{{ news.subtitle }}</h2>
+            <hr class="ms-5 me-5"/>
+            <h3>
+                Rédigée par
+                <minecraft-head
+                        [username]="news.originalWriter"
+                        [size]="20"
+                ></minecraft-head>
+                {{ news.originalWriter }}
+                le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}
+            </h3>
             <p>
-                Rédigé par {{ news.originalWriter }} le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}
+                {{ news.views }} <i class="bi bi-eye-fill"></i>
+                {{ news.comments }} <i class="bi bi-chat-dots-fill"></i>
+                {{ news.likes }} <i class="bi bi-hand-thumbs-up-fill"></i>
             </p>
         </div>
 
@@ -19,7 +30,15 @@
         >
     </section>
 
-    <section class="pt-5">
+    <hr class="ms-5 me-5 mt-3"/>
+
+    <section>
         <div [innerHTML]="news.bodyHtml"></div>
+    </section>
+
+    <hr class="ms-5 me-5 mt-3"/>
+
+    <section>
+        <app-news-comments-section [news]="news"></app-news-comments-section>
     </section>
 </div>
