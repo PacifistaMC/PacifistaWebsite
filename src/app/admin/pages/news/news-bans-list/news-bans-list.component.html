@@ -1,0 +1,55 @@
+<table class="table table-stripped">
+    <thead>
+    <tr>
+        <th scope="col">Pseudo</th>
+        <th scope="col">Banni par</th>
+        <th scope="col">Raison</th>
+        <th scope="col">Crée le</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @for (ban of list; track ban.minecraftUserNameBanned) {
+            <tr>
+                <td>
+                    <minecraft-head
+                            [username]="ban.minecraftUserNameBanned"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ ban.minecraftUserNameBanned }}</span>
+                </td>
+                <td>
+                    <minecraft-head
+                            [username]="ban.staffMinecraftUserName"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ ban.staffMinecraftUserName }}</span>
+                </td>
+                <td>{{ ban.reason }}</td>
+                <td>{{ ban.createdAt | date: 'dd/MM/yyyy HH:mm' }}</td>
+                <td>
+                    <app-send-button
+                            [label]="''"
+                            [labelLoading]="''"
+                            [labelIcon]="'trash'"
+                            [classBtn]="'btn-danger'"
+                            (onClick)="onRemoveBanClick(ban)"
+                            [loading]="loadingRemoveBan"
+                    ></app-send-button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+            [collectionSize]="allElemsDatabase"
+            [(page)]="page"
+            [pageSize]="maxElemsPerPage"
+            (pageChange)="updateList()"
+            [maxSize]="30"
+    >
+    </ngb-pagination>
+</div>

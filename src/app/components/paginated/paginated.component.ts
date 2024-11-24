@@ -127,8 +127,8 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
     private queryBuilder: QueryBuilder
 
     protected readonly maxElemsPerPage: number = 30
-    private readonly client: CLIENT
-    private readonly notificationService: NotificationService
+    protected readonly client: CLIENT
+    protected readonly notificationService: NotificationService
     private readonly pacifistaPlayerDataService: PacifistaPlayerDataService
 
     @ViewChildren(NgbdSortableHeader) headers?: QueryList<NgbdSortableHeader>;
@@ -141,6 +141,14 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.list = []
         this.queryBuilder = new QueryBuilder()
         this.pacifistaPlayerDataService = new PacifistaPlayerDataService(httpClient, environment.production)
+    }
+
+    protected removeDtoFromList(dto: DTO): void {
+        const index = this.list.indexOf(dto)
+
+        if (index !== -1) {
+            this.list.splice(index, 1)
+        }
     }
 
     protected onSort({ column, direction }: SortEvent): void {

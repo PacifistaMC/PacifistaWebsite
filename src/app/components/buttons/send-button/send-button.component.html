@@ -3,5 +3,8 @@
     <span role="status"> {{ labelLoading }}</span>
 </button>
 <ng-template #ready>
-    <button type="button" class="btn {{ classBtn }}" (click)="click()">{{ label }}</button>
+    <button type="button" class="btn {{ classBtn }}" (click)="click()">
+        <span *ngIf="labelIcon.length > 0" class="bi bi-{{ labelIcon }}"></span>
+        {{ label }}
+    </button>
 </ng-template>

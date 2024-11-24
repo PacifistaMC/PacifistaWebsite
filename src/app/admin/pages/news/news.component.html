@@ -25,16 +25,16 @@
                     ></minecraft-head>
                     <span> {{ news.originalWriter }}</span>
                 </td>
-                <!--<td *ngIf="news.updateWriter; else noUpdateWriter">
+                <td *ngIf="news.updateWriter; else noUpdateWriter">
                     <minecraft-head
                             [username]="news.originalWriter"
                             [size]="20"
                     ></minecraft-head>
                     <span> {{ news.originalWriter }}</span>
-                </td>-->
-                <ng-container #noUpdateWriter>
+                </td>
+                <ng-template #noUpdateWriter>
                     <td>-</td>
-                </ng-container>
+                </ng-template>
                 <td>{{ news.name }}</td>
                 <td>{{ news.title }}</td>
                 <td>{{ news.subtitle }}</td>
@@ -59,7 +59,7 @@
             [(page)]="page"
             [pageSize]="maxElemsPerPage"
             (pageChange)="updateList()"
-            [maxSize]="7"
+            [maxSize]="20"
     >
     </ngb-pagination>
 </div>
