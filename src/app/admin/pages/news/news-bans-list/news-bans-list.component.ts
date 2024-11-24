@@ -4,6 +4,8 @@ import {PacifistaNewsBanDTO, PacifistaNewsBanService} from "@funixproductions/fu
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../environments/environment";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NewsBansConfirmDeleteComponent} from "./news-bans-confirm-delete/news-bans-confirm-delete.component";
 
 @Component({
   selector: 'app-news-bans-list',
@@ -12,29 +14,20 @@ import {environment} from "../../../../../environments/environment";
 })
 export class NewsBansListComponent extends PaginatedComponent<PacifistaNewsBanDTO, PacifistaNewsBanService> {
 
-  loadingRemoveBan = false;
-
   constructor(httpClient: HttpClient,
-              notificationService: NotificationService) {
+              notificationService: NotificationService,
+              private modalService: NgbModal) {
     super(new PacifistaNewsBanService(httpClient, environment.production), httpClient, notificationService);
   }
 
   onRemoveBanClick(ban: PacifistaNewsBanDTO) {
-    this.loadingRemoveBan = true;
+    const modalRef = this.modalService.open(NewsBansConfirmDeleteComponent, {
+      centered: true,
+      size: 'lg'
+    });
 
-    if (ban.id) {
-      this.client.delete(ban.id).subscribe({
-        next: () => {
-          this.loadingRemoveBan = false;
-          this.notificationService.info('Le ban a bien été supprimé');
-          this.removeDtoFromList(ban);
-        },
-        error: () => {
-          this.loadingRemoveBan = false;
-          this.notificationService.error('Une erreur est survenue lors de la suppression du ban');
-        }
-      });
-    }
+    modalRef.componentInstance.ban = ban;
+    modalRef.componentInstance.parent = this;
   }
 
 }

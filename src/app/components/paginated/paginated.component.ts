@@ -143,7 +143,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.pacifistaPlayerDataService = new PacifistaPlayerDataService(httpClient, environment.production)
     }
 
-    protected removeDtoFromList(dto: DTO): void {
+    public removeDtoFromList(dto: DTO): void {
         const index = this.list.indexOf(dto)
 
         if (index !== -1) {

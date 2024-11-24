@@ -1,0 +1,28 @@
+<div class="card bg-dark">
+    <div class="card-body">
+        <h2 class="card-title">Suppression d'un ban</h2>
+        <h3 class="card-subtitle mb-2 price-container">
+            Voulez vous supprimer le ban de
+            <minecraft-head [username]="ban?.minecraftUserNameBanned ?? ''" [size]="20"></minecraft-head>
+            <span> {{ ban?.minecraftUserNameBanned ?? '' }}</span> ?
+        </h3>
+        <hr>
+        <div class="card-text">
+            Si vous supprimez ce ban, le joueur pourra de nouveau poster des commentaires sur le site.
+        </div>
+
+        <div class="row justify-content-around">
+            <app-send-button
+                    [label]="'Supprimer'"
+                    [labelLoading]="'Suppression...'"
+                    [labelIcon]="'trash'"
+                    [classBtn]="'btn-danger'"
+                    [loading]="loadingRemoveBan"
+                    (onClick)="onRemoveBanClick()"
+            ></app-send-button>
+            <button class="col col-md-3 btn btn-danger" (click)="activeModal.close('Close click')">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>

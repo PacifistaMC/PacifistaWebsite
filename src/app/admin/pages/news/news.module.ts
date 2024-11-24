@@ -12,12 +12,16 @@ import {InputFileComponent} from "../../../components/inputs/input-file/input-fi
 import {FormsModule} from "@angular/forms";
 import {SendButtonComponent} from "../../../components/buttons/send-button/send-button.component";
 import {NewsBansListComponent} from "./news-bans-list/news-bans-list.component";
+import {
+  NewsBansConfirmDeleteComponent
+} from "./news-bans-list/news-bans-confirm-delete/news-bans-confirm-delete.component";
 
 @NgModule({
   declarations: [
     NewsComponent,
     NewsHandlerPageComponent,
-    NewsBansListComponent
+    NewsBansListComponent,
+    NewsBansConfirmDeleteComponent
   ],
   imports: [
     CommonModule,
