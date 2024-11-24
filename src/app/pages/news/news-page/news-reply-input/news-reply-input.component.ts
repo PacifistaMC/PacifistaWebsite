@@ -50,6 +50,7 @@ export class NewsReplyInputComponent implements AfterViewInit {
 
     if (this.parentComment && this.parentComment.parent) {
       this.content = `@${this.parentComment.minecraftUsername} `;
+      this.parentComment = this.parentComment.parent;
     }
   }
 
@@ -86,15 +87,10 @@ export class NewsReplyInputComponent implements AfterViewInit {
         }
       })
     } else {
-      let parent: PacifistaNewsCommentDTO | undefined = undefined;
-      if (this.parentComment && !this.parentComment.parent) {
-        parent = this.parentComment;
-      }
-
       this.commentsService.createComment(new PacifistaNewsCommentDTO(
           this.news,
           this.content,
-          parent
+          this.parentComment
       )).subscribe({
         next: (comment) => {
           this.loading = false;

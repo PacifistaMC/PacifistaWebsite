@@ -11,6 +11,7 @@ import {NewsCommentRowComponent} from "./news-page/news-comment-row/news-comment
 import {NewsReplyInputComponent} from "./news-page/news-reply-input/news-reply-input.component";
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
+import {SpinnerComponent} from "../../components/spinner/spinner.component";
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import {SendButtonComponent} from "../../components/buttons/send-button/send-but
         NgOptimizedImage,
         MinecraftHeadComponent,
         InputTextComponent,
-        SendButtonComponent
+        SendButtonComponent,
+        SpinnerComponent
     ],
     providers: [
         NewsService

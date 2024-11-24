@@ -1,6 +1,6 @@
 <h3>Commentaires ({{ totalComments }})</h3>
 
-<div class="pt-2 pb-4">
+<div class="pt-2">
     <app-news-reply-input
             [news]="news"
             (onRequestDone)="onCommentPosted($event)"
@@ -9,12 +9,13 @@
 
 <div *ngIf="!initialLoadingComments">
     <div class="pt-2" *ngIf="totalComments > 0; else noComments">
-        <app-news-comment-row
-                *ngFor="let comment of comments"
-                [comment]="comment"
-                (onCommentDeleted)="onCommentDeleted(comment)"
-                (onCommentPosted)="totalComments = totalComments + 1"
-        ></app-news-comment-row>
+        <div *ngFor="let comment of comments" class="pt-4">
+            <app-news-comment-row
+                    [comment]="comment"
+                    (onCommentDeleted)="onCommentDeleted(comment)"
+                    (onCommentPosted)="totalComments = totalComments + 1"
+            ></app-news-comment-row>
+        </div>
     </div>
 
     <ng-template #noComments>

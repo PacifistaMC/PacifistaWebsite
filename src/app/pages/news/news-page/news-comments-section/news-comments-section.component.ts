@@ -34,6 +34,7 @@ export class NewsCommentsSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.totalComments = this.news.comments;
     this.loadComments();
   }
 
@@ -69,7 +70,6 @@ export class NewsCommentsSectionComponent implements OnInit {
     this.loadingComments = true;
     this.commentsService.getCommentsByNewsId(this.news.id, this.page, false).subscribe({
       next: (comments) => {
-        this.totalComments = comments.totalElementsDatabase;
         this.maxPages = comments.totalPages;
         this.commentsLoaded += comments.totalElementsThisPage
         this.comments.push(...comments.content);
