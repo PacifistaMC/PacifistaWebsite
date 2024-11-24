@@ -1,1 +1,63 @@
-<p>news-comment-row works!</p>
+<div class="row align-items-center justify-content-start">
+    <div class="col col-md-1">
+        <minecraft-head [username]="comment.minecraftUsername" [size]="40"></minecraft-head>
+    </div>
+
+    <div class="col col-md-8">
+        <span class="username-comment">{{ '@' + comment.minecraftUsername }}</span>
+        <span class="date-comment"> {{ comment.createdAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+
+        <div class="content-comment">
+            {{ comment.content }}
+        </div>
+
+        <div class="pt-2 row align-items-center justify-content-start">
+            <div class="col col-md-2">
+                <app-send-button
+                        [label]="''"
+                        [labelLoading]="''"
+                        [classBtn]="'btn-dark btn-sm'"
+                        [labelIcon]="hasLikedComment ? 'hand-thumbs-up-fill' : 'hand-thumbs-up'"
+                        [loading]="loadingRequestLike"
+                        (onClick)="likeActionComment()"
+                ></app-send-button>
+                <span class="ps-2 count-likes">{{ comment.likes }}</span>
+            </div>
+            <div class="col col-md-4">
+                <app-send-button
+                        [label]="'Répondre'"
+                        [labelLoading]="''"
+                        [classBtn]="'btn-dark btn-sm'"
+                        (onClick)="showReplyInput = !showReplyInput"
+                ></app-send-button>
+            </div>
+        </div>
+
+        <div class="pt-2" *ngIf="showReplyInput">
+            <app-news-reply-input
+                    [news]="comment.news"
+                    [parentComment]="comment"
+                    (onRequestDone)="addNewReply($event)"
+            ></app-news-reply-input>
+        </div>
+
+        <div *ngIf="!comment.parent && repliesTotal > 0" class="pt-2">
+            <app-send-button
+                    [label]="repliesTotal + ' Réponse' + (repliesTotal > 1 ? 's' : '')"
+                    [labelLoading]="''"
+                    [labelIcon]="showReplies ? 'chevron-up' : 'chevron-down'"
+                    [classBtn]="'btn-dark btn-sm'"
+                    (onClick)="showReplies = !showReplies"
+            ></app-send-button>
+
+            <div *ngIf="showReplies">
+                <app-news-comment-row
+                        *ngFor="let reply of replies"
+                        [comment]="reply"
+                        (onCommentDeleted)="onCommentDeleted.emit()"
+                        (onCommentPosted)="addNewReply($event)"
+                ></app-news-comment-row>
+            </div>
+        </div>
+    </div>
+</div>

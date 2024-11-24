@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgClass, NgForOf} from "@angular/common";
+import {NgClass, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 @Component({
@@ -8,7 +8,8 @@ import {FormsModule} from "@angular/forms";
   imports: [
     NgForOf,
     FormsModule,
-    NgClass
+    NgClass,
+    NgIf
   ],
   templateUrl: './input-text.component.html',
   styleUrl: './input-text.component.scss'
@@ -20,6 +21,7 @@ export class InputTextComponent {
   @Input() text: string = '';
   @Input() required: boolean = true;
   @Input() formSent: boolean = false;
+  @Input() disabled: boolean = false;
   @Input() inputErrors: string[] = [];
   @Output() textChange = new EventEmitter<string>();
 

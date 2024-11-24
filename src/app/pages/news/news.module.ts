@@ -9,6 +9,8 @@ import {NewsCommentsSectionComponent} from "./news-page/news-comments-section/ne
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 import {NewsCommentRowComponent} from "./news-page/news-comment-row/news-comment-row.component";
 import {NewsReplyInputComponent} from "./news-page/news-reply-input/news-reply-input.component";
+import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
+import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 
 @NgModule({
     declarations: [
@@ -23,7 +25,9 @@ import {NewsReplyInputComponent} from "./news-page/news-reply-input/news-reply-i
         CommonModule,
         NewsRoutingModule,
         NgOptimizedImage,
-        MinecraftHeadComponent
+        MinecraftHeadComponent,
+        InputTextComponent,
+        SendButtonComponent
     ],
     providers: [
         NewsService

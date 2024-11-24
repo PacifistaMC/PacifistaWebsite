@@ -46,10 +46,9 @@ export class NewsCommentsSectionComponent implements OnInit {
       }
     }
 
-    if (index === -1) return;
-
-    this.comments.splice(index, 1);
     this.totalComments--;
+    if (index === -1) return;
+    this.comments.splice(index, 1);
   }
 
   onCommentPosted(comment: PacifistaNewsCommentDTO): void {

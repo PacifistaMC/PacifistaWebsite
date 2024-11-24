@@ -1,1 +1,34 @@
-<p>news-reply-input works!</p>
+<div class="row align-items-center justify-content-between">
+    <div class="col col-md-1">
+        <minecraft-head [username]="loggedUserMinecraftName" [size]="40"></minecraft-head>
+    </div>
+    <div class="col col-md-11">
+        <div class="row">
+            <div class="col col-md-9">
+                <app-input-text
+                        [label]="''"
+                        [placeholder]="loggedUserMinecraftName.length > 0 ? 'Ajoutez un commentaire...' : 'Connectez-vous et liez votre compte Minecraft pour commenter'"
+                        [id]="'add-new-comment-news-input'"
+                        [text]="content"
+                        [required]="false"
+                        [disabled]="loggedUserMinecraftName.length === 0"
+                        [formSent]="formSent"
+                        [inputErrors]="contentErrors"
+                        (textChange)="content = $event"
+                ></app-input-text>
+            </div>
+
+            <div class="col col-md-2">
+                <app-send-button
+                        [label]="''"
+                        [labelLoading]="''"
+                        [labelIcon]="'send'"
+                        [loading]="loading"
+                        [disabled]="loggedUserMinecraftName.length === 0"
+                        (onClick)="sendRequest()"
+                ></app-send-button>
+            </div>
+        </div>
+
+    </div>
+</div>

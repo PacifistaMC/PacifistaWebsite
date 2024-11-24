@@ -1,10 +1,11 @@
-<label [for]="id" class="form-label">{{ label }}</label>
+<label *ngIf="label.length > 0" [for]="id" class="form-label">{{ label }}</label>
 <input
         type="text"
         class="form-control"
         [placeholder]="placeholder"
         [(ngModel)]="text"
         [id]="id"
+        [disabled]="disabled"
         [value]="text"
         [required]="required"
         (input)="onInput()"
