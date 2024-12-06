@@ -21,7 +21,7 @@ export class NewsAccueilSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.newsService.getAllNews(0, false).subscribe(newsList => {
+    this.newsService.getAllNews(0).subscribe(newsList => {
       this.newsList = newsList.content.slice(0, 3);
       this.totalNews = newsList.totalElementsDatabase;
     });

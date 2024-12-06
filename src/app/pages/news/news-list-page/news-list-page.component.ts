@@ -59,7 +59,7 @@ export class NewsListPageComponent extends PacifistaPage {
   private loadNews(): void {
     this.loading = true;
 
-    this.newsService.getAllNews(this.page, false).subscribe({
+    this.newsService.getAllNews(this.page).subscribe({
       next: (newsList) => {
         this.newsList.push(...newsList.content);
         this.totalNews = newsList.totalElementsDatabase;

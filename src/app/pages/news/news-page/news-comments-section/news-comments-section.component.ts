@@ -68,7 +68,7 @@ export class NewsCommentsSectionComponent implements OnInit {
     if (!this.news.id) return;
 
     this.loadingComments = true;
-    this.commentsService.getCommentsByNewsId(this.news.id, this.page, false).subscribe({
+    this.commentsService.getCommentsByNewsId(this.news.id, this.page).subscribe({
       next: (comments) => {
         this.maxPages = comments.totalPages;
         this.commentsLoaded += comments.totalElementsThisPage

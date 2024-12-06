@@ -44,7 +44,7 @@ export class NewsPageComponent extends PacifistaPage {
         return;
       }
 
-      this.newsService.getNewsByName(newsName, false).subscribe({
+      this.newsService.getNewsByName(newsName).subscribe({
         next: (news) => {
           this.news = news;
 

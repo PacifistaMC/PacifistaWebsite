@@ -37,6 +37,7 @@ export class NewsCommentRowComponent implements AfterViewInit {
   }
 
   ngAfterViewInit(): void {
+    this.hasLikedComment = this.comment.liked;
     this.loadReplies();
   }
 

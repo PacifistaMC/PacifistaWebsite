@@ -26,11 +26,11 @@ export default class DummyNewsCrudClient extends CrudHttpClient<PacifistaNewsDTO
 
 
     override find(options: PageOption, _: QueryBuilder): Observable<Paginated<PacifistaNewsDTO>> {
-        return this.realService.getAllNews(options.page, true);
+        return this.realService.getAllNews(options.page);
     }
 
     override getById(id: string): Observable<PacifistaNewsDTO> {
-        return this.realService.getNewsById(id, true);
+        return this.realService.getNewsById(id);
     }
 
     override create(_: PacifistaNewsDTO): Observable<PacifistaNewsDTO> {
