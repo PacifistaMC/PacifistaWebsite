@@ -36,6 +36,7 @@ export class NewsCommentsSectionComponent implements OnInit {
   ngOnInit(): void {
     this.totalComments = this.news.comments;
     this.loadComments();
+    window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
   onCommentDeleted(comment: PacifistaNewsCommentDTO): void {
@@ -55,6 +56,12 @@ export class NewsCommentsSectionComponent implements OnInit {
   onCommentPosted(comment: PacifistaNewsCommentDTO): void {
     this.comments.unshift(comment);
     this.totalComments++;
+  }
+
+  onScroll(event: Event) {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+      this.pageUp();
+    }
   }
 
   pageUp(): void {

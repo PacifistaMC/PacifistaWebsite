@@ -47,7 +47,7 @@
                     [labelLoading]="''"
                     [labelIcon]="showReplies ? 'chevron-up' : 'chevron-down'"
                     [classBtn]="'btn-dark btn-sm'"
-                    (onClick)="showReplies = !showReplies"
+                    (onClick)="onShowReplies()"
             ></app-send-button>
 
             <div *ngIf="showReplies">

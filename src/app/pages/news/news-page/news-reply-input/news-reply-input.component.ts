@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
   ErrorDto,
   PacifistaNewsCommentDTO,
@@ -15,7 +15,7 @@ import {environment} from "../../../../../environments/environment";
   templateUrl: './news-reply-input.component.html',
   styleUrl: './news-reply-input.component.scss'
 })
-export class NewsReplyInputComponent implements AfterViewInit {
+export class NewsReplyInputComponent implements OnInit {
 
   @Input() news!: PacifistaNewsDTO;
   @Input() parentComment?: PacifistaNewsCommentDTO;
@@ -37,11 +37,11 @@ export class NewsReplyInputComponent implements AfterViewInit {
     this.commentsService = new PacifistaNewsCommentService(httpClient, environment.production);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     new PacifistaWebUserLinkService(this.httpClient, environment.production).getCurrentUserLink().subscribe({
-        next: (userLink) => {
-            this.loggedUserMinecraftName = userLink.minecraftUsername ?? '';
-        }
+      next: (userLink) => {
+        this.loggedUserMinecraftName = userLink.minecraftUsername ?? '';
+      }
     });
 
     if (this.editComment) {
@@ -109,9 +109,9 @@ export class NewsReplyInputComponent implements AfterViewInit {
     this.notificationService.onErrorRequest(error);
 
     error.fieldErrors.forEach((fieldError) => {
-        if (fieldError.field === 'content') {
-            this.contentErrors.push(fieldError.message);
-        }
+      if (fieldError.field === 'content') {
+        this.contentErrors.push(fieldError.message);
+      }
     });
 
     this.loading = false;

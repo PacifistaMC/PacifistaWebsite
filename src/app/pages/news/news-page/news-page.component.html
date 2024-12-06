@@ -13,16 +13,31 @@
                 {{ news.originalWriter }}
                 le {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}
             </h3>
-            <p>
-                {{ news.views }} <i class="bi bi-eye-fill"></i>
-                {{ news.comments }} <i class="bi bi-chat-dots-fill"></i>
-                {{ news.likes }} <i class="bi bi-hand-thumbs-up-fill"></i>
-            </p>
+
+            <div class="row justify-content-evenly">
+                <div class="col col-md-2">
+                    <p>
+                        {{ news.views }} <i class="bi bi-eye-fill"></i>
+                    </p>
+                </div>
+
+                <div class="col col-md-2">
+                    <p>
+                        {{ news.comments }} <i class="bi bi-chat-dots-fill"></i>
+                    </p>
+                </div>
+
+                <div class="col col-md-2">
+                    <p>
+                        {{ news.likes }} <i class="bi bi-hand-thumbs-up-fill"></i>
+                    </p>
+                </div>
+            </div>
         </div>
 
         <img
-                ngSrc="{{ this.newsImageFullQualityUrl }}"
-                [loading]="'lazy'"
+                src="{{ this.newsImageFullQualityUrl }}"
+                loading="lazy"
                 class="img-fluid"
                 alt="Illustration de la news {{ news.name }}"
                 width="1920"

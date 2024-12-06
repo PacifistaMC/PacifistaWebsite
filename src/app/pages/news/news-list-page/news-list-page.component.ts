@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, ViewChild} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
@@ -27,8 +27,6 @@ export class NewsListPageComponent extends PacifistaPage {
 
   private readonly newsService: PacifistaNewsService;
 
-  @ViewChild('newsContainer') scrollDiv!: ElementRef;
-
   constructor(private notificationService: NotificationService,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document,
@@ -39,12 +37,11 @@ export class NewsListPageComponent extends PacifistaPage {
 
   protected override onPageInit() {
     this.loadNews();
+    window.addEventListener('scroll', this.onScroll.bind(this));
   }
 
-  onScroll(event: Event) {
-    const target = event.target as HTMLElement;
-
-    if (target.scrollTop + target.clientHeight >= target.scrollHeight) {
+  onScroll() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.pageUpNews();
     }
   }

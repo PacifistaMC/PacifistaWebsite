@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PacifistaNewsCommentDTO, PacifistaNewsCommentService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
@@ -9,7 +9,7 @@ import {environment} from "../../../../../environments/environment";
   templateUrl: './news-comment-row.component.html',
   styleUrl: './news-comment-row.component.scss'
 })
-export class NewsCommentRowComponent implements AfterViewInit {
+export class NewsCommentRowComponent implements OnInit {
 
   @Input() comment!: PacifistaNewsCommentDTO;
   @Output() onCommentDeleted = new EventEmitter<void>();
@@ -36,9 +36,9 @@ export class NewsCommentRowComponent implements AfterViewInit {
     this.commentService = new PacifistaNewsCommentService(httpClient, environment.production);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.hasLikedComment = this.comment.liked;
-    this.loadReplies();
+    this.repliesTotal = this.comment.replies;
   }
 
   likeActionComment() {
@@ -84,6 +84,14 @@ export class NewsCommentRowComponent implements AfterViewInit {
     this.onCommentPosted.emit(comment);
   }
 
+  onShowReplies() {
+    this.showReplies = !this.showReplies;
+
+    if (this.showReplies && this.replies.length === 0) {
+      this.loadReplies();
+    }
+  }
+
   pageUp() {
     if (this.loadingReplies || this.page >= this.maxPages) return;
 
@@ -91,7 +99,7 @@ export class NewsCommentRowComponent implements AfterViewInit {
     this.loadReplies();
   }
 
-  private loadReplies() {
+  loadReplies() {
     if (this.loadingReplies && (this.comment.parent && this.comment.parent.parent) || !this.comment.id) return;
 
     this.loadingReplies = true;

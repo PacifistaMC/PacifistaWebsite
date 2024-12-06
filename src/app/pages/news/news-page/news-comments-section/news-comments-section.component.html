@@ -16,6 +16,15 @@
                     (onCommentPosted)="totalComments = totalComments + 1"
             ></app-news-comment-row>
         </div>
+
+        <div class="text-center" *ngIf="page < maxPages">
+            <app-send-button
+                [label]="'Charger plus de commentaires'"
+                [loading]="loadingComments"
+                [classBtn]="'btn-dark'"
+                (onClick)="pageUp()"
+            ></app-send-button>
+        </div>
     </div>
 
     <ng-template #noComments>
