@@ -45,9 +45,23 @@
         >
     </section>
 
-    <section class="mt-3">
+    <section class="mt-3 news-content">
         <div [innerHTML]="newsHtmlContent"></div>
     </section>
+
+    <div class="row align-items-end">
+        <div class="col-9"></div>
+        <div class="col">
+            <app-send-button
+                    [label]="'J\'aime'"
+                    [labelLoading]="''"
+                    [classBtn]="'btn-dark btn-sm'"
+                    [labelIcon]="likedNews ? 'hand-thumbs-up-fill' : 'hand-thumbs-up'"
+                    [loading]="likedNewsLoading"
+                    (onClick)="likeActionNews()"
+            ></app-send-button>
+        </div>
+    </div>
 
     <hr class="ms-5 me-5 mt-3"/>
 
