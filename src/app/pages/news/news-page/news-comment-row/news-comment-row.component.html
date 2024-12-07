@@ -58,7 +58,18 @@
                         (onCommentPosted)="addNewReply($event)"
                 ></app-news-comment-row>
 
-                <app-spinner *ngIf="loadingReplies"></app-spinner>
+                <app-spinner *ngIf="loadingReplies; else doneLoading"></app-spinner>
+
+                <ng-template #doneLoading>
+                    <div class="pt-2" *ngIf="page + 1 < maxPages">
+                        <app-send-button
+                                [label]="'Charger ' + (repliesTotal - repliesLoaded) + ' réponses'"
+                                [loading]="loadingReplies"
+                                [classBtn]="'btn-dark'"
+                                (onClick)="pageUp()"
+                        ></app-send-button>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </div>
