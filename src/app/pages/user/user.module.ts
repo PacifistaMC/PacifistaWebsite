@@ -6,7 +6,6 @@ import {UserComponent} from './user.component';
 import {UserRegisterComponent} from "./user-register/user-register.component";
 import {UserPageComponent} from "./user-page/user-page.component";
 import {UserLoginComponent} from "./user-login/user-login.component";
-import {provideHttpClient, withInterceptorsFromDi} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
 import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha-2";
 import {environment} from "../../../environments/environment";
@@ -43,7 +42,8 @@ import {
     PacifistaSearchPlayerInputComponent
 } from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 
-@NgModule({ declarations: [
+@NgModule({
+    declarations: [
         UserComponent,
         UserRegisterComponent,
         UserPageComponent,
@@ -58,7 +58,9 @@ import {
         UserAccountInfosPasswordChangeComponent,
         UserAccountIntegrationsMinecraftAccountComponent,
         UserAccountIntegrationsMinecraftAccountCreateNewComponent
-    ], imports: [CommonModule,
+    ],
+    imports: [
+        CommonModule,
         UserRoutingModule,
         FormsModule,
         RecaptchaV3Module,
@@ -68,11 +70,15 @@ import {
         InputSecretComponent,
         InputCheckboxComponent,
         MinecraftHeadComponent,
-        MinecraftCommandComponent, NgOptimizedImage, PacifistaSearchPlayerInputComponent], providers: [
+        MinecraftCommandComponent,
+        NgOptimizedImage,
+        PacifistaSearchPlayerInputComponent
+    ],
+    providers: [
         {
             provide: RECAPTCHA_V3_SITE_KEY,
             useValue: environment.reCaptchaSiteKey,
         },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+    ]
+})
 export class UserModule { }

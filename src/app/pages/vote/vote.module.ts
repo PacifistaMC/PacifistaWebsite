@@ -13,7 +13,8 @@ import {
 import {VoteUserWebsiteComponent} from "./components/vote-user/vote-user-website/vote-user-website.component";
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 import {SpinnerComponent} from "../../components/spinner/spinner.component";
-
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha-2";
+import {environment} from "../../../environments/environment";
 
 @NgModule({
     declarations: [
@@ -26,10 +27,17 @@ import {SpinnerComponent} from "../../components/spinner/spinner.component";
     imports: [
         CommonModule,
         VoteRoutingModule,
+        RecaptchaV3Module,
         NgOptimizedImage,
         PacifistaSearchPlayerInputComponent,
         MinecraftHeadComponent,
         SpinnerComponent
+    ],
+    providers: [
+        {
+            provide: RECAPTCHA_V3_SITE_KEY,
+            useValue: environment.reCaptchaSiteKey,
+        },
     ]
 })
 export class VoteModule { }

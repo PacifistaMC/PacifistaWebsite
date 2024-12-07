@@ -14,6 +14,8 @@ import {SendButtonComponent} from "../../components/buttons/send-button/send-but
 import {SpinnerComponent} from "../../components/spinner/spinner.component";
 import {CommentActionsComponent} from "./news-page/news-comment-row/comment-actions/comment-actions.component";
 import {StaffBadgeComponent} from "../../components/staff-badge/staff-badge.component";
+import {RECAPTCHA_V3_SITE_KEY, RecaptchaV3Module} from "ng-recaptcha-2";
+import {environment} from "../../../environments/environment";
 
 @NgModule({
     declarations: [
@@ -30,13 +32,18 @@ import {StaffBadgeComponent} from "../../components/staff-badge/staff-badge.comp
         NewsRoutingModule,
         NgOptimizedImage,
         MinecraftHeadComponent,
+        RecaptchaV3Module,
         InputTextComponent,
         SendButtonComponent,
         SpinnerComponent,
         StaffBadgeComponent
     ],
     providers: [
-        NewsService
+        NewsService,
+        {
+            provide: RECAPTCHA_V3_SITE_KEY,
+            useValue: environment.reCaptchaSiteKey,
+        },
     ],
     exports: [
         NewsCardComponent

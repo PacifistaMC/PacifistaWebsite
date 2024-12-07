@@ -4,126 +4,130 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {interval, takeWhile} from "rxjs";
+import {ReCaptchaV3Service} from "ng-recaptcha-2";
 
 @Component({
-  selector: 'app-vote-user-website',
-  templateUrl: './vote-user-website.component.html',
-  styleUrl: './vote-user-website.component.scss'
+    selector: 'app-vote-user-website',
+    templateUrl: './vote-user-website.component.html',
+    styleUrl: './vote-user-website.component.scss'
 })
 export class VoteUserWebsiteComponent implements OnInit {
 
-  @Input('voteWebsite') voteWebsite: VoteWebsiteDTO = new VoteWebsiteDTO("","","", 10);
+    @Input('voteWebsite') voteWebsite: VoteWebsiteDTO = new VoteWebsiteDTO("","","", 10);
 
-  private readonly voteService: VoteService;
+    private readonly voteService: VoteService;
 
-  availableAt?: Date;
-  countdown: string = '00:00:00';
-  loading: boolean = false;
+    availableAt?: Date;
+    countdown: string = '00:00:00';
+    loading: boolean = false;
 
-  constructor(httpClient: HttpClient,
-              private notificationService: NotificationService) {
-    this.voteService = new VoteService(httpClient, environment.production);
-  }
-
-  ngOnInit(): void {
-    this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
-      next: (voteDTO) => {
-        this.availableAt = voteDTO.nextVoteDate;
-
-        if (this.availableAt) {
-          this.availableAt = new Date(this.availableAt);
-
-          if (this.availableAt > new Date()) {
-            this.startCountdown(this.availableAt);
-          } else {
-            this.availableAt = undefined;
-          }
-        }
-      }
-    })
-  }
-
-  convertMinutesInHours(): string {
-    const minutes = this.voteWebsite.coolDownInMinutes;
-    const hours = Math.floor(minutes / 60);
-    const minutesLeft = minutes % 60;
-
-    if (hours < 1) {
-        return `${minutes}min`;
-    } else {
-      if (minutesLeft < 1) {
-        return `${hours}h`;
-      } else {
-        return `${hours}h${minutesLeft}`;
-      }
+    constructor(httpClient: HttpClient,
+                private notificationService: NotificationService,
+                private reCaptchaService: ReCaptchaV3Service) {
+        this.voteService = new VoteService(httpClient, environment.production);
     }
-  }
 
-  makeVote() {
-    this.loading = true;
+    ngOnInit(): void {
+        this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
+            next: (voteDTO) => {
+                this.availableAt = voteDTO.nextVoteDate;
 
-    this.voteService.makeVote(this.voteWebsite.enumName).subscribe({
-      next: (voteDTO) => {
-        this.availableAt = voteDTO.nextVoteDate;
+                if (this.availableAt) {
+                    this.availableAt = new Date(this.availableAt);
 
-        if (!this.availableAt) {
-          interval(5000)
-              .pipe(takeWhile(() => !this.availableAt))
-              .subscribe(() => this.checkVote());
-          this.openVoteWebsite();
+                    if (this.availableAt > new Date()) {
+                        this.startCountdown(this.availableAt);
+                    } else {
+                        this.availableAt = undefined;
+                    }
+                }
+            }
+        })
+    }
+
+    convertMinutesInHours(): string {
+        const minutes = this.voteWebsite.coolDownInMinutes;
+        const hours = Math.floor(minutes / 60);
+        const minutesLeft = minutes % 60;
+
+        if (hours < 1) {
+            return `${minutes}min`;
+        } else {
+            if (minutesLeft < 1) {
+                return `${hours}h`;
+            } else {
+                return `${hours}h${minutesLeft}`;
+            }
         }
-      },
-      error: err => {
-        this.notificationService.onErrorRequest(err);
-        this.loading = false;
-      }
-    })
-  }
+    }
 
-  private checkVote() {
-    this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
-      next: (voteDTO) => {
-        if (voteDTO.voteValidationDate && voteDTO.nextVoteDate) {
-          this.loading = false;
+    makeVote() {
+        this.loading = true;
 
-          this.availableAt = new Date(voteDTO.nextVoteDate);
+        this.reCaptchaService.execute('VOTE_PACIFISTA').subscribe((token: string) => {
+            this.voteService.makeVote(this.voteWebsite.enumName, token).subscribe({
+                next: (voteDTO) => {
+                    this.availableAt = voteDTO.nextVoteDate;
 
-          if (this.availableAt > new Date()) {
-            this.startCountdown(this.availableAt);
-          } else {
-            this.availableAt = undefined;
-          }
-        }
-      }
-    })
-  }
+                    if (!this.availableAt) {
+                        interval(5000)
+                            .pipe(takeWhile(() => !this.availableAt))
+                            .subscribe(() => this.checkVote());
+                        this.openVoteWebsite();
+                    }
+                },
+                error: err => {
+                    this.notificationService.onErrorRequest(err);
+                    this.loading = false;
+                }
+            })
+        });
+    }
 
-  private openVoteWebsite() {
-    window.open(this.voteWebsite.urlVote, '_blank');
-  }
+    private checkVote() {
+        this.voteService.checkVote(this.voteWebsite.enumName).subscribe({
+            next: (voteDTO) => {
+                if (voteDTO.voteValidationDate && voteDTO.nextVoteDate) {
+                    this.loading = false;
 
-  private startCountdown(targetDate: Date): void {
-    const intervalId = setInterval(() => {
+                    this.availableAt = new Date(voteDTO.nextVoteDate);
 
-      const now = new Date();
-      const diff = targetDate.getTime() - now.getTime();
+                    if (this.availableAt > new Date()) {
+                        this.startCountdown(this.availableAt);
+                    } else {
+                        this.availableAt = undefined;
+                    }
+                }
+            }
+        })
+    }
 
-      if (diff <= 0) {
-        clearInterval(intervalId);
-        this.countdown = '00:00:00';
-        this.availableAt = undefined;
-      } else {
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    private openVoteWebsite() {
+        window.open(this.voteWebsite.urlVote, '_blank');
+    }
 
-        this.countdown = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
-      }
-    }, 1000);
-  }
+    private startCountdown(targetDate: Date): void {
+        const intervalId = setInterval(() => {
 
-  private pad(num: number): string {
-    return num < 10 ? '0' + num : num.toString();
-  }
+            const now = new Date();
+            const diff = targetDate.getTime() - now.getTime();
+
+            if (diff <= 0) {
+                clearInterval(intervalId);
+                this.countdown = '00:00:00';
+                this.availableAt = undefined;
+            } else {
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                this.countdown = `${this.pad(hours)}:${this.pad(minutes)}:${this.pad(seconds)}`;
+            }
+        }, 1000);
+    }
+
+    private pad(num: number): string {
+        return num < 10 ? '0' + num : num.toString();
+    }
 
 }
