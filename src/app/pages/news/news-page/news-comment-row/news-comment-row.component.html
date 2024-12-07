@@ -10,7 +10,22 @@
         <span class="username-comment">{{ '@' + comment.minecraftUsername }}</span>
         <span class="date-comment"> {{ comment.createdAt | date: 'dd/MM/yyyy HH:mm' }}</span>
 
-        <div class="content-comment" [textContent]="comment.content"></div>
+        <span class="ps-2">
+            <app-comment-actions
+                    [comment]="comment"
+                    (onCommentDeleted)="onCommentDeleted.emit()"
+                    (onCommentEditBtn)="editComment = true"
+            ></app-comment-actions>
+        </span>
+
+        <div *ngIf="!editComment; else inputEditCommand" class="content-comment" [textContent]="comment.content"></div>
+        <ng-template #inputEditCommand>
+            <app-news-reply-input
+                    [news]="comment.news"
+                    [editComment]="comment"
+                    (onRequestDone)="updateCommentDone($event)"
+            ></app-news-reply-input>
+        </ng-template>
 
         <div class="pt-2 row g-1 align-items-center">
             <div class="col-auto pe-3">

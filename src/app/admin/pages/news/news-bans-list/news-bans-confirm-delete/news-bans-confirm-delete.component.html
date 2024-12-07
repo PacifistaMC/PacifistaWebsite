@@ -12,17 +12,21 @@
         </div>
 
         <div class="row justify-content-around">
-            <app-send-button
-                    [label]="'Supprimer'"
-                    [labelLoading]="'Suppression...'"
-                    [labelIcon]="'trash'"
-                    [classBtn]="'btn-danger'"
-                    [loading]="loadingRemoveBan"
-                    (onClick)="onRemoveBanClick()"
-            ></app-send-button>
-            <button class="col col-md-3 btn btn-danger" (click)="activeModal.close('Close click')">
-                Fermer
-            </button>
+            <div class="col col-auto">
+                <app-send-button
+                        [label]="'Supprimer'"
+                        [labelLoading]="'Suppression...'"
+                        [labelIcon]="'trash'"
+                        [classBtn]="'btn-danger'"
+                        (onClick)="onRemoveBanClick()"
+                ></app-send-button>
+            </div>
+
+            <div class="col">
+                <button class="btn btn-danger" (click)="activeModal.dismiss('Close click')">
+                    Fermer
+                </button>
+            </div>
         </div>
     </div>
 </div>

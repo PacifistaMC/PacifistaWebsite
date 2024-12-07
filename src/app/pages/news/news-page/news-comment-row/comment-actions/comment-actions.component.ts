@@ -1,5 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {
+    PacifistaNewsBanDTO,
+    PacifistaNewsBanService,
     PacifistaNewsCommentDTO,
     PacifistaNewsCommentService,
     UserDTO,
@@ -19,16 +21,24 @@ export class CommentActionsComponent implements OnInit {
 
     @Input() comment!: PacifistaNewsCommentDTO;
     @Output() onCommentDeleted = new EventEmitter<void>();
+    @Output() onCommentEditBtn = new EventEmitter<void>();
 
     private readonly commentService: PacifistaNewsCommentService;
+    private readonly banService: PacifistaNewsBanService;
 
     private currentUser?: UserDTO
+
+    protected showActions: boolean = false;
+
     protected ownComment: boolean = false;
     protected isUserStaff: boolean = false;
+    protected loadingApi: boolean = false;
+
 
     constructor(httpClient: HttpClient,
                 private notificationService: NotificationService) {
         this.commentService = new PacifistaNewsCommentService(httpClient, environment.production);
+        this.banService = new PacifistaNewsBanService(httpClient, environment.production);
     }
 
     ngOnInit(): void {
@@ -42,16 +52,49 @@ export class CommentActionsComponent implements OnInit {
     }
 
     deleteComment() {
-        if (!this.comment.id || !this.ownComment || !this.isUserStaff) return;
+        if (!this.comment.id || (!this.ownComment && !this.isUserStaff)) return;
 
+        this.loadingApi = true;
         this.commentService.deleteComment(this.comment.id).subscribe({
             next: () => {
                 this.onCommentDeleted.emit();
+                this.notificationService.info("Commentaire supprimé");
+                this.loadingApi = false;
+                this.showActions = false;
             },
             error: (error) => {
                 this.notificationService.onErrorRequest(error);
+                this.loadingApi = false;
+                this.showActions = false;
             }
         });
+    }
+
+    banUser() {
+        if (!this.isUserStaff) return;
+
+        this.loadingApi = true;
+        this.banService.create(new PacifistaNewsBanDTO(
+            this.comment.funixProdUserId,
+            this.comment.minecraftUsername
+        )).subscribe({
+            next: () => {
+                this.notificationService.info("Utilisateur " + this.comment.minecraftUsername + " banni de l'espace commentaire");
+                this.loadingApi = false;
+                this.showActions = false;
+            },
+            error: (error) => {
+                this.notificationService.onErrorRequest(error);
+                this.loadingApi = false;
+                this.showActions = false;
+            }
+        })
+    }
+
+    editComment() {
+        if (!this.ownComment) return;
+        this.onCommentEditBtn.emit();
+        this.showActions = false;
     }
 
 }
