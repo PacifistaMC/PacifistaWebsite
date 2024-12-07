@@ -29,3 +29,23 @@ nav .shop {
 nav .current {
   color: $main_color;
 }
+
+.admin-btn {
+  background-color: #af3232;
+  border: 0;
+  color: white;
+  border-radius: 20px;
+  box-shadow: none;
+  padding: 7px 25px;
+}
+
+.admin-btn:hover {
+  background-color: #d03b3b;
+  color: white;
+}
+
+.admin-btn:active {
+  background-color: #8c1818;
+  color: white;
+}
+

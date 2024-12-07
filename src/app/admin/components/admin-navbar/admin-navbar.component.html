@@ -1,0 +1,62 @@
+<div class="bg-dark rounded-3 p-3 mb-2">
+
+    <admin-navbar-link
+            [label]="'Dashboard'"
+            [icon]="'house-fill'"
+    ></admin-navbar-link>
+
+    <hr>
+
+    <p class="header-title">Joueurs</p>
+    <admin-navbar-link
+            [label]="'Liste des joueurs'"
+            [pathUrl]="'players'"
+            [icon]="'people-fill'"
+    ></admin-navbar-link>
+    <admin-navbar-link
+            [label]="'Liste des sanctions'"
+            [pathUrl]="'players/sanctions'"
+            [icon]="'sign-stop-fill'"
+    ></admin-navbar-link>
+    <admin-navbar-link
+            [label]="'Baltop'"
+            [pathUrl]="'players/money'"
+            [icon]="'currency-exchange'"
+    ></admin-navbar-link>
+
+    <div *ngIf="userRole == UserRole.ADMIN">
+        <hr>
+        <p class="header-title">Boutique</p>
+        <admin-navbar-link
+                [label]="'Catégories'"
+                [pathUrl]="'shop/categories'"
+                [icon]="'list-stars'"
+        ></admin-navbar-link>
+        <admin-navbar-link
+                [label]="'Articles'"
+                [pathUrl]="'shop/articles'"
+                [icon]="'basket2-fill'"
+        ></admin-navbar-link>
+    </div>
+
+    <div *ngIf="userRole == UserRole.ADMIN || userRole == UserRole.PACIFISTA_ADMIN">
+        <hr>
+        <p class="header-title">News</p>
+        <admin-navbar-link
+                [label]="'Liste des news'"
+                [pathUrl]="'news'"
+                [icon]="'newspaper'"
+        ></admin-navbar-link>
+        <admin-navbar-link
+                [label]="'Rédiger une news'"
+                [pathUrl]="'news/create'"
+                [icon]="'file-earmark-plus-fill'"
+        ></admin-navbar-link>
+        <admin-navbar-link
+                [label]="'Utilisateurs bannis'"
+                [pathUrl]="'news/bans'"
+                [icon]="'person-x-fill'"
+        ></admin-navbar-link>
+    </div>
+
+</div>

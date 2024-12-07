@@ -1,0 +1,46 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" searchable="minecraftUsername" sortable="minecraftUsername" (sort)="onSort($event)" (search)="search($event)">Joueur</th>
+            <th scope="col" sortable="lastConnection" (sort)="onSort($event)">Dernière connection</th>
+            <th scope="col" sortable="firstConnection" (sort)="onSort($event)">Première connection</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (player of list; track player.minecraftUsername) {
+            <tr>
+                <td>
+                    <minecraft-head
+                            [username]="player.minecraftUsername"
+                            [size]="20"
+                    ></minecraft-head>
+                    <span> {{ player.minecraftUsername }}</span>
+                </td>
+                <td>
+                    {{ player.lastConnection | date: 'dd/MM/yyyy HH:mm' }}
+                </td>
+                <td>
+                    {{ player.firstConnection | date: 'dd/MM/yyyy HH:mm' }}
+                </td>
+                <td>
+                    <a href="/admin/players/{{ player.id }}" class="btn btn-primary btn-sm">
+                        <span class="bi bi-eye-fill"> Détail</span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+            [collectionSize]="allElemsDatabase"
+            [(page)]="page"
+            [pageSize]="maxElemsPerPage"
+            (pageChange)="updateList()"
+            [maxSize]="7"
+    >
+    </ngb-pagination>
+</div>

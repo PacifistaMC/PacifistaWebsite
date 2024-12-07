@@ -24,6 +24,7 @@ import {MinecraftHeadComponent} from "./components/minecraft-head/minecraft-head
 import {
     StaffAccueuilSectionRowPlayerComponent
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
+import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.component";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -42,16 +43,22 @@ import {
     exports: [
         NotificationComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         NgbModule,
         NewsModule,
         NgOptimizedImage,
-        MinecraftHeadComponent], providers: [
+        MinecraftHeadComponent,
+        StaffBadgeComponent
+    ],
+    providers: [
         Title,
         provideClientHydration(),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ]
+})
 export class AppModule { }

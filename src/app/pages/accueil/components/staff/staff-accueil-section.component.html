@@ -8,27 +8,16 @@
         <div class="text-center">
             <img ngSrc="assets/img/minecraft/skins/funixgaming.png" [loading]="'lazy'" height="180" width="180" alt="FunixGaming Minecraft skin">
             <h4>FunixGaming</h4>
-            <p><span class="fondateur">Fondateur</span></p>
+            <staff-badge [username]="owner"></staff-badge>
         </div>
 
-        <div class="row text-center align-content-start justify-content-md-center">
-            <div class="col col-lg-4">
-                <img ngSrc="assets/img/minecraft/skins/knyzeeer.png" [loading]="'lazy'" height="180" width="180" alt="Knyzeeer Minecraft skin">
-                <h4>Knyzeeer</h4>
-                <p><span class="admin">Admin</span></p>
-            </div>
+    </div>
 
-            <div class="col col-lg-4">
-                <img ngSrc="assets/img/minecraft/skins/jarkodj.png" [loading]="'lazy'" height="180" width="180" alt="JarkoDJ Minecraft skin">
-                <h4>JarkoDJ</h4>
-                <p><span class="admin">Admin</span></p>
-            </div>
-
-            <div class="col col-lg-4">
-                <img ngSrc="assets/img/minecraft/skins/tomyshelby.png" [loading]="'lazy'" height="180" width="180" alt="TomyShelby Minecraft skin">
-                <h4>TomyShelby</h4>
-                <p><span class="admin">Admin</span></p>
-            </div>
+    <div class="row text-center align-content-start justify-content-md-center">
+        <div *ngFor="let admin of admins" class="col col-lg-4">
+            <app-staff-accueuil-section-row-player
+                    [username]="admin"
+            ></app-staff-accueuil-section-row-player>
         </div>
     </div>
 
@@ -36,8 +25,6 @@
         <div *ngFor="let modo of moderators" class="col col-lg-4">
             <app-staff-accueuil-section-row-player
                 [username]="modo"
-                [classRole]="'moderator'"
-                [roleName]="'Modérateur'"
             ></app-staff-accueuil-section-row-player>
         </div>
     </div>
@@ -46,8 +33,6 @@
         <div *ngFor="let helper of helpers" class="col col-lg-4">
             <app-staff-accueuil-section-row-player
                     [username]="helper"
-                    [classRole]="'helper'"
-                    [roleName]="'Helpeur'"
             ></app-staff-accueuil-section-row-player>
         </div>
     </div>
@@ -56,8 +41,6 @@
         <div *ngFor="let developer of developers" class="col col-lg-4">
             <app-staff-accueuil-section-row-player
                     [username]="developer"
-                    [classRole]="'developer'"
-                    [roleName]="'Développeur'"
             ></app-staff-accueuil-section-row-player>
         </div>
     </div>
@@ -66,8 +49,6 @@
         <div *ngFor="let animator of animators" class="col col-lg-4">
             <app-staff-accueuil-section-row-player
                     [username]="animator"
-                    [classRole]="'animator'"
-                    [roleName]="'Animateur'"
             ></app-staff-accueuil-section-row-player>
         </div>
     </div>

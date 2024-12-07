@@ -18,6 +18,7 @@ export class SendButtonComponent {
   @Input() loading: boolean = false;
   @Input() classBtn: string = 'btn-primary';
   @Input() labelIcon: string = '';
+  @Input() disabled: boolean = false;
   @Output() onClick = new EventEmitter<void>();
 
   click() {

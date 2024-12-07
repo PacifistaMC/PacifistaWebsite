@@ -1,0 +1,92 @@
+<div class="pt-2 row g-0 align-items-start">
+    <div class="col-auto user-profile-pic-comment">
+        <div class="pe-2">
+            <minecraft-head [username]="comment.minecraftUsername" [size]="40"></minecraft-head>
+        </div>
+    </div>
+
+    <div class="col">
+        <staff-badge [username]="comment.minecraftUsername" [marginRight]="true"></staff-badge>
+        <span class="username-comment">{{ '@' + comment.minecraftUsername }}</span>
+        <span class="date-comment"> {{ comment.createdAt | date: 'dd/MM/yyyy HH:mm' }}</span>
+
+        <span class="ps-2">
+            <app-comment-actions
+                    [comment]="comment"
+                    (onCommentDeleted)="onCommentDeleted.emit()"
+                    (onCommentEditBtn)="editComment = true"
+            ></app-comment-actions>
+        </span>
+
+        <div *ngIf="!editComment; else inputEditCommand" class="content-comment" [textContent]="comment.content"></div>
+        <ng-template #inputEditCommand>
+            <app-news-reply-input
+                    [news]="comment.news"
+                    [editComment]="comment"
+                    (onRequestDone)="updateCommentDone($event)"
+            ></app-news-reply-input>
+        </ng-template>
+
+        <div class="pt-2 row g-1 align-items-center">
+            <div class="col-auto pe-3">
+                <app-send-button
+                        [label]="''"
+                        [labelLoading]="''"
+                        [classBtn]="'btn-dark btn-sm'"
+                        [labelIcon]="hasLikedComment ? 'hand-thumbs-up-fill' : 'hand-thumbs-up'"
+                        [loading]="loadingRequestLike"
+                        (onClick)="likeActionComment()"
+                ></app-send-button>
+                <span class="ps-2 count-likes">{{ comment.likes }}</span>
+            </div>
+            <div class="col-auto">
+                <app-send-button
+                        [label]="'Répondre'"
+                        [labelLoading]="''"
+                        [classBtn]="'btn-dark btn-sm'"
+                        (onClick)="showReplyInput = !showReplyInput"
+                ></app-send-button>
+            </div>
+        </div>
+
+        <div class="pt-2" *ngIf="showReplyInput">
+            <app-news-reply-input
+                    [news]="comment.news"
+                    [parentComment]="comment"
+                    (onRequestDone)="addNewReply($event)"
+            ></app-news-reply-input>
+        </div>
+
+        <div *ngIf="!comment.parent && repliesTotal > 0" class="pt-2">
+            <app-send-button
+                    [label]="repliesTotal + ' Réponse' + (repliesTotal > 1 ? 's' : '')"
+                    [labelLoading]="''"
+                    [labelIcon]="showReplies ? 'chevron-up' : 'chevron-down'"
+                    [classBtn]="'btn-dark btn-sm'"
+                    (onClick)="onShowReplies()"
+            ></app-send-button>
+
+            <div *ngIf="showReplies">
+                <app-news-comment-row
+                        *ngFor="let reply of replies"
+                        [comment]="reply"
+                        (onCommentDeleted)="onCommentDeleted.emit()"
+                        (onCommentPosted)="addNewReply($event)"
+                ></app-news-comment-row>
+
+                <app-spinner *ngIf="loadingReplies; else doneLoading"></app-spinner>
+
+                <ng-template #doneLoading>
+                    <div class="pt-2" *ngIf="page + 1 < maxPages">
+                        <app-send-button
+                                [label]="'Charger ' + (repliesTotal - repliesLoaded) + ' réponses'"
+                                [loading]="loadingReplies"
+                                [classBtn]="'btn-dark'"
+                                (onClick)="pageUp()"
+                        ></app-send-button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</div>

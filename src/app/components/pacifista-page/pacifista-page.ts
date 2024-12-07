@@ -19,13 +19,15 @@ export abstract class PacifistaPage implements OnInit {
   }
 
   ngOnInit(): void {
-    this.updateTitle();
-    this.updateCanonicalPath();
-    this.updateMetaTags();
-    this.onPageInit();
+    this.onPageInit(() => {
+        this.updateTitle();
+        this.updateCanonicalPath();
+        this.updateMetaTags();
+    });
   }
 
-  protected onPageInit() {
+  protected onPageInit(callback: () => void = () => {}): void {
+    callback();
   }
 
   private updateTitle(): void {

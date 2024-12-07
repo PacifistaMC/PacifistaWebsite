@@ -1,14 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { WikiComponent } from './wiki.component';
-import {BaseWikiComponent} from "./pages/base-wiki/base-wiki.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {WikiComponent} from './wiki.component';
 
 const routes: Routes = [
   {
     path: '', component: WikiComponent
-  },
-  {
-    path: 'les-bases', component: BaseWikiComponent
   }
 ];
 

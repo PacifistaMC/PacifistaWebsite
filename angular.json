@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "@jsonjoy.com/util/lib/json-equal/$$deepEqual"
+            ],
             "outputPath": "dist/pacifista-website/browser",
             "index": "src/index.html",
             "main": "src/main.ts",

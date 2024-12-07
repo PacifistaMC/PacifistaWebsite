@@ -1,10 +1,5 @@
 import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
-import {
-    PacifistaNewsDTO,
-    PacifistaNewsService,
-    PageOption,
-    QueryBuilder
-} from "@funixproductions/funixproductions-requests";
+import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 
@@ -26,12 +21,8 @@ export class NewsAccueilSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const pageOption = new PageOption();
-    pageOption.elemsPerPage = 3;
-    pageOption.sort = 'createdAt:desc';
-
-    this.newsService.find(pageOption, new QueryBuilder()).subscribe(newsList => {
-      this.newsList = newsList.content;
+    this.newsService.getAllNews(0).subscribe(newsList => {
+      this.newsList = newsList.content.slice(0, 3);
       this.totalNews = newsList.totalElementsDatabase;
     });
   }

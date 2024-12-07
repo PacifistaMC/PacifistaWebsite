@@ -1,0 +1,42 @@
+<app-send-button
+        *ngIf="ownComment || isUserStaff"
+        [label]="''"
+        [labelLoading]="''"
+        [classBtn]="'btn-dark btn-sm'"
+        [labelIcon]="'three-dots-vertical'"
+        (onClick)="showActions = !showActions"
+></app-send-button>
+
+<span *ngIf="showActions" class="ps-2 position-absolute comment-actions">
+    <div class="card p-1">
+        <app-send-button
+                *ngIf="ownComment"
+                [label]="'Modifier'"
+                [labelLoading]="''"
+                [classBtn]="'btn-dark btn-sm'"
+                [labelIcon]="'pen'"
+                (onClick)="editComment()"
+        ></app-send-button>
+
+        <app-send-button
+                *ngIf="ownComment || isUserStaff"
+                [label]="'Supprimer'"
+                [labelLoading]="''"
+                [classBtn]="'btn-dark btn-sm'"
+                [labelIcon]="'trash'"
+                [loading]="loadingApi"
+                (onClick)="deleteComment()"
+        ></app-send-button>
+
+        <app-send-button
+                *ngIf="isUserStaff"
+                [label]="'Bannir'"
+                [labelLoading]="''"
+                [classBtn]="'btn-dark btn-sm'"
+                [labelIcon]="'ban'"
+                [loading]="loadingApi"
+                (onClick)="banUser()"
+        ></app-send-button>
+
+    </div>
+</span>
