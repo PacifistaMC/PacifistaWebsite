@@ -8,7 +8,5 @@ import {Component, Input} from '@angular/core';
 export class StaffAccueuilSectionRowPlayerComponent {
 
   @Input() username: string = '';
-  @Input() classRole: string = '';
-  @Input() roleName: string = '';
 
 }

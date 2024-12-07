@@ -1,30 +1,23 @@
 import {Component} from '@angular/core';
+import {StaffBadgeComponent} from "../../../../components/staff-badge/staff-badge.component";
 
 @Component({
-  selector: 'staff-section',
-  templateUrl: './staff-accueil-section.component.html',
-  styleUrls: ['./staff-accueil-section.component.scss']
+    selector: 'staff-section',
+    templateUrl: './staff-accueil-section.component.html',
+    styleUrls: ['./staff-accueil-section.component.scss']
 })
 export class StaffAccueilSectionComponent {
 
-  readonly moderators: string[] = [
+    readonly owner: string = StaffBadgeComponent.owner;
 
-  ];
+    readonly admins: string[] = StaffBadgeComponent.admins;
 
-  readonly helpers: string[] = [
-      'NuageOisif',
-      'Pascal0Bistrot',
-      'DioMay',
-      'Havca_',
-      'No_Littleby',
-  ];
+    readonly moderators: string[] = StaffBadgeComponent.moderators;
 
-  readonly developers: string[] = [
-      'GameCreep35'
-  ];
+    readonly helpers: string[] = StaffBadgeComponent.helpers;
 
-  readonly animators: string[] = [
-      'Whisky_'
-  ];
+    readonly developers: string[] = StaffBadgeComponent.developers;
+
+    readonly animators: string[] = StaffBadgeComponent.animators;
 
 }

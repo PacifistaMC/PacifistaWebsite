@@ -24,6 +24,7 @@ import {MinecraftHeadComponent} from "./components/minecraft-head/minecraft-head
 import {
     StaffAccueuilSectionRowPlayerComponent
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
+import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.component";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -49,7 +50,8 @@ import {
         NgbModule,
         NewsModule,
         NgOptimizedImage,
-        MinecraftHeadComponent
+        MinecraftHeadComponent,
+        StaffBadgeComponent
     ],
     providers: [
         Title,

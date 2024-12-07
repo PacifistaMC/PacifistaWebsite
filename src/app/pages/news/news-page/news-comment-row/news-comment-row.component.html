@@ -6,6 +6,7 @@
     </div>
 
     <div class="col">
+        <staff-badge class="pe-2" [username]="comment.minecraftUsername"></staff-badge>
         <span class="username-comment">{{ '@' + comment.minecraftUsername }}</span>
         <span class="date-comment"> {{ comment.createdAt | date: 'dd/MM/yyyy HH:mm' }}</span>
 

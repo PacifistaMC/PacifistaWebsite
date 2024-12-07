@@ -12,6 +12,8 @@ import {NewsReplyInputComponent} from "./news-page/news-reply-input/news-reply-i
 import {InputTextComponent} from "../../components/inputs/input-text/input-text.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 import {SpinnerComponent} from "../../components/spinner/spinner.component";
+import {CommentActionsComponent} from "./news-page/news-comment-row/comment-actions/comment-actions.component";
+import {StaffBadgeComponent} from "../../components/staff-badge/staff-badge.component";
 
 @NgModule({
     declarations: [
@@ -20,7 +22,8 @@ import {SpinnerComponent} from "../../components/spinner/spinner.component";
         NewsPageComponent,
         NewsCommentsSectionComponent,
         NewsCommentRowComponent,
-        NewsReplyInputComponent
+        NewsReplyInputComponent,
+        CommentActionsComponent
     ],
     imports: [
         CommonModule,
@@ -29,7 +32,8 @@ import {SpinnerComponent} from "../../components/spinner/spinner.component";
         MinecraftHeadComponent,
         InputTextComponent,
         SendButtonComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        StaffBadgeComponent
     ],
     providers: [
         NewsService
