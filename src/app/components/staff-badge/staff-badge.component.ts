@@ -1,15 +1,19 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'staff-badge',
   standalone: true,
-  imports: [],
+    imports: [
+        NgIf
+    ],
   templateUrl: './staff-badge.component.html',
   styleUrl: './staff-badge.component.scss'
 })
 export class StaffBadgeComponent implements OnInit {
 
   @Input() username: string = '';
+  @Input() marginRight: boolean = false;
 
   classRole: string = '';
   roleName: string = '';
@@ -34,6 +38,10 @@ export class StaffBadgeComponent implements OnInit {
       this.classRole = 'animator';
       this.roleName = 'Animateur';
     } else {
+    }
+
+    if (this.marginRight && this.classRole.length > 0) {
+      this.classRole += ' margin-right';
     }
   }
 
