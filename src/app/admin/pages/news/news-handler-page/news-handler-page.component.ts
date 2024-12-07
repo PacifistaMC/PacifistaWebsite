@@ -6,6 +6,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
 import MarkdownIt from 'markdown-it';
 import NewsService from "../../../../pages/news/NewsService";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-news-handler-page',
@@ -37,7 +38,6 @@ export class NewsHandlerPageComponent implements OnInit {
   protected formSent: boolean = false;
 
   protected showLivePreview: boolean = false;
-  protected bodyHtml: string = '';
 
   private readonly newsService: PacifistaNewsService;
 
@@ -50,7 +50,8 @@ export class NewsHandlerPageComponent implements OnInit {
   constructor(httpClient: HttpClient,
               private notificationService: NotificationService,
               private router: Router,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              protected sanitizer: DomSanitizer) {
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
   }
 

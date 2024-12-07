@@ -2,7 +2,7 @@ import {Component, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
-import {Title} from "@angular/platform-browser";
+import {DomSanitizer, SafeHtml, Title} from "@angular/platform-browser";
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
@@ -23,11 +23,13 @@ export class NewsPageComponent extends PacifistaPage {
   private readonly newsService: PacifistaNewsService;
 
   protected news?: PacifistaNewsDTO;
+  protected newsHtmlContent: SafeHtml = '';
   protected newsImageFullQualityUrl: string = '';
 
   constructor(private notificationService: NotificationService,
               private router: Router,
               private activatedRoute: ActivatedRoute,
+              private sanitizer: DomSanitizer,
               httpClient: HttpClient,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document) {
@@ -53,6 +55,7 @@ export class NewsPageComponent extends PacifistaPage {
           this.pageDescription = this.news.subtitle;
           this.pageImage = NewsService.getImageUrl(this.news, true);
           this.newsImageFullQualityUrl = NewsService.getImageUrl(this.news);
+          this.newsHtmlContent = this.sanitizer.bypassSecurityTrustHtml(this.news.bodyHtml);
           callback();
         },
         error: (error) => {

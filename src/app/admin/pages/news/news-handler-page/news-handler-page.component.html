@@ -101,7 +101,7 @@
 
     <div *ngIf="showLivePreview">
         <hr>
-        <div [innerHTML]="mdParser.render(bodyMarkdown)"></div>
+        <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(mdParser.render(bodyMarkdown))"></div>
     </div>
 
     <div class="pt-4">

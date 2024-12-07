@@ -36,8 +36,8 @@
         </div>
 
         <img
-                src="{{ this.newsImageFullQualityUrl }}"
-                loading="lazy"
+                ngSrc="{{ this.newsImageFullQualityUrl }}"
+                [priority]="true"
                 class="img-fluid"
                 alt="Illustration de la news {{ news.name }}"
                 width="1920"
@@ -46,7 +46,7 @@
     </section>
 
     <section class="mt-3">
-        <div [innerHTML]="news.bodyHtml"></div>
+        <div [innerHTML]="newsHtmlContent"></div>
     </section>
 
     <hr class="ms-5 me-5 mt-3"/>

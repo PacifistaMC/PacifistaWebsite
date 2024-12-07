@@ -42,16 +42,21 @@ import {
     exports: [
         NotificationComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
         AppRoutingModule,
         NgbModule,
         NewsModule,
         NgOptimizedImage,
-        MinecraftHeadComponent], providers: [
+        MinecraftHeadComponent
+    ],
+    providers: [
         Title,
         provideClientHydration(),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
         provideHttpClient(withInterceptorsFromDi())
-    ] })
+    ]
+})
 export class AppModule { }
