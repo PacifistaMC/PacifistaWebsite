@@ -73,4 +73,15 @@ export class StaffBadgeComponent implements OnInit {
     'whisky_'
   ];
 
+  public static isStaff(username: string): boolean {
+    let data = username.toLowerCase();
+
+    return StaffBadgeComponent.admins.includes(data)
+        || StaffBadgeComponent.moderators.includes(data)
+        || StaffBadgeComponent.helpers.includes(data)
+        || StaffBadgeComponent.developers.includes(data)
+        || StaffBadgeComponent.animators.includes(data)
+        || StaffBadgeComponent.owner === data;
+  }
+
 }

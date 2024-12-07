@@ -11,6 +11,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../../environments/environment";
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
+import {StaffBadgeComponent} from "../../../../../components/staff-badge/staff-badge.component";
 
 @Component({
     selector: 'app-comment-actions',
@@ -32,8 +33,9 @@ export class CommentActionsComponent implements OnInit {
 
     protected ownComment: boolean = false;
     protected isUserStaff: boolean = false;
+    protected isUserAdmin: boolean = false;
     protected loadingApi: boolean = false;
-
+    protected actionOnStaff: boolean = false;
 
     constructor(httpClient: HttpClient,
                 private notificationService: NotificationService) {
@@ -48,7 +50,10 @@ export class CommentActionsComponent implements OnInit {
             this.currentUser = user;
             this.ownComment = this.currentUser.id === this.comment.funixProdUserId;
             this.isUserStaff = user.role !== UserRole.USER;
+            this.isUserAdmin = user.role === UserRole.ADMIN || user.role === UserRole.PACIFISTA_ADMIN;
         }
+
+        this.actionOnStaff = StaffBadgeComponent.isStaff(this.comment.minecraftUsername);
     }
 
     deleteComment() {

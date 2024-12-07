@@ -1,5 +1,5 @@
 <app-send-button
-        *ngIf="ownComment || isUserStaff"
+        *ngIf="ownComment || (actionOnStaff && isUserAdmin) || isUserStaff"
         [label]="''"
         [labelLoading]="''"
         [classBtn]="'btn-dark btn-sm'"
