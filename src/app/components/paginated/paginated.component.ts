@@ -22,7 +22,6 @@ import {
 } from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {$$deepEqual} from "@jsonjoy.com/util/lib/json-equal/$$deepEqual";
 
 export type SortDirection = 'asc' | 'desc' | '';
 
@@ -66,8 +65,6 @@ export class NgbdSearchableHeader implements OnInit {
 
         this.search.emit(param);
     }
-
-    protected readonly $$deepEqual = $$deepEqual;
 }
 
 @Directive({
