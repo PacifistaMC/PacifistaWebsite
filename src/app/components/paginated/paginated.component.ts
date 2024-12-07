@@ -62,7 +62,7 @@ export class NgbdSearchableHeader implements OnInit {
 
         param.key = this.searchable
         param.value = this.inputText?.value ?? ''
-        param.type = QueryBuilder.startWithIgnoreCase
+        param.type = QueryBuilder.likeIgnoreCase
 
         this.search.emit(param);
     }
@@ -241,7 +241,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         const queryParam = new QueryParam()
         queryParam.key = "minecraftUsername"
         queryParam.value = username
-        queryParam.type = startWith ? QueryBuilder.startWithIgnoreCase : QueryBuilder.equal
+        queryParam.type = startWith ? QueryBuilder.likeIgnoreCase : QueryBuilder.equal
         queryBuilder.addParam(queryParam)
 
         this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
