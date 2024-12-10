@@ -212,15 +212,17 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         })
     }
 
-    protected fetchPlayerDataFromList(idsList: string[],
-                                      callback: (data: PacifistaPlayerDataDTO[]) => void): void {
+    protected findPlayerDataFromUsername(username: string, startWith: boolean = true, callback: (data: PacifistaPlayerDataDTO[]) => void): void {
         const queryBuilder = new QueryBuilder()
 
         const queryParam = new QueryParam()
-        queryParam.key = "minecraftUuid"
-        queryParam.value = idsList
-        queryParam.type = QueryBuilder.equal
+        queryParam.key = "minecraftUsername"
+        queryParam.value = username
+        queryParam.type = startWith ? QueryBuilder.likeIgnoreCase : QueryBuilder.equalIgnoreCase
         queryBuilder.addParam(queryParam)
+
+        let data: PacifistaPlayerDataDTO[] = []
+        this.getAllDataFromDataService(0, queryBuilder, data, callback)
 
         this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
             next: pageDTO => {
@@ -232,18 +234,35 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         })
     }
 
-    protected findPlayerDataFromUsername(username: string, startWith: boolean = true, callback: (data: PacifistaPlayerDataDTO[]) => void) {
+    protected fetchPlayerDataFromList(idsList: string[],
+                                      callback: (data: PacifistaPlayerDataDTO[]) => void): void {
         const queryBuilder = new QueryBuilder()
-
         const queryParam = new QueryParam()
-        queryParam.key = "minecraftUsername"
-        queryParam.value = username
-        queryParam.type = startWith ? QueryBuilder.likeIgnoreCase : QueryBuilder.equal
+        queryParam.key = "minecraftUuid"
+        queryParam.value = idsList
+        queryParam.type = QueryBuilder.equal
         queryBuilder.addParam(queryParam)
+
+        let data: PacifistaPlayerDataDTO[] = []
+
+        this.getAllDataFromDataService(0, queryBuilder, data, callback)
+    }
+
+    private getAllDataFromDataService(page: number, queryBuilder: QueryBuilder, data: PacifistaPlayerDataDTO[], callback: (data: PacifistaPlayerDataDTO[]) => void): void {
+        let pageOption = new PageOption()
+        pageOption.elemsPerPage = 300
+        pageOption.page = page
+        pageOption.sort = ""
 
         this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
             next: pageDTO => {
-                callback(pageDTO.content)
+                data.push(...pageDTO.content)
+
+                if (pageDTO.actualPage >= pageDTO.totalPages) {
+                    callback(data)
+                } else {
+                    this.getAllDataFromDataService(page + 1, queryBuilder, data, callback)
+                }
             },
             error: (err: ErrorDto) => {
                 this.notificationService.onErrorRequest(err)
