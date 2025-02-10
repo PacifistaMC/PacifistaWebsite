@@ -48,10 +48,10 @@ export class StaffBadgeComponent implements OnInit {
   public static readonly owner: string = 'funixgaming';
 
   public static readonly admins: string[] = [
-    'knyzeeer'
   ];
 
   public static readonly moderators: string[] = [
+    'knyzeeer',
     'nuageoisif',
     'pascal0bistrot',
     'diomay',
