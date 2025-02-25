@@ -254,7 +254,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         pageOption.page = page
         pageOption.sort = ""
 
-        this.pacifistaPlayerDataService.find(new PageOption(), queryBuilder).subscribe({
+        this.pacifistaPlayerDataService.find(pageOption, queryBuilder).subscribe({
             next: pageDTO => {
                 data.push(...pageDTO.content)
 
