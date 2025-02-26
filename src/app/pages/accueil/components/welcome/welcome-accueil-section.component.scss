@@ -1,5 +1,5 @@
-@import "../../../../../pacifista_variables";
-@import "../../accueil.component";
+@use "../../../../../pacifista_variables" as *;
+@use "../../accueil.component" as *;
 
 .welcome-section {
   height: 90svh;

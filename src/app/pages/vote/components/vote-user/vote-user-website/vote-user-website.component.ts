@@ -1,10 +1,11 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import {VoteService, VoteWebsiteDTO} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {interval, takeWhile} from "rxjs";
 import {ReCaptchaV3Service} from "ng-recaptcha-2";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-vote-user-website',
@@ -17,6 +18,7 @@ export class VoteUserWebsiteComponent implements OnInit {
     @Input('voteWebsite') voteWebsite: VoteWebsiteDTO = new VoteWebsiteDTO("","","", 10);
 
     private readonly voteService: VoteService;
+    private readonly window?: (WindowProxy & typeof globalThis) | null;
 
     availableAt?: Date;
     countdown: string = '00:00:00';
@@ -24,8 +26,14 @@ export class VoteUserWebsiteComponent implements OnInit {
 
     constructor(httpClient: HttpClient,
                 private notificationService: NotificationService,
-                private reCaptchaService: ReCaptchaV3Service) {
+                private reCaptchaService: ReCaptchaV3Service,
+                @Inject(PLATFORM_ID) private platformId: object,
+                @Inject(DOCUMENT) private document: Document) {
         this.voteService = new VoteService(httpClient, environment.production);
+
+        if (isPlatformBrowser(this.platformId)) {
+            this.window = document.defaultView
+        }
     }
 
     ngOnInit(): void {
@@ -104,7 +112,9 @@ export class VoteUserWebsiteComponent implements OnInit {
     }
 
     private openVoteWebsite() {
-        window.open(this.voteWebsite.urlVote, '_blank');
+        if (this.window) {
+            window.open(this.voteWebsite.urlVote, '_blank');
+        }
     }
 
     private startCountdown(targetDate: Date): void {
