@@ -4,7 +4,8 @@ import {UserCountry} from "@funixproductions/funixproductions-requests";
 @Component({
     selector: 'app-user-country-select',
     templateUrl: './user-country-select.component.html',
-    styleUrl: './user-country-select.component.scss'
+    styleUrl: './user-country-select.component.scss',
+    standalone: false
 })
 export class UserCountrySelectComponent {
 

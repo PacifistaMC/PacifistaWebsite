@@ -16,7 +16,8 @@ import {StaffBadgeComponent} from "../../../../../components/staff-badge/staff-b
 @Component({
     selector: 'app-comment-actions',
     templateUrl: './comment-actions.component.html',
-    styleUrl: './comment-actions.component.scss'
+    styleUrl: './comment-actions.component.scss',
+    standalone: false
 })
 export class CommentActionsComponent implements OnInit {
 

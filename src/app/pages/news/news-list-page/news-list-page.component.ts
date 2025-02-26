@@ -8,9 +8,10 @@ import {environment} from "../../../../environments/environment";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-  selector: 'app-news-list-page',
-  templateUrl: './news-list-page.component.html',
-  styleUrls: ['./news-list-page.component.scss']
+    selector: 'app-news-list-page',
+    templateUrl: './news-list-page.component.html',
+    styleUrls: ['./news-list-page.component.scss'],
+    standalone: false
 })
 export class NewsListPageComponent extends PacifistaPage {
 

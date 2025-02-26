@@ -4,7 +4,8 @@ import {StaffBadgeComponent} from "../../../../components/staff-badge/staff-badg
 @Component({
     selector: 'staff-section',
     templateUrl: './staff-accueil-section.component.html',
-    styleUrls: ['./staff-accueil-section.component.scss']
+    styleUrls: ['./staff-accueil-section.component.scss'],
+    standalone: false
 })
 export class StaffAccueilSectionComponent {
 

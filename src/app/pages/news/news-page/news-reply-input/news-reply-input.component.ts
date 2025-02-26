@@ -14,7 +14,8 @@ import {ReCaptchaV3Service} from "ng-recaptcha-2";
 @Component({
     selector: 'app-news-reply-input',
     templateUrl: './news-reply-input.component.html',
-    styleUrl: './news-reply-input.component.scss'
+    styleUrl: './news-reply-input.component.scss',
+    standalone: false
 })
 export class NewsReplyInputComponent implements OnInit {
 

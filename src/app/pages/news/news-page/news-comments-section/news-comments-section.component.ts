@@ -9,9 +9,10 @@ import NotificationService from "../../../../services/notifications/services/Not
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-  selector: 'app-news-comments-section',
-  templateUrl: './news-comments-section.component.html',
-  styleUrl: './news-comments-section.component.scss'
+    selector: 'app-news-comments-section',
+    templateUrl: './news-comments-section.component.html',
+    styleUrl: './news-comments-section.component.scss',
+    standalone: false
 })
 export class NewsCommentsSectionComponent implements OnInit {
 

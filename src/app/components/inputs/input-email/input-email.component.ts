@@ -3,15 +3,14 @@ import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-input-email',
-  standalone: true,
-  imports: [
-    NgClass,
-    FormsModule,
-    NgForOf
-  ],
-  templateUrl: './input-email.component.html',
-  styleUrl: './input-email.component.scss'
+    selector: 'app-input-email',
+    imports: [
+        NgClass,
+        FormsModule,
+        NgForOf
+    ],
+    templateUrl: './input-email.component.html',
+    styleUrl: './input-email.component.scss'
 })
 export class InputEmailComponent {
   @Input() label: string = 'Adresse mail';

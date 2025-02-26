@@ -11,9 +11,10 @@ import NotificationService from "../../../../../../../services/notifications/ser
 import {environment} from "../../../../../../../../environments/environment";
 
 @Component({
-  selector: 'app-user-account-infos-personal-data',
-  templateUrl: './user-account-infos-personal-data.component.html',
-  styleUrl: './user-account-infos-personal-data.component.scss'
+    selector: 'app-user-account-infos-personal-data',
+    templateUrl: './user-account-infos-personal-data.component.html',
+    styleUrl: './user-account-infos-personal-data.component.scss',
+    standalone: false
 })
 export class UserAccountInfosPersonalDataComponent implements AfterViewInit {
 

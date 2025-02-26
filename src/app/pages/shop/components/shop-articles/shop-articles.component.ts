@@ -13,9 +13,10 @@ import NotificationService from "../../../../services/notifications/services/Not
 import ShopCart from "../../ShopCart";
 
 @Component({
-  selector: 'app-shop-articles',
-  templateUrl: './shop-articles.component.html',
-  styleUrls: ['./shop-articles.component.scss']
+    selector: 'app-shop-articles',
+    templateUrl: './shop-articles.component.html',
+    styleUrls: ['./shop-articles.component.scss'],
+    standalone: false
 })
 export class ShopArticlesComponent implements OnChanges {
 

@@ -7,7 +7,8 @@ import {environment} from "../../../../../environments/environment";
 @Component({
     selector: 'app-news-comment-row',
     templateUrl: './news-comment-row.component.html',
-    styleUrl: './news-comment-row.component.scss'
+    styleUrl: './news-comment-row.component.scss',
+    standalone: false
 })
 export class NewsCommentRowComponent implements OnInit {
 

@@ -3,16 +3,15 @@ import {NgClass, NgForOf} from "@angular/common";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @Component({
-  selector: 'app-input-secret',
-  standalone: true,
+    selector: 'app-input-secret',
     imports: [
         NgForOf,
         ReactiveFormsModule,
         FormsModule,
         NgClass
     ],
-  templateUrl: './input-secret.component.html',
-  styleUrl: './input-secret.component.scss'
+    templateUrl: './input-secret.component.html',
+    styleUrl: './input-secret.component.scss'
 })
 export class InputSecretComponent {
     @Input() label: string = 'Text';

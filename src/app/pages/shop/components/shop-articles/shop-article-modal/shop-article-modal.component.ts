@@ -4,9 +4,10 @@ import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-reques
 import ShopService from "../../../shop-service";
 
 @Component({
-  selector: 'app-shop-article-modal',
-  templateUrl: './shop-article-modal.component.html',
-  styleUrls: ['./shop-article-modal.component.scss']
+    selector: 'app-shop-article-modal',
+    templateUrl: './shop-article-modal.component.html',
+    styleUrls: ['./shop-article-modal.component.scss'],
+    standalone: false
 })
 export class ShopArticleModalComponent {
 

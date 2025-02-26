@@ -9,7 +9,8 @@ import {ReCaptchaV3Service} from "ng-recaptcha-2";
 @Component({
     selector: 'app-vote-user-website',
     templateUrl: './vote-user-website.component.html',
-    styleUrl: './vote-user-website.component.scss'
+    styleUrl: './vote-user-website.component.scss',
+    standalone: false
 })
 export class VoteUserWebsiteComponent implements OnInit {
 

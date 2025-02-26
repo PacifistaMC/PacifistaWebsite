@@ -6,7 +6,8 @@ import {UserJwtCheckerService, UserRole} from "@funixproductions/funixproduction
 @Component({
     selector: 'app-admin-dashboard',
     templateUrl: './admin-dashboard.component.html',
-    styleUrl: './admin-dashboard.component.scss'
+    styleUrl: './admin-dashboard.component.scss',
+    standalone: false
 })
 export class AdminDashboardComponent implements OnInit {
 
