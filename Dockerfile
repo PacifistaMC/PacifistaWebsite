@@ -16,4 +16,4 @@ RUN mkdir dist
 COPY --from=BUILD /container/build/dist dist
 COPY --from=BUILD /container/build/package.json .
 
-ENTRYPOINT ["npm", "run", "serve:ssr"]
+ENTRYPOINT ["npm", "run", "prod"]
