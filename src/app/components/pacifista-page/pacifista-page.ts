@@ -2,8 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Title} from "@angular/platform-browser";
 
 @Component({
-    template: '',
-    standalone: false
+  template: '',
+  standalone: false
 })
 export abstract class PacifistaPage implements OnInit {
 
@@ -17,15 +17,15 @@ export abstract class PacifistaPage implements OnInit {
    * @param titleService the titleServiceManager
    * @param doc Inject(DOCUMENT) private doc: Document
    */
-  constructor(protected titleService: Title,
-              private doc: Document) {
+  protected constructor(protected readonly titleService: Title,
+                        private readonly doc: Document) {
   }
 
   ngOnInit(): void {
     this.onPageInit(() => {
-        this.updateTitle();
-        this.updateCanonicalPath();
-        this.updateMetaTags();
+      this.updateTitle();
+      this.updateCanonicalPath();
+      this.updateMetaTags();
     });
   }
 

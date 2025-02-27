@@ -1,2 +1,8 @@
+import {platformServer} from '@angular/platform-server';
+import AppModule from './app/app.module';
 
-export { AppServerModule as default } from './app/app.server.module';
+platformServer()
+    .bootstrapModule(AppModule)
+    .catch(err => console.error(err));
+
+export default AppModule;

@@ -1,0 +1,24 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": false,                // Disable source maps in production for smaller build size
+    "declaration": false,              // Don't generate declaration files in production
+    "removeComments": true,            // Remove comments from the final output to reduce size
+    "noUnusedLocals": false,            // Report unused variables to clean up dead code
+    "noUnusedParameters": false,        // Report unused parameters to clean up code
+    "skipLibCheck": true,              // Skip type checking for libraries to speed up the build
+    "target": "ES2022",                // Target modern JavaScript for better performance
+    "module": "ES2022",                // Use ES2022 modules for better tree-shaking
+    "lib": ["ES2022", "dom"],          // Include necessary libs for production
+    "strict": true,                    // Enable strict type-checking for production builds
+    "esModuleInterop": true,           // Ensure compatibility with CommonJS modules
+    "moduleResolution": "node",        // Resolve modules like Node.js (required for Angular)
+    "inlineSourceMap": false,          // Disable inline source maps in production
+    "importHelpers": true,             // Reduce build size by using helpers from tslib
+    "useDefineForClassFields": false   // Keep compatibility with Angular class field definitions
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": true,     // Enable full template type-checking for better errors
+    "strictTemplates": true            // Ensure strict template checking
+  }
+}

@@ -28,7 +28,7 @@ export class VoteUserWebsiteComponent implements OnInit {
                 private notificationService: NotificationService,
                 private reCaptchaService: ReCaptchaV3Service,
                 @Inject(PLATFORM_ID) private platformId: object,
-                @Inject(DOCUMENT) private document: Document) {
+                @Inject(DOCUMENT) document: Document) {
         this.voteService = new VoteService(httpClient, environment.production);
 
         if (isPlatformBrowser(this.platformId)) {

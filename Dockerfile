@@ -1,22 +1,15 @@
 FROM node:22 AS BUILD
 
-MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
-
-RUN npm install -g @angular/cli
-
 WORKDIR /container/build
 
 COPY . .
 
-RUN npm ci
-RUN npm run build:ssr
+RUN npm install -g @angular/cli && npm ci && npm run build:prod
 
 FROM node:22 AS RUN
 
-MAINTAINER Antoine PRONNIER, <antoine.pronnier@gmail.com>
-
-ENV USER=container HOME=/home/container
 ENV PORT=80
+
 WORKDIR /home/container
 
 RUN mkdir dist

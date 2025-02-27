@@ -13,7 +13,7 @@ export class WelcomeAccueilSectionComponent implements AfterViewInit {
 
   playersAmount: number = 0;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private readonly httpClient: HttpClient) {
   }
 
   ngAfterViewInit(): void {

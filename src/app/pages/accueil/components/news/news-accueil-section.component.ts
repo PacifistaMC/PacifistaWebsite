@@ -1,4 +1,4 @@
-import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
@@ -16,8 +16,7 @@ export class NewsAccueilSectionComponent implements OnInit {
   newsList: PacifistaNewsDTO[] = [];
   totalNews: number = 0;
 
-  constructor(@Inject(PLATFORM_ID) private platfomId: Object,
-              httpClient: HttpClient) {
+  constructor(httpClient: HttpClient) {
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
   }
 

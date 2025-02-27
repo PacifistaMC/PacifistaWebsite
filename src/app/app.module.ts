@@ -25,6 +25,9 @@ import {
     StaffAccueuilSectionRowPlayerComponent
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
 import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.component";
+import {provideServerRouting} from "@angular/ssr";
+import {serverRoutes} from "./app.routes.server";
+import {provideServerRendering} from "@angular/platform-server";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -58,7 +61,9 @@ import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.componen
         provideClientHydration(),
         provideAnimationsAsync(),
         provideHttpClient(withFetch()),
-        provideHttpClient(withInterceptorsFromDi())
+        provideHttpClient(withInterceptorsFromDi()),
+        provideServerRouting(serverRoutes),
+        provideServerRendering()
     ]
 })
-export class AppModule { }
+export default class AppModule { }

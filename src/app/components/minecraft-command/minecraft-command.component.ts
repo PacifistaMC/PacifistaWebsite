@@ -15,7 +15,7 @@ export class MinecraftCommandComponent {
   }
 
   copyCommand() {
-    navigator.clipboard.writeText(this.command).then(r =>
+    navigator.clipboard.writeText(this.command).then(() =>
         this.notificationService.info('Commande copiée dans le presse-papier.'));
   }
 }
