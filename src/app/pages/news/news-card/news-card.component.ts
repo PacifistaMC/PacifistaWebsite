@@ -3,9 +3,10 @@ import {PacifistaNewsDTO} from "@funixproductions/funixproductions-requests";
 import NewsService from "../NewsService";
 
 @Component({
-  selector: 'app-news-card',
-  templateUrl: './news-card.component.html',
-  styleUrls: ['./news-card.component.scss']
+    selector: 'app-news-card',
+    templateUrl: './news-card.component.html',
+    styleUrls: ['./news-card.component.scss'],
+    standalone: false
 })
 export class NewsCardComponent {
 

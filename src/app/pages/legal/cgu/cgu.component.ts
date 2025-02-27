@@ -4,9 +4,10 @@ import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-  selector: 'app-cgu',
-  templateUrl: './cgu.component.html',
-  styleUrls: ['./cgu.component.scss']
+    selector: 'app-cgu',
+    templateUrl: './cgu.component.html',
+    styleUrls: ['./cgu.component.scss'],
+    standalone: false
 })
 export class CguComponent extends PacifistaPage {
 

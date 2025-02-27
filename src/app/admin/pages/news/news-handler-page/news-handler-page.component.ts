@@ -9,9 +9,10 @@ import NewsService from "../../../../pages/news/NewsService";
 import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-news-handler-page',
-  templateUrl: './news-handler-page.component.html',
-  styleUrl: './news-handler-page.component.scss'
+    selector: 'app-news-handler-page',
+    templateUrl: './news-handler-page.component.html',
+    styleUrl: './news-handler-page.component.scss',
+    standalone: false
 })
 export class NewsHandlerPageComponent implements OnInit {
 

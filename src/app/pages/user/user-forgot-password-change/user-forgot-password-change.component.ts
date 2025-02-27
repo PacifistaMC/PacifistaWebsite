@@ -7,9 +7,10 @@ import NotificationService from "../../../services/notifications/services/Notifi
 import {environment} from "../../../../environments/environment";
 
 @Component({
-  selector: 'app-user-forgot-password-change',
-  templateUrl: './user-forgot-password-change.component.html',
-  styleUrl: './user-forgot-password-change.component.scss'
+    selector: 'app-user-forgot-password-change',
+    templateUrl: './user-forgot-password-change.component.html',
+    styleUrl: './user-forgot-password-change.component.scss',
+    standalone: false
 })
 export class UserForgotPasswordChangeComponent implements OnInit {
 

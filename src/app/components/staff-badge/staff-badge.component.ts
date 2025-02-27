@@ -2,13 +2,12 @@ import {Component, Input, OnInit} from '@angular/core';
 import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'staff-badge',
-  standalone: true,
+    selector: 'staff-badge',
     imports: [
         NgIf
     ],
-  templateUrl: './staff-badge.component.html',
-  styleUrl: './staff-badge.component.scss'
+    templateUrl: './staff-badge.component.html',
+    styleUrl: './staff-badge.component.scss'
 })
 export class StaffBadgeComponent implements OnInit {
 

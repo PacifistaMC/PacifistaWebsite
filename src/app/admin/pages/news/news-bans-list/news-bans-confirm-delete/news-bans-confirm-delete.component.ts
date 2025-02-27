@@ -4,9 +4,10 @@ import {PacifistaNewsBanDTO} from "@funixproductions/funixproductions-requests";
 import {NewsBansListComponent} from "../news-bans-list.component";
 
 @Component({
-  selector: 'app-news-bans-confirm-delete',
-  templateUrl: './news-bans-confirm-delete.component.html',
-  styleUrl: './news-bans-confirm-delete.component.scss'
+    selector: 'app-news-bans-confirm-delete',
+    templateUrl: './news-bans-confirm-delete.component.html',
+    styleUrl: './news-bans-confirm-delete.component.scss',
+    standalone: false
 })
 export class NewsBansConfirmDeleteComponent {
 

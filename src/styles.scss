@@ -1,28 +1,4 @@
-@import "pacifista_variables";
-
-@import 'bootstrap-icons/font/bootstrap-icons.min.css';
-
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
-
-// Functions first
-@import "bootstrap/scss/functions";
-
-// Required Bootstrap imports
-@import "bootstrap/scss/variables";
-@import "bootstrap/scss/maps";
-@import "bootstrap/scss/mixins";
-@import "bootstrap/scss/root";
-
-// Optional components
-@import "bootstrap/scss/utilities";
-@import "bootstrap/scss/reboot";
-@import "bootstrap/scss/containers";
-@import "bootstrap/scss/grid";
-@import "bootstrap/scss/helpers";
-@import "bootstrap/scss/utilities/api";
-
-@import "scrollbar";
+@use "pacifista_variables" as *;
 
 * {
   font-family: 'Roboto', sans-serif !important;

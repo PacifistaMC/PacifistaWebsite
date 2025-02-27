@@ -12,9 +12,10 @@ import {isPlatformServer} from "@angular/common";
 import ShopService from "../../shop-service";
 
 @Component({
-  selector: 'app-shop-categories',
-  templateUrl: './shop-categories.component.html',
-  styleUrls: ['./shop-categories.component.scss']
+    selector: 'app-shop-categories',
+    templateUrl: './shop-categories.component.html',
+    styleUrls: ['./shop-categories.component.scss'],
+    standalone: false
 })
 export class ShopCategoriesComponent implements OnInit {
 

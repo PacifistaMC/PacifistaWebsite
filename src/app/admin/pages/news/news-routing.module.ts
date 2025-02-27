@@ -15,7 +15,8 @@ const routes: Routes = [
     },
     {
         path: ':newsName',
-        component: NewsHandlerPageComponent
+        component: NewsHandlerPageComponent,
+        data: { renderMode: 'client' }
     }
 ];
 

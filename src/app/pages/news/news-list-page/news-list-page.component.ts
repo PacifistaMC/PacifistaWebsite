@@ -1,19 +1,21 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT} from "@angular/common";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
-  selector: 'app-news-list-page',
-  templateUrl: './news-list-page.component.html',
-  styleUrls: ['./news-list-page.component.scss']
+    selector: 'app-news-list-page',
+    templateUrl: './news-list-page.component.html',
+    styleUrls: ['./news-list-page.component.scss'],
+    standalone: false
 })
 export class NewsListPageComponent extends PacifistaPage {
 
+  private readonly window?: (WindowProxy & typeof globalThis) | null;
   protected override title: string = 'News';
   protected override canonicalPath: string = 'news'
   protected override pageDescription: string = 'Pacifista : Découvrez toutes les news du serveur Minecraft !';
@@ -30,18 +32,23 @@ export class NewsListPageComponent extends PacifistaPage {
   constructor(private notificationService: NotificationService,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document,
+              @Inject(PLATFORM_ID) private platformId: object,
               httpClient: HttpClient) {
     super(titleService, doc);
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
+    if (isPlatformBrowser(this.platformId)) {
+      this.window = doc.defaultView
+    }
   }
 
   protected override onPageInit() {
     this.loadNews();
-    window.addEventListener('scroll', this.onScroll.bind(this));
+
+    window?.addEventListener('scroll', this.onScroll.bind(this));
   }
 
   onScroll() {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if (this.window && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.pageUpNews();
     }
   }

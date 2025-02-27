@@ -1,4 +1,4 @@
-@import "../../accueil.component";
+@use "../../accueil.component" as *;
 
 .staff-section img {
   border-radius: 15%;

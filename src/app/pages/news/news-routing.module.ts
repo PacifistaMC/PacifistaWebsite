@@ -5,10 +5,12 @@ import {NewsPageComponent} from "./news-page/news-page.component";
 
 const routes: Routes = [
   {
-    path: '', component: NewsListPageComponent
+    path: '',
+    component: NewsListPageComponent,
   },
   {
-    path: ':newsName', component: NewsPageComponent
+    path: ':newsName',
+    component: NewsPageComponent,
   }
 ];
 

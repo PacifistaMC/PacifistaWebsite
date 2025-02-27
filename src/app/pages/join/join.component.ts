@@ -4,9 +4,10 @@ import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
 import {DOCUMENT} from "@angular/common";
 
 @Component({
-  selector: 'app-join',
-  templateUrl: './join.component.html',
-  styleUrls: ['./join.component.scss']
+    selector: 'app-join',
+    templateUrl: './join.component.html',
+    styleUrls: ['./join.component.scss'],
+    standalone: false
 })
 export class JoinComponent extends PacifistaPage {
 

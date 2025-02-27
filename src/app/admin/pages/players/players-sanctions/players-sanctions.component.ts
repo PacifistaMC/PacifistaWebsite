@@ -12,9 +12,10 @@ import NotificationService from "../../../../services/notifications/services/Not
 import {environment} from "../../../../../environments/environment";
 
 @Component({
-  selector: 'app-players-sanctions',
-  templateUrl: './players-sanctions.component.html',
-  styleUrl: './players-sanctions.component.scss'
+    selector: 'app-players-sanctions',
+    templateUrl: './players-sanctions.component.html',
+    styleUrl: './players-sanctions.component.scss',
+    standalone: false
 })
 export class PlayersSanctionsComponent extends PaginatedComponent<PacifistaSanctionDTO, PacifistaSanctionService> {
 

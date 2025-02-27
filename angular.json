@@ -15,18 +15,20 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
             "allowedCommonJsDependencies": [
               "@jsonjoy.com/util/lib/json-equal/$$deepEqual"
             ],
-            "outputPath": "dist/pacifista-website/browser",
+            "outputPath": {
+              "base": "dist/pacifista-website"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
-              "zone.js"
+              "zone.js",
+              "@angular/localize/init"
             ],
-            "tsConfig": "tsconfig.app.json",
+            "tsConfig": "tsconfig.json",
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
@@ -40,11 +42,20 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.min.css",
+              "node_modules/bootstrap/scss/bootstrap.scss",
+              "src/styles.scss",
+              "src/scrollbar.scss"
             ],
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
-            ]
+            ],
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -60,6 +71,7 @@
                   "maximumError": "4kb"
                 }
               ],
+              "tsConfig": "tsconfig.prod.json",
               "outputHashing": "all"
             },
             "development": {
@@ -69,9 +81,7 @@
                   "with": "src/environments/environment.local.ts"
                 }
               ],
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -91,18 +101,13 @@
           },
           "defaultConfiguration": "development"
         },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "pacifista-website:build"
-          }
-        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "polyfills": [
               "zone.js",
-              "zone.js/testing"
+              "zone.js/testing",
+              "@angular/localize/init"
             ],
             "tsConfig": "tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
@@ -122,60 +127,6 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js"
             ]
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/pacifista-website/server",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "inlineStyleLanguage": "scss"
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media"
-            },
-            "development": {
-              "optimization": false,
-              "sourceMap": true,
-              "extractLicenses": false,
-              "vendorChunk": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "pacifista-website:build:development",
-              "serverTarget": "pacifista-website:server:development"
-            },
-            "production": {
-              "browserTarget": "pacifista-website:build:production",
-              "serverTarget": "pacifista-website:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "pacifista-website:build:production",
-              "serverTarget": "pacifista-website:server:production"
-            },
-            "development": {
-              "browserTarget": "pacifista-website:build:development",
-              "serverTarget": "pacifista-website:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     }

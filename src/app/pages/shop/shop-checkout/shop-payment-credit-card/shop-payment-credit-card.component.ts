@@ -1,23 +1,26 @@
-import {Component} from '@angular/core';
+import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {
-    PacifistaPaymentRequestDTO,
-    PacifistaPaymentService,
-    PacifistaShopCreditCardDTO
+  PacifistaPaymentRequestDTO,
+  PacifistaPaymentService,
+  PacifistaShopCreditCardDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
 import ShopService from "../../shop-service";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {Router} from "@angular/router";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
-  selector: 'app-shop-payment-credit-card',
-  templateUrl: './shop-payment-credit-card.component.html',
-  styleUrl: './shop-payment-credit-card.component.scss'
+    selector: 'app-shop-payment-credit-card',
+    templateUrl: './shop-payment-credit-card.component.html',
+    styleUrl: './shop-payment-credit-card.component.scss',
+    standalone: false
 })
 export class ShopPaymentCreditCardComponent {
 
   private readonly paymentService: PacifistaPaymentService;
+  private readonly window?: (WindowProxy & typeof globalThis) | null;
 
   cardHolderName: string = "";
   cardHolderNameError: string[] = [];
@@ -40,8 +43,13 @@ export class ShopPaymentCreditCardComponent {
   constructor(protected shopService: ShopService,
               protected notificationService: NotificationService,
               protected router: Router,
-              httpClient: HttpClient) {
+              httpClient: HttpClient,
+              @Inject(PLATFORM_ID) private platformId: object,
+              @Inject(DOCUMENT) private document: Document) {
     this.paymentService = new PacifistaPaymentService(httpClient, environment.production);
+    if (isPlatformBrowser(this.platformId)) {
+      this.window = document.defaultView
+    }
   }
 
   createOrder(): void {
@@ -75,8 +83,10 @@ export class ShopPaymentCreditCardComponent {
         const redirectUrl: string | undefined = response.urlClientRedirection;
 
         if (redirectUrl) {
-          localStorage.setItem('paymentExternalOrderId', response.paymentExternalOrderId);
-          window.location.href = redirectUrl;
+          if (this.window) {
+            localStorage.setItem('paymentExternalOrderId', response.paymentExternalOrderId);
+            window.location.href = redirectUrl;
+          }
         } else {
           this.router.navigate(['/shop/checkout/check'], {queryParams: {token: response.paymentExternalOrderId}});
         }

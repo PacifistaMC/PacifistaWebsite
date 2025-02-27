@@ -8,9 +8,10 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {NewsBansConfirmDeleteComponent} from "./news-bans-confirm-delete/news-bans-confirm-delete.component";
 
 @Component({
-  selector: 'app-news-bans-list',
-  templateUrl: './news-bans-list.component.html',
-  styleUrl: './news-bans-list.component.scss'
+    selector: 'app-news-bans-list',
+    templateUrl: './news-bans-list.component.html',
+    styleUrl: './news-bans-list.component.scss',
+    standalone: false
 })
 export class NewsBansListComponent extends PaginatedComponent<PacifistaNewsBanDTO, PacifistaNewsBanService> {
 

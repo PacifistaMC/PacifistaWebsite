@@ -12,7 +12,8 @@ import NewsService from "../NewsService";
 @Component({
     selector: 'app-news-page',
     templateUrl: './news-page.component.html',
-    styleUrls: ['./news-page.component.scss']
+    styleUrls: ['./news-page.component.scss'],
+    standalone: false
 })
 export class NewsPageComponent extends PacifistaPage {
 

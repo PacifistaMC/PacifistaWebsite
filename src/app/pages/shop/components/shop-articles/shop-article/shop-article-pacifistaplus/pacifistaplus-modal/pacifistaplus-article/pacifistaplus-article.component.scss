@@ -1,4 +1,4 @@
-@import "../../shop-article-pacifistaplus.component";
+@use "../../shop-article-pacifistaplus.component" as *;
 
 .price-no-discount {
   color: red;

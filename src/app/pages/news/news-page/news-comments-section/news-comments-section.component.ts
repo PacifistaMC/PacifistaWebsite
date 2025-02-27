@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import {
   PacifistaNewsCommentDTO,
   PacifistaNewsCommentService,
@@ -7,13 +7,17 @@ import {
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../environments/environment";
+import {DOCUMENT, isPlatformBrowser} from "@angular/common";
 
 @Component({
-  selector: 'app-news-comments-section',
-  templateUrl: './news-comments-section.component.html',
-  styleUrl: './news-comments-section.component.scss'
+    selector: 'app-news-comments-section',
+    templateUrl: './news-comments-section.component.html',
+    styleUrl: './news-comments-section.component.scss',
+    standalone: false
 })
 export class NewsCommentsSectionComponent implements OnInit {
+
+  private readonly window?: (WindowProxy & typeof globalThis) | null;
 
   @Input() news!: PacifistaNewsDTO;
 
@@ -29,14 +33,20 @@ export class NewsCommentsSectionComponent implements OnInit {
   private readonly commentsService: PacifistaNewsCommentService;
 
   constructor(httpClient: HttpClient,
-              private readonly notificationService: NotificationService) {
+              private readonly notificationService: NotificationService,
+              @Inject(PLATFORM_ID) private platformId: object,
+              @Inject(DOCUMENT) private document: Document) {
     this.commentsService = new PacifistaNewsCommentService(httpClient, environment.production);
+    if (isPlatformBrowser(this.platformId)) {
+      this.window = document.defaultView
+    }
   }
 
   ngOnInit(): void {
     this.totalComments = this.news.comments;
     this.loadComments();
-    window.addEventListener('scroll', this.onScroll.bind(this));
+
+    window?.addEventListener('scroll', this.onScroll.bind(this));
   }
 
   onCommentDeleted(comment: PacifistaNewsCommentDTO): void {
@@ -59,7 +69,7 @@ export class NewsCommentsSectionComponent implements OnInit {
   }
 
   onScroll(event: Event) {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+    if (this.window && (window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.pageUp();
     }
   }

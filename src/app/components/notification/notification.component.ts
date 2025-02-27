@@ -3,9 +3,10 @@ import NotificationService from "../../services/notifications/services/Notificat
 import {NotificationType} from "../../services/notifications/enums/NotificationType";
 
 @Component({
-  selector: 'app-notification',
-  templateUrl: './notification.component.html',
-  styleUrls: ['./notification.component.scss']
+    selector: 'app-notification',
+    templateUrl: './notification.component.html',
+    styleUrls: ['./notification.component.scss'],
+    standalone: false
 })
 export class NotificationComponent {
 

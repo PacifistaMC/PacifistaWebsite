@@ -14,7 +14,8 @@ import NotificationService from "../../../../services/notifications/services/Not
 @Component({
     selector: 'app-vote-user',
     templateUrl: './vote-user.component.html',
-    styleUrl: './vote-user.component.scss'
+    styleUrl: './vote-user.component.scss',
+    standalone: false
 })
 export class VoteUserComponent implements AfterViewInit {
 

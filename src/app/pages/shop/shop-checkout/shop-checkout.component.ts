@@ -13,9 +13,10 @@ import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
 @Component({
-  selector: 'app-shop-checkout',
-  templateUrl: './shop-checkout.component.html',
-  styleUrls: ['./shop-checkout.component.scss']
+    selector: 'app-shop-checkout',
+    templateUrl: './shop-checkout.component.html',
+    styleUrls: ['./shop-checkout.component.scss'],
+    standalone: false
 })
 export class ShopCheckoutComponent extends PacifistaPage implements AfterViewInit {
 

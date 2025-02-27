@@ -4,7 +4,8 @@ import {UserJwtCheckerService, UserRole} from "@funixproductions/funixproduction
 @Component({
     selector: 'app-admin-navbar',
     templateUrl: './admin-navbar.component.html',
-    styleUrl: './admin-navbar.component.scss'
+    styleUrl: './admin-navbar.component.scss',
+    standalone: false
 })
 export class AdminNavbarComponent {
 

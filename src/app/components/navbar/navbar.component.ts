@@ -3,9 +3,10 @@ import {isPlatformBrowser, PlatformLocation} from "@angular/common";
 import {UserJwtCheckerService, UserRole} from "@funixproductions/funixproductions-requests";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+    selector: 'app-navbar',
+    templateUrl: './navbar.component.html',
+    styleUrls: ['./navbar.component.scss'],
+    standalone: false
 })
 export class NavbarComponent {
 
