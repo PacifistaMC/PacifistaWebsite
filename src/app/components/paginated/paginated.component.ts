@@ -184,13 +184,15 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         this.updateList()
     }
 
-    protected updateList(callback: () => void = () => {}): void {
+    protected updateList(callback: () => void = () => {}, sort?: string): void {
         const pageOption = new PageOption();
         pageOption.elemsPerPage = this.maxElemsPerPage
         pageOption.page = this.page - 1
 
         if (this.sort) {
             pageOption.sort = `${this.sort.column}:${this.sort.direction}`
+        } else if (sort) {
+            pageOption.sort = sort
         } else {
             pageOption.sort = "createdAt:desc"
         }
