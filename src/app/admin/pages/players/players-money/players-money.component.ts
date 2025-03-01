@@ -54,11 +54,11 @@ export class PlayersMoneyComponent extends PaginatedComponent<PlayerMoneyDTO, Pl
                 return;
             }
 
-            super.findPlayerDataFromUsername(usernameGet, true, (data) => {
+            super.findPlayerDataFromUsername(usernameGet, (data) => {
                 let idsList: string[] = [];
                 data.forEach((player) => {
                     idsList.push(player.minecraftUuid);
-                });
+                }, true);
 
                 const query = new QueryParam();
                 query.type = QueryBuilder.equal;

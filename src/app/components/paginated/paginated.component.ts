@@ -45,7 +45,7 @@ export class NgbdSearchableHeader implements OnInit {
 
     private inputText?: HTMLInputElement;
 
-    constructor(private renderer: Renderer2, private el: ElementRef) {}
+    constructor(private readonly renderer: Renderer2, private readonly el: ElementRef) {}
 
     ngOnInit(): void {
         this.inputText = this.renderer.createElement('input');
@@ -82,7 +82,7 @@ export class NgbdSortableHeader implements OnInit {
 
     private spanIcon?: HTMLElement;
 
-    constructor(private renderer: Renderer2, private el: ElementRef) {
+    constructor(private readonly renderer: Renderer2, private readonly el: ElementRef) {
         this.renderer.listen(this.el.nativeElement, 'click', (event: Event) => {
             if ((event.target as HTMLElement).tagName !== 'INPUT') {
                 this.rotate();
@@ -121,7 +121,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
     protected allElemsDatabase: number = 0
     protected list: DTO[] = []
     private sort?: SortEvent
-    private queryBuilder: QueryBuilder
+    private readonly queryBuilder: QueryBuilder
 
     protected readonly maxElemsPerPage: number = 30
     protected readonly client: CLIENT
@@ -214,7 +214,7 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
         })
     }
 
-    protected findPlayerDataFromUsername(username: string, startWith: boolean = true, callback: (data: PacifistaPlayerDataDTO[]) => void): void {
+    protected findPlayerDataFromUsername(username: string, callback: (data: PacifistaPlayerDataDTO[]) => void, startWith: boolean = true): void {
         const queryBuilder = new QueryBuilder()
 
         const queryParam = new QueryParam()

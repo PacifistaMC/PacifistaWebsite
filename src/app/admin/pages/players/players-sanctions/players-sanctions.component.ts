@@ -64,11 +64,11 @@ export class PlayersSanctionsComponent extends PaginatedComponent<PacifistaSanct
         return;
       }
 
-      super.findPlayerDataFromUsername(usernameGet, true, (data) => {
+      super.findPlayerDataFromUsername(usernameGet, (data) => {
         let idsList: string[] = [];
         data.forEach((player) => {
           idsList.push(player.minecraftUuid);
-        });
+        }, true);
 
         const query = new QueryParam();
         query.type = QueryBuilder.equal;
