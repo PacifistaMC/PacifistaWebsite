@@ -3,7 +3,9 @@ import {PaginatedComponent} from "../../../../components/paginated/paginated.com
 import {
     PacifistaPlayerDataDTO,
     PlayerMoneyDTO,
-    PlayerMoneyService, QueryBuilder, QueryParam
+    PlayerMoneyService,
+    QueryBuilder,
+    QueryParam
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
@@ -42,36 +44,35 @@ export class PlayersMoneyComponent extends PaginatedComponent<PlayerMoneyDTO, Pl
 
     searchByUserName(username: QueryParam) {
         const usernameGet: string | string[] = username.value ?? '';
+        if (typeof usernameGet !== 'string') return;
 
-        if (typeof usernameGet === 'string') {
-            if (usernameGet.length === 0) {
-                const query = new QueryParam();
-                query.type = QueryBuilder.equal;
-                query.key = 'minecraftUuid';
-                query.value = '';
+        if (usernameGet.length === 0) {
+            const query = new QueryParam();
+            query.type = QueryBuilder.equal;
+            query.key = 'playerOwnerUuid';
+            query.value = '';
 
-                super.search(query);
-                return;
-            }
-
-            super.findPlayerDataFromUsername(usernameGet, (data) => {
-                let idsList: string[] = [];
-                data.forEach((player) => {
-                    idsList.push(player.minecraftUuid);
-                }, true);
-
-                const query = new QueryParam();
-                query.type = QueryBuilder.equal;
-                query.key = 'minecraftUuid';
-
-                if (idsList.length === 0) {
-                    query.value = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
-                    super.search(query);
-                } else {
-                    query.value = idsList;
-                    super.search(query);
-                }
-            });
+            super.search(query);
+            return;
         }
+
+        super.findPlayerDataFromUsername(usernameGet, (data) => {
+            let idsList: string[] = [];
+            data.forEach((player) => {
+                idsList.push(player.minecraftUuid);
+            }, true);
+
+            const query = new QueryParam();
+            query.type = QueryBuilder.equal;
+            query.key = 'playerOwnerUuid';
+
+            if (idsList.length === 0) {
+                query.value = 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz';
+                super.search(query);
+            } else {
+                query.value = idsList;
+                super.search(query);
+            }
+        }, true);
     }
 }
