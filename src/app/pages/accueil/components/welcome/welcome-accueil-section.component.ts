@@ -11,13 +11,15 @@ import {environment} from "../../../../../environments/environment";
 })
 export class WelcomeAccueilSectionComponent implements OnInit {
 
-  playersAmount: number = 0;
+    private readonly infoService: PacifistaServerInfoService;
+    playersAmount: number = 0;
 
-  constructor(private readonly httpClient: HttpClient) {
-  }
+    constructor(httpClient: HttpClient) {
+        this.infoService = new PacifistaServerInfoService(httpClient, environment.production);
+    }
 
     ngOnInit(): void {
-        new PacifistaServerInfoService(this.httpClient, environment.production).getStatus().subscribe({
+        this.infoService.getStatus().subscribe({
             next: value => {
                 this.playersAmount = value.onlinePlayers
             }
