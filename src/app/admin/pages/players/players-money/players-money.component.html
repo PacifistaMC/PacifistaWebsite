@@ -1,1 +1,40 @@
-<p>players-money works!</p>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col" searchable="minecraftUuid" (search)="searchByUserName($event)">Joueur</th>
+        <th scope="col" sortable="money" (sort)="onSort($event)">Argent</th>
+        <th scope="col" sortable="offlineMoney" (sort)="onSort($event)">Argent hors-ligne</th>
+    </tr>
+    </thead>
+
+    <tbody>
+        @for (money of list; track money.playerOwnerUuid) {
+            <tr>
+                <td>
+                    <minecraft-head
+                        [username]="getUsernameFromId(money.playerOwnerUuid) ?? ''"
+                        [size]="20"
+                    ></minecraft-head>
+                    <span> {{ getUsernameFromId(money.playerOwnerUuid) }}</span>
+                </td>
+                <td>
+                    {{ money.money }}
+                </td>
+                <td>
+                    {{ money.offlineMoney }}
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+        [collectionSize]="allElemsDatabase"
+        [(page)]="page"
+        [pageSize]="maxElemsPerPage"
+        (pageChange)="updateList()"
+        [maxSize]="7"
+    >
+    </ngb-pagination>
+</div>
