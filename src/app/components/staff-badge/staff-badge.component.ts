@@ -36,7 +36,9 @@ export class StaffBadgeComponent implements OnInit {
     } else if (StaffBadgeComponent.animators.includes(this.username.toLowerCase())) {
       this.classRole = 'animator';
       this.roleName = 'Animateur';
-    } else {
+    } else if (StaffBadgeComponent.artists.includes(this.username.toLowerCase())) {
+      this.classRole = 'artist';
+      this.roleName = 'Graphisme';
     }
 
     if (this.marginRight && this.classRole.length > 0) {
@@ -68,6 +70,10 @@ export class StaffBadgeComponent implements OnInit {
 
   public static readonly animators: string[] = [
     'whisky_'
+  ];
+
+  public static readonly artists: string[] = [
+      'lucipopo'
   ];
 
   public static isStaff(username: string): boolean {

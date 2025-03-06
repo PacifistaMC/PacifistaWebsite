@@ -17,8 +17,24 @@ export class StaffAccueilSectionComponent {
 
     readonly helpers: string[] = StaffBadgeComponent.helpers;
 
-    readonly developers: string[] = StaffBadgeComponent.developers;
+    readonly otherStaffs: string[];
 
-    readonly animators: string[] = StaffBadgeComponent.animators;
+    constructor() {
+        let otherStaffs: string[] = [];
+
+        for (let staff of StaffBadgeComponent.developers) {
+            otherStaffs.push(staff);
+        }
+
+        for (let staff of StaffBadgeComponent.animators) {
+            otherStaffs.push(staff);
+        }
+
+        for (let staff of StaffBadgeComponent.artists) {
+            otherStaffs.push(staff);
+        }
+
+        this.otherStaffs = otherStaffs;
+    }
 
 }

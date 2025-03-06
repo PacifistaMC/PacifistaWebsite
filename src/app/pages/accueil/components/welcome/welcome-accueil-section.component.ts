@@ -1,7 +1,8 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {Component, Inject, OnInit, PLATFORM_ID} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PacifistaServerInfoService} from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../environments/environment";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'welcome-section',
@@ -9,21 +10,25 @@ import {environment} from "../../../../../environments/environment";
     styleUrls: ['./welcome-accueil-section.component.scss'],
     standalone: false
 })
-export class WelcomeAccueilSectionComponent implements AfterViewInit {
+export class WelcomeAccueilSectionComponent implements OnInit {
 
     private readonly infoService: PacifistaServerInfoService;
-    playersAmount: number = 0;
 
-    constructor(httpClient: HttpClient) {
+    protected playersAmount: number = 0;
+
+    constructor(
+        httpClient: HttpClient,
+        @Inject(PLATFORM_ID) private platformId: Object
+    ) {
         this.infoService = new PacifistaServerInfoService(httpClient, environment.production);
     }
 
-    ngAfterViewInit(): void {
-        this.infoService.getStatus().subscribe({
-            next: value => {
-                this.playersAmount = value.onlinePlayers
-            }
-        });
+    ngOnInit(): void {
+        if (isPlatformBrowser(this.platformId)) {
+            this.infoService.getStatus().subscribe(serverData => {
+                this.playersAmount = serverData.onlinePlayers;
+            });
+        }
     }
 
 }
