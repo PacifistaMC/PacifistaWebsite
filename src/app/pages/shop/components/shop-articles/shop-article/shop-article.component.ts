@@ -17,7 +17,7 @@ export class ShopArticleComponent {
               protected shopService: ShopService) {
   }
 
-  @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
+  @Input() article!: PacifistaShopArticleDTO;
   amountBuy: number = 1;
 
   openModal(): void {

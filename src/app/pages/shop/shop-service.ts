@@ -76,11 +76,7 @@ export default class ShopService {
         const articles: PacifistaShopArtcileRequestDTO[] = [];
 
         this.basket.forEach((cart, articleId) => {
-            const articleRequest = new PacifistaShopArtcileRequestDTO();
-
-            articleRequest.articleId = articleId;
-            articleRequest.quantity = cart.amount;
-            articles.push(articleRequest);
+            articles.push(new PacifistaShopArtcileRequestDTO(articleId, cart.amount));
         });
         return articles;
     }
