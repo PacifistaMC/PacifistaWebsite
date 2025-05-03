@@ -1,0 +1,60 @@
+<div class="container-search-pacifista-shop-category">
+    <app-input-text
+            [label]="'Nom de la catégorie'"
+            [placeholder]="'Entrez le nom de la catégorie'"
+            [id]="'categoryName'"
+            [text]="searchText"
+            [required]="true"
+            [formSent]="false"
+            [inputErrors]="[]"
+            (textChange)="onInputChange($event)"
+    ></app-input-text>
+
+    <div *ngIf="categorySelected" class="pt-2">
+        <button
+                class="btn btn-danger pl-2"
+                (click)="clear()"
+        ><i class="bi bi-x-circle-fill"></i></button>
+
+        <strong>{{ categorySelected.name }}</strong>
+    </div>
+
+    <div class="card position-absolute results-container" *ngIf="loading; else doneLoading">
+        <div class="card-body">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Chargement...</span>
+            </div>
+        </div>
+    </div>
+
+    <ng-template #doneLoading>
+        <div *ngIf="doneSearching" #resultsContainer class="position-absolute results-container">
+            <div class="card" *ngIf="categories.length > 0; else noResults">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="list-group list-group-flush">
+                                <button
+                                        *ngFor="let cat of categories"
+                                        type="button"
+                                        class="list-group-item list-group-item-action"
+                                        (click)="selectCategory(cat)">
+                                    {{ cat.name }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <ng-template #noResults>
+                <div class="card">
+                    <div class="card-body">
+                        <p class="text-center">Aucun résultat</p>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </ng-template>
+
+</div>

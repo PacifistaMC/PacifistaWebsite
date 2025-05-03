@@ -6,19 +6,25 @@ import {ShopAdminRoutingModule} from "./shop-admin-routing.module";
 import {ShopArticlesComponent} from "./shop-articles/shop-articles.component";
 import {ShopCategoriesComponent} from "./shop-categories/shop-categories.component";
 import {ShopArticleHandlerComponent} from "./shop-articles/shop-article-handler/shop-article-handler.component";
+import {ShopCategorySearchComponent} from "./shop-categories/shop-category-search/shop-category-search.component";
+import {InputTextComponent} from "../../../components/inputs/input-text/input-text.component";
+import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecraft-head.component";
 
 @NgModule({
     declarations: [
         ShopArticlesComponent,
         ShopCategoriesComponent,
-        ShopArticleHandlerComponent
+        ShopArticleHandlerComponent,
+        ShopCategorySearchComponent
     ],
     imports: [
         CommonModule,
         ShopAdminRoutingModule,
         NgbPagination,
         NgbdSortableHeader,
-        NgbdSearchableHeader
+        NgbdSearchableHeader,
+        InputTextComponent,
+        MinecraftHeadComponent
     ]
 })
 export class ShopAdminModule { }
