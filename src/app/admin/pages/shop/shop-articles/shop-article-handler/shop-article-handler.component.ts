@@ -3,7 +3,11 @@ import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {DomSanitizer} from "@angular/platform-browser";
-import {PacifistaShopArticleDTO, PacifistaShopArticleService} from "@funixproductions/funixproductions-requests";
+import {
+  PacifistaShopArticleDTO,
+  PacifistaShopArticleService,
+  PacifistaShopCategoryDTO
+} from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../environments/environment";
 import MarkdownIt from "markdown-it";
 
@@ -18,7 +22,18 @@ export class ShopArticleHandlerComponent implements OnInit {
   private readonly articleService: PacifistaShopArticleService;
   private readonly categoryService: PacifistaShopArticleService;
 
-  protected article?: PacifistaShopArticleDTO;
+  protected article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO(
+      new PacifistaShopCategoryDTO(
+          '', '', false
+      ),
+      '', '', '', '', 0.0, '', undefined
+  );
+
+  protected nameErrors: string[] = [];
+  protected descriptionErrors: string[] = [];
+  protected priceErrors: string[] = [];
+  protected commandExecutedErrors: string[] = [];
+  protected formSent: boolean = false;
 
   protected readonly mdParser = MarkdownIt({
     html: true,
@@ -43,7 +58,7 @@ export class ShopArticleHandlerComponent implements OnInit {
         return;
       }
 
-      if (articleId !== 'create') {
+      if (articleId !== 'new') {
         this.getArticle(articleId);
       }
     })
@@ -58,6 +73,14 @@ export class ShopArticleHandlerComponent implements OnInit {
             this.notificationService.onErrorRequest(error);
         }
     })
+  }
+
+  setCategory(category?: PacifistaShopCategoryDTO): void {
+    if (category) {
+      this.article.category = category;
+    } else {
+        this.article.category = new PacifistaShopCategoryDTO('', '', false);
+    }
   }
 
 }

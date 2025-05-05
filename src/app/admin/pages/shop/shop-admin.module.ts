@@ -9,6 +9,8 @@ import {ShopArticleHandlerComponent} from "./shop-articles/shop-article-handler/
 import {ShopCategorySearchComponent} from "./shop-categories/shop-category-search/shop-category-search.component";
 import {InputTextComponent} from "../../../components/inputs/input-text/input-text.component";
 import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecraft-head.component";
+import {InputNumberComponent} from "../../../components/inputs/input-number/input-number.component";
+import {InputSelectServerComponent} from "../../../components/inputs/input-select-server/input-select-server.component";
 
 @NgModule({
     declarations: [
@@ -24,7 +26,9 @@ import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecra
         NgbdSortableHeader,
         NgbdSearchableHeader,
         InputTextComponent,
-        MinecraftHeadComponent
+        MinecraftHeadComponent,
+        InputNumberComponent,
+        InputSelectServerComponent
     ]
 })
 export class ShopAdminModule { }
