@@ -1,11 +1,11 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {Router} from "@angular/router";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {FunixprodHttpClient, UserAuthService, UserDTO} from "@funixproductions/funixproductions-requests";
 import {Title} from "@angular/platform-browser";
 import {environment} from "../../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 
 @Component({

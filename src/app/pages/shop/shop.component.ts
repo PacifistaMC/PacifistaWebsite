@@ -1,7 +1,7 @@
-import {Component, Inject, ViewChild} from '@angular/core';
+import {Component, Inject, ViewChild, DOCUMENT} from '@angular/core';
 import {PacifistaPage} from "../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
-import {DOCUMENT} from "@angular/common";
+
 import {PacifistaShopCategoryDTO} from "@funixproductions/funixproductions-requests";
 import ShopService from "./shop-service";
 import {ShopArticlesComponent} from "./components/shop-articles/shop-articles.component";

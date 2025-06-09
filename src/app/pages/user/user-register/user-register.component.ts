@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, DOCUMENT} from '@angular/core';
 import {Router} from "@angular/router";
 import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {ErrorDto, UserAuthService, UserCountry, UserCreationDTO} from "@funixproductions/funixproductions-requests";
@@ -7,7 +7,7 @@ import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import NotificationService from "../../../services/notifications/services/NotificationService";
-import {DOCUMENT} from "@angular/common";
+
 
 @Component({
     selector: 'app-user-register',

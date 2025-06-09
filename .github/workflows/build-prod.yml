@@ -24,28 +24,33 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push pacifista-website pterodactyl dockerfile
-        run: |
-          docker build . --tag ghcr.io/pacifistamc/pacifista-website:latest
-          docker push ghcr.io/pacifistamc/pacifista-website:latest
+      - name: Set up QEMU (for cross-building)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and push multi-arch image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: true
+          platforms: linux/amd64,linux/arm64
+          tags: ghcr.io/pacifistamc/pacifista-website:latest
 
   update-kubernetes-cluster:
     needs:
       - build-docker-image-production
 
-    runs-on: ubuntu-latest
+    runs-on:
+      - self-hosted
+      - k3s-funixproductions
+
     environment:
         name: production
         url: https://pacifista.fr
 
     steps:
-      - name: Set up kubectl
-        uses: azure/k8s-set-context@v4
-        with:
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-        env:
-          KUBECONFIG: ${{ secrets.KUBECONFIG }}
-
       - name: Checkout source code
         uses: actions/checkout@v4
 

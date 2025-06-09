@@ -1,10 +1,10 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {PacifistaPaymentRequestDTO, PacifistaPaymentService} from "@funixproductions/funixproductions-requests";
 import ShopService from "../../shop-service";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-shop-payment-paypal',

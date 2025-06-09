@@ -1,7 +1,7 @@
-import {AfterViewInit, Component, Inject} from '@angular/core';
+import {AfterViewInit, Component, Inject, DOCUMENT} from '@angular/core';
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {Title} from "@angular/platform-browser";
-import {DOCUMENT} from "@angular/common";
+
 import ShopService from "../shop-service";
 import {
     PacifistaWebUserLinkDTO,
