@@ -11,7 +11,7 @@ import ShopService from "../../../shop-service";
 })
 export class ShopArticleModalComponent {
 
-  @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
+  @Input() article!: PacifistaShopArticleDTO;
 
   constructor(public activeModal: NgbActiveModal,
               protected shopService: ShopService) {
