@@ -1,3 +1,4 @@
+import { provideServerRendering, withRoutes } from '@angular/ssr';
 import {NgModule} from '@angular/core';
 import {BrowserModule, provideClientHydration, Title} from '@angular/platform-browser';
 
@@ -25,9 +26,7 @@ import {
     StaffAccueuilSectionRowPlayerComponent
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
 import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.component";
-import {provideServerRouting} from "@angular/ssr";
 import {serverRoutes} from "./app.routes.server";
-import {provideServerRendering} from "@angular/platform-server";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -56,14 +55,6 @@ import {provideServerRendering} from "@angular/platform-server";
         MinecraftHeadComponent,
         StaffBadgeComponent
     ],
-    providers: [
-        Title,
-        provideClientHydration(),
-        provideAnimationsAsync(),
-        provideHttpClient(withFetch()),
-        provideHttpClient(withInterceptorsFromDi()),
-        provideServerRouting(serverRoutes),
-        provideServerRendering()
-    ]
+    providers: [Title, provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withFetch()), provideHttpClient(withInterceptorsFromDi()), provideServerRendering(withRoutes(serverRoutes))]
 })
 export default class AppModule { }

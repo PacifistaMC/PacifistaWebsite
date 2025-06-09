@@ -1,11 +1,11 @@
-import {Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, Input, OnInit, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {VoteService, VoteWebsiteDTO} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from 'src/environments/environment';
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {interval, takeWhile} from "rxjs";
 import {ReCaptchaV3Service} from "ng-recaptcha-2";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-vote-user-website',

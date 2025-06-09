@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {
   PacifistaPaymentRequestDTO,
   PacifistaPaymentService,
@@ -9,7 +9,7 @@ import {environment} from "../../../../../environments/environment";
 import ShopService from "../../shop-service";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {Router} from "@angular/router";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-shop-payment-credit-card',

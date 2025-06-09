@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, Input, OnInit, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {
   PacifistaNewsCommentDTO,
   PacifistaNewsCommentService,
@@ -7,7 +7,7 @@ import {
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../environments/environment";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-news-comments-section',

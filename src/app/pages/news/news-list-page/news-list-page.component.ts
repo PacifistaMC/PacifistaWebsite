@@ -1,11 +1,11 @@
-import {Component, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT, isPlatformBrowser} from "@angular/common";
+import {isPlatformBrowser} from "@angular/common";
 
 @Component({
     selector: 'app-news-list-page',

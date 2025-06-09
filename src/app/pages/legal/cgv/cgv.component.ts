@@ -1,7 +1,7 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, DOCUMENT} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
-import {DOCUMENT} from "@angular/common";
+
 
 @Component({
     selector: 'app-cgv',

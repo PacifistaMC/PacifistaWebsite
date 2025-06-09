@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, DOCUMENT} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -6,7 +6,7 @@ import {DomSanitizer, SafeHtml, Title} from "@angular/platform-browser";
 import {ErrorDto, PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT} from "@angular/common";
+
 import NewsService from "../NewsService";
 
 @Component({

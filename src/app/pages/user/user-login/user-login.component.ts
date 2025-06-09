@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, DOCUMENT} from '@angular/core';
 import {ReCaptchaV3Service} from "ng-recaptcha-2";
 import {Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
@@ -13,7 +13,7 @@ import {Title} from "@angular/platform-browser";
 import {HttpClient} from "@angular/common/http";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
 import {environment} from "../../../../environments/environment";
-import {DOCUMENT} from "@angular/common";
+
 
 @Component({
     selector: 'app-user-login',
