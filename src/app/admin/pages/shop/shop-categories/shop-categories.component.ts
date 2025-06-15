@@ -4,6 +4,7 @@ import {PacifistaShopCategoryDTO, PacifistaShopCategoryService} from "@funixprod
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {environment} from "../../../../../environments/environment";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-shop-categories',
@@ -13,8 +14,15 @@ import {environment} from "../../../../../environments/environment";
 })
 export class ShopCategoriesComponent extends PaginatedComponent<PacifistaShopCategoryDTO, PacifistaShopCategoryService> {
 
-  constructor(httpClient: HttpClient, notificationService: NotificationService) {
+  constructor(
+      httpClient: HttpClient,
+      notificationService: NotificationService,
+      private readonly modalService: NgbModal
+  ) {
     super(new PacifistaShopCategoryService(httpClient, environment.production), httpClient, notificationService);
   }
 
+  onRemoveCategoryClick(category: PacifistaShopCategoryDTO) {
+
+  }
 }
