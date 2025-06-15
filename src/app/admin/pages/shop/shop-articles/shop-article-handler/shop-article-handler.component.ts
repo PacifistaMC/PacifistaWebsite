@@ -2,14 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {ActivatedRoute, Router} from "@angular/router";
-import {DomSanitizer} from "@angular/platform-browser";
 import {
   PacifistaShopArticleDTO,
   PacifistaShopArticleService,
   PacifistaShopCategoryDTO
 } from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../environments/environment";
-import MarkdownIt from "markdown-it";
 
 @Component({
   selector: 'app-shop-article-handler',
@@ -35,17 +33,10 @@ export class ShopArticleHandlerComponent implements OnInit {
   protected commandExecutedErrors: string[] = [];
   protected formSent: boolean = false;
 
-  protected readonly mdParser = MarkdownIt({
-    html: true,
-    linkify: true,
-    typographer: true
-  });
-
   constructor(httpClient: HttpClient,
-              private notificationService: NotificationService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              protected sanitizer: DomSanitizer) {
+              private readonly notificationService: NotificationService,
+              private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute) {
     this.articleService = new PacifistaShopArticleService(httpClient, environment.production);
     this.categoryService = new PacifistaShopArticleService(httpClient, environment.production);
   }
