@@ -1,0 +1,77 @@
+import {Component, OnInit} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import NotificationService from "../../../../../services/notifications/services/NotificationService";
+import {ActivatedRoute, Router} from "@angular/router";
+import {
+  PacifistaShopArticleDTO,
+  PacifistaShopArticleService,
+  PacifistaShopCategoryDTO
+} from "@funixproductions/funixproductions-requests";
+import {environment} from "../../../../../../environments/environment";
+
+@Component({
+  selector: 'app-shop-article-handler',
+  standalone: false,
+  templateUrl: './shop-article-handler.component.html',
+  styleUrl: './shop-article-handler.component.scss'
+})
+export class ShopArticleHandlerComponent implements OnInit {
+
+  private readonly articleService: PacifistaShopArticleService;
+  private readonly categoryService: PacifistaShopArticleService;
+
+  protected article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO(
+      new PacifistaShopCategoryDTO(
+          '', '', false
+      ),
+      '', '', '', '', 0.0, '', undefined
+  );
+
+  protected nameErrors: string[] = [];
+  protected descriptionErrors: string[] = [];
+  protected priceErrors: string[] = [];
+  protected commandExecutedErrors: string[] = [];
+  protected formSent: boolean = false;
+
+  constructor(httpClient: HttpClient,
+              private readonly notificationService: NotificationService,
+              private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute) {
+    this.articleService = new PacifistaShopArticleService(httpClient, environment.production);
+    this.categoryService = new PacifistaShopArticleService(httpClient, environment.production);
+  }
+
+  ngOnInit(): void {
+    this.activatedRoute.params.subscribe(params => {
+      const articleId = params['id'];
+      if (!articleId) {
+        this.router.navigate(['/admin/shop/articles']);
+        return;
+      }
+
+      if (articleId !== 'new') {
+        this.getArticle(articleId);
+      }
+    })
+  }
+
+  private getArticle(id: string) {
+    this.articleService.getById(id).subscribe({
+        next: (article) => {
+          this.article = article;
+        },
+        error: (error) => {
+            this.notificationService.onErrorRequest(error);
+        }
+    })
+  }
+
+  setCategory(category?: PacifistaShopCategoryDTO): void {
+    if (category) {
+      this.article.category = category;
+    } else {
+        this.article.category = new PacifistaShopCategoryDTO('', '', false);
+    }
+  }
+
+}

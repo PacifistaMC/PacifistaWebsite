@@ -5,6 +5,7 @@ import {AdminDashboardComponent} from "./admin-dashboard/admin-dashboard.compone
 import {AdminNavbarComponent} from "./components/admin-navbar/admin-navbar.component";
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AdminNavbarLinkComponent} from "./components/admin-navbar/admin-navbar-link/admin-navbar-link.component";
+import AdminModalService from "./admin-modal-service";
 
 @NgModule({
     declarations: [
@@ -16,6 +17,9 @@ import {AdminNavbarLinkComponent} from "./components/admin-navbar/admin-navbar-l
     imports: [
         CommonModule,
         AdminRoutingModule
+    ],
+    providers: [
+        AdminModalService
     ]
 })
 export class AdminModule { }

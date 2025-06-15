@@ -1,0 +1,10 @@
+<label [for]="idInput">{{ label }}</label>
+<select [id]="idInput" class="ms-2 custom-select" [(ngModel)]="selectedServer" (change)="onSeverSelected()">
+    <option *ngFor="let status of serversTypes" [value]="status">{{ status }}</option>
+</select>
+
+<div *ngIf="selectedServer">
+    <button class="btn btn-danger btn-sm ms-2" (click)="selectedServer = undefined">
+        <i class="bi bi-x-circle-fill"></i>
+    </button>
+</div>

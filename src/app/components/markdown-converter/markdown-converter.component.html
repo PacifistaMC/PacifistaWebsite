@@ -1,0 +1,13 @@
+<div>
+    <textarea
+            rows="10"
+            class="form-control"
+            [(ngModel)]="bodyMarkdown"
+            (ngModelChange)="onMdInputChange()"
+            placeholder="Entrez le contenu en format markdown"
+    ></textarea>
+
+    <hr/>
+
+    <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(bodyHtml)"></div>
+</div>

@@ -36,11 +36,8 @@ export class ShopPaymentPaypalComponent {
         return;
     }
 
-    const request = new PacifistaPaymentRequestDTO();
-    request.articles = this.shopService.createArticlesRequestList();
-
     this.loading = true;
-    this.paymentService.createOrder(request).subscribe({
+    this.paymentService.createOrder(new PacifistaPaymentRequestDTO(this.shopService.createArticlesRequestList())).subscribe({
       next: (response) => {
         const redirectUrl: string | undefined = response.urlClientRedirection;
 
