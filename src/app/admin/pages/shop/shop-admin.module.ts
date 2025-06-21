@@ -11,6 +11,7 @@ import {InputTextComponent} from "../../../components/inputs/input-text/input-te
 import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecraft-head.component";
 import {InputNumberComponent} from "../../../components/inputs/input-number/input-number.component";
 import {InputSelectServerComponent} from "../../../components/inputs/input-select-server/input-select-server.component";
+import {SpinnerComponent} from "../../../components/spinner/spinner.component";
 
 @NgModule({
     declarations: [
@@ -28,7 +29,8 @@ import {InputSelectServerComponent} from "../../../components/inputs/input-selec
         InputTextComponent,
         MinecraftHeadComponent,
         InputNumberComponent,
-        InputSelectServerComponent
+        InputSelectServerComponent,
+        SpinnerComponent
     ]
 })
 export class ShopAdminModule { }

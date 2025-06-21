@@ -32,6 +32,10 @@
     </tbody>
 </table>
 
+@if (loading) {
+    <app-spinner></app-spinner>
+}
+
 <div class="d-flex justify-content-between p-2">
     <ngb-pagination
             [collectionSize]="allElemsDatabase"

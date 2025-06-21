@@ -6,17 +6,24 @@ import {AdminNavbarComponent} from "./components/admin-navbar/admin-navbar.compo
 import {DashboardComponent} from "./pages/dashboard/dashboard.component";
 import {AdminNavbarLinkComponent} from "./components/admin-navbar/admin-navbar-link/admin-navbar-link.component";
 import AdminModalService from "./admin-modal-service";
+import {AdminDeleteModalComponent} from "./components/admin-delete-modal/admin-delete-modal.component";
+import {SendButtonComponent} from "../components/buttons/send-button/send-button.component";
 
 @NgModule({
     declarations: [
         AdminDashboardComponent,
         AdminNavbarComponent,
         AdminNavbarLinkComponent,
-        DashboardComponent
+        DashboardComponent,
+        AdminDeleteModalComponent
     ],
     imports: [
         CommonModule,
-        AdminRoutingModule
+        AdminRoutingModule,
+        SendButtonComponent
+    ],
+    exports: [
+        AdminDeleteModalComponent
     ],
     providers: [
         AdminModalService
