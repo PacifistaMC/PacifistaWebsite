@@ -2,11 +2,12 @@
 <input
         type="number"
         class="form-control"
-        inputmode="numeric"
         [placeholder]="placeholder"
         [(ngModel)]="number"
         [id]="id"
         [value]="number ?? ''"
+        min="{{ min ?? '' }}"
+        max="{{ max ?? '' }}"
         [required]="required"
         (input)="onInput()"
         [ngClass]="{

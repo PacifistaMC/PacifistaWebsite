@@ -13,8 +13,9 @@ import {FormsModule} from "@angular/forms";
 import {SendButtonComponent} from "../../../components/buttons/send-button/send-button.component";
 import {NewsBansListComponent} from "./news-bans-list/news-bans-list.component";
 import {
-  NewsBansConfirmDeleteComponent
+    NewsBansConfirmDeleteComponent
 } from "./news-bans-list/news-bans-confirm-delete/news-bans-confirm-delete.component";
+import {MarkdownConverterComponent} from "../../../components/markdown-converter/markdown-converter.component";
 
 @NgModule({
   declarations: [
@@ -23,19 +24,20 @@ import {
     NewsBansListComponent,
     NewsBansConfirmDeleteComponent
   ],
-  imports: [
-    CommonModule,
-    NewsRoutingModule,
-    MinecraftHeadComponent,
-    NgbPagination,
-    NgbdSearchableHeader,
-    NgbdSortableHeader,
-    InputTextComponent,
-    InputCheckboxComponent,
-    NgOptimizedImage,
-    InputFileComponent,
-    FormsModule,
-    SendButtonComponent
-  ]
+    imports: [
+        CommonModule,
+        NewsRoutingModule,
+        MinecraftHeadComponent,
+        NgbPagination,
+        NgbdSearchableHeader,
+        NgbdSortableHeader,
+        InputTextComponent,
+        InputCheckboxComponent,
+        NgOptimizedImage,
+        InputFileComponent,
+        FormsModule,
+        SendButtonComponent,
+        MarkdownConverterComponent
+    ]
 })
 export class NewsModule { }

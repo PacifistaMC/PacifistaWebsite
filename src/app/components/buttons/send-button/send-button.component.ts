@@ -1,11 +1,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgIf} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
     selector: 'app-send-button',
     imports: [
-        NgIf,
         NgbModule
     ],
     templateUrl: './send-button.component.html',

@@ -1,0 +1,46 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" searchable="category.name" (search)="search($event)">Catégorie</th>
+            <th scope="col" searchable="name" (search)="search($event)" sortable="name" (sort)="onSort($event)">Nom</th>
+            <th scope="col" searchable="description" (search)="search($event)" sortable="description" (sort)="onSort($event)">Description</th>
+            <th scope="col" sortable="price" (sort)="onSort($event)">Prix (HT)</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (article of list; track article.id) {
+            <tr>
+                <td>
+                    {{ article.category.name }}
+                </td>
+                <td>
+                    {{ article.name }}
+                </td>
+                <td>
+                    {{ article.description }}
+                </td>
+                <td>
+                    {{ article.price | currency: 'EUR' }}
+                </td>
+                <td>
+                    <a href="/admin/shop/article/{{ article.id }}" class="btn btn-primary btn-sm">
+                        <span class="bi bi-pencil"></span>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div class="d-flex justify-content-between p-2">
+    <ngb-pagination
+            [collectionSize]="allElemsDatabase"
+            [(page)]="page"
+            [pageSize]="maxElemsPerPage"
+            (pageChange)="updateList()"
+            [maxSize]="7"
+    >
+    </ngb-pagination>
+</div>

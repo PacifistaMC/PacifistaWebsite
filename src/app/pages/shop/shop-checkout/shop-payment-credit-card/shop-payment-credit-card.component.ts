@@ -1,8 +1,8 @@
 import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
 import {
-  PacifistaPaymentRequestDTO,
-  PacifistaPaymentService,
-  PacifistaShopCreditCardDTO
+    PacifistaPaymentRequestDTO,
+    PacifistaPaymentService,
+    PacifistaShopCreditCardDTO
 } from "@funixproductions/funixproductions-requests";
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../../environments/environment";
@@ -58,10 +58,6 @@ export class ShopPaymentCreditCardComponent {
       return;
     }
 
-    const request = new PacifistaPaymentRequestDTO();
-    request.creditCard = this.createCardDTO();
-    request.articles = this.shopService.createArticlesRequestList();
-
     this.formSent = false;
     this.loading = true;
     this.cardHolderNameError = [];
@@ -70,7 +66,10 @@ export class ShopPaymentCreditCardComponent {
     this.expirationYearError = [];
     this.securityCodeError = [];
 
-    this.paymentService.createOrder(request).subscribe({
+    this.paymentService.createOrder(new PacifistaPaymentRequestDTO(
+        this.shopService.createArticlesRequestList(),
+        this.createCardDTO()
+    )).subscribe({
       next: (response) => {
         this.loading = false;
         this.formSent = true;
@@ -121,14 +120,13 @@ export class ShopPaymentCreditCardComponent {
   }
 
   private createCardDTO(): PacifistaShopCreditCardDTO {
-    const card = new PacifistaShopCreditCardDTO();
-
-    card.cardHolderName = this.cardHolderName;
-    card.cardNumber = this.parseCardNumber();
-    card.securityCode = this.securityCode;
-    card.expirationMonth = this.expirationMonth;
-    card.expirationYear = this.expirationYear;
-    return card;
+    return new PacifistaShopCreditCardDTO(
+        this.cardHolderName,
+        this.parseCardNumber(),
+        this.securityCode,
+        this.expirationMonth ?? 0,
+        this.expirationYear ?? 0
+    );
   }
 
   /**
