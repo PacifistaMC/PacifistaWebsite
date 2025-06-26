@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {PacifistaNewsDTO} from "@funixproductions/funixproductions-requests";
-import NewsService from "../NewsService";
+import NewsService from "../news-service";
 
 @Component({
     selector: 'app-news-card',
@@ -11,6 +11,9 @@ import NewsService from "../NewsService";
 export class NewsCardComponent {
 
   @Input() news!: PacifistaNewsDTO;
+
+  newsCategoryName: string = 'Mise à jour';
+  newsCategoryColor: string = '#20c85b'
 
   getArticleImageUrl(): string {
     return NewsService.getImageUrl(this.news, true);

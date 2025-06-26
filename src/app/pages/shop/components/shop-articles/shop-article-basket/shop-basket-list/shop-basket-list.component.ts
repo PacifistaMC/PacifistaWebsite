@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import ShopService from "../../../../shop-service";
+import {PacifistaShopArticleDTO} from "@funixproductions/funixproductions-requests";
 
 @Component({
     selector: 'app-shop-basket-list',
@@ -10,6 +11,10 @@ import ShopService from "../../../../shop-service";
 export class ShopBasketListComponent {
 
   constructor(protected shopService: ShopService) {
+  }
+
+  getImageUrl(article: PacifistaShopArticleDTO): string {
+        return ShopService.getImageUrl(article);
   }
 
 }

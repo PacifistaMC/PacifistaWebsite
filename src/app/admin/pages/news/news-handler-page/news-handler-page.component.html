@@ -2,7 +2,7 @@
     {{ news ? 'Modification' : 'Création' }} d'une news
 </h1>
 
-<div class="row justify-content-around">
+<div class="row g-3 justify-content-around">
     <div class="form-control col-md-5 p-3">
         <h2>Informations</h2>
 
@@ -58,25 +58,11 @@
     </div>
 
     <div class="form-control col-md-6 p-3">
-        <h2>Image</h2>
-
-        <div *ngIf="actualArticleImageUrl">
-            <p>Image actuelle de la news</p>
-            <img class="img-fluid mt-2" [ngSrc]="actualArticleImageUrl" [width]="640" [height]="360" alt="news visuel">
-
-            <hr>
-        </div>
-
-        <input-file
-                [label]="'Image à envoyer'"
-                [id]="'newsImage'"
-                [file]="articleImage"
-                [required]="news === undefined"
+        <app-admin-image-form
+                [imageUrl]="actualArticleImageUrl"
                 [formSent]="formSent"
-                (fileChange)="setFile($event)"
-        ></input-file>
-
-        <img *ngIf="uploadedImagePreview" [src]="uploadedImagePreview" [width]="640" [height]="360" alt="Visuel séléctionné" class="img-fluid mt-2">
+                (imageChange)="articleImage = $event"
+        ></app-admin-image-form>
     </div>
 </div>
 

@@ -19,7 +19,7 @@ export default class ShopService {
     private readonly paymentService: PacifistaPaymentService;
 
     constructor(protected notificationService: NotificationService,
-                @Inject(PLATFORM_ID) private platformId: Object,
+                @Inject(PLATFORM_ID) private readonly platformId: Object,
                 http: HttpClient) {
         if (isPlatformBrowser(this.platformId)) {
             this.loadArticles();
@@ -37,13 +37,12 @@ export default class ShopService {
 
         if (!basketEntry) {
             this.basket.set(article.id, shopCart);
+        } else if (article.category?.multiPurchaseAllowed) {
+            this.basket.set(article.id, new ShopCart(article, basketEntry.amount + amount));
         } else {
-            if (article.category?.multiPurchaseAllowed) {
-                this.basket.set(article.id, new ShopCart(article, basketEntry.amount + amount));
-            } else {
-                this.basket.set(article.id, shopCart);
-            }
+            this.basket.set(article.id, shopCart);
         }
+
         this.saveBasket();
         this.notificationService.info(`Article ${article.name} ajouté au panier. Quantité: ${amount}`, "Boutique");
     }
@@ -119,7 +118,7 @@ export default class ShopService {
         return basket;
     }
 
-    getImageLogo(article: PacifistaShopArticleDTO): string {
+    public static getImageUrl(article: PacifistaShopArticleDTO): string {
         return environment.pacifistaApiDomain + "web/shop/articles/file/" + article.id;
     }
 

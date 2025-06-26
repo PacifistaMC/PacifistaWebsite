@@ -1,4 +1,4 @@
-import {Component, Inject, PLATFORM_ID, DOCUMENT} from '@angular/core';
+import {Component, DOCUMENT, Inject, PLATFORM_ID} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaNewsDTO, PacifistaNewsService} from "@funixproductions/funixproductions-requests";
@@ -18,7 +18,7 @@ export class NewsListPageComponent extends PacifistaPage {
   private readonly window?: (WindowProxy & typeof globalThis) | null;
   protected override title: string = 'News';
   protected override canonicalPath: string = 'news'
-  protected override pageDescription: string = 'Pacifista : Découvrez toutes les news du serveur Minecraft !';
+  protected override pageDescription: string = 'Suivez toutes les news de Pacifista : mises à jour, événements spéciaux et annonces officielles de notre serveur Minecraft PvE. Ne manquez rien !';
 
   protected newsList: PacifistaNewsDTO[] = [];
 
@@ -29,10 +29,10 @@ export class NewsListPageComponent extends PacifistaPage {
 
   private readonly newsService: PacifistaNewsService;
 
-  constructor(private notificationService: NotificationService,
+  constructor(private readonly notificationService: NotificationService,
               titleService: Title,
               @Inject(DOCUMENT) doc: Document,
-              @Inject(PLATFORM_ID) private platformId: object,
+              @Inject(PLATFORM_ID) private readonly platformId: object,
               httpClient: HttpClient) {
     super(titleService, doc);
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
@@ -44,7 +44,9 @@ export class NewsListPageComponent extends PacifistaPage {
   protected override onPageInit() {
     this.loadNews();
 
-    window?.addEventListener('scroll', this.onScroll.bind(this));
+    if (isPlatformBrowser(this.platformId)) {
+      window?.addEventListener('scroll', this.onScroll.bind(this));
+    }
   }
 
   onScroll() {

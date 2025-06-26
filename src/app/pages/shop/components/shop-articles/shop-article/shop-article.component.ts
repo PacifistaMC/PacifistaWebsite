@@ -40,4 +40,8 @@ export class ShopArticleComponent {
     this.amountBuy = 1;
   }
 
+  getImageUrl(): string {
+    return ShopService.getImageUrl(this.article);
+  }
+
 }

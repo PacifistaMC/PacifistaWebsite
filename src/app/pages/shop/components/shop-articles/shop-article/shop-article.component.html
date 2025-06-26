@@ -3,7 +3,7 @@
         <i class="bi bi-info-circle-fill"></i>
     </button>
 
-    <img class="card-img" src="{{ shopService.getImageLogo(article) }}" alt="Image de l'article {{ article.name }} de Pacifista">
+    <img class="card-img" src="{{ getImageUrl() }}" alt="Article {{ article.name }} de Pacifista">
 
     <div class="p-3">
         <h2 class="card-title">{{ article.name }}</h2>

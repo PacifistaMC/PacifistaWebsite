@@ -1,0 +1,48 @@
+<h1>{{ id ? 'Modification' : 'Création' }} d'une catégorie</h1>
+
+<div class="row g-3">
+    <div class="form-control col-md-6 p-3">
+        <h2>Informations</h2>
+
+        <div class="mt-2">
+            <app-input-text
+                [label]="'Nom de la catégorie'"
+                [placeholder]="'Entrez le nom de la catégorie'"
+                [id]="'categoryName'"
+                [text]="name"
+                [required]="true"
+                [formSent]="formSent"
+                [inputErrors]="nameErrors"
+                (textChange)="name = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="mt-2">
+            <app-input-text
+                [label]="'Description de la catégorie'"
+                [placeholder]="'Entrez la description de la catégorie'"
+                [id]="'categoryDescription'"
+                [text]="description"
+                [required]="true"
+                [formSent]="formSent"
+                [inputErrors]="descriptionErrors"
+                (textChange)="description = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="mt-2">
+            <app-input-checkbox
+                [label]="'Multi-achat'"
+                [checked]="multiPurchase"
+                [formSent]="formSent"
+                [checkboxErrors]="multiPurchaseErrors"
+                (onChange)="multiPurchase = $event"
+            ></app-input-checkbox>
+        </div>
+    </div>
+
+    <app-send-button
+        [loading]="loading"
+        (onClick)="save()"
+    ></app-send-button>
+</div>

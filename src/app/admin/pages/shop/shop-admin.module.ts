@@ -12,11 +12,19 @@ import {MinecraftHeadComponent} from "../../../components/minecraft-head/minecra
 import {InputNumberComponent} from "../../../components/inputs/input-number/input-number.component";
 import {InputSelectServerComponent} from "../../../components/inputs/input-select-server/input-select-server.component";
 import {SpinnerComponent} from "../../../components/spinner/spinner.component";
+import {ShopCategoryHandleComponent} from "./shop-categories/shop-category-handle/shop-category-handle.component";
+import {AdminImageFormComponent} from "../../components/admin-image-form/admin-image-form.component";
+import {InputCheckboxComponent} from "../../../components/inputs/input-checkbox/input-checkbox.component";
+import {SendButtonComponent} from "../../../components/buttons/send-button/send-button.component";
+import {
+    AdminCreateItemBtnTabComponent
+} from "../../components/admin-create-item-btn-tab/admin-create-item-btn-tab.component";
 
 @NgModule({
     declarations: [
         ShopArticlesComponent,
         ShopCategoriesComponent,
+        ShopCategoryHandleComponent,
         ShopArticleHandlerComponent,
         ShopCategorySearchComponent
     ],
@@ -30,7 +38,11 @@ import {SpinnerComponent} from "../../../components/spinner/spinner.component";
         MinecraftHeadComponent,
         InputNumberComponent,
         InputSelectServerComponent,
-        SpinnerComponent
+        SpinnerComponent,
+        AdminImageFormComponent,
+        InputCheckboxComponent,
+        SendButtonComponent,
+        AdminCreateItemBtnTabComponent
     ]
 })
 export class ShopAdminModule { }

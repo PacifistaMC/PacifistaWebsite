@@ -1,4 +1,4 @@
-import {Component, Inject, DOCUMENT} from '@angular/core';
+import {Component, DOCUMENT, Inject} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import NotificationService from "../../../services/notifications/services/NotificationService";
 import {PacifistaPage} from "../../../components/pacifista-page/pacifista-page";
@@ -7,7 +7,7 @@ import {ErrorDto, PacifistaNewsDTO, PacifistaNewsService} from "@funixproduction
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 
-import NewsService from "../NewsService";
+import NewsService from "../news-service";
 
 @Component({
     selector: 'app-news-page',

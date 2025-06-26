@@ -16,6 +16,7 @@ import {
     NewsBansConfirmDeleteComponent
 } from "./news-bans-list/news-bans-confirm-delete/news-bans-confirm-delete.component";
 import {MarkdownConverterComponent} from "../../../components/markdown-converter/markdown-converter.component";
+import {AdminImageFormComponent} from "../../components/admin-image-form/admin-image-form.component";
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import {MarkdownConverterComponent} from "../../../components/markdown-converter
         InputFileComponent,
         FormsModule,
         SendButtonComponent,
-        MarkdownConverterComponent
+        MarkdownConverterComponent,
+        AdminImageFormComponent
     ]
 })
 export class NewsModule { }

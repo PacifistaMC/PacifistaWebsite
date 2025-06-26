@@ -1,20 +1,27 @@
 <div class="card bg-dark">
     <div class="card-body">
         <h2 class="card-title">Suppression d'entité</h2>
-        <h3 class="card-subtitle mb-2">Êtes-vous sur de supprimer cette donnée ?</h3>
+        <hr>
+        <p class="card-subtitle mb-2">Êtes-vous sur de supprimer cette donnée ?</p>
 
-        <div class="row justify-content-around">
-            <app-send-button
-                    [label]="'Oui'"
-                    [loading]="loadingRequest"
-                    [labelIcon]="'trash'"
-                    (onClick)="deleteEntity()"
-            ></app-send-button>
+        <div class="row g-2">
+            <div class="col col-3">
+                <app-send-button
+                        [label]="'Oui'"
+                        [loading]="loadingRequest"
+                        [labelIcon]="'trash'"
+                        [classBtn]="'btn-danger'"
+                        (onClick)="deleteEntity()"
+                ></app-send-button>
+            </div>
 
-            <app-send-button
-                    [label]="'Non'"
-                    (onClick)="closeModal()"
-            ></app-send-button>
+            <div class="col col-3">
+                <app-send-button
+                        [label]="'Non'"
+                        [classBtn]="'btn-secondary'"
+                        (onClick)="closeModal()"
+                ></app-send-button>
+            </div>
         </div>
     </div>
 </div>

@@ -3,11 +3,13 @@ import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../../services/notifications/services/NotificationService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {
+  ErrorDto,
   PacifistaShopArticleDTO,
   PacifistaShopArticleService,
   PacifistaShopCategoryDTO
 } from "@funixproductions/funixproductions-requests";
 import {environment} from "../../../../../../environments/environment";
+import ShopService from "../../../../../pages/shop/shop-service";
 
 @Component({
   selector: 'app-shop-article-handler',
@@ -18,7 +20,6 @@ import {environment} from "../../../../../../environments/environment";
 export class ShopArticleHandlerComponent implements OnInit {
 
   private readonly articleService: PacifistaShopArticleService;
-  private readonly categoryService: PacifistaShopArticleService;
 
   protected article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO(
       new PacifistaShopCategoryDTO(
@@ -27,10 +28,15 @@ export class ShopArticleHandlerComponent implements OnInit {
       '', '', '', '', 0.0, '', undefined
   );
 
+  protected articleFile?: File;
+  protected articleFileUrl?: string;
+
   protected nameErrors: string[] = [];
   protected descriptionErrors: string[] = [];
   protected priceErrors: string[] = [];
   protected commandExecutedErrors: string[] = [];
+
+  protected loading: boolean = false;
   protected formSent: boolean = false;
 
   constructor(httpClient: HttpClient,
@@ -38,31 +44,25 @@ export class ShopArticleHandlerComponent implements OnInit {
               private readonly router: Router,
               private readonly activatedRoute: ActivatedRoute) {
     this.articleService = new PacifistaShopArticleService(httpClient, environment.production);
-    this.categoryService = new PacifistaShopArticleService(httpClient, environment.production);
   }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       const articleId = params['id'];
       if (!articleId) {
-        this.router.navigate(['/admin/shop/articles']);
+        this.router.navigate(['..']);
         return;
       }
 
-      if (articleId !== 'new') {
-        this.getArticle(articleId);
+      if (articleId !== 'create') {
+        this.articleService.getById(articleId).subscribe({
+          next: (article) => {
+            this.article = article;
+            this.articleFileUrl = ShopService.getImageUrl(article);
+          },
+          error: (error) => this.notificationService.onErrorRequest(error)
+        })
       }
-    })
-  }
-
-  private getArticle(id: string) {
-    this.articleService.getById(id).subscribe({
-        next: (article) => {
-          this.article = article;
-        },
-        error: (error) => {
-            this.notificationService.onErrorRequest(error);
-        }
     })
   }
 
@@ -72,6 +72,42 @@ export class ShopArticleHandlerComponent implements OnInit {
     } else {
         this.article.category = new PacifistaShopCategoryDTO('', '', false);
     }
+  }
+
+  saveArticle(): void {
+    this.loading = true;
+    this.formSent = false;
+
+    if (this.article.id) {
+      if (this.articleFile) {
+        this.articleService.fullUpdateFile(this.article, this.articleFile).subscribe({
+          next: this.successSave,
+          error: this.failureSave
+        });
+      } else {
+        this.articleService.update(this.article).subscribe({
+          next: this.successSave,
+          error: this.failureSave
+        });
+      }
+    } else if (!this.articleFile) {
+      this.notificationService.error("Veuillez sélectionner un fichier pour l'article.");
+      this.loading = false;
+    } else {
+      this.articleService.sendFile(this.article, this.articleFile).subscribe({
+        next: this.successSave,
+        error: this.failureSave
+      });
+    }
+
+  }
+
+  private successSave(article: PacifistaShopArticleDTO): void {
+
+  }
+
+  private failureSave(error: ErrorDto): void {
+
   }
 
 }

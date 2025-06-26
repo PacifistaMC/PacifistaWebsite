@@ -4,7 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
-import NewsService from "../../../../pages/news/NewsService";
+import NewsService from "../../../../pages/news/news-service";
 
 @Component({
     selector: 'app-news-handler-page',
@@ -29,10 +29,9 @@ export class NewsHandlerPageComponent implements OnInit {
 
   protected draft: boolean = true;
 
-  protected articleImage?: File
   protected news?: PacifistaNewsDTO;
+  protected articleImage?: File
   protected actualArticleImageUrl?: string;
-  protected uploadedImagePreview?: string | ArrayBuffer | null;
 
   protected loading: boolean = false;
   protected formSent: boolean = false;
@@ -74,27 +73,6 @@ export class NewsHandlerPageComponent implements OnInit {
         });
       }
     });
-  }
-
-  setFile(file?: File) {
-    if (file) {
-      if (file.type.split('/')[0] !== 'image') {
-        this.notificationService.error('Le fichier que vous avez ajouté n\'est pas une image.');
-        this.uploadedImagePreview = undefined;
-        this.articleImage = undefined;
-      } else {
-        this.articleImage = file;
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          this.uploadedImagePreview = reader.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    } else {
-      this.uploadedImagePreview = undefined;
-    }
   }
 
   sendRequest() {
