@@ -1,24 +1,24 @@
 <div class="container p-4">
-    <h1>News</h1>
-    <h2>Bienvenue sur la page des news de Pacifista !</h2>
-    <p>
-        Vous trouverez ici toutes les actualités du serveur, des événements, des annonces, mises à jour et des informations importantes.<br/>
-        Ne manquez aucune actualité de Pacifista en consultant régulièrement cette page.
-    </p>
-    <h3>
-        {{ totalNews }} news au total
-    </h3>
+    <h1>Actualités Pacifista : toutes les nouveautés de notre serveur Minecraft</h1>
+    <h2>Mises à jour, événements & annonces officielles du serveur PvE Pacifista</h2>
 
-    <div *ngIf="newsList.length > 0; else noNews" class="card-group">
-        <div *ngFor="let news of newsList" class="p-2">
-            <app-news-card [news]="news"></app-news-card>
+    @if (newsList.length > 0) {
+        <div class="card-group">
+            @for (news of newsList; track news) {
+                <div class="p-2">
+                    <app-news-card [news]="news"></app-news-card>
+                </div>
+            }
         </div>
-    </div>
-    <ng-template #noNews class="no-news align-content-center text-center">
-        <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
-    </ng-template>
+    } @else {
+        <div class="no-news align-content-center text-center">
+            <p>Aucune news n'a été rédigée pour l'instant. Revenez plus tard !</p>
+        </div>
+    }
 
-    <div *ngIf="newsList.length >= totalNews" class="text-center">
-        <p>Fin de liste</p>
-    </div>
+    @if (newsList.length >= totalNews) {
+        <div class="text-center">
+            <p>Fin de liste</p>
+        </div>
+    }
 </div>

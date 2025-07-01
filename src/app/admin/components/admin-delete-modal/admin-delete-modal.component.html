@@ -1,0 +1,27 @@
+<div class="card bg-dark">
+    <div class="card-body">
+        <h2 class="card-title">Suppression d'entité</h2>
+        <hr>
+        <p class="card-subtitle mb-2">Êtes-vous sur de supprimer cette donnée ?</p>
+
+        <div class="row g-2">
+            <div class="col col-3">
+                <app-send-button
+                        [label]="'Oui'"
+                        [loading]="loadingRequest"
+                        [labelIcon]="'trash'"
+                        [classBtn]="'btn-danger'"
+                        (onClick)="deleteEntity()"
+                ></app-send-button>
+            </div>
+
+            <div class="col col-3">
+                <app-send-button
+                        [label]="'Non'"
+                        [classBtn]="'btn-secondary'"
+                        (onClick)="closeModal()"
+                ></app-send-button>
+            </div>
+        </div>
+    </div>
+</div>

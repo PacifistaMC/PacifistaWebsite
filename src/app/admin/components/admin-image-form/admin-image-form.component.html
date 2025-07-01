@@ -1,0 +1,21 @@
+<h2>Image</h2>
+
+@if (imageUrl) {
+    <p>Image actuelle de la news</p>
+    <img class="img-fluid mt-2" [ngSrc]="imageUrl" [width]="640" [height]="360" alt="prévisu">
+
+    <hr>
+}
+
+<input-file
+        [label]="'Image à envoyer'"
+        [id]="'imageFile'"
+        [file]="imageFile"
+        [required]="true"
+        [formSent]="formSent"
+        (fileChange)="setFile($event)"
+></input-file>
+
+@if (imagePreview) {
+    <img [ngSrc]="imagePreview" [width]="640" [height]="360" alt="Visuel séléctionné" class="img-fluid mt-2">
+}

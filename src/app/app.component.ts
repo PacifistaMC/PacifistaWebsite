@@ -1,6 +1,5 @@
 import {Component, OnDestroy} from '@angular/core';
 import NotificationService from "./services/notifications/services/NotificationService";
-import {MatomoService} from "./services/matomo.service";
 
 @Component({
     selector: 'app-root',
@@ -11,8 +10,7 @@ import {MatomoService} from "./services/matomo.service";
 export class AppComponent implements OnDestroy {
   title = 'pacifista-website';
 
-  constructor(private notificationService: NotificationService,
-              private matomoService: MatomoService) {
+  constructor(private readonly notificationService: NotificationService) {
   }
 
   ngOnDestroy(): void {

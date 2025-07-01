@@ -17,6 +17,10 @@ const routes: Routes = [
             {
                 path: 'news',
                 loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule)
+            },
+            {
+                path: 'shop',
+                loadChildren: () => import('./pages/shop/shop-admin.module').then(m => m.ShopAdminModule)
             }
         ]
     }

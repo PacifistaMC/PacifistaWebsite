@@ -1,0 +1,91 @@
+<h1>
+    {{ article.id ? 'Modification' : 'Création' }} d'un article
+</h1>
+
+<div class="row g-3">
+    <div class="form-control col-md-6 p-3">
+        <h2>Informations</h2>
+
+        <div class="mt-2">
+            <app-shop-category-search
+                    (onCategorySelected)="setCategory($event)"
+                    (onClearSearch)="setCategory()"
+            ></app-shop-category-search>
+        </div>
+
+        <div class="mt-2">
+            <app-input-text
+                    [label]="'Nom de l\'article'"
+                    [placeholder]="'Entrez le nom de l\'article'"
+                    [id]="'articleName'"
+                    [text]="article.name"
+                    [required]="true"
+                    [formSent]="formSent"
+                    [inputErrors]="nameErrors"
+                    (textChange)="article.name = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="mt-2">
+            <app-input-text
+                    [label]="'Description de l\'article'"
+                    [placeholder]="'Entrez la description de l\'article'"
+                    [id]="'articleDescription'"
+                    [text]="article.description"
+                    [required]="true"
+                    [formSent]="formSent"
+                    [inputErrors]="descriptionErrors"
+                    (textChange)="article.description = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="mt-2">
+            <app-input-number
+                    [label]="'Prix de l\'article (HT)'"
+                    [placeholder]="'Entrez le prix de l\'article (HT)'"
+                    [id]="'articlePrice'"
+                    [number]="article.price"
+                    [min]="0"
+                    [required]="true"
+                    [formSent]="formSent"
+                    [inputErrors]="priceErrors"
+                    (numberChange)="article.price = $event"
+            ></app-input-number>
+        </div>
+
+        <div class="mt-2">
+            <p>
+                Arguments disponibles pour la commande :<br/>
+                <strong>{{ '{QUANTITY}' }}</strong> : Quantité<br/>
+                <strong>{{ '{PLAYER_UUID}' }}</strong> : ID mojang du joueur<br/>
+                <strong>{{ '{PLAYER_NAME}' }}</strong> : Pseudo du joueur<br/>
+            </p>
+
+            <app-input-text
+                    [label]="'Commande'"
+                    [placeholder]="'Entrez la commande a exécuter après achat'"
+                    [id]="'articleCommandArguments'"
+                    [text]="article.commandExecuted"
+                    [required]="true"
+                    [formSent]="formSent"
+                    [inputErrors]="commandExecutedErrors"
+                    (textChange)="article.commandExecuted = $event"
+            ></app-input-text>
+        </div>
+
+        <div class="mt-2">
+            <app-input-select-server
+                    [selectedServer]="article.serverType"
+                    (onServerSelected)="article.serverType = $event"
+            ></app-input-select-server>
+        </div>
+    </div>
+
+    <div class="form-control col-md-6 p-3">
+        <app-admin-image-form
+                [imageUrl]="articleFileUrl"
+                [formSent]="formSent"
+                (imageChange)="articleFile = $event"
+        ></app-admin-image-form>
+    </div>
+</div>

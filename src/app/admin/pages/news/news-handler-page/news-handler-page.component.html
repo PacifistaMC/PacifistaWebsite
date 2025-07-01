@@ -2,7 +2,7 @@
     {{ news ? 'Modification' : 'Création' }} d'une news
 </h1>
 
-<div class="row justify-content-around">
+<div class="row g-3 justify-content-around">
     <div class="form-control col-md-5 p-3">
         <h2>Informations</h2>
 
@@ -58,51 +58,24 @@
     </div>
 
     <div class="form-control col-md-6 p-3">
-        <h2>Image</h2>
-
-        <div *ngIf="actualArticleImageUrl">
-            <p>Image actuelle de la news</p>
-            <img class="img-fluid mt-2" [ngSrc]="actualArticleImageUrl" [width]="640" [height]="360" alt="news visuel">
-
-            <hr>
-        </div>
-
-        <input-file
-                [label]="'Image à envoyer'"
-                [id]="'newsImage'"
-                [file]="articleImage"
-                [required]="news === undefined"
+        <app-admin-image-form
+                [imageUrl]="actualArticleImageUrl"
                 [formSent]="formSent"
-                (fileChange)="setFile($event)"
-        ></input-file>
-
-        <img *ngIf="uploadedImagePreview" [src]="uploadedImagePreview" [width]="640" [height]="360" alt="Visuel séléctionné" class="img-fluid mt-2">
+                (imageChange)="articleImage = $event"
+        ></app-admin-image-form>
     </div>
 </div>
 
 <div class="pt-4 pb-4">
     <h2>Contenu</h2>
 
-    <app-input-checkbox
-            [label]="'Live Preview'"
-            [id]="'liveMdPreview'"
-            [checked]="showLivePreview"
-            [required]="false"
-            (onChange)="showLivePreview = $event"
-    ></app-input-checkbox>
-
-    <h4 class="pt-3">Entrez le contenu en MarkDown</h4>
-    <textarea
-            rows="10"
-            class="form-control"
-            [(ngModel)]="bodyMarkdown"
-            placeholder="Entrez le contenu de la news en format markdown"
-    ></textarea>
-
-    <div *ngIf="showLivePreview">
-        <hr>
-        <div [innerHTML]="sanitizer.bypassSecurityTrustHtml(mdParser.render(bodyMarkdown))"></div>
-    </div>
+    <markdown-converter
+            [bodyMarkdownErrors]="bodyMarkdownErrors"
+            [bodyMarkdown]="bodyMarkdown"
+            [bodyHtml]="bodyHtml"
+            (onBodyHtmlChange)="bodyHtml = $event"
+            (onBodyMarkdownChange)="bodyMarkdown = $event"
+    ></markdown-converter>
 
     <div class="pt-4">
         <hr>

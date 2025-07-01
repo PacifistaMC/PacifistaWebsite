@@ -17,7 +17,7 @@ export class ShopArticleComponent {
               protected shopService: ShopService) {
   }
 
-  @Input() article: PacifistaShopArticleDTO = new PacifistaShopArticleDTO();
+  @Input() article!: PacifistaShopArticleDTO;
   amountBuy: number = 1;
 
   openModal(): void {
@@ -38,6 +38,10 @@ export class ShopArticleComponent {
   addToCart(): void {
     this.shopService.addArticleToBasket(new ShopCart(this.article, this.amountBuy));
     this.amountBuy = 1;
+  }
+
+  getImageUrl(): string {
+    return ShopService.getImageUrl(this.article);
   }
 
 }

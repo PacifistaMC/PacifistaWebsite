@@ -1,37 +1,49 @@
-<div class="card bg-dark text-white" style="width: 30rem;">
-    <img ngSrc="{{ getArticleImageUrl() }}" [width]="350" [height]="197" class="card-img-top" alt="Pacifista News image {{ news.name }}">
-    <div class="card-body">
-        <h3 class="card-title">{{ news.title }}</h3>
+<div class="card" style="width: 20rem;">
+    <div class="position-absolute p-2">
+        <span class="badge shadow-custom" [ngStyle]="{ top: '0', right: '0', zIndex: 1, backgroundColor: newsCategoryColor }">
+            {{ newsCategoryName }}
+        </span>
+    </div>
+
+    <img [ngSrc]="getArticleImageUrl()" priority="priority" [width]="350" [height]="197" class="card-img-top" alt="Pacifista News {{ news.name }}">
+
+    <div class="card-body d-flex flex-column justify-content-between" style="height: 240px;">
+        <h3 class="card-title pb-2">{{ news.title }}</h3>
         <p class="card-text">{{ news.subtitle }}</p>
 
-        <p>
-            <minecraft-head [username]="news.originalWriter" [size]="16"></minecraft-head><span> {{ news.originalWriter }}</span>
+        <div class="author-div mt-auto">
+            <minecraft-head [username]="news.originalWriter" [size]="16"></minecraft-head>
+            <span><staff-badge [username]="news.originalWriter"></staff-badge> {{ news.originalWriter }}</span>
             <br/>
-            <span> {{ news.createdAt | date : 'dd/MM/YY - HH:mm' }}</span>
-        </p>
+            <i class="bi bi-pencil-fill"></i>
+            <span> {{ news.createdAt | date : 'dd/MM/yy - HH:mm' }}</span>
+        </div>
     </div>
 
     <div class="card-footer">
         <div class="row justify-content-around align-items-center">
-            <div class="col">
+            <div class="col col-8">
                 <div class="row">
-                    <div class="col col-3">
+                    <div class="col col-4">
                         <i class="bi bi-eye-fill"></i><span> {{ news.views }}</span>
                     </div>
 
-                    <div class="col col-3">
+                    <div class="col col-4">
                         <i class="bi bi-hand-thumbs-up-fill"></i><span> {{ news.likes }}</span>
                     </div>
 
-                    <div class="col col-3">
+                    <div class="col col-4">
                         <i class="bi bi-chat-text-fill"></i><span> {{ news.comments }}</span>
                     </div>
                 </div>
             </div>
 
-            <a class="col-4 btn btn-success" href="/news/{{ news.name }}">
-                Lire
-            </a>
+            <div class="col col-4 d-flex justify-content-end">
+                <a href="/news/{{ news.name }}">
+                    <i class="bi bi-bookmarks"></i>
+                    Lire
+                </a>
+            </div>
         </div>
     </div>
 </div>

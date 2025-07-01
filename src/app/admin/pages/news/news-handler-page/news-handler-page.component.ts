@@ -4,9 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import NotificationService from "../../../../services/notifications/services/NotificationService";
 import {ActivatedRoute, Router} from "@angular/router";
 import {environment} from "../../../../../environments/environment";
-import MarkdownIt from 'markdown-it';
-import NewsService from "../../../../pages/news/NewsService";
-import {DomSanitizer} from "@angular/platform-browser";
+import NewsService from "../../../../pages/news/news-service";
 
 @Component({
     selector: 'app-news-handler-page',
@@ -25,34 +23,25 @@ export class NewsHandlerPageComponent implements OnInit {
   protected subTitle: string = '';
   protected subTitleErrors: string[] = [];
 
+  protected bodyHtml: string = '';
   protected bodyMarkdown: string = '';
   protected bodyMarkdownErrors: string[] = [];
 
   protected draft: boolean = true;
 
-  protected articleImage?: File
   protected news?: PacifistaNewsDTO;
+  protected articleImage?: File
   protected actualArticleImageUrl?: string;
-  protected uploadedImagePreview?: string | ArrayBuffer | null;
 
   protected loading: boolean = false;
   protected formSent: boolean = false;
 
-  protected showLivePreview: boolean = false;
-
   private readonly newsService: PacifistaNewsService;
 
-  protected readonly mdParser = MarkdownIt({
-    html: true,
-    linkify: true,
-    typographer: true
-  });
-
   constructor(httpClient: HttpClient,
-              private notificationService: NotificationService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute,
-              protected sanitizer: DomSanitizer) {
+              private readonly notificationService: NotificationService,
+              private readonly router: Router,
+              private readonly activatedRoute: ActivatedRoute) {
     this.newsService = new PacifistaNewsService(httpClient, environment.production);
   }
 
@@ -71,6 +60,7 @@ export class NewsHandlerPageComponent implements OnInit {
             this.title = news.title;
             this.subTitle = news.subtitle;
             this.bodyMarkdown = news.bodyMarkdown;
+            this.bodyHtml = news.bodyHtml;
             this.draft = news.draft;
 
             this.actualArticleImageUrl = NewsService.getImageUrl(news);
@@ -83,27 +73,6 @@ export class NewsHandlerPageComponent implements OnInit {
         });
       }
     });
-  }
-
-  setFile(file?: File) {
-    if (file) {
-      if (file.type.split('/')[0] !== 'image') {
-        this.notificationService.error('Le fichier que vous avez ajouté n\'est pas une image.');
-        this.uploadedImagePreview = undefined;
-        this.articleImage = undefined;
-      } else {
-        this.articleImage = file;
-
-        const reader = new FileReader();
-
-        reader.onload = () => {
-          this.uploadedImagePreview = reader.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    } else {
-      this.uploadedImagePreview = undefined;
-    }
   }
 
   sendRequest() {
@@ -131,7 +100,7 @@ export class NewsHandlerPageComponent implements OnInit {
     this.news.name = this.name;
     this.news.title = this.title;
     this.news.subtitle = this.subTitle;
-    this.news.bodyHtml = this.mdParser.render(this.bodyMarkdown);
+    this.news.bodyHtml = this.bodyHtml;
     this.news.bodyMarkdown = this.bodyMarkdown;
     this.news.draft = this.draft;
 
@@ -165,7 +134,7 @@ export class NewsHandlerPageComponent implements OnInit {
         this.name,
         this.title,
         this.subTitle,
-        this.mdParser.render(this.bodyMarkdown),
+        this.bodyHtml,
         this.bodyMarkdown,
         this.draft
     ), this.articleImage).subscribe({

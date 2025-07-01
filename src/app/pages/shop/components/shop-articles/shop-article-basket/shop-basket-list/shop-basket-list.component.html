@@ -20,7 +20,7 @@
     <div class="basket-content">
         <div class="row align-items-center" *ngFor="let shopBasket of shopService.getBasket()">
             <div class="col-3 text-center">
-                <img [src]="shopService.getImageLogo(shopBasket.article)" alt="{{ shopBasket.article.name }}" class="img-fluid">
+                <img [src]="getImageUrl(shopBasket.article)" alt="{{ shopBasket.article.name }}" class="img-fluid">
                 <p>
                     {{ shopBasket.article.name }}
                 </p>

@@ -1,1 +1,3 @@
-<span *ngIf="classRole.length > 0" [class]="classRole">{{ roleName }}</span>
+@if (classRole.length > 0) {
+    <span [class]="classRole">{{ roleName }}</span>
+}

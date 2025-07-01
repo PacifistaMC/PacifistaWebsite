@@ -124,9 +124,11 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
     private readonly queryBuilder: QueryBuilder
 
     protected readonly maxElemsPerPage: number = 30
-    protected readonly client: CLIENT
+    public readonly client: CLIENT
     protected readonly notificationService: NotificationService
     private readonly pacifistaPlayerDataService: PacifistaPlayerDataService
+
+    protected loading: boolean = true
 
     @ViewChildren(NgbdSortableHeader) headers?: QueryList<NgbdSortableHeader>;
 
@@ -201,13 +203,16 @@ export abstract class PaginatedComponent<DTO extends ApiDTO, CLIENT extends Crud
             pageOption.page = 0
         }
 
+        this.loading = true
         this.client.find(pageOption, this.queryBuilder).subscribe({
             next: pageDTO => {
+                this.loading = false
                 this.list = pageDTO.content
                 this.allElemsDatabase = pageDTO.totalElementsDatabase
                 callback()
             },
             error: (err: ErrorDto) => {
+                this.loading = false
                 this.notificationService.onErrorRequest(err)
                 callback()
             }

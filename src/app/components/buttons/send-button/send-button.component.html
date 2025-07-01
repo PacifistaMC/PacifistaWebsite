@@ -1,10 +1,13 @@
-<button *ngIf="loading else ready" class="btn {{ classBtn }}" type="button" disabled>
-    <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
-    <span role="status"> {{ labelLoading }}</span>
-</button>
-<ng-template #ready>
+@if (loading) {
+    <button class="btn {{ classBtn }}" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+        <span role="status"> {{ labelLoading }}</span>
+    </button>
+} @else {
     <button [disabled]="disabled" type="button" class="btn {{ classBtn }}" (click)="click()">
-        <span *ngIf="labelIcon.length > 0" class="bi bi-{{ labelIcon }}"></span>
+        @if (labelIcon.length > 0) {
+            <span class="bi bi-{{ labelIcon }}"></span>
+        }
         {{ label }}
     </button>
-</ng-template>
+}

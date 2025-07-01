@@ -4,7 +4,7 @@ import {NewsListPageComponent} from "./news-list-page/news-list-page.component";
 import {NewsCardComponent} from "./news-card/news-card.component";
 import {NewsPageComponent} from './news-page/news-page.component';
 import {NewsRoutingModule} from "./news-routing.module";
-import NewsService from "./NewsService";
+import NewsService from "./news-service";
 import {NewsCommentsSectionComponent} from "./news-page/news-comments-section/news-comments-section.component";
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 import {NewsCommentRowComponent} from "./news-page/news-comment-row/news-comment-row.component";

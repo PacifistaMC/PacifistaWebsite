@@ -18,6 +18,8 @@ export class InputNumberComponent {
   @Input() placeholder: string = 'Hint';
   @Input() id: string = 'validationNumber';
   @Input() number?: number;
+  @Input() min?: number;
+  @Input() max?: number;
   @Input() required: boolean = true;
   @Input() formSent: boolean = false;
   @Input() inputErrors: string[] = [];
