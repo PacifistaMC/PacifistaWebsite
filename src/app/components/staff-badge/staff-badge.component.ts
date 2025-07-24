@@ -48,8 +48,7 @@ export class StaffBadgeComponent implements OnInit {
     'pascal0bistrot',
     'diomay',
     'whisky_',
-    'havca_',
-    'no_littleby',
+    'havca_'
   ];
 
   public static readonly helpers: string[] = [
