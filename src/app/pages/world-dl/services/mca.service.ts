@@ -1,0 +1,132 @@
+import {Injectable} from "@angular/core";
+import {PacifistaServerType} from "@funixproductions/funixproductions-requests";
+
+@Injectable()
+export default class McaService {
+
+    private static readonly SURVIE_ALPHA_OVERWORLD_UUID = 'e9778abe-6b52-4e89-a4de-6a4a91787b51'
+    private static readonly SURVIE_ALPHA_NETHER_UUID = ''
+    private static readonly SURVIE_ALPHA_END_UUID = ''
+
+    private static readonly SURVIE_BETA_OVERWORLD_UUID = '5a1d8b31-77a4-483b-88bc-b8adc1b2249d'
+    private static readonly SURVIE_BETA_NETHER_UUID = ''
+    private static readonly SURVIE_BETA_END_UUID = ''
+
+    private mcaFiles: RegionFileMcaData[] = []
+
+    public addFromCoordinates(x: number, z: number, worldUuid: string, serverType: PacifistaServerType) {
+        let worldType: WorldType
+        let regionX = Math.floor(x / 512)
+        let regionZ = Math.floor(z / 512)
+
+        if (serverType == PacifistaServerType.SURVIE_ALPHA) {
+            if (worldUuid == McaService.SURVIE_ALPHA_OVERWORLD_UUID) {
+                worldType = WorldType.OVERWORLD
+            } else if (worldUuid == McaService.SURVIE_ALPHA_NETHER_UUID) {
+                worldType = WorldType.NETHER
+            } else if (worldUuid == McaService.SURVIE_ALPHA_END_UUID) {
+                worldType = WorldType.END
+            } else {
+                return
+            }
+        } else if (serverType == PacifistaServerType.SURVIE_BETA) {
+            if (worldUuid == McaService.SURVIE_BETA_OVERWORLD_UUID) {
+                worldType = WorldType.OVERWORLD
+            } else if (worldUuid == McaService.SURVIE_BETA_NETHER_UUID) {
+                worldType = WorldType.NETHER
+            } else if (worldUuid == McaService.SURVIE_BETA_END_UUID) {
+                worldType = WorldType.END
+            } else {
+                return
+            }
+        }
+
+        const newMcaData = new RegionFileMcaData(regionX, regionZ, worldType!, serverType)
+        if (!this.mcaFiles.some(mcaData => mcaData.equals(newMcaData))) {
+            this.mcaFiles.push(newMcaData)
+        }
+    }
+
+}
+
+export class RegionFileMcaData {
+    x: number
+    z: number
+    worldType: WorldType
+    serverAlpha: boolean
+
+    regionFileDownloadUrls: string[]
+    entityFileDownloadUrls: string[]
+
+    constructor(x: number, z: number, worldType: WorldType, serverType: PacifistaServerType) {
+        this.x = x
+        this.z = z
+        this.worldType = worldType
+        this.serverAlpha = serverType == PacifistaServerType.SURVIE_ALPHA
+
+        const basePath = this.getDownloadUrlBasePath()
+        this.regionFileDownloadUrls = [
+            `${basePath}/region/r.${x}.${z}.mca`,
+            `${basePath}/region/r.${x - 1}.${z}.mca`,
+            `${basePath}/region/r.${x + 1}.${z}.mca`,
+            `${basePath}/region/r.${x}.${z - 1}.mca`,
+            `${basePath}/region/r.${x}.${z + 1}.mca`,
+            `${basePath}/region/r.${x - 1}.${z - 1}.mca`,
+            `${basePath}/region/r.${x + 1}.${z + 1}.mca`,
+            `${basePath}/region/r.${x - 1}.${z + 1}.mca`,
+            `${basePath}/region/r.${x + 1}.${z - 1}.mca`
+        ]
+
+        this.entityFileDownloadUrls = [
+            `${basePath}/entities/r.${x}.${z}.mca`,
+            `${basePath}/entities/r.${x - 1}.${z}.mca`,
+            `${basePath}/entities/r.${x + 1}.${z}.mca`,
+            `${basePath}/entities/r.${x}.${z - 1}.mca`,
+            `${basePath}/entities/r.${x}.${z + 1}.mca`,
+            `${basePath}/entities/r.${x - 1}.${z - 1}.mca`,
+            `${basePath}/entities/r.${x + 1}.${z + 1}.mca`,
+            `${basePath}/entities/r.${x - 1}.${z + 1}.mca`,
+            `${basePath}/entities/r.${x + 1}.${z - 1}.mca`
+        ]
+    }
+
+    public equals(other: RegionFileMcaData): boolean {
+        if (this.worldType == other.worldType && this.serverAlpha == other.serverAlpha) {
+            return (this.x == other.x && this.z == other.z) ||
+                (this.x == other.x - 1 && this.z == other.z) ||
+                (this.x == other.x + 1 && this.z == other.z) ||
+                (this.x == other.x && this.z == other.z - 1) ||
+                (this.x == other.x && this.z == other.z + 1) ||
+                (this.x == other.x - 1 && this.z == other.z - 1) ||
+                (this.x == other.x + 1 && this.z == other.z + 1) ||
+                (this.x == other.x - 1 && this.z == other.z + 1) ||
+                (this.x == other.x + 1 && this.z == other.z - 1)
+        } else {
+            return false
+        }
+    }
+
+    private getDownloadUrlBasePath(): string {
+        let url = this.serverAlpha ? 'https://dl-survie-alpha.pacifista.fr/' : 'https://dl-survie-beta.pacifista.fr/'
+
+        switch (this.worldType) {
+            case WorldType.OVERWORLD:
+                url += this.serverAlpha ? 'survie' : 'world'
+                break
+            case WorldType.NETHER:
+                url += this.serverAlpha ? 'survie_nether' : 'world_nether'
+                break
+            case WorldType.END:
+                url += this.serverAlpha ? 'survie_the_end' : 'world_the_end'
+                break
+        }
+
+        return url
+    }
+}
+
+export enum WorldType {
+    NETHER,
+    END,
+    OVERWORLD
+}
