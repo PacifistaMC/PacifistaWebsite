@@ -5,8 +5,22 @@ export default class WorldDlLogsService {
 
     logs: string[] = [];
 
+    logError(message: string) {
+        const log = `[ERROR - ${this.formatDate(new Date())}] - ${message}`;
+
+        this.logs.push(log);
+        console.error(log);
+
+        if (this.logs.length > 200) {
+            this.logs.shift();
+        }
+    }
+
     log(message: string) {
-        this.logs.push(`[${this.formatDate(new Date())}] - ${message}`);
+        const log = `[INFO - ${this.formatDate(new Date())}] - ${message}`;
+
+        console.log(log);
+        this.logs.push(log);
 
         if (this.logs.length > 200) {
             this.logs.shift();

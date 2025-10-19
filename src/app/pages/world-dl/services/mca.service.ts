@@ -12,7 +12,7 @@ export default class McaService {
     private static readonly SURVIE_BETA_NETHER_UUID = ''
     private static readonly SURVIE_BETA_END_UUID = ''
 
-    private mcaFiles: RegionFileMcaData[] = []
+    private readonly mcaFiles: RegionFileMcaData[] = []
 
     public addFromCoordinates(x: number, z: number, worldUuid: string, serverType: PacifistaServerType) {
         let worldType: WorldType
@@ -47,6 +47,14 @@ export default class McaService {
         }
     }
 
+    public alphaMcaFiles(): RegionFileMcaData[] {
+        return this.mcaFiles.filter(mcaData => mcaData.serverAlpha)
+    }
+
+    public betaMcaFiles(): RegionFileMcaData[] {
+        return this.mcaFiles.filter(mcaData => !mcaData.serverAlpha)
+    }
+
 }
 
 export class RegionFileMcaData {
@@ -55,8 +63,11 @@ export class RegionFileMcaData {
     worldType: WorldType
     serverAlpha: boolean
 
-    regionFileDownloadUrls: string[]
-    entityFileDownloadUrls: string[]
+    regionFileDownloadUrls: RegionDownloadData[]
+    entityFileDownloadUrls: RegionDownloadData[]
+
+    folderRegionPath: string
+    folderEntitiesPath: string
 
     constructor(x: number, z: number, worldType: WorldType, serverType: PacifistaServerType) {
         this.x = x
@@ -64,29 +75,44 @@ export class RegionFileMcaData {
         this.worldType = worldType
         this.serverAlpha = serverType == PacifistaServerType.SURVIE_ALPHA
 
+        switch (worldType) {
+            case WorldType.OVERWORLD:
+                this.folderRegionPath = 'region'
+                this.folderEntitiesPath = 'entities'
+                break
+            case WorldType.NETHER:
+                this.folderRegionPath = 'DIM-1/region'
+                this.folderEntitiesPath = 'DIM-1/entities'
+                break
+            case WorldType.END:
+                this.folderRegionPath = 'DIM1/region'
+                this.folderEntitiesPath = 'DIM1/entities'
+                break
+        }
+
         const basePath = this.getDownloadUrlBasePath()
         this.regionFileDownloadUrls = [
-            `${basePath}/region/r.${x}.${z}.mca`,
-            `${basePath}/region/r.${x - 1}.${z}.mca`,
-            `${basePath}/region/r.${x + 1}.${z}.mca`,
-            `${basePath}/region/r.${x}.${z - 1}.mca`,
-            `${basePath}/region/r.${x}.${z + 1}.mca`,
-            `${basePath}/region/r.${x - 1}.${z - 1}.mca`,
-            `${basePath}/region/r.${x + 1}.${z + 1}.mca`,
-            `${basePath}/region/r.${x - 1}.${z + 1}.mca`,
-            `${basePath}/region/r.${x + 1}.${z - 1}.mca`
+            new RegionDownloadData(`${basePath}/region/r.${x}.${z}.mca`, this.folderRegionPath, `r.${x}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z}.mca`, this.folderRegionPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z}.mca`, this.folderRegionPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x}.${z - 1}.mca`, this.folderRegionPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x}.${z + 1}.mca`, this.folderRegionPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
         ]
 
         this.entityFileDownloadUrls = [
-            `${basePath}/entities/r.${x}.${z}.mca`,
-            `${basePath}/entities/r.${x - 1}.${z}.mca`,
-            `${basePath}/entities/r.${x + 1}.${z}.mca`,
-            `${basePath}/entities/r.${x}.${z - 1}.mca`,
-            `${basePath}/entities/r.${x}.${z + 1}.mca`,
-            `${basePath}/entities/r.${x - 1}.${z - 1}.mca`,
-            `${basePath}/entities/r.${x + 1}.${z + 1}.mca`,
-            `${basePath}/entities/r.${x - 1}.${z + 1}.mca`,
-            `${basePath}/entities/r.${x + 1}.${z - 1}.mca`
+            new RegionDownloadData(`${basePath}/entities/r.${x}.${z}.mca`, this.folderEntitiesPath, `r.${x}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
+            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
         ]
     }
 
@@ -122,6 +148,18 @@ export class RegionFileMcaData {
         }
 
         return url
+    }
+}
+
+export class RegionDownloadData {
+    fileUrl: string
+    savePath: string
+    fileName: string
+
+    constructor(fileUrl: string, savePath: string, fileName: string, serverAlpha: boolean) {
+        this.fileUrl = fileUrl
+        this.fileName = fileName
+        this.savePath = (serverAlpha ? 'survieAlpha' : 'survieBeta' ) + '/' + savePath + '/' + fileName
     }
 }
 
