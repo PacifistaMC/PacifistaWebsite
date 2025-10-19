@@ -16,6 +16,7 @@ export class WorldDlService {
     downloadedUrls: number = 0
     percentDownloaded: number = 0
     startedDownload: boolean = false
+    loadingZip: boolean = false
 
     private readonly zip: JSZip = new JSZip()
 
@@ -47,9 +48,17 @@ export class WorldDlService {
     async startDownload() {
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
+        let playersProcessed = 0
+
         this.selectedPlayers.forEach((player) => {
             this.homeService.getPlayerHomes(player, () => {
-                this.claimService.getClaimsForPlayer(player, () => this.processAfterApiFetched())
+                this.claimService.getClaimsForPlayer(player, () => {
+                    playersProcessed += 1
+
+                    if (playersProcessed >= this.selectedPlayers.length) {
+                        this.processAfterApiFetched()
+                    }
+                })
             })
         })
     }
@@ -127,9 +136,13 @@ export class WorldDlService {
         this.logService.log("Tous les fichiers du serveur ont été téléchargés. Préparation du fichier ZIP pour le téléchargement...")
         this.notificationService.info("Préparation du fichier ZIP pour le téléchargement du serveur...")
 
+        this.loadingZip = true
         this.zip.generateAsync({type:"blob"})
-            .then(function(content) {
+            .then((content) => {
                 saveAs(content, "pacifista-worlds.zip");
+                this.loadingZip = false
+                this.logService.log("Fichier ZIP prêt et téléchargement lancé.")
+                this.notificationService.info("Le fichier ZIP a été préparé et le téléchargement a été lancé.")
             });
     }
 
