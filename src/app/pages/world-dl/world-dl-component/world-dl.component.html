@@ -1,1 +1,24 @@
-<p>world-dl-component works!</p>
+<div>
+    @for (player of dlService.selectedPlayers; track player.minecraftUuid) {
+        <p>
+            player: {{ player.minecraftUsername }}
+        </p>
+    }
+
+    <pacifista-search-player-input
+            (onPlayerSelected)="dlService.addPlayer($event)"
+    ></pacifista-search-player-input>
+
+    <div>
+        <button (click)="dlService.startDownload()"
+                [disabled]="dlService.startedDownload">
+            Start Download
+        </button>
+
+        <p>
+            Total files to download: {{ dlService.totalUrlsToDownload }}<br>
+            Downloaded files: {{ dlService.downloadedUrls }}<br>
+            Percent complete: {{ dlService.percentDownloaded }}%<br>
+        </p>
+    </div>
+</div>

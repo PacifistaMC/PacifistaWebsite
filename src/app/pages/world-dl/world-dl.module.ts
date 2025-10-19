@@ -9,6 +9,9 @@ import WorldDlLogsService from "./world-dl-logs/world-dl-logs.service";
 import {WorldDlService} from "./world-dl.service";
 import McaService from "./services/mca.service";
 import {ResumeCoordinatesFilesService} from "./services/resume-coordinates-files.service";
+import {
+  PacifistaSearchPlayerInputComponent
+} from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
 
 @NgModule({
   declarations: [
@@ -17,7 +20,8 @@ import {ResumeCoordinatesFilesService} from "./services/resume-coordinates-files
   ],
   imports: [
     CommonModule,
-    WorldDlRoutingModule
+    WorldDlRoutingModule,
+    PacifistaSearchPlayerInputComponent
   ],
   providers: [
     WorldDlService,

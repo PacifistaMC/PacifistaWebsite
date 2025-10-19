@@ -49,7 +49,7 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
 
   constructor(httpClient: HttpClient,
               private renderer: Renderer2) {
-    this.service = new PacifistaPlayerDataService(httpClient, environment.production);
+    this.service = new PacifistaPlayerDataService(httpClient, true);
 
     let pageOption = new PageOption();
     pageOption.page = 0;

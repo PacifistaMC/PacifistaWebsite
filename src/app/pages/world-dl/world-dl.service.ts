@@ -48,10 +48,13 @@ export class WorldDlService {
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
         this.selectedPlayers.forEach((player) => {
-            this.homeService.getPlayerHomes(player)
-            this.claimService.getClaimsForPlayer(player)
+            this.homeService.getPlayerHomes(player, () => {
+                this.claimService.getClaimsForPlayer(player, () => this.processAfterApiFetched())
+            })
         })
+    }
 
+    private processAfterApiFetched() {
         const alphaFiles = this.mcaService.alphaMcaFiles()
         alphaFiles.forEach(file => {
             this.totalUrlsToDownload += file.entityFileDownloadUrls.length + file.regionFileDownloadUrls.length
@@ -89,18 +92,6 @@ export class WorldDlService {
                 })
             })
         }
-
-        this.sendZip()
-    }
-
-    private sendZip() {
-        this.logService.log("Tous les fichiers du serveur ont été téléchargés. Préparation du fichier ZIP pour le téléchargement...")
-        this.notificationService.info("Préparation du fichier ZIP pour le téléchargement du serveur...")
-
-        this.zip.generateAsync({type:"blob"})
-            .then(function(content) {
-                saveAs(content, "pacifista-worlds.zip");
-            });
     }
 
     private downloadFile(dlData: RegionDownloadData, zip: JSZip) {
@@ -116,12 +107,31 @@ export class WorldDlService {
             }
             this.downloadedUrls += 1
             this.percentDownloaded = Math.floor((this.downloadedUrls / this.totalUrlsToDownload) * 100)
+
+            if (this.downloadedUrls >= this.totalUrlsToDownload) {
+                this.sendZip()
+            }
         }
         xhr.onerror = () => {
             this.downloadedUrls += 1
             this.percentDownloaded = Math.floor((this.downloadedUrls / this.totalUrlsToDownload) * 100)
+
+            if (this.downloadedUrls >= this.totalUrlsToDownload) {
+                this.sendZip()
+            }
         }
         xhr.send();
     }
+
+    private sendZip() {
+        this.logService.log("Tous les fichiers du serveur ont été téléchargés. Préparation du fichier ZIP pour le téléchargement...")
+        this.notificationService.info("Préparation du fichier ZIP pour le téléchargement du serveur...")
+
+        this.zip.generateAsync({type:"blob"})
+            .then(function(content) {
+                saveAs(content, "pacifista-worlds.zip");
+            });
+    }
+
 
 }

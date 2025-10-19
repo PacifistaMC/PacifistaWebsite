@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {WorldDlService} from "../world-dl.service";
 
 @Component({
   selector: 'app-world-dl-component',
@@ -7,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './world-dl.component.scss'
 })
 export class WorldDlComponent {
+
+  constructor(protected readonly dlService: WorldDlService) {
+
+  }
 
 }

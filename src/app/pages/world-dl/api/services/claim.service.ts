@@ -7,7 +7,6 @@ import {
 import ClaimDto from "../dtos/claim.dto";
 import {HttpClient} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {environment} from "../../../../../environments/environment";
 import WorldDlLogsService from "../../world-dl-logs/world-dl-logs.service";
 import McaService from "../../services/mca.service";
 import {ResumeCoordinatesFilesService} from "../../services/resume-coordinates-files.service";
@@ -21,12 +20,12 @@ export default class ClaimService extends CrudHttpClient<ClaimDto> {
                 private readonly resumeService: ResumeCoordinatesFilesService) {
         super(
             httpClient,
-            environment.pacifistaApiDomain,
+            'https://api.pacifista.fr/',
             'claim/claim-data'
         )
     }
 
-    public getClaimsForPlayer(player: PacifistaPlayerDataDTO) {
+    public getClaimsForPlayer(player: PacifistaPlayerDataDTO, onFetched: () => void) {
         const pageOption = new PageOption()
         pageOption.elemsPerPage = 300
         pageOption.page = 0
@@ -49,10 +48,12 @@ export default class ClaimService extends CrudHttpClient<ClaimDto> {
                         this.resumeService.addClaim(player, claim)
                         this.addClaim(claim)
                     })
+                    onFetched()
                 }
             },
             error: (err) => {
                 this.logService.logError(`Erreur lors de la récupération des claims pour ${player.minecraftUsername} (${player.minecraftUuid}): ${err.message}`)
+                onFetched()
             }
         })
     }

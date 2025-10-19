@@ -7,7 +7,6 @@ import {
 import HomeDto from "../dtos/home.dto";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../../../../../environments/environment";
 import WorldDlLogsService from "../../world-dl-logs/world-dl-logs.service";
 import McaService from "../../services/mca.service";
 import {ResumeCoordinatesFilesService} from "../../services/resume-coordinates-files.service";
@@ -21,12 +20,12 @@ export default class HomeService extends CrudHttpClient<HomeDto> {
                 private readonly resumeService: ResumeCoordinatesFilesService) {
         super(
             httpClient,
-            environment.pacifistaApiDomain,
+            'https://api.pacifista.fr/',
             'essentials/home'
         )
     }
 
-    public getPlayerHomes(player: PacifistaPlayerDataDTO) {
+    public getPlayerHomes(player: PacifistaPlayerDataDTO, onFetched: () => void) {
         const pageOption = new PageOption()
         pageOption.elemsPerPage = 300
         pageOption.page = 0
@@ -55,10 +54,12 @@ export default class HomeService extends CrudHttpClient<HomeDto> {
                             home.serverType
                         )
                     })
+                    onFetched()
                 }
             },
             error: (err) => {
                 this.logService.logError(`Erreur lors de la récupération des homes pour ${player.minecraftUsername} (${player.minecraftUuid}): ${err.message}`)
+                onFetched()
             }
         })
     }
