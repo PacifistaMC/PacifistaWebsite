@@ -27,43 +27,25 @@ export class WorldDlService {
                 private readonly notificationService: NotificationService) {
     }
 
-    addPlayer(player: PacifistaPlayerDataDTO) {
-        if (this.selectedPlayers.length > 5) {
-            this.notificationService.warning("Si vous ajoutez plus de 5 joueurs, le téléchargement peut prendre beaucoup de temps et générer de gros fichiers ZIP et vous demander beaucoup de RAM.")
-        }
-
-        if (this.selectedPlayers.find(p => p.minecraftUuid === player.minecraftUuid)) {
+    async addPlayer(player: PacifistaPlayerDataDTO) {
+        if (this.selectedPlayers.some(p => p.minecraftUuid === player.minecraftUuid)) {
             this.logService.log("Le joueur " + player.minecraftUsername + " (" + player.minecraftUuid + ") est déjà dans la liste.")
         } else {
             this.selectedPlayers.push(player)
             this.logService.log("Joueur ajouté: " + player.minecraftUsername + " (" + player.minecraftUuid + ")")
-        }
-    }
 
-    removePlayer(player: PacifistaPlayerDataDTO) {
-        this.selectedPlayers = this.selectedPlayers.filter(p => p.minecraftUuid !== player.minecraftUuid)
-        this.logService.log("Joueur supprimé: " + player.minecraftUsername + " (" + player.minecraftUuid + ")")
+            if (this.selectedPlayers.length > 5) {
+                this.notificationService.warning("Si vous ajoutez plus de 5 joueurs, le téléchargement peut prendre beaucoup de temps et générer de gros fichiers ZIP et vous demander beaucoup de RAM et d'espace disque.")
+            }
+
+            this.homeService.getPlayerHomes(player)
+            this.claimService.getClaimsForPlayer(player)
+        }
     }
 
     async startDownload() {
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
-        let playersProcessed = 0
-
-        this.selectedPlayers.forEach((player) => {
-            this.homeService.getPlayerHomes(player, () => {
-                this.claimService.getClaimsForPlayer(player, () => {
-                    playersProcessed += 1
-
-                    if (playersProcessed >= this.selectedPlayers.length) {
-                        this.processAfterApiFetched()
-                    }
-                })
-            })
-        })
-    }
-
-    private processAfterApiFetched() {
         const alphaFiles = this.mcaService.alphaMcaFiles()
         alphaFiles.forEach(file => {
             this.totalUrlsToDownload += file.entityFileDownloadUrls.length + file.regionFileDownloadUrls.length
@@ -82,10 +64,10 @@ export class WorldDlService {
 
         if (alphaFiles.length > 0) {
             alphaFiles.forEach(file => {
-                file.regionFileDownloadUrls.forEach((fileUrl) => {
+                file.regionFileDownloadUrls.forEach(fileUrl => {
                     this.downloadFile(fileUrl, this.zip)
                 })
-                file.entityFileDownloadUrls.forEach((fileUrl) => {
+                file.entityFileDownloadUrls.forEach(fileUrl => {
                     this.downloadFile(fileUrl, this.zip)
                 })
             })
@@ -93,10 +75,10 @@ export class WorldDlService {
 
         if (betaFiles.length > 0) {
             betaFiles.forEach(file => {
-                file.regionFileDownloadUrls.forEach((fileUrl) => {
+                file.regionFileDownloadUrls.forEach(fileUrl => {
                     this.downloadFile(fileUrl, this.zip)
                 })
-                file.entityFileDownloadUrls.forEach((fileUrl) => {
+                file.entityFileDownloadUrls.forEach(fileUrl => {
                     this.downloadFile(fileUrl, this.zip)
                 })
             })

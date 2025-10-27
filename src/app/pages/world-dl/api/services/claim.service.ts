@@ -25,7 +25,7 @@ export default class ClaimService extends CrudHttpClient<ClaimDto> {
         )
     }
 
-    public getClaimsForPlayer(player: PacifistaPlayerDataDTO, onFetched: () => void) {
+    public getClaimsForPlayer(player: PacifistaPlayerDataDTO) {
         const pageOption = new PageOption()
         pageOption.elemsPerPage = 300
         pageOption.page = 0
@@ -48,12 +48,10 @@ export default class ClaimService extends CrudHttpClient<ClaimDto> {
                         this.resumeService.addClaim(player, claim)
                         this.addClaim(claim)
                     })
-                    onFetched()
                 }
             },
             error: (err) => {
                 this.logService.logError(`Erreur lors de la récupération des claims pour ${player.minecraftUsername} (${player.minecraftUuid}): ${err.message}`)
-                onFetched()
             }
         })
     }
