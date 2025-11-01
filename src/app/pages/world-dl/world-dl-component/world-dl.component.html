@@ -7,6 +7,9 @@
         <strong>Pensez à lire le README.txt dans le fichier zip pour plus d'infos.</strong>
 
         <br><br>
+        Veuillez utiliser Google Chrome sur Ordinateur pour télécharger la map, aucun support ne sera fourni en dehors de ces conditions.
+
+        <br><br>
         Note: Le téléchargement peut prendre du temps en fonction du nombre de joueurs sélectionnés et de la taille des données. Utilisez l'outil sur pc avec au moins 8go de ram.
     </p>
 
@@ -28,13 +31,6 @@
                     {{ dlService.percentDownloaded }}%
                 </div>
             </div>
-
-            @if (dlService.loadingZip) {
-                <div class="alert alert-success" role="alert">
-                    <app-spinner></app-spinner>
-                    Préparation du fichier zip...
-                </div>
-            }
 
             <div class="pt-4">
                 <app-world-dl-logs></app-world-dl-logs>

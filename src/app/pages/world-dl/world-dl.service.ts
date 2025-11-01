@@ -5,9 +5,6 @@ import ClaimService from "./api/services/claim.service";
 import WorldDlLogsService from "./world-dl-logs/world-dl-logs.service";
 import McaService, {RegionDownloadData} from "./services/mca.service";
 import NotificationService from "../../services/notifications/services/NotificationService";
-import JSZip from "jszip";
-import * as fs from "node:fs";
-import {saveAs} from "file-saver";
 
 @Injectable()
 export class WorldDlService {
@@ -17,10 +14,9 @@ export class WorldDlService {
     downloadedUrls: number = 0
     percentDownloaded: number = 0
     startedDownload: boolean = false
-    loadingZip: boolean = false
     loadingAddPlayer: boolean = false
 
-    private readonly zip: JSZip = new JSZip()
+    private dirHandle?: FileSystemDirectoryHandle
 
     constructor(private readonly homeService: HomeService,
                 private readonly claimService: ClaimService,
@@ -59,93 +55,102 @@ export class WorldDlService {
             return
         }
 
+        const w = globalThis as any
+        if (!w || typeof w.showDirectoryPicker !== 'function') {
+            this.notificationService.info("Votre navigateur ne supporte pas l'écriture directe dans un dossier. Veuillez utiliser Google Chrome sur PC/Mac.")
+            return
+        }
+
+        try {
+            this.dirHandle = await w.showDirectoryPicker({ mode: 'readwrite' })
+        } catch {
+            this.notificationService.warning("Sélection du dossier annulée.")
+            return
+        }
+
+        if (this.dirHandle && (this.dirHandle as any).requestPermission) {
+            const perm = await (this.dirHandle as any).requestPermission({ mode: 'readwrite' })
+            if (perm !== 'granted') {
+                this.notificationService.warning("Permission d’écriture refusée.")
+                return
+            }
+        }
+
         this.startedDownload = true
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
         const alphaFiles = this.mcaService.alphaMcaFiles()
-        alphaFiles.forEach(file => {
+        for (const file of alphaFiles) {
             this.totalUrlsToDownload += file.entityFileDownloadUrls.length + file.regionFileDownloadUrls.length
-        })
+        }
 
         const betaFiles = this.mcaService.betaMcaFiles()
-        betaFiles.forEach(file => {
+        for (const file of betaFiles) {
             this.totalUrlsToDownload += file.entityFileDownloadUrls.length + file.regionFileDownloadUrls.length
-        })
+        }
 
         this.logService.log("Total des fichiers à télécharger: " + this.totalUrlsToDownload)
         this.logService.log("Préparation des archives ZIP et lancement des téléchargements...")
         this.notificationService.info("Lancement du téléchargement. Ne quittez pas la page.")
 
         if (alphaFiles.length > 0) {
-            alphaFiles.forEach(file => {
-                file.regionFileDownloadUrls.forEach(fileUrl => {
-                    this.downloadFile(fileUrl, this.zip)
-                })
-                file.entityFileDownloadUrls.forEach(fileUrl => {
-                    this.downloadFile(fileUrl, this.zip)
-                })
-            })
+            for (const file of alphaFiles) {
+                for (const fileUrl of file.regionFileDownloadUrls) {
+                    await this.downloadFile(fileUrl)
+                }
+                for (const fileUrl of file.entityFileDownloadUrls) {
+                    await this.downloadFile(fileUrl)
+                }
+            }
         }
 
         if (betaFiles.length > 0) {
-            betaFiles.forEach(file => {
-                file.regionFileDownloadUrls.forEach(fileUrl => {
-                    this.downloadFile(fileUrl, this.zip)
-                })
-                file.entityFileDownloadUrls.forEach(fileUrl => {
-                    this.downloadFile(fileUrl, this.zip)
-                })
-            })
+            for (const file of betaFiles) {
+                for (const fileUrl of file.regionFileDownloadUrls) {
+                    await this.downloadFile(fileUrl)
+                }
+                for (const fileUrl of file.entityFileDownloadUrls) {
+                    await this.downloadFile(fileUrl)
+                }
+            }
         }
     }
 
-    private downloadFile(dlData: RegionDownloadData, zip: JSZip) {
-        this.logService.log("Téléchargement du fichier: " + dlData.savePath)
+    private async downloadFile(dlData: RegionDownloadData) {
+        try {
+            const resp = await fetch(dlData.fileUrl)
 
-        const xhr = new XMLHttpRequest();
-        xhr.open("GET", dlData.fileUrl, true);
-        xhr.responseType = "arraybuffer";
-
-        xhr.onload = () => {
-            if (xhr.status === 200) {
-                zip.file(dlData.savePath, xhr.response);
+            if (resp.ok) {
+                this.logService.log("Téléchargement du fichier: " + dlData.savePath)
+                await this.writeBlobToDirectory(dlData.savePath, await resp.blob())
             }
+        } catch (e: any) {
+        } finally {
             this.downloadedUrls += 1
             this.percentDownloaded = Math.floor((this.downloadedUrls / this.totalUrlsToDownload) * 100)
-
-            if (this.downloadedUrls >= this.totalUrlsToDownload) {
-                this.sendZip()
-            }
         }
-        xhr.onerror = () => {
-            this.downloadedUrls += 1
-            this.percentDownloaded = Math.floor((this.downloadedUrls / this.totalUrlsToDownload) * 100)
-
-            if (this.downloadedUrls >= this.totalUrlsToDownload) {
-                this.sendZip()
-            }
-        }
-        xhr.send();
     }
 
-    private async sendZip() {
-        this.logService.log("Tous les fichiers du serveur ont été téléchargés. Préparation du fichier ZIP pour le téléchargement...")
-        this.notificationService.info("Préparation du fichier ZIP pour le téléchargement du serveur...")
+    private async writeBlobToDirectory(savePath: string, blob: Blob): Promise<void> {
+        try {
+            if (!this.dirHandle) {
+                this.logService.logError("Aucun dossier sélectionné.")
+                return
+            }
+            const parts = savePath.split('/').filter(Boolean)
+            const fileName = parts.pop() as string
 
-        this.loadingZip = true
-        this.zip.generateAsync({
-            type:"blob",
-            streamFiles: true
-        }, (metadata) => {
-            this.percentDownloaded = Math.floor(metadata.percent)
-        })
-            .then((content) => {
-            saveAs(content)
-            this.loadingZip = false
-            this.logService.log("Fichier ZIP prêt et téléchargement lancé.")
-            this.notificationService.info("Le fichier ZIP a été préparé et le téléchargement a été lancé.")
-        })
+            let currentDir = this.dirHandle
+            for (const segment of parts) {
+                currentDir = await currentDir.getDirectoryHandle(segment, {create: true})
+            }
+
+            const fileHandle = await currentDir.getFileHandle(fileName, {create: true})
+            const writable = await fileHandle.createWritable()
+            await writable.write(blob)
+            await writable.close()
+        } catch (error: any) {
+            this.logService.logError("Erreur lors de l'écriture du fichier " + savePath + ": " + (error as Error).message)
+        }
     }
-
-
 }
