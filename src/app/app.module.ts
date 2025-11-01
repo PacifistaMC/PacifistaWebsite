@@ -27,6 +27,7 @@ import {
 } from "./pages/accueil/components/staff/staff-accueuil-section-row-player/staff-accueuil-section-row-player.component";
 import {StaffBadgeComponent} from "./components/staff-badge/staff-badge.component";
 import {serverRoutes} from "./app.routes.server";
+import {WorldDlModule} from "./pages/world-dl/world-dl.module";
 
 @NgModule({ declarations: [
         AppComponent,
@@ -53,7 +54,8 @@ import {serverRoutes} from "./app.routes.server";
         NewsModule,
         NgOptimizedImage,
         MinecraftHeadComponent,
-        StaffBadgeComponent
+        StaffBadgeComponent,
+        WorldDlModule
     ],
     providers: [Title, provideClientHydration(), provideAnimationsAsync(), provideHttpClient(withFetch()), provideHttpClient(withInterceptorsFromDi()), provideServerRendering(withRoutes(serverRoutes))]
 })

@@ -15,27 +15,32 @@ import {
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 import {SpinnerComponent} from "../../components/spinner/spinner.component";
+import {WorldDlFunixLinksComponent} from "./world-dl-funix-links/world-dl-funix-links.component";
 
 @NgModule({
-  declarations: [
-    WorldDlComponent,
-    WorldDlLogsComponent
-  ],
-  imports: [
-    CommonModule,
-    WorldDlRoutingModule,
-    PacifistaSearchPlayerInputComponent,
-    MinecraftHeadComponent,
-    SendButtonComponent,
-    SpinnerComponent
-  ],
-  providers: [
-    WorldDlService,
-    ClaimService,
-    HomeService,
-    WorldDlLogsService,
-    McaService,
-    ResumeCoordinatesFilesService
-  ]
+    declarations: [
+        WorldDlComponent,
+        WorldDlLogsComponent,
+        WorldDlFunixLinksComponent
+    ],
+    imports: [
+        CommonModule,
+        WorldDlRoutingModule,
+        PacifistaSearchPlayerInputComponent,
+        MinecraftHeadComponent,
+        SendButtonComponent,
+        SpinnerComponent
+    ],
+    exports: [
+        WorldDlFunixLinksComponent
+    ],
+    providers: [
+        WorldDlService,
+        ClaimService,
+        HomeService,
+        WorldDlLogsService,
+        McaService,
+        ResumeCoordinatesFilesService
+    ]
 })
 export class WorldDlModule { }
