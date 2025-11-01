@@ -15,13 +15,11 @@ import {
 import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
 import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
 import {SpinnerComponent} from "../../components/spinner/spinner.component";
-import {WorldDlFunixLinksComponent} from "./world-dl-funix-links/world-dl-funix-links.component";
 
 @NgModule({
     declarations: [
         WorldDlComponent,
-        WorldDlLogsComponent,
-        WorldDlFunixLinksComponent
+        WorldDlLogsComponent
     ],
     imports: [
         CommonModule,
@@ -30,9 +28,6 @@ import {WorldDlFunixLinksComponent} from "./world-dl-funix-links/world-dl-funix-
         MinecraftHeadComponent,
         SendButtonComponent,
         SpinnerComponent
-    ],
-    exports: [
-        WorldDlFunixLinksComponent
     ],
     providers: [
         WorldDlService,
