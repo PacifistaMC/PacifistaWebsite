@@ -1,0 +1,64 @@
+<div class="container">
+    <h1>Téléchargement de la map Pacifista</h1>
+    <p>
+        Sélectionnez les joueurs dont vous souhaitez télécharger les données de la map Pacifista.<br>
+        Cet outil vous permet de télécharger les données de la map Pacifista pour les joueurs sélectionnés.<br>
+        Cet outil va télécharger dans un dossier de votre PC avec à l'intérieur la map alpha et beta contenant les zones où vous avez posé des claims et homes.<br>
+        <strong>Vous trouverez un fichier coordinates.csv a ouvrir avec excel ou google sheets avec toutes les coordonnées des homes et claims.</strong>
+
+        <br><br>
+        Veuillez utiliser Google Chrome sur Ordinateur pour télécharger la map, aucun support ne sera fourni en dehors de ces conditions.
+
+        <br><br>
+        Note: Le téléchargement peut prendre du temps en fonction du nombre de joueurs sélectionnés et de la taille des données.
+    </p>
+
+    <hr>
+
+    @if(dlService.startedDownload) {
+        <div class="pb-4">
+            <h3>Téléchargement en cours...</h3>
+            <p>Veuillez patienter pendant que le fichier est préparé. Ne quittez pas la page.</p>
+            <div class="progress">
+                <div
+                        class="progress-bar progress-bar-striped progress-bar-animated"
+                        role="progressbar"
+                        [style.width.%]="dlService.percentDownloaded"
+                        aria-valuenow="{{ dlService.percentDownloaded }}"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                >
+                    {{ dlService.percentDownloaded }}%
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <app-world-dl-logs></app-world-dl-logs>
+            </div>
+        </div>
+    } @else {
+        <pacifista-search-player-input
+                [showRemovePlayerButton]="false"
+                (onPlayerSelected)="dlService.addPlayer($event)"
+        ></pacifista-search-player-input>
+
+        <div class="pt-2">
+            <app-send-button
+                    [label]="'Télécharger'"
+                    [classBtn]="'btn-success'"
+                    [labelIcon]="'download'"
+                    [loading]="dlService.loadingAddPlayer"
+                    (onClick)="dlService.startDownload()"
+            ></app-send-button>
+        </div>
+
+        <div class="pt-2">
+            <strong>Liste des joueurs</strong>
+            @for (player of dlService.selectedPlayers; track player.minecraftUuid) {
+                <p>
+                    <minecraft-head [username]="player.minecraftUsername" [size]="20"></minecraft-head> {{ player.minecraftUsername }}
+                </p>
+            }
+        </div>
+    }
+</div>

@@ -40,6 +40,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/news/news.module').then(m => m.NewsModule)
   },
   {
+    path: 'telechargement-map',
+    loadChildren: () => import('./pages/world-dl/world-dl.module').then(m => m.WorldDlModule)
+  },
+  {
     path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },

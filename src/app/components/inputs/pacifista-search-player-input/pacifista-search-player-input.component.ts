@@ -33,6 +33,7 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
   @Input() required: boolean = true;
   @Input() formSent: boolean = false;
   @Input() inputErrors: string[] = [];
+  @Input() showRemovePlayerButton: boolean = true;
 
   @Output() onPlayerSelected = new EventEmitter<PacifistaPlayerDataDTO>();
   @Output() onPlayerClear = new EventEmitter<void>();
@@ -49,7 +50,7 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
 
   constructor(httpClient: HttpClient,
               private renderer: Renderer2) {
-    this.service = new PacifistaPlayerDataService(httpClient, environment.production);
+    this.service = new PacifistaPlayerDataService(httpClient, true);
 
     let pageOption = new PageOption();
     pageOption.page = 0;
