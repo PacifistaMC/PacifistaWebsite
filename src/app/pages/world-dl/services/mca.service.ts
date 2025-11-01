@@ -4,13 +4,13 @@ import {PacifistaServerType} from "@funixproductions/funixproductions-requests";
 @Injectable()
 export default class McaService {
 
-    private static readonly SURVIE_ALPHA_OVERWORLD_UUID = 'e9778abe-6b52-4e89-a4de-6a4a91787b51'
-    private static readonly SURVIE_ALPHA_NETHER_UUID = ''
-    private static readonly SURVIE_ALPHA_END_UUID = ''
+    private static readonly SURVIE_ALPHA_OVERWORLD_UUID: string = 'e9778abe-6b52-4e89-a4de-6a4a91787b51'
+    private static readonly SURVIE_ALPHA_NETHER_UUID: string = '552674b6-2d80-465f-9e99-4b3e37816aba'
+    private static readonly SURVIE_ALPHA_END_UUID: string = 'f199915b-1a38-430e-9f6e-1ace532106d0'
 
-    private static readonly SURVIE_BETA_OVERWORLD_UUID = '5a1d8b31-77a4-483b-88bc-b8adc1b2249d'
-    private static readonly SURVIE_BETA_NETHER_UUID = ''
-    private static readonly SURVIE_BETA_END_UUID = ''
+    private static readonly SURVIE_BETA_OVERWORLD_UUID: string = '5a1d8b31-77a4-483b-88bc-b8adc1b2249d'
+    private static readonly SURVIE_BETA_NETHER_UUID: string = 'bf6878fd-adb2-4fc1-ad51-6bef3121102d'
+    private static readonly SURVIE_BETA_END_UUID: string = '35703aba-f85b-4ea4-a3c8-6092a54adb42'
 
     private readonly mcaFiles: RegionFileMcaData[] = []
 
