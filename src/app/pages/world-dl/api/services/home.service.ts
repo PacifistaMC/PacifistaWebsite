@@ -25,7 +25,7 @@ export default class HomeService extends CrudHttpClient<HomeDto> {
         )
     }
 
-    public getPlayerHomes(player: PacifistaPlayerDataDTO) {
+    public getPlayerHomes(player: PacifistaPlayerDataDTO, doneCallback?: () => void) {
         const pageOption = new PageOption()
         pageOption.elemsPerPage = 300
         pageOption.page = 0
@@ -55,9 +55,11 @@ export default class HomeService extends CrudHttpClient<HomeDto> {
                         )
                     })
                 }
+                doneCallback?.()
             },
             error: (err) => {
                 this.logService.logError(`Erreur lors de la récupération des homes pour ${player.minecraftUsername} (${player.minecraftUuid}): ${err.message}`)
+                doneCallback?.()
             }
         })
     }

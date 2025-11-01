@@ -17,6 +17,7 @@ export class WorldDlService {
     percentDownloaded: number = 0
     startedDownload: boolean = false
     loadingZip: boolean = false
+    loadingAddPlayer: boolean = false
 
     private readonly zip: JSZip = new JSZip()
 
@@ -28,6 +29,8 @@ export class WorldDlService {
     }
 
     async addPlayer(player: PacifistaPlayerDataDTO) {
+        if (this.loadingAddPlayer) return
+
         if (this.selectedPlayers.some(p => p.minecraftUuid === player.minecraftUuid)) {
             this.logService.log("Le joueur " + player.minecraftUsername + " (" + player.minecraftUuid + ") est déjà dans la liste.")
         } else {
@@ -38,12 +41,18 @@ export class WorldDlService {
                 this.notificationService.warning("Si vous ajoutez plus de 5 joueurs, le téléchargement peut prendre beaucoup de temps et générer de gros fichiers ZIP et vous demander beaucoup de RAM et d'espace disque.")
             }
 
-            this.homeService.getPlayerHomes(player)
-            this.claimService.getClaimsForPlayer(player)
+            this.loadingAddPlayer = true
+            this.homeService.getPlayerHomes(player, () => {
+                this.claimService.getClaimsForPlayer(player, () => {
+                    this.loadingAddPlayer = false
+                })
+            })
         }
     }
 
     async startDownload() {
+        if (this.loadingAddPlayer) return
+
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
         const alphaFiles = this.mcaService.alphaMcaFiles()
