@@ -47,12 +47,61 @@ export default class McaService {
         }
     }
 
+    public static isWorldUuidAlpha(worldUuid: string): boolean {
+        return worldUuid == McaService.SURVIE_ALPHA_OVERWORLD_UUID ||
+            worldUuid == McaService.SURVIE_ALPHA_NETHER_UUID ||
+            worldUuid == McaService.SURVIE_ALPHA_END_UUID
+    }
+
     public alphaMcaFiles(): RegionFileMcaData[] {
         return this.mcaFiles.filter(mcaData => mcaData.serverAlpha)
     }
 
     public betaMcaFiles(): RegionFileMcaData[] {
         return this.mcaFiles.filter(mcaData => !mcaData.serverAlpha)
+    }
+
+    public serverUtilsFiles(serverAlpha: boolean): FileDownloadData[] {
+        let path: string = `https://dl-survie-${ serverAlpha ? 'alpha' : 'beta' }.pacifista.fr/${ serverAlpha ? 'survie' : 'world' }`
+
+        return [
+            new FileDownloadData(
+                `${path}/uid.dat`,
+                '',
+                'uid.dat',
+                serverAlpha
+            ),
+            new FileDownloadData(
+                `${path}/level.dat`,
+                '',
+                'level.dat',
+                serverAlpha
+            ),
+            new FileDownloadData(
+                `${path}_nether/uid.dat`,
+                'DIM-1',
+                'uid.dat',
+                serverAlpha
+            ),
+            new FileDownloadData(
+                `${path}_nether/level.dat`,
+                'DIM-1',
+                'level.dat',
+                serverAlpha
+            ),
+            new FileDownloadData(
+                `${path}_the_end/uid.dat`,
+                'DIM1',
+                'uid.dat',
+                serverAlpha
+            ),
+            new FileDownloadData(
+                `${path}_the_end/level.dat`,
+                'DIM1',
+                'level.dat',
+                serverAlpha
+            )
+        ]
     }
 
 }
@@ -63,8 +112,8 @@ export class RegionFileMcaData {
     worldType: WorldType
     serverAlpha: boolean
 
-    regionFileDownloadUrls: RegionDownloadData[]
-    entityFileDownloadUrls: RegionDownloadData[]
+    regionFileDownloadUrls: FileDownloadData[]
+    entityFileDownloadUrls: FileDownloadData[]
 
     folderRegionPath: string
     folderEntitiesPath: string
@@ -92,27 +141,27 @@ export class RegionFileMcaData {
 
         const basePath = this.getDownloadUrlBasePath()
         this.regionFileDownloadUrls = [
-            new RegionDownloadData(`${basePath}/region/r.${x}.${z}.mca`, this.folderRegionPath, `r.${x}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z}.mca`, this.folderRegionPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z}.mca`, this.folderRegionPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x}.${z - 1}.mca`, this.folderRegionPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x}.${z + 1}.mca`, this.folderRegionPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x - 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/region/r.${x + 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
+            new FileDownloadData(`${basePath}/region/r.${x}.${z}.mca`, this.folderRegionPath, `r.${x}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x - 1}.${z}.mca`, this.folderRegionPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x + 1}.${z}.mca`, this.folderRegionPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x}.${z - 1}.mca`, this.folderRegionPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x}.${z + 1}.mca`, this.folderRegionPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x - 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x + 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x - 1}.${z + 1}.mca`, this.folderRegionPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/region/r.${x + 1}.${z - 1}.mca`, this.folderRegionPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
         ]
 
         this.entityFileDownloadUrls = [
-            new RegionDownloadData(`${basePath}/entities/r.${x}.${z}.mca`, this.folderEntitiesPath, `r.${x}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x - 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
-            new RegionDownloadData(`${basePath}/entities/r.${x + 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
+            new FileDownloadData(`${basePath}/entities/r.${x}.${z}.mca`, this.folderEntitiesPath, `r.${x}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x - 1}.${z}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x + 1}.${z}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x}.${z - 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x - 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z - 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x + 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x - 1}.${z + 1}.mca`, this.folderEntitiesPath, `r.${x - 1}.${z + 1}.mca`, this.serverAlpha),
+            new FileDownloadData(`${basePath}/entities/r.${x + 1}.${z - 1}.mca`, this.folderEntitiesPath, `r.${x + 1}.${z - 1}.mca`, this.serverAlpha)
         ]
     }
 
@@ -151,7 +200,7 @@ export class RegionFileMcaData {
     }
 }
 
-export class RegionDownloadData {
+export class FileDownloadData {
     fileUrl: string
     savePath: string
     fileName: string

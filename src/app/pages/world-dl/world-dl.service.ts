@@ -3,8 +3,9 @@ import {PacifistaPlayerDataDTO} from "@funixproductions/funixproductions-request
 import HomeService from "./api/services/home.service";
 import ClaimService from "./api/services/claim.service";
 import WorldDlLogsService from "./world-dl-logs/world-dl-logs.service";
-import McaService, {RegionDownloadData} from "./services/mca.service";
+import McaService, {FileDownloadData} from "./services/mca.service";
 import NotificationService from "../../services/notifications/services/NotificationService";
+import {ResumeCoordinatesFilesService} from "./services/resume-coordinates-files.service";
 
 @Injectable()
 export class WorldDlService {
@@ -22,7 +23,8 @@ export class WorldDlService {
                 private readonly claimService: ClaimService,
                 private readonly mcaService: McaService,
                 private readonly logService: WorldDlLogsService,
-                private readonly notificationService: NotificationService) {
+                private readonly notificationService: NotificationService,
+                private readonly resumeService: ResumeCoordinatesFilesService) {
     }
 
     async addPlayer(player: PacifistaPlayerDataDTO) {
@@ -93,7 +95,13 @@ export class WorldDlService {
         this.logService.log("Préparation des archives ZIP et lancement des téléchargements...")
         this.notificationService.info("Lancement du téléchargement. Ne quittez pas la page.")
 
+        await this.writeBlobToDirectory('coordinates.csv', this.resumeService.toBlob())
+
         if (alphaFiles.length > 0) {
+            for (const utilFile of this.mcaService.serverUtilsFiles(true)) {
+                await this.downloadFile(utilFile)
+            }
+
             for (const file of alphaFiles) {
                 for (const fileUrl of file.regionFileDownloadUrls) {
                     await this.downloadFile(fileUrl)
@@ -105,6 +113,10 @@ export class WorldDlService {
         }
 
         if (betaFiles.length > 0) {
+            for (const utilFile of this.mcaService.serverUtilsFiles(false)) {
+                await this.downloadFile(utilFile)
+            }
+
             for (const file of betaFiles) {
                 for (const fileUrl of file.regionFileDownloadUrls) {
                     await this.downloadFile(fileUrl)
@@ -116,7 +128,7 @@ export class WorldDlService {
         }
     }
 
-    private async downloadFile(dlData: RegionDownloadData) {
+    private async downloadFile(dlData: FileDownloadData) {
         try {
             const resp = await fetch(dlData.fileUrl)
 

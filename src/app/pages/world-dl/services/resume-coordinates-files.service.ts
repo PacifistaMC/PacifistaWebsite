@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {PacifistaPlayerDataDTO} from "@funixproductions/funixproductions-requests";
 import ClaimDto from "../api/dtos/claim.dto";
 import HomeDto from "../api/dtos/home.dto";
+import McaService from "./mca.service";
 
 @Injectable()
 export class ResumeCoordinatesFilesService {
@@ -26,6 +27,22 @@ export class ResumeCoordinatesFilesService {
             this.resume.push(playerData)
         }
         playerData.addHome(home)
+    }
+
+    public toBlob(): Blob {
+        let csvContent = "Pseudo,Type,Nom,X,Y,Z,Serveur Alpha\n";
+
+        this.resume.forEach(playerData => {
+            playerData.claims.forEach(claim => {
+                csvContent += `${playerData.player.minecraftUsername},Claim,N/A,${claim.lesserBoundaryCornerX},0,${claim.lesserBoundaryCornerZ},${McaService.isWorldUuidAlpha(claim.worldId) ? 'Oui' : 'Non'}\n`;
+            });
+            playerData.homes.forEach(home => {
+                csvContent += `${playerData.player.minecraftUsername},Home,${home.name},${home.x},${home.y},${home.z},${McaService.isWorldUuidAlpha(home.worldUuid) ? 'Oui' : 'Non'}\n`;
+            });
+        });
+
+        const encodedUri = encodeURI(csvContent);
+        return new Blob([decodeURIComponent(encodedUri)], { type: 'text/csv;charset=utf-8;' });
     }
 
 }
