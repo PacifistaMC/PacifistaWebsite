@@ -51,8 +51,9 @@ export class WorldDlService {
     }
 
     async startDownload() {
-        if (this.loadingAddPlayer) return
+        if (this.loadingAddPlayer || this.startedDownload) return
 
+        this.startedDownload = true
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
 
         const alphaFiles = this.mcaService.alphaMcaFiles()
@@ -68,8 +69,6 @@ export class WorldDlService {
         this.logService.log("Total des fichiers à télécharger: " + this.totalUrlsToDownload)
         this.logService.log("Préparation des archives ZIP et lancement des téléchargements...")
         this.notificationService.info("Lancement du téléchargement. Ne quittez pas la page.")
-
-        this.startedDownload = true
 
         if (alphaFiles.length > 0) {
             alphaFiles.forEach(file => {
