@@ -33,6 +33,7 @@ export class PacifistaSearchPlayerInputComponent implements AfterViewInit {
   @Input() required: boolean = true;
   @Input() formSent: boolean = false;
   @Input() inputErrors: string[] = [];
+  @Input() showRemovePlayerButton: boolean = true;
 
   @Output() onPlayerSelected = new EventEmitter<PacifistaPlayerDataDTO>();
   @Output() onPlayerClear = new EventEmitter<void>();

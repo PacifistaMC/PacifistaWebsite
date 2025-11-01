@@ -12,6 +12,9 @@ import {ResumeCoordinatesFilesService} from "./services/resume-coordinates-files
 import {
   PacifistaSearchPlayerInputComponent
 } from "../../components/inputs/pacifista-search-player-input/pacifista-search-player-input.component";
+import {MinecraftHeadComponent} from "../../components/minecraft-head/minecraft-head.component";
+import {SendButtonComponent} from "../../components/buttons/send-button/send-button.component";
+import {SpinnerComponent} from "../../components/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import {
   imports: [
     CommonModule,
     WorldDlRoutingModule,
-    PacifistaSearchPlayerInputComponent
+    PacifistaSearchPlayerInputComponent,
+    MinecraftHeadComponent,
+    SendButtonComponent,
+    SpinnerComponent
   ],
   providers: [
     WorldDlService,

@@ -10,7 +10,7 @@
             (textChange)="onInputTextChange($event)"
     ></app-input-text>
 
-    <div *ngIf="playerSelected && playerSelected.minecraftUsername" class="pt-2">
+    <div *ngIf="showRemovePlayerButton && playerSelected && playerSelected.minecraftUsername" class="pt-2">
         <button
                 class="btn btn-danger pl-2"
                 (click)="clear()"

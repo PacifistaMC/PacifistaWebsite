@@ -6,7 +6,8 @@ import WorldDlLogsService from "./world-dl-logs/world-dl-logs.service";
 import McaService, {RegionDownloadData} from "./services/mca.service";
 import NotificationService from "../../services/notifications/services/NotificationService";
 import JSZip from "jszip";
-import { saveAs } from "file-saver";
+import * as fs from "node:fs";
+import {saveAs} from "file-saver";
 
 @Injectable()
 export class WorldDlService {
@@ -52,6 +53,11 @@ export class WorldDlService {
 
     async startDownload() {
         if (this.loadingAddPlayer || this.startedDownload) return
+
+        if (this.selectedPlayers.length === 0) {
+            this.notificationService.error("Veuillez ajouter au moins un joueur avant de lancer le téléchargement.")
+            return
+        }
 
         this.startedDownload = true
         this.logService.log("Démarrage du téléchargement des données pour " + this.selectedPlayers.length + " joueurs...")
@@ -122,18 +128,23 @@ export class WorldDlService {
         xhr.send();
     }
 
-    private sendZip() {
+    private async sendZip() {
         this.logService.log("Tous les fichiers du serveur ont été téléchargés. Préparation du fichier ZIP pour le téléchargement...")
         this.notificationService.info("Préparation du fichier ZIP pour le téléchargement du serveur...")
 
         this.loadingZip = true
-        this.zip.generateAsync({type:"blob"})
+        this.zip.generateAsync({
+            type:"blob",
+            streamFiles: true
+        }, (metadata) => {
+            this.percentDownloaded = Math.floor(metadata.percent)
+        })
             .then((content) => {
-                saveAs(content, "pacifista-worlds.zip");
-                this.loadingZip = false
-                this.logService.log("Fichier ZIP prêt et téléchargement lancé.")
-                this.notificationService.info("Le fichier ZIP a été préparé et le téléchargement a été lancé.")
-            });
+            saveAs(content)
+            this.loadingZip = false
+            this.logService.log("Fichier ZIP prêt et téléchargement lancé.")
+            this.notificationService.info("Le fichier ZIP a été préparé et le téléchargement a été lancé.")
+        })
     }
 
 
